@@ -356,7 +356,27 @@ bool j1Map::LoadLayer(pugi::xml_node& node, MapLayer* layer)
 	return ret;
 }
 
-void j1Map::Colliders_on_map(pugi::xml_node& node, iPoint position) {
+bool j1Map::Colliders_on_map(const char * filename) {
+	bool ret = true;
 
-		App->colls->AddCollider({ position.x, position.y,data.tilesets.At(0)->data->tile_width, data.tilesets.At(0)->data->tile_height }, GROUND_COLLIDER);
+	p2SString tmp("%s%s", folder.GetString(), filename);
+
+	pugi::xml_parse_result result = map_file.load_file(tmp.GetString());
+
+	if (result == NULL)
+	{
+		LOG("xml file not loaded %s. pugi error: %s", filename, result.description());
+	}
+
+	pugi::xml_node obj;
+	int x, y, width, height;
+	for (obj = map_file.child("map").child("objectgroup").child("object"); obj && ret; obj = obj.next_sibling("object"))
+	{
+		x = obj.attribute("x").as_int();
+		y = obj.attribute("y").as_int();
+		width = obj.attribute("width").as_int();
+		height = obj.attribute("height").as_int();
+		App->colls->AddCollider({ x,y,width,height}, GROUND_COLLIDER);
+	}
+	return ret;
 }

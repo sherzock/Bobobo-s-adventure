@@ -1522,7 +1522,7 @@
  <objectgroup id="4" name="Win Colliders">
   <object id="12" x="704" y="80" width="25" height="44"/>
  </objectgroup>
- <objectgroup id="6" name="Spawn Colliders">
+ <objectgroup id="5" name="Spawn Colliders">
   <object id="13" x="187" y="286" width="21" height="47"/>
  </objectgroup>
 </map>
