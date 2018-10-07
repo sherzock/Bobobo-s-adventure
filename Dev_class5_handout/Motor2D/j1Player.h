@@ -15,7 +15,7 @@ public:
 	j1Player();
 
 	SDL_Rect* player;
-	
+	SDL_Texture* graphics = nullptr;
 	// Destructor
 	virtual ~j1Player();
 

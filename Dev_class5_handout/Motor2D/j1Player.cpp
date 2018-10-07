@@ -26,8 +26,10 @@ bool j1Player::Awake(pugi::xml_node& config) {
 // Load assets
 bool j1Player::Start() {
 	
-	player->x = 10;
-	player->y = 10;
+	graphics = App->tex->Load("textures/magenta.jpg");
+
+	player->x = position.x;
+	player->y = position.y;
 	player->h = 10;
 	player->w = 10;
 	return true;
@@ -65,7 +67,7 @@ bool j1Player::Update(float dt) {
 
 
 	
-	App->render->Blit(0, (int)position.x, (int)position.y, player);
+	App->render->Blit(graphics, (int)position.x, (int)position.y, player);
 
 	return true;
 }
@@ -102,6 +104,7 @@ bool j1Player::CleanUp() {
 	
 	
 	delete(&player);
+	App->tex->UnLoad(graphics);
 
 	return true;
 }
