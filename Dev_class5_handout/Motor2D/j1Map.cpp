@@ -4,6 +4,7 @@
 #include "j1Render.h"
 #include "j1Textures.h"
 #include "j1Map.h"
+#include "j1Collisions.h"
 #include <math.h>
 
 j1Map::j1Map() : j1Module(), map_loaded(false)
@@ -357,5 +358,8 @@ bool j1Map::LoadLayer(pugi::xml_node& node, MapLayer* layer)
 
 void j1Map::Colliders_on_map(int tile_id, iPoint position) {
 
+	if (tile_id == 1) {
+		App->colls->AddCollider({ position.x, position.y,data.tilesets.At(0)->data->tile_width, data.tilesets.At(0)->data->tile_height }, GROUND_COLLIDER);
+	}
 
 }
