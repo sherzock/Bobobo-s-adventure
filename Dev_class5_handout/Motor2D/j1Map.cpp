@@ -356,10 +356,7 @@ bool j1Map::LoadLayer(pugi::xml_node& node, MapLayer* layer)
 	return ret;
 }
 
-void j1Map::Colliders_on_map(int value_of_collision, iPoint position) {
+void j1Map::Colliders_on_map(pugi::xml_node& node, iPoint position) {
 
-	if (value_of_collision == 1) {
 		App->colls->AddCollider({ position.x, position.y,data.tilesets.At(0)->data->tile_width, data.tilesets.At(0)->data->tile_height }, GROUND_COLLIDER);
-	}
-
 }

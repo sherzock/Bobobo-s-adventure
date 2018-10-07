@@ -184,6 +184,7 @@ bool Collider::Check_Collision(const SDL_Rect& r) const {
 		&& rect.h + rect.y + close> r.y);
 }
 
+
 /*
 CollisionDirection Collider::Check_Direction(const SDL_Rect& r) const {
 }*/
