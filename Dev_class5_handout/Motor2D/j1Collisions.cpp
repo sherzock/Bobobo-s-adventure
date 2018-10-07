@@ -28,17 +28,17 @@ j1Collisions::~j1Collisions() {}
 
 bool j1Collisions::PreUpdate()
 {
-	
+	return false;
 }
 
 bool j1Collisions::CleanUp()
 {
-	
+	return false;
 }
 
 bool j1Collisions::Update(float dt) {
 
-	
+	return false;
 }
 
 void j1Collisions::Collider_to_debug() {
@@ -48,24 +48,24 @@ void j1Collisions::Collider_to_debug() {
 
 Collider* j1Collisions::AddCollider(SDL_Rect rect, COLLIDER_TYPE type, j1Module* callback)
 {
-	
+	return false;
 }
 uint j1Collisions::Colliders_Count() const {
 
-
+	return 1;
 }
 bool j1Collisions::Delete_Collider(Collider* collider)
 {
-	
+	return false;
 }
 
 bool Collider::Check_Collision(const SDL_Rect& r) const {
 
-
+	return false;
 }
-
+/*
 CollisionDirection Collider::Check_Direction(const SDL_Rect& r) const {
 
-	
-}
+	return 0;
+}*/
 
