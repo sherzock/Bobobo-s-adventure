@@ -42,7 +42,7 @@ struct Collider
 
 	void Set_Pos(int x, int y) { rect.x = x; rect.y = y; }
 	bool Check_Collision(const SDL_Rect& r) const;
-	CollisionDirection Check_Direction(const SDL_Rect& r) const;
+	//CollisionDirection Check_Direction(const SDL_Rect& r) const;
 };
 
 class j1Collisions : public j1Module
