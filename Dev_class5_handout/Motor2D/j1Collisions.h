@@ -13,7 +13,7 @@ enum COLLIDER_TYPE
 	NO_COLLIDER = 0,
 	PLAYER_COLLIDER,
 	GROUND_COLLIDER,
-	CHECK_COLLIDER,
+	TYPE_COLLIDER,
 
 };
 
@@ -63,7 +63,7 @@ public:
 private:
 
 	Collider* colliders[MAX_NUM_COLLIDERS];
-	bool matrix[CHECK_COLLIDER][CHECK_COLLIDER];
+	bool matrix[TYPE_COLLIDER][TYPE_COLLIDER];
 };
 
 #endif// __MODULECOLLISION_H__
