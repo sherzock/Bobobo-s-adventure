@@ -2,94 +2,9 @@
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="30" tilewidth="16" tileheight="16" nextobjectid="1">
  <tileset firstgid="1" name="tileset" tilewidth="16" tileheight="16" tilecount="575" columns="25">
   <image source="tileset.png" width="400" height="368"/>
-  <tile id="26">
-   <properties>
-    <property name="Terrain" type="int" value="1"/>
-   </properties>
-  </tile>
   <tile id="28">
    <properties>
-    <property name="Terrain" type="int" value="1"/>
-   </properties>
-  </tile>
-  <tile id="30">
-   <properties>
-    <property name="Terrain" type="int" value="1"/>
-   </properties>
-  </tile>
-  <tile id="76">
-   <properties>
-    <property name="Terrain" type="int" value="1"/>
-   </properties>
-  </tile>
-  <tile id="78">
-   <properties>
-    <property name="Terrain" type="int" value="1"/>
-   </properties>
-  </tile>
-  <tile id="80">
-   <properties>
-    <property name="Terrain" type="int" value="1"/>
-   </properties>
-  </tile>
-  <tile id="126">
-   <properties>
-    <property name="Terrain" type="int" value="1"/>
-   </properties>
-  </tile>
-  <tile id="128">
-   <properties>
-    <property name="Terrain" type="int" value="1"/>
-   </properties>
-  </tile>
-  <tile id="130">
-   <properties>
-    <property name="Terrain" type="int" value="1"/>
-   </properties>
-  </tile>
-  <tile id="190">
-   <properties>
-    <property name="Terrain" type="int" value="1"/>
-   </properties>
-  </tile>
-  <tile id="192">
-   <properties>
-    <property name="Terrain" type="int" value="1"/>
-   </properties>
-  </tile>
-  <tile id="194">
-   <properties>
-    <property name="Terrain" type="int" value="1"/>
-   </properties>
-  </tile>
-  <tile id="240">
-   <properties>
-    <property name="Terrain" type="int" value="1"/>
-   </properties>
-  </tile>
-  <tile id="242">
-   <properties>
-    <property name="Terrain" type="int" value="1"/>
-   </properties>
-  </tile>
-  <tile id="244">
-   <properties>
-    <property name="Terrain" type="int" value="1"/>
-   </properties>
-  </tile>
-  <tile id="290">
-   <properties>
-    <property name="Terrain " type="int" value="1"/>
-   </properties>
-  </tile>
-  <tile id="292">
-   <properties>
-    <property name="Terrain" type="int" value="1"/>
-   </properties>
-  </tile>
-  <tile id="294">
-   <properties>
-    <property name="Terrain" type="int" value="1"/>
+    <property name="Collision" type="bool" value="true"/>
    </properties>
   </tile>
  </tileset>
