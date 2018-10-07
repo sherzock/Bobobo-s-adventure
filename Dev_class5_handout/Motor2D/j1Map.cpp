@@ -355,7 +355,7 @@ bool j1Map::LoadLayer(pugi::xml_node& node, MapLayer* layer)
 	return ret;
 }
 
-void j1Map::Colliders_on_map(int current_id, iPoint position) {
+void j1Map::Colliders_on_map(int tile_id, iPoint position) {
 
 
 }

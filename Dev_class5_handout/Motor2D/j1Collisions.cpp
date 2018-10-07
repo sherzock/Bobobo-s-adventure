@@ -26,25 +26,106 @@ j1Collisions::j1Collisions() : j1Module()
 
 j1Collisions::~j1Collisions() {}
 
-bool j1Collisions::PreUpdate()
-{
-	return false;
+bool j1Collisions::PreUpdate(){
+
+	for (uint i = 0; i < MAX_NUM_COLLIDERS; ++i) {
+		
+		if (colliders[i] != nullptr) {
+			
+			if (colliders[i]->to_delete) {
+
+				delete colliders[i];
+				colliders[i] = nullptr;
+			
+			}
+		
+		}
+	}
+
+	return true;
 }
 
-bool j1Collisions::CleanUp()
-{
-	return false;
-}
+bool j1Collisions::CleanUp(){
 
-bool j1Collisions::Update(float dt) {
+	for (uint i = 0; i < MAX_NUM_COLLIDERS; ++i)
+	{
+		if (colliders[i] != nullptr)
+		{
+			delete colliders[i];
+			colliders[i] = nullptr;
+		}
+	}
 
-	return false;
+	return true;
 }
 
 void j1Collisions::Collider_to_debug() {
 
+	if (App->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN) {
+		debug = !debug;
+	}
+
+	if (debug == false) {
+	}
+		
 	
+	for (uint i = 0; i < MAX_NUM_COLLIDERS; ++i)
+	{
+		if (colliders[i] == nullptr)
+			continue;
+
+		switch (colliders[i]->type)
+		{
+		case NO_COLLIDER:														
+			App->render->DrawQuad(colliders[i]->rect, 255, 255, 0 , 30);  //yellow
+			break;
+		case GROUND_COLLIDER:																
+			App->render->DrawQuad(colliders[i]->rect, 0, 255, 0, 75); //green
+			break;
+		case PLAYER_COLLIDER:																
+			App->render->DrawQuad(colliders[i]->rect, 0, 0, 255, 75); //blue
+			break;
+
+		}
+	}
 }
+
+bool j1Collisions::Update(float dt) {
+
+	Collider* collider1;
+	Collider* collider2;
+
+	for (uint i = 0; i < MAX_NUM_COLLIDERS; ++i)
+	{
+		if (colliders[i] == nullptr)
+			continue;
+		if (colliders[i]->type == PLAYER_COLLIDER)
+		{
+
+			collider1 = colliders[i]; 
+
+			for (uint j = 0; j < MAX_NUM_COLLIDERS; ++j)
+			{
+				/*if (colliders[j] == nullptr || i == j)  // if collider is nullptr or the player collider itself LATER Aixo es un tema de optimitzacio pero per ara res
+					continue;*/
+
+				collider2 = colliders[j];
+
+				if (collider1->Check_Collision(collider2->rect) == true)
+				{
+					if (matrix[collider1->type][collider2->type] && collider1->callback)
+						collider1->callback->OnCollision(collider1, collider2); // What the  LATER
+				}
+			}
+		}
+	}
+
+	Collider_to_debug();
+
+	return true;
+}
+
+
 
 Collider* j1Collisions::AddCollider(SDL_Rect rect, COLLIDER_TYPE type, j1Module* callback)
 {
