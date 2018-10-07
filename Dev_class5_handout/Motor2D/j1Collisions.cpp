@@ -127,26 +127,64 @@ bool j1Collisions::Update(float dt) {
 
 
 
-Collider* j1Collisions::AddCollider(SDL_Rect rect, COLLIDER_TYPE type, j1Module* callback)
-{
-	return false;
+Collider* j1Collisions::AddCollider(SDL_Rect rect, COLLIDER_TYPE type, j1Module* callback){
+
+	Collider* ret = nullptr;
+
+	for (uint i = 0; i < MAX_NUM_COLLIDERS; ++i)
+	{
+		if (colliders[i] == nullptr)
+		{
+			ret = colliders[i] = new Collider(rect, type, callback);
+			break;
+		}
+	}
+	return ret;
 }
+
+
 uint j1Collisions::Colliders_Count() const {
 
-	return 1;
+	int numberColl = 0;
+
+	for (uint i = 0; i < MAX_NUM_COLLIDERS; ++i)
+	{
+
+		if (colliders[i] != nullptr) { 
+			numberColl++; 
+		}
+	}
+
+	return numberColl;
 }
+
 bool j1Collisions::Delete_Collider(Collider* collider)
 {
+	if (collider != nullptr)
+	{
+		for (uint i = 0; i < MAX_NUM_COLLIDERS; ++i)
+		{
+			if (colliders[i] == collider)
+			{
+				collider->to_delete = true;
+				break;
+			}
+		}
+	}
 	return false;
 }
 
 bool Collider::Check_Collision(const SDL_Rect& r) const {
 
-	return false;
+	int close = 0;
+
+	return (rect.x < r.x + r.w + close
+		&& rect.x + rect.w + close> r.x
+		&&	 rect.y < r.y + r.h + close
+		&& rect.h + rect.y + close> r.y);
 }
+
 /*
 CollisionDirection Collider::Check_Direction(const SDL_Rect& r) const {
-
-	return 0;
 }*/
 
