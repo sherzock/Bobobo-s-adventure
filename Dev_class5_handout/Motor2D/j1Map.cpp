@@ -203,6 +203,8 @@ bool j1Map::Load(const char* file_name)
 		}
 	}
 
+	Colliders_on_map(file_name);
+
 	map_loaded = ret;
 
 	return ret;

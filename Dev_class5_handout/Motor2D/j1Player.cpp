@@ -31,8 +31,8 @@ bool j1Player::Start() {
 	
 	graphics = App->tex->Load("textures/magenta.jpg");
 
-	position.x = 0;
-	position.y = 0;
+	position.x = 300;
+	position.y = 300;
 	
 	player = App->colls->AddCollider({ (int)position.x, (int)position.y, 22, 25 }, PLAYER_COLLIDER, this);
 
@@ -60,9 +60,19 @@ bool j1Player::Update(float dt) {
 	
 
 		
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == j1KeyState::KEY_REPEAT && position.y < 100) {
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == j1KeyState::KEY_REPEAT && position.y < 1000) {
+		
+		while (YSpeed < 0) {
+			jump == true;
 			position.y += YSpeed;
 			YSpeed += 0.001f;
+		}
+		YSpeed = -0.022f;
+		jump == false;
+	}
+
+	if (GroundCollision == false && jump==false) {
+		position.y += -YSpeed;
 	}
 
 	
@@ -104,8 +114,20 @@ bool j1Player::Save(pugi::xml_node& data) const {
 
 bool j1Player::CleanUp() {
 
-	delete(&player);
+	//delete (&player);//aixo dona un exception error
 	App->tex->UnLoad(graphics);
 
 	return true;
 }
+
+void j1Player::OnCollision(Collider* col_1, Collider* col_2)
+{
+	if (((col_1->type == PLAYER_COLLIDER || col_1->type == NO_COLLIDER) && col_2->type == GROUND_COLLIDER)
+		|| ((col_2->type == PLAYER_COLLIDER || col_2->type == PLAYER_COLLIDER) || col_1->type == GROUND_COLLIDER))
+	{
+		GroundCollision = true;
+		jump = false;
+
+	}
+
+};

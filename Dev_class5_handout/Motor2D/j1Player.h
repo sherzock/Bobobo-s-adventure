@@ -37,6 +37,9 @@ public:
 	bool Load(pugi::xml_node&);
 	bool Save(pugi::xml_node&) const;
 
+	//oncollision checks if its colliding
+	void OnCollision(Collider* col_1, Collider* col_2);
+
 public:
 	// To know the last direction the character was moving to
 	fPoint position;
@@ -44,13 +47,15 @@ public:
 	float XSpeed = 0.22f;
 	float InitialYSpeed = -0.22f;
 	float YSpeed = -0.22f;
-	float gravity = 0.02f;;
+	float gravity = 0.02f;
 
 	uint currentTime;
 	uint lastTime;
 
 	bool updatedTime = false;
 	bool dead = false;
+	bool GroundCollision = false;
+	bool jump = false;
 };
 
 #endif // __jPLAYER_H__
