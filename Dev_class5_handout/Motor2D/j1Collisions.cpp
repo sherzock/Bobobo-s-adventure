@@ -113,8 +113,8 @@ bool j1Collisions::Update(float dt) {
 
 				if (collider1->Check_Collision(collider2->rect) == true)
 				{
-					if (matrix[collider1->type][collider2->type] && collider1->callback)
-						collider1->callback->OnCollision(collider1, collider2); // What the  LATER
+					//if (matrix[collider1->type][collider2->type] && collider1->callback)   NO VA
+						//collider1->callback->OnCollision(collider1, collider2); // What the  LATER
 				}
 			}
 		}
@@ -176,12 +176,9 @@ bool j1Collisions::Delete_Collider(Collider* collider)
 
 bool Collider::Check_Collision(const SDL_Rect& r) const {
 
-	int close = 0;
+	int close = 0; // NO VA
 
-	return (rect.x < r.x + r.w + close
-		&& rect.x + rect.w + close> r.x
-		&&	 rect.y < r.y + r.h + close
-		&& rect.h + rect.y + close> r.y);
+	return true;
 }
 
 

@@ -5,10 +5,13 @@
 #include "j1Input.h"
 #include "j1Player.h"
 #include "j1Render.h"
+#include "j1Collisions.h"
 
 
 
 j1Player::j1Player() : j1Module(){
+		
+
 	name.create("player");
 }
 
@@ -23,15 +26,16 @@ bool j1Player::Awake(pugi::xml_node& config) {
 	return true;
 }
 
-// Load assets
+
 bool j1Player::Start() {
 	
 	graphics = App->tex->Load("textures/magenta.jpg");
 
-	player->x = position.x;
-	player->y = position.y;
-	player->h = 10;
-	player->w = 10;
+	position.x = 0;
+	position.y = 0;
+	
+	player = App->colls->AddCollider({ (int)position.x, (int)position.y, 22, 25 }, PLAYER_COLLIDER, this);
+
 	return true;
 }
 
@@ -53,24 +57,23 @@ bool j1Player::Update(float dt) {
 		position.x -= XSpeed;
 	}
 
-	if (position.y > 100) {
-		position.y = 100;
-	}
-	else
+	
 
 		
-		if (App->input->GetKey(SDL_SCANCODE_SPACE) == j1KeyState::KEY_REPEAT && position.y < 100) {
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == j1KeyState::KEY_REPEAT && position.y < 100) {
 			position.y += YSpeed;
 			YSpeed += 0.001f;
-
-			
-
+	}
 
 	
-	App->render->Blit(graphics, (int)position.x, (int)position.y, player);
+	player->Set_Pos(position.x,position.y);
+
+	SDL_Rect character = {10,10,10,10};
+
+	// Blitting the player
+	App->render->Blit(graphics, (int)position.x, (int)position.y, &character);
 
 	return true;
-}
 }
 
 bool j1Player::PostUpdate() {
@@ -101,8 +104,6 @@ bool j1Player::Save(pugi::xml_node& data) const {
 
 bool j1Player::CleanUp() {
 
-	
-	
 	delete(&player);
 	App->tex->UnLoad(graphics);
 
