@@ -29,29 +29,6 @@ bool j1Map::Awake(pugi::xml_node& config)
 
 void j1Map::Draw()
 {
-	/*
-	if(map_loaded == false)
-		return;
-
-	// TODO 5: Prepare the loop to draw all tilesets + Blit
-	MapLayer* layer = data.layers.start->data;
-	TileSet* tileset = data.tilesets.start->data;
-
-	for (int y = 0; y < layer->height; ++y)
-	{
-		for (int x = 0; x < layer->width; ++x)
-		{
-			uint gid = layer->data[(y*layer->width)+x];
-
-			SDL_Rect rect = tileset->GetTileRect(gid);
-
-			App->render->Blit(tileset->texture, x*tileset->tile_width, y*tileset->tile_height, &rect);
-
-		}
-	}
-	
-	*/
-
 	if (map_loaded == false)
 		return;
 
