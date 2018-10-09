@@ -71,7 +71,7 @@ bool j1Player::Update(float dt) {
 	
 	GroundCollision = false;
 	
-	/*
+	
 	if (jump) {
 		
 		if (GroundCollision) {
@@ -79,9 +79,9 @@ bool j1Player::Update(float dt) {
 		else {
 
 			position.y += YSpeed;
-			YSpeed += -0.001f;
+			YSpeed += -0.15f;
 		}
-	}*/
+	}
 
 
 	
