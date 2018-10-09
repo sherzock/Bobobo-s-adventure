@@ -12,6 +12,7 @@
 j1Scene::j1Scene() : j1Module()
 {
 	name.create("scene");
+	
 }
 
 // Destructor
@@ -21,6 +22,7 @@ j1Scene::~j1Scene()
 // Called before render is available
 bool j1Scene::Awake()
 {
+	
 	LOG("Loading Scene");
 	bool ret = true;
 
@@ -30,19 +32,22 @@ bool j1Scene::Awake()
 // Called before the first frame
 bool j1Scene::Start()
 {
-	App->map->Load("Testmap2.tmx");
+	App->map->Load("Level1map.tmx");
+	
 	return true;
 }
 
 // Called each loop iteration
 bool j1Scene::PreUpdate()
 {
+	
 	return true;
 }
 
 // Called each loop iteration
 bool j1Scene::Update(float dt)
 {
+	
 	if(App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
 		App->LoadGame();
 

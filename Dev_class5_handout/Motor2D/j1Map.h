@@ -14,7 +14,7 @@ struct MapLayer
 	uint				width;
 	uint				height;
 	uint*				data = nullptr;
-
+	inline uint Get(int x, int y) const;
 	~MapLayer()
 	{
 		if (data != nullptr) delete data;
@@ -22,11 +22,10 @@ struct MapLayer
 };
 
 	// TODO 6: Short function to get the value of x,y
-inline uint Get(int x, int y) 
-{
 
+uint MapLayer::Get(int x, int y) const {
+	return (y * width) + x;
 }
-
 
 // ----------------------------------------------------
 struct TileSet

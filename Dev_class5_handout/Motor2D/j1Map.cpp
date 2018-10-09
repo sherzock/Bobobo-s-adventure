@@ -29,6 +29,7 @@ bool j1Map::Awake(pugi::xml_node& config)
 
 void j1Map::Draw()
 {
+	/*
 	if(map_loaded == false)
 		return;
 
@@ -49,7 +50,37 @@ void j1Map::Draw()
 		}
 	}
 	
-	
+	*/
+
+	if (map_loaded == false)
+		return;
+
+
+	p2List_item<MapLayer*>* layer; //Map
+	layer = data.layers.start;
+
+	p2List_item<TileSet*>* item; //Sprites_Layer
+
+	while (layer != nullptr) {
+		item = data.tilesets.start;
+		while (item != nullptr) {
+			for (int y = 0; y < data.height; ++y) {
+				for (int x = 0; x < data.width; ++x) {
+					uint id = layer->data->Get(x,y);
+
+					id = layer->data->data[id];
+
+					if (id != 0) {
+						SDL_Rect *rect = &item->data->GetTileRect(id);
+						iPoint pos = MapToWorld(x, y);
+						App->render->Blit(item->data->texture, pos.x, pos.y, rect);
+					}
+				}
+			};
+			item = item->next;
+		}
+		layer = layer->next;
+	}
 
 }
 
@@ -167,8 +198,11 @@ bool j1Map::Load(const char* file_name)
 	for (layer = map_file.child("map").child("layer"); layer && ret; layer = layer.next_sibling("layer"))
 	{
 		MapLayer* lay = new MapLayer;
-		LoadLayer(layer, lay);
+		ret = LoadLayer(layer, lay);
+		
+		if(ret == true) {
 		data.layers.add(lay);
+		}
 	}
 
 
