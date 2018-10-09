@@ -47,7 +47,7 @@ public:
 	float XSpeed = 0.22f;
 	float InitialYSpeed = -0.22f;
 	float YSpeed = -0.22f;
-	float gravity = 0.02f;
+	float gravity = 0.0005f;
 
 	uint currentTime;
 	uint lastTime;
@@ -56,6 +56,8 @@ public:
 	bool dead = false;
 	bool GroundCollision = false;
 	bool jump = false;
+
+	
 };
 
 #endif // __jPLAYER_H__

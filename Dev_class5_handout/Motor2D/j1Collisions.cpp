@@ -42,6 +42,30 @@ bool j1Collisions::PreUpdate(){
 		}
 	}
 
+	Collider* collider1;
+	Collider* collider2;
+
+	for (uint i = 0; i < MAX_NUM_COLLIDERS; ++i) {
+		if (colliders[i] == nullptr)
+			continue;
+		if (colliders[i]->type == PLAYER_COLLIDER) {
+
+			collider1 = colliders[i];
+
+			for (uint j = 0; j < MAX_NUM_COLLIDERS; ++j) {
+				if (colliders[j] == nullptr || i == j)
+					continue;
+
+				collider2 = colliders[j];
+
+				if (collider1->Check_Collision(collider2->rect) == true) {
+					if (matrix[collider1->type][collider2->type] && collider1->callback)
+						collider1->callback->OnCollision(collider1, collider2);
+				}
+			}
+		}
+	}
+
 	return true;
 }
 
@@ -92,33 +116,7 @@ void j1Collisions::Collider_to_debug() {
 
 bool j1Collisions::Update(float dt) {
 
-	Collider* collider1;
-	Collider* collider2;
-
-	for (uint i = 0; i < MAX_NUM_COLLIDERS; ++i)
-	{
-		if (colliders[i] == nullptr)
-			continue;
-		if (colliders[i]->type == PLAYER_COLLIDER)
-		{
-
-			collider1 = colliders[i]; 
-
-			for (uint j = 0; j < MAX_NUM_COLLIDERS; ++j)
-			{
-				if (colliders[j] == nullptr || i == j)  // if collider is nullptr or the player collider itself LATER Aixo es un tema de optimitzacio pero per ara res
-					continue;
-
-				collider2 = colliders[j];
-
-				if (collider1->Check_Collision(collider2->rect) == true)
-				{
-					if (matrix[collider1->type][collider2->type] && collider1->callback) 
-						collider1->callback->OnCollision(collider1, collider2); 
-				}
-			}
-		}
-	}
+	
 
 	Collider_to_debug();
 
