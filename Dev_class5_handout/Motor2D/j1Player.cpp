@@ -151,5 +151,8 @@ void j1Player::OnCollision(Collider* col_1, Collider* col_2)
 		}
 
 	}
+	else {
+		GroundCollision = false;
+	}
 
 };
