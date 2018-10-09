@@ -106,15 +106,15 @@ bool j1Collisions::Update(float dt) {
 
 			for (uint j = 0; j < MAX_NUM_COLLIDERS; ++j)
 			{
-				/*if (colliders[j] == nullptr || i == j)  // if collider is nullptr or the player collider itself LATER Aixo es un tema de optimitzacio pero per ara res
-					continue;*/
+				if (colliders[j] == nullptr || i == j)  // if collider is nullptr or the player collider itself LATER Aixo es un tema de optimitzacio pero per ara res
+					continue;
 
 				collider2 = colliders[j];
 
 				if (collider1->Check_Collision(collider2->rect) == true)
 				{
-					//if (matrix[collider1->type][collider2->type] && collider1->callback)   NO VA
-						//collider1->callback->OnCollision(collider1, collider2); // What the  LATER
+					if (matrix[collider1->type][collider2->type] && collider1->callback) 
+						collider1->callback->OnCollision(collider1, collider2); 
 				}
 			}
 		}
@@ -176,9 +176,14 @@ bool j1Collisions::Delete_Collider(Collider* collider)
 
 bool Collider::Check_Collision(const SDL_Rect& r) const {
 
-	int close = 0; // NO VA
+	if (r.y + r.h <= rect.y || r.y >= rect.y + rect.h || r.x + r.w <= rect.x || r.x >= rect.x + rect.w) {
 
-	return true;
+	
+		return false;
+	}
+	else
+		return true;
+	
 }
 
 
