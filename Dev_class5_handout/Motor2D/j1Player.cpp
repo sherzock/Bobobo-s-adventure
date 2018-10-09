@@ -82,11 +82,15 @@ bool j1Player::Update(float dt) {
 	}
 
 	if (jump) {
-		position.y += JumpSpeed;
-		JumpSpeed -= 0.002f;
+		position.y -= JumpSpeed; 
+		JumpSpeed += 0.002f;
+		if (JumpSpeed > 0.8f) {  //He tocat aixo 
+			jump = false;
+		}
+
 	}	
 	if (jump == false) {
-		JumpSpeed = -0.72f;
+		JumpSpeed = -0.0002f;
 	}
 
 	player->Set_Pos(position.x,position.y);
