@@ -18,9 +18,15 @@ j1Collisions::j1Collisions() : j1Module()
 
 	matrix[PLAYER_COLLIDER][PLAYER_COLLIDER] = false;
 	matrix[PLAYER_COLLIDER][GROUND_COLLIDER] = true;
+	matrix[PLAYER_COLLIDER][NO_COLLIDER] = false;
 	
 	matrix[GROUND_COLLIDER][PLAYER_COLLIDER] = true;
 	matrix[GROUND_COLLIDER][GROUND_COLLIDER] = false;
+	matrix[GROUND_COLLIDER][NO_COLLIDER] = false;
+
+	matrix[NO_COLLIDER][NO_COLLIDER] = false;
+	matrix[NO_COLLIDER][GROUND_COLLIDER] = true;
+	matrix[NO_COLLIDER][PLAYER_COLLIDER] = false;
 	
 }
 
@@ -48,7 +54,7 @@ bool j1Collisions::PreUpdate(){
 	for (uint i = 0; i < MAX_NUM_COLLIDERS; ++i) {
 		if (colliders[i] == nullptr)
 			continue;
-		if (colliders[i]->type == PLAYER_COLLIDER) {
+		if (colliders[i]->type == PLAYER_COLLIDER || colliders[i]->type == NO_COLLIDER) {
 
 			collider1 = colliders[i];
 

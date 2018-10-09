@@ -58,33 +58,32 @@ bool j1Player::Update(float dt) {
 	}
 
 	
-	if (GroundCollision == false && jump == false) {
-		position.y += -gravity;
-		gravity += -0.001f;
-	}
+	
+	
 	
 		
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == j1KeyState::KEY_DOWN && position.y < 1000) {
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == j1KeyState::KEY_REPEAT && position.y < 1000) {
 		
 		jump = true;
+
 	}
 	
 	GroundCollision = false;
 	
-	
-	if (jump) {
-		
-		if (GroundCollision) {
-		}
-		else {
 
-			position.y += YSpeed;
-			YSpeed += -0.15f;
+	if (jump == true && GroundCollision == false) {
+		gravity = 0.22f;
+		position.y += JumpSpeed;
+		while (JumpSpeed > 0) {
+			JumpSpeed += gravitywhenjump;
 		}
+		JumpSpeed = -0.22;
+		jump = false;
+	}	
+	else if (jump==false) {
+		position.y += gravity;
 	}
 
-
-	
 	player->Set_Pos(position.x,position.y);
 
 	SDL_Rect character = {10,10,10,10};
@@ -129,30 +128,28 @@ bool j1Player::CleanUp() {
 	return true;
 }
 
+
 void j1Player::OnCollision(Collider* col_1, Collider* col_2)
 {
-	if (((col_1->type == PLAYER_COLLIDER || col_1->type == NO_COLLIDER) && col_2->type == GROUND_COLLIDER)
-		|| ((col_2->type == PLAYER_COLLIDER || col_2->type == PLAYER_COLLIDER) || col_1->type == GROUND_COLLIDER))
+	if (((col_1->type == PLAYER_COLLIDER || col_1->type == NO_COLLIDER) && col_2->type == GROUND_COLLIDER || col_2->type == DEATH_COLLIDER)
+		|| ((col_2->type == PLAYER_COLLIDER || col_2->type == PLAYER_COLLIDER) || col_1->type == GROUND_COLLIDER || col_1->type == DEATH_COLLIDER))
 	{
+		
+
+		//If the collision is with the ground
 		if (col_1->type == GROUND_COLLIDER) {
 			GroundCollision = true;
 			jump = false;
-			YSpeed = InitialYSpeed;
 			gravity = 0.0f;
 
-			
 		}
 		else if (col_2->type == GROUND_COLLIDER) {
 			GroundCollision = true;
 			jump = false;
-			YSpeed = InitialYSpeed;
 			gravity = 0.0f;
 
+			
 		}
 
 	}
-	else {
-		GroundCollision = false;
-	}
-
 };
