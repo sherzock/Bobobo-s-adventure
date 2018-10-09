@@ -44,10 +44,10 @@ public:
 	// To know the last direction the character was moving to
 	fPoint position;
 
-	float XSpeed = 0.25f;
-	float initialspeed = 0.02f;
-	float JumpSpeed = -0.72f;
-	float gravity = 0.0f;
+	float XSpeed;
+	float initialspeed;
+	float JumpSpeed;
+	float gravity;
 
 	uint currentTime;
 	uint lastTime;

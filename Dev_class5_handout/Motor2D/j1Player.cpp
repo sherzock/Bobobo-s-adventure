@@ -33,6 +33,11 @@ bool j1Player::Start() {
 
 	position.x = 300;
 	position.y = 300;
+
+	 XSpeed = 0.25f;
+	 initialspeed = 0.02f;
+	 JumpSpeed = -0.72f;
+	 gravity = 0.0f;
 	
 	player = App->colls->AddCollider({ (int)position.x, (int)position.y, 22, 25 }, PLAYER_COLLIDER, this);
 
@@ -70,10 +75,10 @@ bool j1Player::Update(float dt) {
 	
 	GroundCollision = false;
 	
-	/*if (GroundCollision == false && jump == false) {
+	if (GroundCollision == false && jump == false) {
 		position.y += gravity;
 		gravity += 0.02f;
-	}*/
+	}
 
 	if (jump) {
 		position.y += JumpSpeed;
