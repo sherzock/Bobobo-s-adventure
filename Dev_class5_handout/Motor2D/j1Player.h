@@ -44,8 +44,8 @@ public:
 	// To know the last direction the character was moving to
 	fPoint position;
 
-	float XSpeed = 0.22f;
-	float InitialYSpeed = -0.22f;
+	float XSpeed = 0.25f;
+	float InitialYSpeed = -0.25f;
 	float YSpeed = -0.22f;
 	float gravity = 0.0005f;
 

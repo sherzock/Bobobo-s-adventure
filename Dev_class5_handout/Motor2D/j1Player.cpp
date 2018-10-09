@@ -86,7 +86,7 @@ bool j1Player::Update(float dt) {
 		else {
 
 			position.y += YSpeed;
-			YSpeed += -0.15f;
+			YSpeed += -0.001f;
 		}
 	}
 
