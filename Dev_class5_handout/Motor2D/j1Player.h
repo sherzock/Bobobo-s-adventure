@@ -45,9 +45,9 @@ public:
 	fPoint position;
 
 	float XSpeed = 0.25f;
-	float gravitywhenjump = 0.02f;
-	float JumpSpeed = -0.22f;
-	float gravity = 0.22f;
+	float initialspeed = 0.02f;
+	float JumpSpeed = -0.72f;
+	float gravity = 0.0f;
 
 	uint currentTime;
 	uint lastTime;

@@ -62,7 +62,7 @@ bool j1Player::Update(float dt) {
 	
 	
 		
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == j1KeyState::KEY_REPEAT && position.y < 1000) {
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == j1KeyState::KEY_DOWN && position.y < 1000) {
 		
 		jump = true;
 
@@ -70,19 +70,16 @@ bool j1Player::Update(float dt) {
 	
 	GroundCollision = false;
 	
-
-	if (jump == true && GroundCollision == false) {
-		gravity = 0.22f;
-		position.y += JumpSpeed;
-		while (JumpSpeed > 0) {
-			JumpSpeed += gravitywhenjump;
-		}
-		JumpSpeed = -0.22;
-		jump = false;
-	}	
-	else if (jump==false) {
+	/*if (GroundCollision == false && jump == false) {
 		position.y += gravity;
-	}
+		gravity += 0.02f;
+	}*/
+
+	if (jump) {
+		position.y += JumpSpeed;
+		JumpSpeed += 0.002f;
+	}	
+
 
 	player->Set_Pos(position.x,position.y);
 
@@ -122,7 +119,7 @@ bool j1Player::Save(pugi::xml_node& data) const {
 
 bool j1Player::CleanUp() {
 
-	//delete (&player);//aixo dona un exception error
+	
 	App->tex->UnLoad(graphics);
 
 	return true;
@@ -131,25 +128,16 @@ bool j1Player::CleanUp() {
 
 void j1Player::OnCollision(Collider* col_1, Collider* col_2)
 {
-	if (((col_1->type == PLAYER_COLLIDER || col_1->type == NO_COLLIDER) && col_2->type == GROUND_COLLIDER || col_2->type == DEATH_COLLIDER)
-		|| ((col_2->type == PLAYER_COLLIDER || col_2->type == PLAYER_COLLIDER) || col_1->type == GROUND_COLLIDER || col_1->type == DEATH_COLLIDER))
+	if ((col_1->type == PLAYER_COLLIDER && col_2->type == GROUND_COLLIDER)
+		|| (col_2->type == PLAYER_COLLIDER && col_1->type == GROUND_COLLIDER))
 	{
-		
-
-		//If the collision is with the ground
-		if (col_1->type == GROUND_COLLIDER) {
-			GroundCollision = true;
-			jump = false;
-			gravity = 0.0f;
-
-		}
-		else if (col_2->type == GROUND_COLLIDER) {
-			GroundCollision = true;
-			jump = false;
-			gravity = 0.0f;
-
 			
-		}
+			JumpSpeed = initialspeed;
+			GroundCollision = true;
+			jump = false;
+			gravity = 0.0f;
+
+
 
 	}
 };
