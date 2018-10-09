@@ -83,7 +83,7 @@ bool j1Player::Update(float dt) {
 
 	if (jump) {
 		position.y += JumpSpeed;
-		JumpSpeed += 0.002f;
+		JumpSpeed -= 0.002f;
 	}	
 	if (jump == false) {
 		JumpSpeed = -0.72f;
