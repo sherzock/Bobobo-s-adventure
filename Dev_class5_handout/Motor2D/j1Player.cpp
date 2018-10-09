@@ -58,27 +58,20 @@ bool j1Player::Update(float dt) {
 	}
 
 	
-	
-	
+	if (GroundCollision == false && jump == false) {
+		position.y += -gravity;
+		gravity += -0.001f;
+	}
 	
 		
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == j1KeyState::KEY_REPEAT && position.y < 1000) {
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == j1KeyState::KEY_DOWN && position.y < 1000) {
 		
 		jump = true;
 	}
 	
-	if (jump == true) {
-		position.y += gravity;
-		gravity += 0.0002f;
-	}
-	
-	if (GroundCollision == false && jump==false) {
-		position.y += -YSpeed;
-	}
-
 	GroundCollision = false;
 	
-
+	/*
 	if (jump) {
 		
 		if (GroundCollision) {
@@ -88,7 +81,7 @@ bool j1Player::Update(float dt) {
 			position.y += YSpeed;
 			YSpeed += -0.001f;
 		}
-	}
+	}*/
 
 
 	

@@ -46,8 +46,8 @@ public:
 
 	float XSpeed = 0.25f;
 	float InitialYSpeed = -0.25f;
-	float YSpeed = -0.22f;
-	float gravity = 0.0005f;
+	float YSpeed = -0.001f;
+	float gravity = -0.001f;
 
 	uint currentTime;
 	uint lastTime;
