@@ -22,6 +22,20 @@ struct MapLayer
 };
 
 	// TODO 6: Short function to get the value of x,y
+struct ImageLayer
+{
+	SDL_Rect GetParalaxRect() const;
+
+	p2SString	name;
+	int			width;
+	int			height;
+	SDL_Texture* texture;
+
+	ImageLayer() {}
+
+	~ImageLayer() {}
+
+};
 
 uint MapLayer::Get(int x, int y) const {
 	return (y * width) + x;
@@ -65,7 +79,7 @@ struct MapData
 	SDL_Color			background_color;
 	MapTypes			type;
 	p2List<TileSet*>	tilesets;
-	
+	p2List<ImageLayer*> parallax;
 	// TODO 2: Add a list/array of layers to the map!
 	p2List<MapLayer*> layers;
 };
@@ -104,6 +118,7 @@ private:
 	// TODO 3: Create a method that loads a single laye
 	bool LoadLayer(pugi::xml_node& node, MapLayer* layer);
 	bool Colliders_on_map(const char * filename);
+	bool LoadParallax(pugi::xml_node& node, ImageLayer* image);
 
 public:
 

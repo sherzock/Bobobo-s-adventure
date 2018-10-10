@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="400" height="50" tilewidth="16" tileheight="16" nextobjectid="72">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="400" height="50" tilewidth="16" tileheight="16" nextobjectid="75">
  <properties>
   <property name="gravity" type="int" value="0"/>
  </properties>
  <tileset firstgid="1" name="tileset" tilewidth="16" tileheight="16" tilecount="575" columns="25">
   <image source="tileset.png" width="400" height="368"/>
  </tileset>
- <tileset firstgid="576" name="Fondo" tilewidth="384" tileheight="240" tilecount="1" columns="0">
+ <tileset firstgid="576" name="back" tilewidth="384" tileheight="240" tilecount="1" columns="0">
   <tile id="0">
    <image width="384" height="240" source="back.png"/>
   </tile>
  </tileset>
- <objectgroup name="VeryFondo">
-  <object id="69" gid="576" x="-608" y="1396" width="3176" height="1400"/>
-  <object id="70" gid="576" x="2556" y="1392" width="3176" height="1400"/>
-  <object id="71" gid="576" x="5732" y="1392" width="3176" height="1400"/>
+ <objectgroup name="Back">
+  <object id="73" gid="576" x="0" y="824" width="6424" height="824"/>
  </objectgroup>
  <layer name="Walls" width="400" height="50">
   <data>

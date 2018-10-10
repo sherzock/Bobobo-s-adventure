@@ -112,6 +112,9 @@ bool j1Map::CleanUp()
 	// TODO 2: clean up all layer data
 	// Remove all layers
 
+	p2List_item<ImageLayer*>* back;
+	back = data.parallax.start;
+
 	p2List_item<MapLayer*>* item2;
 	item2 = data.layers.start;
 
@@ -129,7 +132,21 @@ bool j1Map::CleanUp()
 	return true;
 }
 
+SDL_Rect ImageLayer::GetParalaxRect() const
+{
+	SDL_Rect rect;
+
+	rect.w = width;
+	rect.h = height;
+
+	rect.x = 0;
+	rect.y = 0;
+
+
+	return rect;
+}
 // Load new map
+
 bool j1Map::Load(const char* file_name)
 {
 	bool ret = true;
@@ -182,6 +199,17 @@ bool j1Map::Load(const char* file_name)
 		}
 	}
 
+	//Load Image info ----------------------------
+	pugi::xml_node paralaxNode;
+	for (paralaxNode = map_file.child("map").child("imagelayer"); paralaxNode && ret; paralaxNode = paralaxNode.next_sibling("imagelayer"))
+	{
+		ImageLayer* imageList = new ImageLayer();
+
+		ret = LoadParallax(paralaxNode, imageList);
+
+		if (ret == true)
+			data.parallax.add(imageList);
+	}
 
 	if(ret == true)
 	{
@@ -212,6 +240,19 @@ bool j1Map::Load(const char* file_name)
 			LOG("tile width: %d tile height: %d", l->width, l->height);
 			item_layer = item_layer->next;
 		}
+		
+		p2List_item<ImageLayer*>* item_imageParalax = data.parallax.start;
+		while (item_imageParalax != NULL)
+		{
+			ImageLayer* i = item_imageParalax->data;
+			LOG("Paralax image ----");
+			LOG("name: %s", i->name.GetString());
+			LOG("tile width: %d tile height: %d", i->width, i->height);
+			item_imageParalax = item_imageParalax->next;
+		}
+	
+	
+	
 	}
 
 	Colliders_on_map(file_name);
@@ -365,6 +406,18 @@ bool j1Map::LoadLayer(pugi::xml_node& node, MapLayer* layer)
 	{
 		layer->data[i++] = node.attribute("gid").as_uint(0);
 	}
+
+	return ret;
+}
+
+bool j1Map::LoadParallax(pugi::xml_node& node, ImageLayer* image)
+{
+	bool ret = true;
+
+	image->name = node.attribute("name").as_string();
+	image->width = node.child("image").attribute("width").as_int();
+	image->height = node.child("image").attribute("height").as_int();
+	image->texture = App->tex->Load(PATH(folder.GetString(), node.child("image").attribute("source").as_string()));
 
 	return ret;
 }
