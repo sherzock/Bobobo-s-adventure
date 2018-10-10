@@ -66,12 +66,15 @@ bool j1Player::Update(float dt) {
 	
 	
 	
+	if (CanPlayerJump == true) {
+		if (App->input->GetKey(SDL_SCANCODE_SPACE) == j1KeyState::KEY_DOWN && position.y < 1000) {
 		
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == j1KeyState::KEY_DOWN && position.y < 1000) {
-		
-		jump = true;
+			jump = true;
+			CanPlayerJump = false;
 
+		}
 	}
+	
 
 	
 	GroundCollision = false;
@@ -146,7 +149,7 @@ void j1Player::OnCollision(Collider* col_1, Collider* col_2)
 	if ((col_1->type == PLAYER_COLLIDER && col_2->type == GROUND_COLLIDER)
 		|| (col_2->type == PLAYER_COLLIDER && col_1->type == GROUND_COLLIDER))
 	{
-			
+			CanPlayerJump = true;
 			JumpSpeed = initialspeed;
 			GroundCollision = true;
 			//jump = false;

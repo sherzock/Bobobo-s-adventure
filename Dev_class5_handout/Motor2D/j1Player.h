@@ -56,6 +56,7 @@ public:
 	bool dead = false;
 	bool GroundCollision = false;
 	bool jump = false;
+	bool CanPlayerJump = false;
 
 	
 };
