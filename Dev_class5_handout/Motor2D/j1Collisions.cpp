@@ -89,42 +89,62 @@ bool j1Collisions::CleanUp(){
 	return true;
 }
 
-void j1Collisions::Collider_to_debug() {
 
-	if (App->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN) {
-		debug = !debug;
+
+bool j1Collisions::Update(float dt) {
+
+	if (App->input->GetKey(SDL_SCANCODE_F9) == KEY_DOWN) {
+		ShowColliders = !ShowColliders;
 	}
 
-	if (debug == false) {
+	if (ShowColliders == false) {
+		return true;
 	}
-		
-	
 	for (uint i = 0; i < MAX_NUM_COLLIDERS; ++i)
 	{
 		if (colliders[i] == nullptr)
 			continue;
-
 		switch (colliders[i]->type)
 		{
-		case NO_COLLIDER:														
-			App->render->DrawQuad(colliders[i]->rect, 255, 255, 0 , 30);  //yellow
+		case NO_COLLIDER:
+			App->render->DrawQuad(colliders[i]->rect, 255, 255, 100, 30);  //yellow
 			break;
-		case GROUND_COLLIDER:																
-			App->render->DrawQuad(colliders[i]->rect, 0, 255, 0, 75); //green
+		case GROUND_COLLIDER:
+			App->render->DrawQuad(colliders[i]->rect, 0, 255, 200, 75); //green
 			break;
-		case PLAYER_COLLIDER:																
-			App->render->DrawQuad(colliders[i]->rect, 0, 0, 255, 75); //blue
+		case PLAYER_COLLIDER:
+			App->render->DrawQuad(colliders[i]->rect, 0, 50, 255, 75); //blue
 			break;
 
 		}
 	}
-}
 
-bool j1Collisions::Update(float dt) {
 
-	
 
-	Collider_to_debug();
+	if (ShowColliders == true) {
+		for (uint i = 0; i < MAX_NUM_COLLIDERS; ++i)
+		{
+			if (colliders[i] == nullptr)
+				continue;
+			switch (colliders[i]->type)
+			{
+			case NO_COLLIDER:
+				App->render->DrawQuad(colliders[i]->rect, 255, 255, 0, 30);  //yellow
+				break;
+			case GROUND_COLLIDER:
+				App->render->DrawQuad(colliders[i]->rect, 0, 255, 0, 75); //green
+				break;
+			case PLAYER_COLLIDER:
+				App->render->DrawQuad(colliders[i]->rect, 0, 0, 255, 75); //blue
+				break;
+
+			}
+		}
+	}
+
+
+
+
 
 	return true;
 }
