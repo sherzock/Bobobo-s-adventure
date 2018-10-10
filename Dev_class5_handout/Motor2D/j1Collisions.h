@@ -59,7 +59,7 @@ public:
 
 	bool Delete_Collider(Collider* collider);
 	Collider* AddCollider(SDL_Rect rect, COLLIDER_TYPE type, j1Module* callback = nullptr);
-	bool ShowColliders = true;
+	bool ShowColliders = false;
 	
 
 private:

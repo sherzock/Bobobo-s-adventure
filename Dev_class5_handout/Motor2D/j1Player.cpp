@@ -89,7 +89,7 @@ bool j1Player::Update(float dt) {
 	if (jump) {
 		position.y -= JumpSpeed; 
 		JumpSpeed += 0.002f;
-		if (JumpSpeed > 0.8f) {  //He tocat aixo 
+		if (JumpSpeed > 0.8f) { 
 			JumpSpeed -= 0.002f;
 			jump = false;
 		}
@@ -152,7 +152,6 @@ void j1Player::OnCollision(Collider* col_1, Collider* col_2)
 			CanPlayerJump = true;
 			JumpSpeed = initialspeed;
 			GroundCollision = true;
-			//jump = false;
 			gravity = 0.0f;
 			if (App->input->GetKey(SDL_SCANCODE_SPACE) == j1KeyState::KEY_UP && position.y < 1000) {
 
