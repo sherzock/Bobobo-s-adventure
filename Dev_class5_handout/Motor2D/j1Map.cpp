@@ -5,6 +5,7 @@
 #include "j1Textures.h"
 #include "j1Map.h"
 #include "j1Collisions.h"
+#include "j1Window.h"
 #include <math.h>
 
 j1Map::j1Map() : j1Module(), map_loaded(false)
@@ -29,35 +30,35 @@ bool j1Map::Awake(pugi::xml_node& config)
 
 void j1Map::Draw()
 {
+	
 	if (map_loaded == false)
 		return;
 
+	p2List_item<MapLayer*>* layer;
 
-	p2List_item<MapLayer*>* layer; //Map
-	layer = data.layers.start;
-
-	p2List_item<TileSet*>* item; //Sprites_Layer
-
-	while (layer != nullptr) {
-		item = data.tilesets.start;
-		while (item != nullptr) {
-			for (int y = 0; y < data.height; ++y) {
-				for (int x = 0; x < data.width; ++x) {
-					uint id = layer->data->Get(x,y);
-
-					id = layer->data->data[id];
-
-					if (id != 0) {
-						SDL_Rect *rect = &item->data->GetTileRect(id);
+	int tile_num;
+	for (layer = data.layers.start; layer != nullptr; layer = layer->next)
+	{
+		tile_num = 0;
+		for (int y = 0; y < data.height; ++y)
+		{
+			for (int x = 0; x < data.width; ++x)
+			{
+				int tile_id = layer->data->data[tile_num];
+				if (tile_id > 0)
+				{
+					TileSet* tileset = GetTilesetFromTileId(tile_id);
+					if (tileset != nullptr)
+					{
+						SDL_Rect r = tileset->GetTileRect(tile_id);
 						iPoint pos = MapToWorld(x, y);
-						App->render->Blit(item->data->texture, pos.x, pos.y, rect);
+						App->render->Blit(tileset->texture, pos.x, pos.y, &r);
 					}
 				}
-			};
-			item = item->next;
+				tile_num++;
+			}
 		}
-		layer = layer->next;
-	}
+	}	
 
 }
 
@@ -91,6 +92,23 @@ SDL_Rect TileSet::GetTileRect(int id) const
 	rect.x = margin + ((rect.w + spacing) * (relative_id % num_tiles_width));
 	rect.y = margin + ((rect.h + spacing) * (relative_id / num_tiles_width));
 	return rect;
+}
+
+TileSet* j1Map::GetTilesetFromTileId(int id) const
+{
+	p2List_item<TileSet*>* item = data.tilesets.start;
+	TileSet* set = item->data;
+	while (item)
+	{
+		if (id < item->data->firstgid)
+		{
+			set = item->prev->data;
+			break;
+		}
+		set = item->data;
+		item = item->next;
+	}
+	return set;
 }
 
 // Called before quitting

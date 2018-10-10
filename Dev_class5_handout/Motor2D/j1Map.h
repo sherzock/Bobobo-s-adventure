@@ -119,6 +119,7 @@ private:
 	bool LoadLayer(pugi::xml_node& node, MapLayer* layer);
 	bool Colliders_on_map(const char * filename);
 	bool LoadParallax(pugi::xml_node& node, ImageLayer* image);
+	TileSet* GetTilesetFromTileId(int id) const;
 
 public:
 
