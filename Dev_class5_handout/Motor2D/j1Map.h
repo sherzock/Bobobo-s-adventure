@@ -13,12 +13,21 @@ struct MapLayer
 	p2SString			name;
 	uint				width;
 	uint				height;
-	uint*				data = nullptr;
-	inline uint Get(int x, int y) const;
+	uint*				data;
+	
+	MapLayer() : data(NULL)
+	{}
+
 	~MapLayer()
 	{
-		if (data != nullptr) delete data;
+		RELEASE(data);
 	}
+	
+	inline uint Get(int x, int y) const;
+	/*~MapLayer()
+	{
+		if (data != nullptr) delete data;
+	}*/
 };
 
 	// TODO 6: Short function to get the value of x,y
@@ -116,7 +125,7 @@ private:
 	bool LoadTilesetDetails(pugi::xml_node& tileset_node, TileSet* set);
 	bool LoadTilesetImage(pugi::xml_node& tileset_node, TileSet* set);
 	// TODO 3: Create a method that loads a single laye
-	bool LoadLayer(pugi::xml_node& node, MapLayer* layer);
+	bool LoadLayer(const pugi::xml_node& node, MapLayer* layer);
 	bool Colliders_on_map(const char * filename);
 	bool LoadParallax(pugi::xml_node& node, ImageLayer* image);
 	TileSet* GetTilesetFromTileId(int id) const;

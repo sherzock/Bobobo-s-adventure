@@ -211,6 +211,7 @@ bool j1Map::Load(const char* file_name)
 	{
 		MapLayer* lay = new MapLayer;
 		ret = LoadLayer(layer, lay);
+		LOG("LOADING LAYER %s", lay->name.GetString());
 		
 		if(ret == true) {
 		data.layers.add(lay);
@@ -408,21 +409,22 @@ bool j1Map::LoadTilesetImage(pugi::xml_node& tileset_node, TileSet* set)
 }
 
  //TODO 3: Create the definition for a function that loads a single layer
-bool j1Map::LoadLayer(pugi::xml_node& node, MapLayer* layer)
+bool j1Map::LoadLayer(const pugi::xml_node& node, MapLayer* layer)
 {
 	bool ret = true;
 	layer->name = node.attribute("name").as_string();
 	layer->width = node.attribute("width").as_uint();
 	layer->height = node.attribute("height").as_uint();
 	layer->data = new uint[layer->width * layer->height];
+	pugi::xml_node layer_data = node.child("data");
 
 	memset(layer->data, 0, sizeof(uint)*layer->height*layer->width);
 
 	int i = 0;
 
-	for (node = map_file.child("map").child("layer").child("data").child("tile"); node && ret; node = node.next_sibling("tile"))
+	for (pugi::xml_node tile = layer_data.child("tile"); tile; tile = tile.next_sibling("tile"))
 	{
-		layer->data[i++] = node.attribute("gid").as_uint(0);
+		layer->data[i++] = tile.attribute("gid").as_uint(0);
 	}
 
 	return ret;

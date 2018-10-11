@@ -115,6 +115,9 @@ bool j1Collisions::Update(float dt) {
 		case PLAYER_COLLIDER:
 			App->render->DrawQuad(colliders[i]->rect, 0, 50, 255, 75); //blue
 			break;
+		case WIN_COLLIDER:
+			App->render->DrawQuad(colliders[i]->rect, 0, 50, 150, 75); 
+			break;
 
 		}
 	}
@@ -136,6 +139,9 @@ bool j1Collisions::Update(float dt) {
 				break;
 			case PLAYER_COLLIDER:
 				App->render->DrawQuad(colliders[i]->rect, 0, 0, 255, 75); //blue
+				break;
+			case WIN_COLLIDER:
+				App->render->DrawQuad(colliders[i]->rect, 0, 50, 150, 75);
 				break;
 
 			}
