@@ -453,16 +453,23 @@ bool j1Map::Colliders_on_map(const char * filename) {
 	{
 		LOG("xml file not loaded %s. pugi error: %s", filename, result.description());
 	}
-
+	pugi::xml_node auxiliarnode;
+	const char* nameattribute;
 	pugi::xml_node obj;
-	int x, y, width, height;
-	for (obj = map_file.child("map").child("objectgroup").child("object"); obj && ret; obj = obj.next_sibling("object"))
+	for (auxiliarnode = map_file.child("map").child("objectgroup"); auxiliarnode && ret; auxiliarnode = auxiliarnode.next_sibling("objectgroup"))
 	{
-		x = obj.attribute("x").as_int();
-		y = obj.attribute("y").as_int();
-		width = obj.attribute("width").as_int();
-		height = obj.attribute("height").as_int();
-		App->colls->AddCollider({ x,y,width,height}, GROUND_COLLIDER);
+		nameattribute = auxiliarnode.attribute("name").as_string();
+	
+		for (obj = auxiliarnode.child("object"); obj && ret; obj = obj.next_sibling("object"))
+		{
+
+			App->colls->AddCollider({
+				obj.attribute("x").as_int(),
+				obj.attribute("y").as_int(),
+				obj.attribute("width").as_int(),
+				obj.attribute("height").as_int() }, 
+				GROUND_COLLIDER);
+		}
 	}
 	return ret;
 }
