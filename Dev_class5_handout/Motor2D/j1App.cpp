@@ -27,10 +27,9 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	tex = new j1Textures();
 	audio = new j1Audio();
 	scene = new j1Scene();
+	play = new j1Player();
 	map = new j1Map();
 	colls = new j1Collisions();
-	play = new j1Player();
-
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
 	AddModule(input);

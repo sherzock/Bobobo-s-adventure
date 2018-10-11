@@ -4,6 +4,7 @@
 #include "PugiXml/src/pugixml.hpp"
 #include "p2Point.h"
 #include "j1Module.h"
+#include "p2Animations.h"
 
 struct SDL_Texture;
 
@@ -42,6 +43,16 @@ public:
 
 public:
 	// To know the last direction the character was moving to
+	
+	Animations* current_animation = nullptr;
+
+	// Animations of the player
+	Animations idle;
+	Animations run;
+	Animations jumpanim;
+	Animations falling;
+	
+	
 	fPoint position;
 
 	float XSpeed;
@@ -57,7 +68,8 @@ public:
 	bool GroundCollision = false;
 	bool jump = false;
 	bool CanPlayerJump = false;
-
+	bool isfalling = false;
+	bool goingright = true;
 	
 };
 
