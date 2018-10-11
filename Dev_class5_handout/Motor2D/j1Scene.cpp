@@ -8,6 +8,7 @@
 #include "j1Window.h"
 #include "j1Map.h"
 #include "j1Scene.h"
+#include "j1Player.h"
 
 j1Scene::j1Scene() : j1Module()
 {
@@ -48,6 +49,16 @@ bool j1Scene::PreUpdate()
 bool j1Scene::Update(float dt)
 {
 	
+	if (App->render->camera.x > -5000)
+	{
+		App->render->camera.x = -App->play->position.x+ 400;
+		if (App->render->camera.x > 0)
+		{
+			App->render->camera.x = 0;
+		}
+			
+	}
+
 	if(App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
 		App->LoadGame();
 
