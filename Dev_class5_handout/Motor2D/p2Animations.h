@@ -12,6 +12,7 @@ public:
 	float speed = 1.0f;
 	SDL_Rect frames[MAX_FRAMES];
 
+	pugi::xml_document animations;
 private:
 	
 	float current_frame;
@@ -34,6 +35,21 @@ public:
 		}
 
 		return frames[(int)current_frame];
+	}
+
+	void LoadAnimations(p2SString name)
+	{
+		pugi::xml_parse_result result = animations.load_file("animations.xml");
+		if (result != NULL)
+		{
+			pugi::xml_node animation_name = animations.child("animations").child("player").child(name.GetString());
+			loop = animation_name.attribute("loop").as_bool();
+			speed = animation_name.attribute("speed").as_float();
+			for (pugi::xml_node animation = animation_name.child("animation"); animation; animation = animation.next_sibling("animation"))
+			{
+				PushBack({ animation.attribute("x").as_int(), animation.attribute("y").as_int(), animation.attribute("w").as_int(), animation.attribute("h").as_int() });
+			}
+		}
 	}
 
 	bool Finished(){

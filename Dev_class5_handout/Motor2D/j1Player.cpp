@@ -14,46 +14,12 @@ j1Player::j1Player() : j1Module(){
 		
 	current_animation = NULL;
 
-	// Idle 
-	idle.PushBack({ 2, 21, 42, 61 });
-	idle.PushBack({ 60, 21, 44, 60 });
-	idle.PushBack({ 125, 21, 42, 59 });
-	idle.PushBack({ 181, 21, 42, 59 });
-
-	idle.PushBack({ 125, 21, 42, 59 });
-	idle.PushBack({ 60, 21, 44, 60 });
-
-	idle.loop = true;
-	idle.speed = 0.02f;
 	
-	//Run
-	run.PushBack({ 0, 101, 44, 57 });
-	run.PushBack({ 60, 94, 52, 64 });
-	run.PushBack({ 128, 100, 52, 59 });
-	run.PushBack({ 184, 98, 53, 61 });
-	run.PushBack({ 240, 101, 56, 58 });
-	run.PushBack({ 307, 95, 52, 64 });
-	run.PushBack({ 373, 99, 59, 60 });
-	run.PushBack({ 438, 101, 58, 62 });
 
-	run.loop = true;
-	run.speed = 0.023f;
-	//jump 
-	
-	jumpanim.PushBack({ 2, 244, 63, 69 });
-	jumpanim.PushBack({ 78, 244, 63, 69 });
-	jumpanim.PushBack({ 156, 247, 63, 69 });
-
-	jumpanim.loop = false;
-	
-	//falliig
-
-	falling.PushBack({ 2, 244, 63, 69 });
-	falling.PushBack({ 78, 244, 63, 69 });
-
-	falling.loop = true;
-	falling.speed = 0.009f;
-
+	idle.LoadAnimations("idle");
+	run.LoadAnimations("run");
+	jumpanim.LoadAnimations("jumpanim");
+	falling.LoadAnimations("falling");
 
 	name.create("player");
 }

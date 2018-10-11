@@ -1,0 +1,38 @@
+<animations>
+  <player>
+    <idle loop="true" speed="0.02f">
+      <animation x="2" y="21" w="42" h="61"/>
+      <animation x="60" y="21" w="44" h="60"/>
+      <animation x="125" y="21" w="42" h="59"/>
+      <animation x="181" y="21" w="42" h="59"/>
+      <animation x="125" y="21" w="42" h="59"/>
+      <animation x="60" y="21" w="44" h="60"/>
+    </idle>
+
+   
+
+    <run loop="true" speed="0.029f">
+      <animation x="0" y="101" w="44" h="57"/>
+      <animation x="60" y="94" w="52" h="64"/>
+      <animation x="128" y="100" w="52" h="59"/>
+      <animation x="184" y="98" w="53" h="61"/>
+      <animation x="240" y="101" w="56" h="58"/>
+      <animation x="307" y="95" w="52" h="64"/>
+      <animation x="373" y="99" w="59" h="60"/>
+      <animation x="438" y="101" w="58" h="62"/>
+    </run>
+
+    <jumpanim loop="false">
+      <animation x="2" y="244" w="63" h="69"/>
+      <animation x="78" y="244" w="63" h="69"/>
+	  <animation x="156" y="247" w="63" h="69"/>
+    </jumpanim>
+
+     <falling loop="true" speed="0.01f">
+      <animation x="2" y="244" w="63" h="69"/>
+      <animation x="78" y="244" w="63" h="69"/>
+    </falling>
+
+  </player>
+  
+</animations>
