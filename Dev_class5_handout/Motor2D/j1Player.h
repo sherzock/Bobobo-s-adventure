@@ -70,7 +70,7 @@ public:
 	bool CanPlayerJump = false;
 	bool isfalling = false;
 	bool goingright = true;
-	
+	bool godmode = false;
 };
 
 #endif // __jPLAYER_H__

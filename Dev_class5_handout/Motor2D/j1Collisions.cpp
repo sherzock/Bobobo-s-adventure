@@ -20,14 +20,19 @@ j1Collisions::j1Collisions() : j1Module()
 	matrix[PLAYER_COLLIDER][GROUND_COLLIDER] = true;
 	matrix[PLAYER_COLLIDER][NO_COLLIDER] = false;
 	
+
 	matrix[GROUND_COLLIDER][PLAYER_COLLIDER] = true;
 	matrix[GROUND_COLLIDER][GROUND_COLLIDER] = false;
 	matrix[GROUND_COLLIDER][NO_COLLIDER] = false;
+	
 
 	matrix[NO_COLLIDER][NO_COLLIDER] = false;
 	matrix[NO_COLLIDER][GROUND_COLLIDER] = true;
 	matrix[NO_COLLIDER][PLAYER_COLLIDER] = false;
 	
+	
+	
+
 }
 
 j1Collisions::~j1Collisions() {}
@@ -54,7 +59,7 @@ bool j1Collisions::PreUpdate(){
 	for (uint i = 0; i < MAX_NUM_COLLIDERS; ++i) {
 		if (colliders[i] == nullptr)
 			continue;
-		if (colliders[i]->type == PLAYER_COLLIDER || colliders[i]->type == NO_COLLIDER) {
+		if (colliders[i]->type == PLAYER_COLLIDER || colliders[i]->type == NO_COLLIDER ){
 
 			collider1 = colliders[i];
 
@@ -107,7 +112,7 @@ bool j1Collisions::Update(float dt) {
 		switch (colliders[i]->type)
 		{
 		case NO_COLLIDER:
-			App->render->DrawQuad(colliders[i]->rect, 255, 255, 100, 30);  //yellow
+			App->render->DrawQuad(colliders[i]->rect, 255, 255, 100, 75);  //yellow
 			break;
 		case GROUND_COLLIDER:
 			App->render->DrawQuad(colliders[i]->rect, 0, 255, 200, 75); //green
@@ -118,6 +123,8 @@ bool j1Collisions::Update(float dt) {
 		case WIN_COLLIDER:
 			App->render->DrawQuad(colliders[i]->rect, 0, 50, 150, 75); 
 			break;
+		
+
 
 		}
 	}
@@ -143,7 +150,7 @@ bool j1Collisions::Update(float dt) {
 			case WIN_COLLIDER:
 				App->render->DrawQuad(colliders[i]->rect, 0, 50, 150, 75);
 				break;
-
+			
 			}
 		}
 	}

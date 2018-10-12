@@ -45,7 +45,7 @@ bool j1Player::Start() {
 
 	current_animation = &idle;
 
-	 XSpeed = 0.25f;
+	 XSpeed = 0.5f;
 	 initialspeed = 0.02f;
 	 JumpSpeed = -0.22f;
 	 gravity = 0.0f;
@@ -105,7 +105,15 @@ bool j1Player::Update(float dt) {
 			
 	}
 	
+	if (App->input->GetKey(SDL_SCANCODE_F10) == j1KeyState::KEY_DOWN) {
+
+		godmode = !godmode;
+	}
 	
+	if (godmode == true) {
+
+		player->type = NO_COLLIDER;
+	}
 
 	if (isfalling == true) {
 		
@@ -197,7 +205,9 @@ bool j1Player::CleanUp() {
 void j1Player::OnCollision(Collider* col_1, Collider* col_2)
 {
 	if ((col_1->type == PLAYER_COLLIDER && col_2->type == GROUND_COLLIDER)
-		|| (col_2->type == PLAYER_COLLIDER && col_1->type == GROUND_COLLIDER))
+		|| (col_2->type == PLAYER_COLLIDER && col_1->type == GROUND_COLLIDER) 
+		|| (col_2->type == NO_COLLIDER && col_1->type == GROUND_COLLIDER) 
+		|| (col_1->type == NO_COLLIDER && col_2->type == GROUND_COLLIDER))
 	{
 			CanPlayerJump = true;
 			JumpSpeed = initialspeed;
