@@ -154,32 +154,39 @@ bool j1Player::Update(float dt) {
 		
 		current_animation = &falling;
 		CanPlayerJump = false;
+		GroundCollision = false;
+	}
+	
+	if (GroundCollision == true) {
+		CanPlayerJump = true;
+		isfalling = false;
 	}
 
 	GroundCollision = false;
 	
-	if (GroundCollision == false && jump == false) {
+	if (GroundCollision == false && jump == false /*|| isfalling == true*/ ) {
 		position.y += gravity;
-		if (gravity < 0.2) {
+		if (gravity < 0.25) {
 			gravity += 0.02f;
 		}
 	}
 
-	if (jump) {
-		position.y -= JumpSpeed; 
-		JumpSpeed += 0.002f;
+	if (jump == true) {
+		position.y -= Jumpforce; 
+		Jumpforce -= 0.0009f;
 		current_animation = &jumpanim;
+		CanPlayerJump = false;
 
-		if (JumpSpeed > 0.8f) { 
-			JumpSpeed -= 0.002f;
+		if (Jumpforce <= 0) { 
+			//JumpSpeed -= 0.002f;
 			jump = false;
 			isfalling = true;
+			//GroundCollision = false;
+			Jumpforce = Jumpreset;
 		}
 
 	}	
-	if (jump == false) {
-		JumpSpeed = -0.0002f;
-	}
+	
 
 	player->Set_Pos(position.x,position.y);
 

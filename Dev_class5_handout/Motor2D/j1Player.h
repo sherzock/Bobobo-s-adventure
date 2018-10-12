@@ -59,6 +59,8 @@ public:
 	float initialspeed;
 	float JumpSpeed;
 	float gravity;
+	float Jumpforce = 0.38f;
+	float Jumpreset = 0.38f;
 
 	uint currentTime;
 	uint lastTime;
@@ -71,6 +73,7 @@ public:
 	bool isfalling = false;
 	bool goingright = true;
 	bool godmode = false;
+
 };
 
 #endif // __jPLAYER_H__
