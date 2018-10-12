@@ -278,7 +278,7 @@ const char* j1App::GetOrganization() const
 }
 
 // Load / Save
-void j1App::LoadGame()
+void j1App::LoadGame(const char* file)
 {
 	// we should be checking if that file actually exist
 	// from the "GetSaveGames" list
@@ -286,12 +286,12 @@ void j1App::LoadGame()
 }
 
 // ---------------------------------------
-void j1App::SaveGame() const
+void j1App::SaveGame(const char* file) const
 {
 	// we should be checking if that file actually exist
 	// from the "GetSaveGames" list ... should we overwrite ?
-
 	want_to_save = true;
+	save_game.create(file);
 }
 
 // ---------------------------------------
@@ -304,28 +304,30 @@ bool j1App::LoadGameNow()
 {
 	bool ret = false;
 
+	load_game.create("save_game.xml");
+
 	pugi::xml_document data;
 	pugi::xml_node root;
 
 	pugi::xml_parse_result result = data.load_file(load_game.GetString());
 
-	if(result != NULL)
-	{
-		LOG("Loading new Game State from %s...", load_game.GetString());
+	if (result != NULL){
+		
+		("Loading new Game State from %s...", load_game.GetString());
 
 		root = data.child("game_state");
 
 		p2List_item<j1Module*>* item = modules.start;
 		ret = true;
 
-		while(item != NULL && ret == true)
-		{
+		while (item != NULL && ret == true){
+		
 			ret = item->data->Load(root.child(item->data->name.GetString()));
 			item = item->next;
 		}
 
 		data.reset();
-		if(ret == true)
+		if (ret == true)
 			LOG("...finished loading");
 		else
 			LOG("...loading process interrupted with error on module %s", (item != NULL) ? item->data->name.GetString() : "unknown");
@@ -341,26 +343,26 @@ bool j1App::SavegameNow() const
 {
 	bool ret = true;
 
+	save_game.create("save_game.xml");
+
 	LOG("Saving Game State to %s...", save_game.GetString());
 
 	// xml object were we will store all data
 	pugi::xml_document data;
 	pugi::xml_node root;
-	
+
 	root = data.append_child("game_state");
 
 	p2List_item<j1Module*>* item = modules.start;
 
-	while(item != NULL && ret == true)
-	{
+	while (item != NULL && ret == true){
 		ret = item->data->Save(root.append_child(item->data->name.GetString()));
 		item = item->next;
 	}
 
-	if(ret == true)
-	{
+	if (ret == true){
 		data.save_file(save_game.GetString());
-		LOG("... finished saving", );
+		LOG("... finished saving", save_game.GetString());
 	}
 	else
 		LOG("Save process halted from an error in module %s", (item != NULL) ? item->data->name.GetString() : "unknown");
