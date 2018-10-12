@@ -76,8 +76,7 @@ bool j1FadeToBlack::Iteration()
 }
 
 // Fade to black. At mid point deactivate one module, then activate the other
-bool j1FadeToBlack::FadeToBlack(j1Module* module_off, j1Module* module_on, float time)
-{
+bool j1FadeToBlack::FadeToBlack(j1Module* module_off, j1Module* module_on, float time){
 	bool ret = false;
 	ModuleOff = module_off;
 	ModuleOn = module_on;

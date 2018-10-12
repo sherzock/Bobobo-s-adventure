@@ -7,7 +7,7 @@
 #include "j1Render.h"
 #include "j1Collisions.h"
 #include "j1FadeToBlack.h"
-
+#include "j1Scene.h"
 
 
 j1Player::j1Player() : j1Module(){
@@ -64,7 +64,7 @@ bool j1Player::PreUpdate() {
 bool j1Player::Update(float dt) {
 
 	
-	// Direction controls
+	// Ground Collision // 
 	if (GroundCollision == true) {
 
 		isfalling = false;
@@ -73,6 +73,9 @@ bool j1Player::Update(float dt) {
 		
 		isfalling = true;
 	}
+
+
+	// Movement //
 
 	if (App->input->GetKey(SDL_SCANCODE_D) == j1KeyState::KEY_REPEAT) {
 		position.x += XSpeed;
@@ -89,22 +92,17 @@ bool j1Player::Update(float dt) {
 		goingright = false;
 	}
 
-	if (CanPlayerJump == true) {
-		if (App->input->GetKey(SDL_SCANCODE_SPACE) == j1KeyState::KEY_DOWN && position.y < 1000) {
-		
-			jump = true;
-			CanPlayerJump = false;
-
-		}
-	}
+	
 	
 	if (App->input->GetKey(SDL_SCANCODE_D) == j1KeyState::KEY_IDLE && App->input->GetKey(SDL_SCANCODE_A) == j1KeyState::KEY_IDLE) {
 		
 			current_animation = &idle;
-		
 			
 	}
 	
+	// Debug //
+	//God mode//
+
 	if (App->input->GetKey(SDL_SCANCODE_F10) == j1KeyState::KEY_DOWN) {
 
 		godmode = !godmode;
@@ -113,6 +111,43 @@ bool j1Player::Update(float dt) {
 	if (godmode == true) {
 
 		player->type = NO_COLLIDER;
+	}
+	//Restart game//
+	if (App->input->GetKey(SDL_SCANCODE_F1) == j1KeyState::KEY_DOWN) {
+
+		App->fade->FadeToBlack(this, App->scene); // Propiietats del mapa pls
+		
+		position.x = 300; // start map position x
+		position.y = 300; // start map position y
+		App->render->camera.x = 0; // start camera x
+		App->render->camera.y = 0; // start camera y
+		dead = false;
+		
+	}
+	//Restart level//
+	if (App->input->GetKey(SDL_SCANCODE_F2) == j1KeyState::KEY_DOWN) {
+
+		App->fade->FadeToBlack(this, this); // Propietats del mapa pls
+		
+		
+			position.x = 300;
+			position.y = 300;
+			App->render->camera.x = 0;
+			App->render->camera.y = 0;
+			dead = false;
+		
+		
+	}
+
+	//Jump instructions//
+	
+	if (CanPlayerJump == true) {
+		if (App->input->GetKey(SDL_SCANCODE_SPACE) == j1KeyState::KEY_DOWN && position.y < 1000) {
+
+			jump = true;
+			CanPlayerJump = false;
+
+		}
 	}
 
 	if (isfalling == true) {
