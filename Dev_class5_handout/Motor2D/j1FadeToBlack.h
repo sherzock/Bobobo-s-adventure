@@ -19,7 +19,7 @@ public:
 	j1Module* ModuleOn;
 	j1Module* ModuleOff;
 	bool Iteration();
-
+	
 private:
 
 	enum fade_step

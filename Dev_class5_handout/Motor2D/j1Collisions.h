@@ -17,7 +17,7 @@ enum COLLIDER_TYPE
 	WIN_COLLIDER,
 	SPAWN_COLLIDER,
 	TYPE_COLLIDER,
-
+	
 };
 
 enum CollisionDirection
