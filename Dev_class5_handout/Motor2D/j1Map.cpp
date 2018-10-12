@@ -52,7 +52,10 @@ void j1Map::Draw()
 					{
 						SDL_Rect r = tileset->GetTileRect(tile_id);
 						iPoint pos = MapToWorld(x, y);
-						App->render->Blit(tileset->texture, pos.x, pos.y, &r, SDL_FLIP_NONE);
+						if (pos.x <(-(App->render->camera.x) + App->render->camera.w) && pos.x >(-(App->render->camera.x) - 170))
+						{
+							App->render->Blit(tileset->texture, pos.x, pos.y, &r, SDL_FLIP_NONE);
+						}
 					}
 				}
 				tile_num++;
