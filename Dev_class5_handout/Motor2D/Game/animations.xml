@@ -23,9 +23,12 @@
     </run>
 
     <jumpanim loop="false">
-      <animation x="2" y="244" w="63" h="69"/>
+
+	  <animation x="156" y="247" w="63" h="69"/>
+	  <animation x="2" y="244" w="63" h="69"/>
       <animation x="78" y="244" w="63" h="69"/>
 	  <animation x="156" y="247" w="63" h="69"/>
+	  
     </jumpanim>
 
      <falling loop="true" speed="0.01f">

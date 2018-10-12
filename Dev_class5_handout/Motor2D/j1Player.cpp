@@ -65,12 +65,22 @@ bool j1Player::Update(float dt) {
 
 	
 	// Direction controls
+	if (GroundCollision == true) {
+
+		isfalling = false;
+	}
+	else if (GroundCollision == false) {
+		
+		isfalling = true;
+	}
+
 	if (App->input->GetKey(SDL_SCANCODE_D) == j1KeyState::KEY_REPEAT) {
 		position.x += XSpeed;
 
 		current_animation = &run;
 		goingright = true;
 	}
+	
 
 	if (App->input->GetKey(SDL_SCANCODE_A) == j1KeyState::KEY_REPEAT) {
 		position.x -= XSpeed;
@@ -95,10 +105,7 @@ bool j1Player::Update(float dt) {
 			
 	}
 	
-	if (GroundCollision == true) {
-
-		isfalling = false;
-	}
+	
 
 	if (isfalling == true) {
 		
