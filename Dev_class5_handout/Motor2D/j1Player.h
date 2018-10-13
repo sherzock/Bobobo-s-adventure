@@ -59,8 +59,12 @@ public:
 	float initialspeed;
 	float JumpSpeed;
 	float gravity;
-	float Jumpforce = 0.38f;
-	float Jumpreset = 0.38f;
+	float Jumpforce;
+	float Jumpreset;
+	float gravityMax;
+	float gravityIteratior;
+	float JumpforceIterator;
+
 
 	uint currentTime;
 	uint lastTime;

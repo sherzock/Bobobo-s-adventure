@@ -32,6 +32,17 @@ bool j1Player::Awake(pugi::xml_node& config) {
 	position.x = config.child("position").attribute("x").as_int();
 	position.y = config.child("position").attribute("y").as_int();
 
+	pugi::xml_node physics = config.child("physics");
+	XSpeed = physics.child("xspeed").attribute("atr").as_float();
+	initialspeed = physics.child("initialspeed").attribute("atr").as_float();
+	JumpSpeed = physics.child("jumpspeed").attribute("atr").as_float();
+	gravity = physics.child("gravity").attribute("atr").as_float();
+	Jumpforce = physics.child("jumpforce").attribute("atr").as_float();
+	Jumpreset = physics.child("jumpreset").attribute("atr").as_float();
+	gravityMax = physics.child("gravityMax").attribute("atr").as_float();;
+	gravityIteratior = physics.child("gravityIterator").attribute("atr").as_float();;
+	JumpforceIterator = physics.child("JumpforceIterator").attribute("atr").as_float();
+
 	return true;
 }
 
@@ -40,15 +51,10 @@ bool j1Player::Start() {
 	
 	graphics = App->tex->Load("textures/character.png");
 
-	position.x = 300;
+	position.x = 100;
 	position.y = 300;
 
 	current_animation = &idle;
-
-	 XSpeed = 0.5f;
-	 initialspeed = 0.02f;
-	 JumpSpeed = -0.22f;
-	 gravity = 0.0f;
 	
 	player = App->colls->AddCollider({ (int)position.x, (int)position.y, 50, 55 }, PLAYER_COLLIDER, this);
 
@@ -166,14 +172,14 @@ bool j1Player::Update(float dt) {
 	
 	if (GroundCollision == false && jump == false /*|| isfalling == true*/ ) {
 		position.y += gravity;
-		if (gravity < 0.25) {
-			gravity += 0.02f;
+		if (gravity < gravityMax) {
+			gravity += gravityIteratior;
 		}
 	}
 
 	if (jump == true) {
 		position.y -= Jumpforce; 
-		Jumpforce -= 0.0009f;
+		Jumpforce -= JumpforceIterator;
 		current_animation = &jumpanim;
 		CanPlayerJump = false;
 
