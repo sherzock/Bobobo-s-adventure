@@ -51,6 +51,7 @@ public:
 	Animations run;
 	Animations jumpanim;
 	Animations falling;
+	Animations dashanim;
 	
 	
 	fPoint position;

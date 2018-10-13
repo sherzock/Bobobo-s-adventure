@@ -20,6 +20,7 @@ j1Player::j1Player() : j1Module(){
 	run.LoadAnimations("run");
 	jumpanim.LoadAnimations("jumpanim");
 	falling.LoadAnimations("falling");
+	dashanim.LoadAnimations("dash");
 
 	name.create("player");
 }
@@ -150,48 +151,10 @@ bool j1Player::Update(float dt) {
 
 		dash = true;
 		CanPlayerDash = false;
-		}
-	}
-
-	if(goingright == true){
 		
-		if (dash == true) {
-
-			position.x += DashSpeed;
-			DashSpeed += 0.5f;
-			CanPlayerJump = false;
-			CanPlayerDash = false;
-
-			if (DashSpeed >= 12) {
-				dash = false;
-				CanPlayerDash = false;
-				isfalling = true;
-				DashSpeed = DashSpeedres;
-
-			}
 		}
-	
 	}
-	else if (goingright == false) {
-		
-		if (dash == true) {
-			position.x -= DashSpeed;
-			DashSpeed += 0.5f;
-			CanPlayerJump = false;
-			CanPlayerDash = false;
 
-			if (DashSpeed >= 12) {
-				dash = false;
-				CanPlayerDash = false;
-				isfalling = true;
-				DashSpeed = DashSpeedres;
-
-			}
-		}
-
-
-	}
-	
 
 
 	//Jump instructions//
@@ -250,7 +213,51 @@ bool j1Player::Update(float dt) {
 		}
 
 	}	
+
 	
+	if (goingright == true && dash == true) {
+
+		
+
+			current_animation = &dashanim;
+			position.x += DashSpeed;
+			DashSpeed += 0.3f;
+			CanPlayerJump = false;
+			CanPlayerDash = false;
+
+			if (DashSpeed >= 14) {
+				dash = false;
+				CanPlayerDash = false;
+				isfalling = true;
+				DashSpeed = DashSpeedres;
+
+			}
+		
+
+	}
+	else if (goingright == false && dash == true) {
+
+		
+
+			current_animation = &dashanim;
+			position.x -= DashSpeed;
+			DashSpeed += 0.3f;
+			CanPlayerJump = false;
+			CanPlayerDash = false;
+
+			if (DashSpeed >= 14) {
+				dash = false;
+				CanPlayerDash = false;
+				isfalling = true;
+				DashSpeed = DashSpeedres;
+
+			}
+		
+
+
+	}
+
+
 
 	player->Set_Pos(position.x,position.y);
 
