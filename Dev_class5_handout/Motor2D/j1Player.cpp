@@ -8,6 +8,7 @@
 #include "j1Collisions.h"
 #include "j1FadeToBlack.h"
 #include "j1Scene.h"
+#include "j1Scene2.h"
 #include "j1Map.h"
 
 
@@ -129,7 +130,6 @@ bool j1Player::Update(float dt) {
 	}
 	//Restart game//
 	if (App->input->GetKey(SDL_SCANCODE_F1) == j1KeyState::KEY_DOWN) {
-
 		App->fade->FadeToBlack(this, App->scene); // Propiietats del mapa pls
 		
 		position.x = Initial_position.x; // start map position x

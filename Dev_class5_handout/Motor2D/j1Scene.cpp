@@ -8,7 +8,10 @@
 #include "j1Window.h"
 #include "j1Map.h"
 #include "j1Scene.h"
+#include "j1Scene2.h"
 #include "j1Player.h"
+#include "j1Collisions.h"
+#include "j1FadeToBlack.h"
 
 j1Scene::j1Scene() : j1Module()
 {
@@ -33,11 +36,13 @@ bool j1Scene::Awake()
 // Called before the first frame
 bool j1Scene::Start()
 {
-	App->map->Load("Level1map.tmx");
+	
 	//App->map->Load("Testmap2.tmx");
 
-
+	if (active == true)	{
 	
+		App->map->Load("Level1map.tmx");
+	}
 	
 	return true;
 }
@@ -94,6 +99,7 @@ bool j1Scene::Update(float dt)
 
 	App->win->SetTitle(title.GetString());
 	return true;
+	
 }
 
 // Called each loop iteration
@@ -111,6 +117,13 @@ bool j1Scene::PostUpdate()
 bool j1Scene::CleanUp()
 {
 	LOG("Freeing scene");
+	App->map->CleanUp();
+	App->colls->CleanUp();
+	App->tex->CleanUp();
+	App->play->CleanUp();
 
 	return true;
+	
 }
+
+

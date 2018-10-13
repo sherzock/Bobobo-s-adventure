@@ -28,11 +28,12 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	tex = new j1Textures();
 	audio = new j1Audio();
 	scene = new j1Scene();
-	scene2 = new j1Scene2();
+	//scene2 = new j1Scene2();
 	play = new j1Player();
 	map = new j1Map();
 	colls = new j1Collisions();
 	fade = new j1FadeToBlack();
+
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -42,7 +43,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(audio);
 	AddModule(map);
 	AddModule(scene);
-	AddModule(scene2);
+	//AddModule(scene2);
 	AddModule(play);
 	AddModule(colls);
 	AddModule(fade);
@@ -78,6 +79,7 @@ bool j1App::Awake()
 	pugi::xml_node		config;
 	pugi::xml_node		app_config;
 
+	
 	bool ret = false;
 		
 	config = LoadConfig(config_file);

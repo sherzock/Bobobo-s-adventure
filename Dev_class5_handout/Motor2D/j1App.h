@@ -12,6 +12,7 @@ class j1Render;
 class j1Textures;
 class j1Audio;
 class j1Scene;
+class j1Scene2;
 class j1Map;
 class j1Collisions;
 class j1Player;

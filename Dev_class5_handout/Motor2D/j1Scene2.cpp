@@ -7,12 +7,17 @@
 #include "j1Render.h"
 #include "j1Window.h"
 #include "j1Map.h"
+#include "j1Scene.h"
 #include "j1Scene2.h"
 #include "j1Player.h"
+#include "j1FadeToBlack.h"
+#include "j1Collisions.h"
+
 
 j1Scene2::j1Scene2() : j1Module()
 {
-	name.create("scene");
+	name.create("scene2");
+	
 
 }
 
@@ -24,7 +29,7 @@ j1Scene2::~j1Scene2()
 bool j1Scene2::Awake()
 {
 
-	LOG("Loading Scene");
+	LOG("Loading Scene2");
 	bool ret = true;
 
 	return ret;
@@ -33,9 +38,10 @@ bool j1Scene2::Awake()
 // Called before the first frame
 bool j1Scene2::Start()
 {
-	App->map->Load("Level2map.tmx");
+	if (active == true) {
+	App->map->Load("Level1map.tmx");
 	//App->map->Load("Testmap2.tmx");
-
+	}
 
 
 	
@@ -99,6 +105,9 @@ bool j1Scene2::PostUpdate()
 bool j1Scene2::CleanUp()
 {
 	LOG("Freeing scene");
-
+	App->map->CleanUp();
+	App->colls->CleanUp();
+	App->tex->CleanUp();
+	App->play->CleanUp();
 	return true;
 }

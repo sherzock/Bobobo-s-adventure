@@ -7,6 +7,9 @@
 #include "j1Collisions.h"
 #include "j1Window.h"
 #include <math.h>
+#include "j1Scene.h"
+#include "j1Scene2.h"
+
 
 j1Map::j1Map() : j1Module(), map_loaded(false)
 {
@@ -293,8 +296,13 @@ bool j1Map::Load(const char* file_name)
 	
 	
 	}
+	if (App->scene->active == true) {
+		Colliders_on_map("Level1map.tmx");
+	}
+/*	else if (App->scene2->active == true) {
+		Colliders_on_map("Level2map.tmx");
+	}*/
 
-	Colliders_on_map(file_name);
 
 	map_loaded = ret;
 
