@@ -13,7 +13,7 @@
 
    
 
-    <run loop="true" speed="0.29f">
+    <run loop="true" speed="0.3f">
 	
       <animation x="0" y="101" w="44" h="57"/>
       <animation x="60" y="94" w="52" h="64"/>

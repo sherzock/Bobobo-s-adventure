@@ -24528,7 +24528,7 @@
    <tile gid="3558"/>
    <tile gid="3559"/>
    <tile gid="3560"/>
-   <tile gid="3561"/>
+   <tile gid="79"/>
    <tile gid="3562"/>
    <tile gid="3563"/>
    <tile gid="3564"/>
@@ -27523,7 +27523,7 @@
  </layer>
  <layer name="middle" width="550" height="50">
   <properties>
-   <property name="velocity" type="float" value="0.5"/>
+   <property name="velocity" type="float" value="0.9"/>
   </properties>
   <data>
    <tile gid="0"/>
@@ -79539,7 +79539,7 @@
    <tile gid="79"/>
    <tile gid="79"/>
    <tile gid="79"/>
-   <tile gid="29"/>
+   <tile gid="79"/>
    <tile gid="81"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -81790,6 +81790,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="77"/>
+   <tile gid="79"/>
    <tile gid="79"/>
    <tile gid="79"/>
    <tile gid="79"/>
@@ -81801,7 +81802,6 @@
    <tile gid="79"/>
    <tile gid="79"/>
    <tile gid="79"/>
-   <tile gid="502"/>
    <tile gid="81"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -82532,9 +82532,9 @@
    <tile gid="0"/>
   </data>
  </layer>
- <layer name="front" width="550" height="50">
+ <layer name="front" width="550" height="50" visible="0">
   <properties>
-   <property name="velocity" type="float" value="1.5"/>
+   <property name="velocity" type="float" value="0.8"/>
   </properties>
   <data>
    <tile gid="0"/>
