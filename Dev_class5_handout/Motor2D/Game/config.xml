@@ -12,15 +12,15 @@
 
   <player>
 	<physics>
-		<xspeed atr="1.0f"/>
+		<xspeed atr="3.5f"/>
 		<initialspeed atr=" 0.02f"/>
-		<jumpspeed atr="-0.22f"/>
+		<jumpspeed atr="-1.22f"/>
 		<gravity atr="0.0f"/>
 		<jumpforce atr="0.38f"/>
 		<jumpreset atr="0.38f"/>
-		<gravityMax atr="0.25f"/>
-		<gravityIterator atr="0.02f"/>
-		<JumpforceIterator atr=" 0.0009f"/>
+		<gravityMax atr="3.5f"/>
+		<gravityIterator atr="0.2f"/>
+		<JumpforceIterator atr=" 0.002f"/>
 	</physics>
   </player>
 	
