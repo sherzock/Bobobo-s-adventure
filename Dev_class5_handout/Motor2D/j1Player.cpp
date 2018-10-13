@@ -20,6 +20,7 @@ j1Player::j1Player() : j1Module(){
 	run.LoadAnimations("run");
 	jumpanim.LoadAnimations("jumpanim");
 	falling.LoadAnimations("falling");
+	dashanim.LoadAnimations("dash");
 
 	name.create("player");
 }
@@ -144,22 +145,17 @@ bool j1Player::Update(float dt) {
 		
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_C) == j1KeyState::KEY_DOWN) {
+
+	if (CanPlayerDash == true) {
+		if (App->input->GetKey(SDL_SCANCODE_F) == j1KeyState::KEY_DOWN) {
 
 		dash = true;
-	}
-
-	if (dash == true) {
-		float save = DashSpeed;
-		position.x += DashSpeed;
-		DashSpeed += 0.5f;
-
-		if (DashSpeed >= 8) {
-			dash = false;
-			isfalling = true;
-			DashSpeed = DashSpeedres;
+		CanPlayerDash = false;
+		
 		}
 	}
+
+
 
 	//Jump instructions//
 	
@@ -168,20 +164,24 @@ bool j1Player::Update(float dt) {
 
 			jump = true;
 			CanPlayerJump = false;
-
+			
 		}
 	}
 
 	if (isfalling == true) {
 		
 		current_animation = &falling;
-		CanPlayerJump = false;
+	    
+		
 		GroundCollision = false;
 	}
+
 	
 	if (GroundCollision == true) {
 		CanPlayerJump = true;
 		isfalling = false;
+		CanPlayerDash = false;
+		CanPlayerDash = true;
 	}
 
 	GroundCollision = false;
@@ -190,26 +190,74 @@ bool j1Player::Update(float dt) {
 		position.y += gravity;
 		
 		if (gravity < gravityMax) {
-			gravity += gravityIteratior;
+			gravity += gravityIteratior; 
+			
 		}
 	}
 
 	if (jump == true) {
+		
 		position.y -= Jumpforce; 
 		Jumpforce -= JumpforceIterator;
 		current_animation = &jumpanim;
 		CanPlayerJump = false;
+		
 
 		if (Jumpforce <= 0) { 
-			//JumpSpeed -= 0.002f;
+			
 			jump = false;
 			isfalling = true;
-			//GroundCollision = false;
+			
 			Jumpforce = Jumpreset;
+			
 		}
 
 	}	
+
 	
+	if (goingright == true && dash == true) {
+
+		
+
+			current_animation = &dashanim;
+			position.x += DashSpeed;
+			DashSpeed += 0.3f;
+			CanPlayerJump = false;
+			CanPlayerDash = false;
+
+			if (DashSpeed >= 14) {
+				dash = false;
+				CanPlayerDash = false;
+				isfalling = true;
+				DashSpeed = DashSpeedres;
+
+			}
+		
+
+	}
+	else if (goingright == false && dash == true) {
+
+		
+
+			current_animation = &dashanim;
+			position.x -= DashSpeed;
+			DashSpeed += 0.3f;
+			CanPlayerJump = false;
+			CanPlayerDash = false;
+
+			if (DashSpeed >= 14) {
+				dash = false;
+				CanPlayerDash = false;
+				isfalling = true;
+				DashSpeed = DashSpeedres;
+
+			}
+		
+
+
+	}
+
+
 
 	player->Set_Pos(position.x,position.y);
 
