@@ -35,7 +35,6 @@ bool j1Player::Awake(pugi::xml_node& config) {
 	pugi::xml_node physics = config.child("physics");
 	XSpeed = physics.child("xspeed").attribute("atr").as_float();
 	initialspeed = physics.child("initialspeed").attribute("atr").as_float();
-	JumpSpeed = physics.child("jumpspeed").attribute("atr").as_float();
 	gravity = physics.child("gravity").attribute("atr").as_float();
 	Jumpforce = physics.child("jumpforce").attribute("atr").as_float();
 	Jumpreset = physics.child("jumpreset").attribute("atr").as_float();
@@ -258,7 +257,6 @@ void j1Player::OnCollision(Collider* col_1, Collider* col_2)
 		|| (col_1->type == NO_COLLIDER && col_2->type == GROUND_COLLIDER))
 	{
 			CanPlayerJump = true;
-			JumpSpeed = initialspeed;
 			GroundCollision = true;
 			gravity = 0.0f;
 			if (App->input->GetKey(SDL_SCANCODE_SPACE) == j1KeyState::KEY_UP && position.y < 1000) {

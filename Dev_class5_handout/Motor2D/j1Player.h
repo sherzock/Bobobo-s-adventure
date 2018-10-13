@@ -57,7 +57,6 @@ public:
 
 	float XSpeed;
 	float initialspeed;
-	float JumpSpeed;
 	float gravity;
 	float Jumpforce;
 	float Jumpreset;
