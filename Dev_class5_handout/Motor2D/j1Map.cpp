@@ -296,12 +296,12 @@ bool j1Map::Load(const char* file_name)
 	
 	
 	}
-	if (App->scene->active == true) {
+	/*if (App->scene->active == true) {
 		Colliders_on_map("Level1map.tmx");
 	}
-/*	else if (App->scene2->active == true) {
+	else*/ if (App->scene2->active == true) {
 		Colliders_on_map("Level2map.tmx");
-	}*/
+	}
 
 
 	map_loaded = ret;

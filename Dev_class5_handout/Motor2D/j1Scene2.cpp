@@ -39,7 +39,7 @@ bool j1Scene2::Awake()
 bool j1Scene2::Start()
 {
 	if (active == true) {
-	App->map->Load("Level1map.tmx");
+	App->map->Load("Level2map.tmx");
 	//App->map->Load("Testmap2.tmx");
 	}
 
