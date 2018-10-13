@@ -1,6 +1,6 @@
 <animations>
   <player>
-    <idle loop="true" speed="0.02f">
+    <idle loop="true" speed="0.12f">
       <animation x="2" y="21" w="42" h="61"/>
       <animation x="60" y="21" w="44" h="60"/>
       <animation x="125" y="21" w="42" h="59"/>
@@ -11,7 +11,7 @@
 
    
 
-    <run loop="true" speed="0.029f">
+    <run loop="true" speed="0.174f">
       <animation x="0" y="101" w="44" h="57"/>
       <animation x="60" y="94" w="52" h="64"/>
       <animation x="128" y="100" w="52" h="59"/>
@@ -31,7 +31,7 @@
 	  
     </jumpanim>
 
-     <falling loop="true" speed="0.01f">
+     <falling loop="true" speed="0.06f">
       <animation x="2" y="244" w="63" h="69"/>
       <animation x="78" y="244" w="63" h="69"/>
     </falling>
