@@ -64,8 +64,9 @@ public:
 	float gravityMax;
 	float gravityIteratior;
 	float JumpforceIterator;
-	float DashSpeed = 4.0f;
-	float DashSpeedres = 4.0f;
+	float DashSpeed;
+	float DashSpeedres ;
+	float DashAcc;
 	uint currentTime;
 	uint lastTime;
 

@@ -42,7 +42,9 @@ bool j1Player::Awake(pugi::xml_node& config) {
 	gravityMax = physics.child("gravityMax").attribute("atr").as_float();;
 	gravityIteratior = physics.child("gravityIterator").attribute("atr").as_float();;
 	JumpforceIterator = physics.child("JumpforceIterator").attribute("atr").as_float();
-
+	DashSpeed = physics.child("DashSpeed").attribute("atr").as_float();
+	DashSpeedres = physics.child("DashSpeedres").attribute("atr").as_float();
+	DashAcc = physics.child("DashAcc").attribute("atr").as_float();
 	return true;
 }
 
@@ -72,8 +74,10 @@ bool j1Player::Update(float dt) {
 	
 	// Ground Collision // 
 	if (GroundCollision == true) {
-
 		isfalling = false;
+		CanPlayerJump = true;
+		CanPlayerDash = false;
+		CanPlayerDash = true;
 	}
 	else if (GroundCollision == false) {
 		
@@ -177,13 +181,6 @@ bool j1Player::Update(float dt) {
 	}
 
 	
-	if (GroundCollision == true) {
-		CanPlayerJump = true;
-		isfalling = false;
-		CanPlayerDash = false;
-		CanPlayerDash = true;
-	}
-
 	GroundCollision = false;
 	
 	if (GroundCollision == false && jump == false  ) {
@@ -217,41 +214,38 @@ bool j1Player::Update(float dt) {
 	
 	if (goingright == true && dash == true) {
 
-		
 
-			current_animation = &dashanim;
-			position.x += DashSpeed;
-			DashSpeed += 0.3f;
-			CanPlayerJump = false;
+		current_animation = &dashanim;
+		position.x += DashSpeed;
+		DashSpeed += DashAcc;
+		CanPlayerJump = false;
+		CanPlayerDash = false;
+
+		if (DashSpeed >= 14) {
+			dash = false;
 			CanPlayerDash = false;
+			isfalling = true;
+			DashSpeed = DashSpeedres;
 
-			if (DashSpeed >= 14) {
-				dash = false;
-				CanPlayerDash = false;
-				isfalling = true;
-				DashSpeed = DashSpeedres;
-
-			}
+		}
 		
 
 	}
 	else if (goingright == false && dash == true) {
 
-		
+		current_animation = &dashanim;
+		position.x -= DashSpeed;
+		DashSpeed += DashAcc;
+		CanPlayerJump = false;
+		CanPlayerDash = false;
 
-			current_animation = &dashanim;
-			position.x -= DashSpeed;
-			DashSpeed += 0.3f;
-			CanPlayerJump = false;
+		if (DashSpeed >= 12) {
+			dash = false;
 			CanPlayerDash = false;
+			isfalling = true;
+			DashSpeed = DashSpeedres;
 
-			if (DashSpeed >= 14) {
-				dash = false;
-				CanPlayerDash = false;
-				isfalling = true;
-				DashSpeed = DashSpeedres;
-
-			}
+		}
 		
 
 
