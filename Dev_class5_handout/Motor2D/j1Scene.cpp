@@ -35,6 +35,10 @@ bool j1Scene::Start()
 {
 	App->map->Load("Level1map.tmx");
 	//App->map->Load("Testmap2.tmx");
+
+
+	
+	//position.y = 300;
 	return true;
 }
 

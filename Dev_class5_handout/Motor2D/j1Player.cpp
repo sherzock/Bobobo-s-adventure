@@ -8,6 +8,7 @@
 #include "j1Collisions.h"
 #include "j1FadeToBlack.h"
 #include "j1Scene.h"
+#include "j1Map.h"
 
 
 j1Player::j1Player() : j1Module(){
@@ -53,8 +54,12 @@ bool j1Player::Start() {
 	
 	graphics = App->tex->Load("textures/character.png");
 
-	position.x = 100;
-	position.y = 300;
+
+	position.x = App->map->map_file.child("map").child("properties").child("property").attribute("value").as_int();
+	position.y = App->map->map_file.child("map").child("properties").child("property").next_sibling("property").attribute("value").as_int();
+
+	Initial_position.x = position.x;
+	Initial_position.y = position.y;
 
 	current_animation = &idle;
 	
@@ -127,21 +132,22 @@ bool j1Player::Update(float dt) {
 
 		App->fade->FadeToBlack(this, App->scene); // Propiietats del mapa pls
 		
-		position.x = 300; // start map position x
-		position.y = 300; // start map position y
+		position.x = Initial_position.x; // start map position x
+		position.y = Initial_position.y; // start map position y
 		App->render->camera.x = 0; // start camera x
 		App->render->camera.y = 0; // start camera y
 		dead = false;
 		
 	}
 	//Restart level//
+	
 	if (App->input->GetKey(SDL_SCANCODE_F2) == j1KeyState::KEY_DOWN) {
 
 		App->fade->FadeToBlack(this, this); // Propietats del mapa pls
 		
 		
-			position.x = 300;
-			position.y = 300;
+			position.x = Initial_position.x;
+			position.y = Initial_position.y;
 			App->render->camera.x = 0;
 			App->render->camera.y = 0;
 			dead = false;
@@ -149,9 +155,10 @@ bool j1Player::Update(float dt) {
 		
 	}
 
+	//Dash
 
 	if (CanPlayerDash == true) {
-		if (App->input->GetKey(SDL_SCANCODE_F) == j1KeyState::KEY_DOWN) {
+		if (App->input->GetKey(SDL_SCANCODE_LSHIFT) == j1KeyState::KEY_DOWN) {
 
 		dash = true;
 		CanPlayerDash = false;
@@ -171,7 +178,7 @@ bool j1Player::Update(float dt) {
 			
 		}
 	}
-
+	//Conditions for movement
 	if (isfalling == true) {
 		
 		current_animation = &falling;

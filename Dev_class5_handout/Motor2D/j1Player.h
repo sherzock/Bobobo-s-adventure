@@ -54,7 +54,9 @@ public:
 	Animations dashanim;
 	
 	
+	
 	fPoint position;
+	fPoint Initial_position;
 
 	float XSpeed;
 	float initialspeed;
