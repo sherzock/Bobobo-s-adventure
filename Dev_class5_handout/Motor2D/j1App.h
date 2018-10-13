@@ -85,6 +85,7 @@ public:
 	j1Textures*			tex;
 	j1Audio*			audio;
 	j1Scene*			scene;
+	j1Scene2*			scene2;
 	j1Map*				map;
 	j1Collisions*		colls;
 	j1Player*			play;
