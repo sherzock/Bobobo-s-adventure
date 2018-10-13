@@ -28,7 +28,7 @@ j1Scene2::~j1Scene2()
 // Called before render is available
 bool j1Scene2::Awake()
 {
-
+	
 	LOG("Loading Scene2");
 	bool ret = true;
 
@@ -38,6 +38,7 @@ bool j1Scene2::Awake()
 // Called before the first frame
 bool j1Scene2::Start()
 {
+	this->active = false;
 	if (active == true) {
 	App->map->Load("Level2map.tmx");
 	//App->map->Load("Testmap2.tmx");

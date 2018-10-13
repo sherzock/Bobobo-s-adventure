@@ -128,6 +128,11 @@ bool j1Player::Update(float dt) {
 
 		player->type = NO_COLLIDER;
 	}
+	else if (godmode == false) {
+		player->type = PLAYER_COLLIDER;
+	}
+
+
 	//Restart game//
 	if (App->input->GetKey(SDL_SCANCODE_F1) == j1KeyState::KEY_DOWN) {
 		App->fade->FadeToBlack(this, App->scene); // Propiietats del mapa pls

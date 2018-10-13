@@ -27,7 +27,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	render = new j1Render();
 	tex = new j1Textures();
 	audio = new j1Audio();
-	//scene = new j1Scene();
+	scene = new j1Scene();
 	scene2 = new j1Scene2();
 	play = new j1Player();
 	map = new j1Map();
@@ -42,7 +42,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(tex);
 	AddModule(audio);
 	AddModule(map);
-	//AddModule(scene);
+	AddModule(scene);
 	AddModule(scene2);
 	AddModule(play);
 	AddModule(colls);
