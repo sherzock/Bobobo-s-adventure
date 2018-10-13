@@ -147,7 +147,7 @@ bool j1Player::Update(float dt) {
 
 
 	if (CanPlayerDash == true) {
-		if (App->input->GetKey(SDL_SCANCODE_C) == j1KeyState::KEY_DOWN) {
+		if (App->input->GetKey(SDL_SCANCODE_F) == j1KeyState::KEY_DOWN) {
 
 		dash = true;
 		CanPlayerDash = false;
