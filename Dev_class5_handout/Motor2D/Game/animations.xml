@@ -1,11 +1,7 @@
 <animations>
   <player>
-<<<<<<< HEAD
-    <idle loop="true" speed="0.12f">
-=======
     <idle loop="true" speed="0.2f">
 	
->>>>>>> cbd0fe89a2ce06024d9748c1100babaf0e02dd04
       <animation x="2" y="21" w="42" h="61"/>
       <animation x="60" y="21" w="44" h="60"/>
       <animation x="125" y="21" w="42" h="59"/>
@@ -17,12 +13,8 @@
 
    
 
-<<<<<<< HEAD
-    <run loop="true" speed="0.174f">
-=======
     <run loop="true" speed="0.29f">
 	
->>>>>>> cbd0fe89a2ce06024d9748c1100babaf0e02dd04
       <animation x="0" y="101" w="44" h="57"/>
       <animation x="60" y="94" w="52" h="64"/>
       <animation x="128" y="100" w="52" h="59"/>
@@ -43,17 +35,11 @@
 	  
     </jumpanim>
 
-<<<<<<< HEAD
-     <falling loop="true" speed="0.06f">
-      <animation x="2" y="244" w="63" h="69"/>
-      <animation x="78" y="244" w="63" h="69"/>
-=======
      <falling loop="true" speed="0.1f">
      
 	 <animation x="2" y="244" w="63" h="69"/>
    	 <animation x="78" y="244" w="63" h="69"/>
 	 
->>>>>>> cbd0fe89a2ce06024d9748c1100babaf0e02dd04
     </falling>
 
 	 <dash loop="true" speed="0.2f">
