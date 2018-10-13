@@ -145,6 +145,23 @@ bool j1Player::Update(float dt) {
 		
 	}
 
+	if (App->input->GetKey(SDL_SCANCODE_C) == j1KeyState::KEY_DOWN) {
+
+		dash = true;
+	}
+
+	if (dash == true) {
+		float save = DashSpeed;
+		position.x += DashSpeed;
+		DashSpeed += 0.5f;
+
+		if (DashSpeed >= 8) {
+			dash = false;
+			isfalling = true;
+			DashSpeed = DashSpeedres;
+		}
+	}
+
 	//Jump instructions//
 	
 	if (CanPlayerJump == true) {
@@ -170,8 +187,9 @@ bool j1Player::Update(float dt) {
 
 	GroundCollision = false;
 	
-	if (GroundCollision == false && jump == false /*|| isfalling == true*/ ) {
+	if (GroundCollision == false && jump == false  ) {
 		position.y += gravity;
+		
 		if (gravity < gravityMax) {
 			gravity += gravityIteratior;
 		}

@@ -64,8 +64,8 @@ public:
 	float gravityMax;
 	float gravityIteratior;
 	float JumpforceIterator;
-
-
+	float DashSpeed = 1.0f;
+	float DashSpeedres = 1.0f;
 	uint currentTime;
 	uint lastTime;
 
@@ -77,7 +77,7 @@ public:
 	bool isfalling = false;
 	bool goingright = true;
 	bool godmode = false;
-
+	bool dash;
 };
 
 #endif // __jPLAYER_H__
