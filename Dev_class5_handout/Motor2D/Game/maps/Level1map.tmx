@@ -27523,7 +27523,7 @@
  </layer>
  <layer name="middle" width="550" height="50">
   <properties>
-   <property name="velocity" type="int" value="70"/>
+   <property name="velocity" type="float" value="0.5"/>
   </properties>
   <data>
    <tile gid="0"/>
@@ -82534,7 +82534,7 @@
  </layer>
  <layer name="front" width="550" height="50">
   <properties>
-   <property name="velocity" type="int" value="50"/>
+   <property name="velocity" type="float" value="1.5"/>
   </properties>
   <data>
    <tile gid="0"/>
