@@ -63,8 +63,8 @@ public:
 	float gravityMax;
 	float gravityIteratior;
 	float JumpforceIterator;
-	float DashSpeed = 1.0f;
-	float DashSpeedres = 1.0f;
+	float DashSpeed = 4.0f;
+	float DashSpeedres = 4.0f;
 	uint currentTime;
 	uint lastTime;
 
@@ -73,6 +73,7 @@ public:
 	bool GroundCollision = false;
 	bool jump = false;
 	bool CanPlayerJump = false;
+	bool CanPlayerDash = false;
 	bool isfalling = false;
 	bool goingright = true;
 	bool godmode = false;
