@@ -37,11 +37,9 @@ public:
 		return frames[(int)current_frame];
 	}
 
-	void LoadAnimations(p2SString name)
-	{
+	void LoadAnimations(p2SString name){
 		pugi::xml_parse_result result = animations.load_file("animations.xml");
-		if (result != NULL)
-		{
+		if (result != NULL){
 			pugi::xml_node animation_name = animations.child("animations").child("player").child(name.GetString());
 			loop = animation_name.attribute("loop").as_bool();
 			speed = animation_name.attribute("speed").as_float();

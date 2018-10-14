@@ -13,12 +13,12 @@ j1Window::j1Window() : j1Module()
 	name.create("window");
 }
 
-// Destructor
+// Destructor//
 j1Window::~j1Window()
 {
 }
 
-// Called before render is available
+// Called before render is available//
 bool j1Window::Awake(pugi::xml_node& config)
 {
 	LOG("Init SDL window & surface");
@@ -31,7 +31,7 @@ bool j1Window::Awake(pugi::xml_node& config)
 	}
 	else
 	{
-		//Create window
+		//Create window//
 		Uint32 flags = SDL_WINDOW_SHOWN;
 		bool fullscreen = config.child("fullscreen").attribute("value").as_bool(false);
 		bool borderless = config.child("borderless").attribute("value").as_bool(false);
@@ -71,7 +71,7 @@ bool j1Window::Awake(pugi::xml_node& config)
 		}
 		else
 		{
-			//Get window surface
+			//Get window surface//
 			screen_surface = SDL_GetWindowSurface(window);
 		}
 	}
@@ -79,26 +79,26 @@ bool j1Window::Awake(pugi::xml_node& config)
 	return ret;
 }
 
-// Called before quitting
+// Called before quitting//
 bool j1Window::CleanUp()
 {
 	LOG("Destroying SDL window and quitting all SDL systems");
 
-	//Destroy window
+	//Destroy window//
 	if(window != NULL)
 	{
 		SDL_DestroyWindow(window);
 	}
 
-	//Quit SDL subsystems
+	//Quit SDL subsystems//
 	SDL_Quit();
 	return true;
 }
 
-// Set new window title
+// Set new window title//
 void j1Window::SetTitle(const char* new_title)
 {
-	//title.create(new_title);
+	
 	SDL_SetWindowTitle(window, new_title);
 }
 

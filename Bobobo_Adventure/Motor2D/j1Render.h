@@ -11,28 +11,28 @@ public:
 
 	j1Render();
 
-	// Destructor
+	// Destructor//
 	virtual ~j1Render();
 
-	// Called before render is available
+	// Called before render is available//
 	bool Awake(pugi::xml_node&);
 
-	// Called before the first frame
+	// Called before the first frame//
 	bool Start();
 
-	// Called each loop iteration
+	// Called each loop iteration//
 	bool PreUpdate();
 	bool Update(float dt);
 	bool PostUpdate();
 
-	// Called before quitting
+	// Called before quitting//
 	bool CleanUp();
 
-	// Load / Save
+	// Load / Save//
 	bool Load(pugi::xml_node&);
 	bool Save(pugi::xml_node&) const;
 
-	// Blit
+	// Blit//
 	void SetViewPort(const SDL_Rect& rect);
 	void ResetViewPort();
 	bool Blit(SDL_Texture* texture, int x, int y, const SDL_Rect* section, SDL_RendererFlip flip, float speed = 1.0f, double angle = 0, int pivot_x = INT_MAX, int pivot_y = INT_MAX) const;
@@ -41,7 +41,7 @@ public:
 	bool DrawLine(int x1, int y1, int x2, int y2, Uint8 r, Uint8 g, Uint8 b, Uint8 a = 255, bool use_camera = true) const;
 	bool DrawCircle(int x1, int y1, int redius, Uint8 r, Uint8 g, Uint8 b, Uint8 a = 255, bool use_camera = true) const;
 
-	// Set background color
+	// Set background color//
 	void SetBackgroundColor(SDL_Color color);
 
 public:
