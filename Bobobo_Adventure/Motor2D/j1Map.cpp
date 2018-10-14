@@ -57,7 +57,7 @@ void j1Map::Draw()
 						SDL_Rect r = tileset->GetTileRect(tile_id);
 						iPoint pos = MapToWorld(x, y);
 					
-						
+						//Renders diferent distnaces for diferent speeds of layer //
 							if (layer->data->name == "middle") {
 								
 								if (pos.x <(-(App->render->camera.x) + App->render->camera.w) && pos.x >(-(App->render->camera.x)- 650)){
@@ -150,7 +150,7 @@ bool j1Map::CleanUp()
 	}
 	data.tilesets.clear();
 
-	// TODO 2: clean up all layer data
+	
 	// Remove all layers
 
 	p2List_item<ImageLayer*>* back;
@@ -226,7 +226,7 @@ bool j1Map::Load(const char* file_name)
 		data.tilesets.add(set);
 	}
 
-	// TODO 4: Iterate all layers and load each of them
+	
 	// Load layer info ----------------------------------------------
 	pugi::xml_node layer;
 
@@ -270,7 +270,7 @@ bool j1Map::Load(const char* file_name)
 			item = item->next;
 		}
 
-		// TODO 4: Add info here about your loaded layers
+		
 		// Adapt this vcode with your own variables
 		
 		p2List_item<MapLayer*>* item_layer = data.layers.start;
@@ -437,7 +437,7 @@ bool j1Map::LoadTilesetImage(pugi::xml_node& tileset_node, TileSet* set)
 	return ret;
 }
 
- //TODO 3: Create the definition for a function that loads a single layer
+
 bool j1Map::LoadLayer(const pugi::xml_node& node, MapLayer* layer)
 {
 	bool ret = true;

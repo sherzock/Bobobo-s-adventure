@@ -398,21 +398,26 @@ bool j1Player::CleanUp() {
 
 void j1Player::OnCollision(Collider* col_1, Collider* col_2)
 {
-	if ((col_1->type == PLAYER_COLLIDER && col_2->type == GROUND_COLLIDER)
-		|| (col_2->type == PLAYER_COLLIDER && col_1->type == GROUND_COLLIDER) 
-		|| (col_2->type == NO_COLLIDER && col_1->type == GROUND_COLLIDER) 
-		|| (col_1->type == NO_COLLIDER && col_2->type == GROUND_COLLIDER))
+	if ((col_1->type == PLAYER_COLLIDER && col_2->type == GROUND_COLLIDER) || (col_2->type == PLAYER_COLLIDER && col_1->type == GROUND_COLLIDER) 
+		|| (col_2->type == NO_COLLIDER && col_1->type == GROUND_COLLIDER)  || (col_1->type == NO_COLLIDER && col_2->type == GROUND_COLLIDER))
 	{
 			CanPlayerJump = true;
 			GroundCollision = true;
 			gravity = 0.0f;
+			
 			if (App->input->GetKey(SDL_SCANCODE_SPACE) == j1KeyState::KEY_UP && position.y < 1000) {
 
 				jump = false;
 
 			}
-
-
+			if (jump == true ) {
+				position.y += 4;
+				GroundCollision = false;
+				isfalling = true;
+				Jumpforce = 0;
+				gravity = 0.2f;
+			}
+			
 
 	}
 };

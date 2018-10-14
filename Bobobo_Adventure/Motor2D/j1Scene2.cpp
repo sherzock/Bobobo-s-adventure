@@ -88,8 +88,7 @@ bool j1Scene2::Update(float dt)
 	App->map->Draw();
 
 
-	// TODO 7: Set the window title like
-	// "Map:%dx%d Tiles:%dx%d Tilesets:%d"
+
 	p2SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d",
 		App->map->data.width, App->map->data.height,
 		App->map->data.tile_width, App->map->data.tile_height,
