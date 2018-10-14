@@ -285,13 +285,22 @@ bool j1Player::Update(float dt) {
 	
 
 	if (position.x >= App->map->map_file.child("map").child("properties").child("property").next_sibling("property").next_sibling("property").next_sibling("property").attribute("value").as_float()) {
+		
 		win = true;
 	}
 
 	if (win == true) {
+		
+		dead = false;
+		if (App->scene->active == true) {
 
-		position.x = 0; //restart level
-		position.y = 0;
+			App->scene->change_scenes1();
+
+		}
+		else if (App->scene2->active == true) {
+			App->scene2->change_scenes2();
+		}
+		win = false;
 	}
 
 
