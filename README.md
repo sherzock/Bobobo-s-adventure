@@ -1,5 +1,7 @@
 <h1>Bobobo's bizarre adventure</h1>
 
+<p>Link to our github <a href="https://github.com/sherzock/DevelopmentGame">link</a>.</p>
+
 <h2>Controls</h2>
 
 <h3>Movement</h3>
