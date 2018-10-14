@@ -326,6 +326,7 @@ bool j1Player::Update(float dt) {
 
 	SDL_Rect character = current_animation->GetCurrentFrame();
 	
+	//Blit animations
 	if (goingright == false) {
 
 		App->render->Blit(graphics, (int)position.x, (int)position.y, &character, SDL_FLIP_HORIZONTAL);
@@ -410,13 +411,13 @@ void j1Player::OnCollision(Collider* col_1, Collider* col_2)
 				jump = false;
 
 			}
-			/*if (jump == true ) {
+			if (jump == true ) {
 				position.y += 8;
 				GroundCollision = false;
 				isfalling = true;
 				Jumpforce = 0;
 				gravity = 0.2f;
-			}*/
+			}
 			
 			
 

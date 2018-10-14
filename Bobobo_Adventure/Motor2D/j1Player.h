@@ -17,32 +17,32 @@ public:
 
 	Collider* player;
 	SDL_Texture* graphics = nullptr;
-	// Destructor
+	// Destructor//
 	virtual ~j1Player();
 
-	// Called before render is available
+	// Called before render is available//
 	bool Awake(pugi::xml_node& config);
 
-	// Called before the first frame
+	// Called before the first frame//
 	bool Start();
 
-	// Called each loop iteration
+	// Called each loop iteration//
 	bool PreUpdate();
 	bool Update(float dt);
 	bool PostUpdate();
 
-	// Called before quitting
+	// Called before quitting//
 	bool CleanUp();
 
-	// Load / Save
+	// Load / Save//
 	bool Load(pugi::xml_node&);
 	bool Save(pugi::xml_node&) const;
 
-	//oncollision checks if its colliding
+	//oncollision checks if its colliding//
 	void OnCollision(Collider* col_1, Collider* col_2);
 
 public:
-	// To know the last direction the character was moving to
+	
 	
 	Animations* current_animation = nullptr;
 
@@ -54,10 +54,11 @@ public:
 	Animations dashanim;
 	
 	
-	
+	//Player positions//
 	fPoint position;
 	fPoint Initial_position;
 
+	//variables
 	float XSpeed;
 	float initialspeed;
 	float gravity;
@@ -72,6 +73,7 @@ public:
 	uint currentTime;
 	uint lastTime;
 
+	//logical booleans//
 	bool updatedTime = false;
 	bool dead = false;
 	bool win = false;

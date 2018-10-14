@@ -15,11 +15,11 @@ j1Render::j1Render() : j1Module()
 	background.a = 0;
 }
 
-// Destructor
+// Destructor//
 j1Render::~j1Render()
 {}
 
-// Called before render is available
+// Called before render is available//
 bool j1Render::Awake(pugi::xml_node& config)
 {
 	LOG("Create SDL rendering context");
@@ -51,16 +51,16 @@ bool j1Render::Awake(pugi::xml_node& config)
 	return ret;
 }
 
-// Called before the first frame
+// Called before the first frame//
 bool j1Render::Start()
 {
 	LOG("render start");
-	// back background
+	// back background//
 	SDL_RenderGetViewport(renderer, &viewport);
 	return true;
 }
 
-// Called each loop iteration
+// Called each loop iteration//
 bool j1Render::PreUpdate()
 {
 	SDL_RenderClear(renderer);
@@ -79,7 +79,7 @@ bool j1Render::PostUpdate()
 	return true;
 }
 
-// Called before quitting
+// Called before quitting//
 bool j1Render::CleanUp()
 {
 	LOG("Destroying SDL render");
@@ -96,7 +96,7 @@ bool j1Render::Load(pugi::xml_node& data)
 	return true;
 }
 
-// Save Game State
+// Save Game State//
 bool j1Render::Save(pugi::xml_node& data) const
 {
 	pugi::xml_node cam = data.append_child("camera");
@@ -122,7 +122,7 @@ void j1Render::ResetViewPort()
 	SDL_RenderSetViewport(renderer, &viewport);
 }
 
-// Blit to screen
+// Blit to screen//
 bool j1Render::Blit(SDL_Texture* texture, int x, int y, const SDL_Rect* section,SDL_RendererFlip flip, float speed, double angle, int pivot_x, int pivot_y) const
 {
 	bool ret = true;

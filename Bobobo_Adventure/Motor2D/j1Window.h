@@ -12,29 +12,29 @@ public:
 
 	j1Window();
 
-	// Destructor
+	// Destructor//
 	virtual ~j1Window();
 
-	// Called before render is available
+	// Called before render is available//
 	bool Awake(pugi::xml_node&);
 
-	// Called before quitting
+	// Called before quitting//
 	bool CleanUp();
 
-	// Changae title
+	// Changae title//
 	void SetTitle(const char* new_title);
 
-	// Retrive window size
+	// Retrive window size//
 	void GetWindowSize(uint& width, uint& height) const;
 
-	// Retrieve window scale
+	// Retrieve window scale//
 	uint GetScale() const;
 
 public:
-	//The window we'll be rendering to
+	//The window we'll be rendering to//
 	SDL_Window* window;
 
-	//The surface contained by the window
+	//The surface contained by the window//
 	SDL_Surface* screen_surface;
 
 private:
