@@ -42,6 +42,7 @@ bool j1Scene::Start()
 	if (active == true)	{
 	
 		App->map->Load("Level1map.tmx");
+		App->audio->PlayMusic("audio/music/level1.ogg", 1.0f);
 	}
 	
 	return true;

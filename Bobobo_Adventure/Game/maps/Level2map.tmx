@@ -4,7 +4,7 @@
   <property name="Spawnx" type="int" value="50"/>
   <property name="Spawny" type="int" value="275"/>
   <property name="deathdis" type="float" value="700"/>
-  <property name="windis" type="float" value="6270"/>
+  <property name="windis" type="float" value="6260"/>
   <property name="world multiplier" type="float" value="4"/>
  </properties>
  <tileset firstgid="1" name="tileset" tilewidth="16" tileheight="16" tilecount="575" columns="25">
