@@ -8,11 +8,11 @@
 	<scene />
 	<scene2 />
 	<player>
-		<position x="762" y="557.099915" level="1" />
+		<position x="471.5" y="442.799927" level="1" />
 	</player>
 	<collisions />
 	<fade />
 	<renderer>
-		<camera x="-362" y="0" />
+		<camera x="-71" y="0" />
 	</renderer>
 </game_state>
