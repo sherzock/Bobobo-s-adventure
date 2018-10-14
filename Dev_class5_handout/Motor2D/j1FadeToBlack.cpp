@@ -85,7 +85,7 @@ bool j1FadeToBlack::FadeToBlack(j1Module* module_off, j1Module* module_on, float
 	{
 		current_step = fade_step::fade_from_black;
 		start_time = SDL_GetTicks();
-		total_time = (Uint32)(time * 0.5f * 1000.0f);
+		total_time = (Uint32)(time * 0.5f * 10000.0f);
 		ret = true;
 	}
 	return ret;
