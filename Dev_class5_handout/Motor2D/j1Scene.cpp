@@ -64,7 +64,7 @@ bool j1Scene::Update(float dt)
 		App->SaveGame("save_game.xml");
 
 
-	if (App->render->camera.x > -5350)
+	if (App->render->camera.x > -6500)
 	{
 		App->render->camera.x = -App->play->position.x+ 400;
 		if (App->render->camera.x > 0)
