@@ -410,13 +410,14 @@ void j1Player::OnCollision(Collider* col_1, Collider* col_2)
 				jump = false;
 
 			}
-			if (jump == true ) {
-				position.y += 4;
+			/*if (jump == true ) {
+				position.y += 8;
 				GroundCollision = false;
 				isfalling = true;
 				Jumpforce = 0;
 				gravity = 0.2f;
-			}
+			}*/
+			
 			
 
 	}

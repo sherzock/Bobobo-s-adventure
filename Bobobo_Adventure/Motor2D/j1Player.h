@@ -82,7 +82,7 @@ public:
 	bool isfalling = false;
 	bool goingright = true;
 	bool godmode = false;
-	bool dash;
+	bool dash = false;
 };
 
 #endif // __jPLAYER_H__
