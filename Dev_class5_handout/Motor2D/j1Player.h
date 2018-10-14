@@ -74,6 +74,7 @@ public:
 
 	bool updatedTime = false;
 	bool dead = false;
+	bool win = false;
 	bool GroundCollision = false;
 	bool jump = false;
 	bool CanPlayerJump = false;

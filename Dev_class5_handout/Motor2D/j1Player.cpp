@@ -137,9 +137,10 @@ bool j1Player::Update(float dt) {
 	if (App->input->GetKey(SDL_SCANCODE_F1) == j1KeyState::KEY_DOWN) {
 		
 		dead = false;
-		if(App->scene->active == true)
-		{
+		if(App->scene->active == true){
+
 			App->scene->change_scenes1();
+
 		}
 		else if (App->scene2->active == true) {
 			App->scene2->change_scenes2();
@@ -265,6 +266,33 @@ bool j1Player::Update(float dt) {
 
 	}
 
+	//Death and Win//
+	if (godmode == false) {
+		
+		if (position.y >= App->map->map_file.child("map").child("properties").child("property").next_sibling("property").next_sibling("property").attribute("value").as_float()) {
+
+			dead = true;
+		}
+
+		if (dead == true) {
+
+			App->fade->FadeToBlack(this,this,0.8f);
+			position.x = Initial_position.x;
+			position.y = Initial_position.y;
+			dead = false;
+		}
+	}
+	
+
+	if (position.x >= App->map->map_file.child("map").child("properties").child("property").next_sibling("property").next_sibling("property").next_sibling("property").attribute("value").as_float()) {
+		win = true;
+	}
+
+	if (win == true) {
+
+		position.x = 0; //restart level
+		position.y = 0;
+	}
 
 
 	player->Set_Pos(position.x,position.y);
