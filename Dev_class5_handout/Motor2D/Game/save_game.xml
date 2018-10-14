@@ -6,8 +6,9 @@
 	<audio />
 	<map />
 	<scene />
+	<scene2 />
 	<player>
-		<position x="78" y="302.299988" />
+		<position x="82" y="302.299988" />
 	</player>
 	<collisions />
 	<fade />

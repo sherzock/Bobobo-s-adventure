@@ -135,7 +135,12 @@ bool j1Player::Update(float dt) {
 
 	//Restart game//
 	if (App->input->GetKey(SDL_SCANCODE_F1) == j1KeyState::KEY_DOWN) {
-		App->fade->FadeToBlack(this, App->scene); // Propiietats del mapa pls
+		//App->scene2->change_scenes2();
+		//App->scene->CleanUp();
+		App->scene->active = false;
+		App->scene2->active = true;
+		
+		App->fade->FadeToBlack(App->scene, App->scene2); // Propiietats del mapa pls
 		
 		position.x = Initial_position.x; // start map position x
 		position.y = Initial_position.y; // start map position y

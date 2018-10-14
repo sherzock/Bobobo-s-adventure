@@ -38,7 +38,8 @@ bool j1Scene2::Awake()
 // Called before the first frame
 bool j1Scene2::Start()
 {
-	this->active = false;
+	
+
 	if (active == true) {
 	App->map->Load("Level2map.tmx");
 	//App->map->Load("Testmap2.tmx");
@@ -52,6 +53,9 @@ bool j1Scene2::Start()
 // Called each loop iteration
 bool j1Scene2::PreUpdate()
 {
+	if (App->scene->active = true) {
+		this->active = false;
+	}
 
 	return true;
 }
@@ -111,4 +115,22 @@ bool j1Scene2::CleanUp()
 	App->tex->CleanUp();
 	App->play->CleanUp();
 	return true;
+}
+
+void change_scenes2() {
+	
+	App->scene->active = true;
+	App->scene2->active = false;
+
+	App->map->CleanUp();
+	App->colls->CleanUp();
+	App->tex->CleanUp();
+	App->play->CleanUp();
+
+	App->scene->CleanUp();
+	App->fade->FadeToBlack(App->scene2, App->scene, 0.8f);
+	App->play->Start();
+	App->render->camera = { 0,0 };
+	App->scene->Start();
+
 }

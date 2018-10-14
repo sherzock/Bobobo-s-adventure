@@ -32,7 +32,7 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
-	void change_scenes();
+	void change_scenes1();
 
 private:
 };
