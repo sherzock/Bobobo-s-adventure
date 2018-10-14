@@ -131,16 +131,12 @@ bool j1Scene::CleanUp()
 void j1Scene::change_scenes1(){
 	App->scene2->active = true;
 	App->scene->active = false;
-	
-	App->map->CleanUp();
-	App->colls->CleanUp();
-	App->tex->CleanUp();
-	App->play->CleanUp();
-
-	App->scene2->CleanUp();
-	App->fade->FadeToBlack(App->scene2, App->scene, 0.8f);
+	CleanUp();
+	App->scene->CleanUp();
+	App->fade->FadeToBlack(App->scene, App->scene2, 0.8f);
+	App->scene2->Start();
 	App->play->Start();
 	App->render->camera = { 0,0 };
-	App->scene2->Start();
+	
 
 }

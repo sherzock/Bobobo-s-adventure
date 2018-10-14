@@ -8,7 +8,7 @@
 	<scene />
 	<scene2 />
 	<player>
-		<position x="50" y="302.299988" />
+		<position x="50" y="301.700012" />
 	</player>
 	<collisions />
 	<fade />

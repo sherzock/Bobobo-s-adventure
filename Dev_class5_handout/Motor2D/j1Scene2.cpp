@@ -31,6 +31,8 @@ bool j1Scene2::Awake()
 	
 	LOG("Loading Scene2");
 	bool ret = true;
+	
+	
 
 	return ret;
 }
@@ -39,8 +41,8 @@ bool j1Scene2::Awake()
 bool j1Scene2::Start()
 {
 	
-		this->active = false;
-	
+	if (App->scene->active == true)
+		active = false;
 	
 	if (active == true) {
 	App->map->Load("Level2map.tmx");
@@ -123,13 +125,8 @@ void j1Scene2::change_scenes2() {
 	
 	App->scene->active = true;
 	App->scene2->active = false;
-
-	App->map->CleanUp();
-	App->colls->CleanUp();
-	App->tex->CleanUp();
-	App->play->CleanUp();
-
-	App->scene->CleanUp();
+	CleanUp();
+	App->scene2->CleanUp();
 	App->fade->FadeToBlack(App->scene2, App->scene, 0.8f);
 	App->play->Start();
 	App->render->camera = { 0,0 };
