@@ -128,10 +128,7 @@ void j1Scene2::change_scenes2() {
 	CleanUp();
 	App->scene2->CleanUp();
 	App->fade->FadeToBlack(App->scene2, App->scene, 0.8f);
-<<<<<<< HEAD
-	
 	App->scene->Start();
 	App->play->Start();
-=======
->>>>>>> ac6cd54216b319df7fb7cdcceea4af5265420a35
+
 }
