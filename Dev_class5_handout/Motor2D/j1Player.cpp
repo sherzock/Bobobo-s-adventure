@@ -333,6 +333,15 @@ bool j1Player::PostUpdate() {
 // Load game 
 bool j1Player::Load(pugi::xml_node& data) {
 
+	if (data.child("position").attribute("level").as_int() == 2 && App->scene->active == true)
+	{
+		App->scene->change_scenes1();
+	}
+	if (data.child("position").attribute("level").as_int() == 1 && App->scene2->active == true)
+	{
+		App->scene2->change_scenes2();
+	}
+
 	position.x = data.child("position").attribute("x").as_int();
 	position.y = data.child("position").attribute("y").as_int();
 
@@ -346,6 +355,15 @@ bool j1Player::Save(pugi::xml_node& data) const {
 
 	player.append_attribute("x") = position.x;
 	player.append_attribute("y") = position.y;
+	if (App->scene->active == true)
+	{
+		player.append_attribute("level") = 1;
+	}
+	else if (App->scene2->active == true)
+	{
+		player.append_attribute("level") = 2;
+	}
+	
 
 	return true;
 }
