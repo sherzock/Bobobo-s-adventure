@@ -129,7 +129,6 @@ void j1Scene2::change_scenes2() {
 	App->scene2->CleanUp();
 	App->fade->FadeToBlack(App->scene2, App->scene, 0.8f);
 	App->play->Start();
-	App->render->camera = { 0,0 };
 	App->scene->Start();
 
 }
