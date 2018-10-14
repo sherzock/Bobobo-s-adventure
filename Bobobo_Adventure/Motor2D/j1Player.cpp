@@ -100,14 +100,16 @@ bool j1Player::Update(float dt) {
 		goingright = true;
 	}
 	
+	if (position.x >= 0) {
+		if (App->input->GetKey(SDL_SCANCODE_A) == j1KeyState::KEY_REPEAT) {
+			position.x -= XSpeed;
 
-	if (App->input->GetKey(SDL_SCANCODE_A) == j1KeyState::KEY_REPEAT) {
-		position.x -= XSpeed;
+			current_animation = &run;
+			goingright = false;
+		}
 
-		current_animation = &run;
-		goingright = false;
 	}
-
+	
 	
 	
 	if (App->input->GetKey(SDL_SCANCODE_D) == j1KeyState::KEY_IDLE && App->input->GetKey(SDL_SCANCODE_A) == j1KeyState::KEY_IDLE) {
