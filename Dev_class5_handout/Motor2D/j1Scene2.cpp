@@ -131,6 +131,4 @@ void j1Scene2::change_scenes2() {
 	App->scene->Start();
 	App->play->Start();
 
-	
-	
 }
