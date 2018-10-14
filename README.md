@@ -21,6 +21,7 @@
   <li>F3 - Change level </li>
   <li>F5 - Quicksave</li>
   <li>F5 - Load</li>
+  <li>F9 - Show Colliders</li>
   <li>F10 - Godmode</li>
 </ul> 
 
