@@ -39,12 +39,16 @@ bool j1Scene2::Awake()
 bool j1Scene2::Start()
 {
 	
-
+		this->active = false;
+	
+	
 	if (active == true) {
 	App->map->Load("Level2map.tmx");
 	//App->map->Load("Testmap2.tmx");
 	}
-
+	
+		
+	
 
 	
 	return true;
@@ -53,9 +57,7 @@ bool j1Scene2::Start()
 // Called each loop iteration
 bool j1Scene2::PreUpdate()
 {
-	if (App->scene->active = true) {
-		this->active = false;
-	}
+	
 
 	return true;
 }
@@ -117,7 +119,7 @@ bool j1Scene2::CleanUp()
 	return true;
 }
 
-void change_scenes2() {
+void j1Scene2::change_scenes2() {
 	
 	App->scene->active = true;
 	App->scene2->active = false;
