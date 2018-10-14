@@ -289,9 +289,7 @@ bool j1Player::Update(float dt) {
 	}
 
 	if (win == true) {
-
-		position.x = 0; //restart level
-		position.y = 0;
+		
 	}
 
 
