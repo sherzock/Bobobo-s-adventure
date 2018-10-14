@@ -133,11 +133,11 @@ bool j1Player::Update(float dt) {
 	}
 
 
-	//Restart game//
-	if (App->input->GetKey(SDL_SCANCODE_F1) == j1KeyState::KEY_DOWN) {
-		
+	//Change level//
+	if (App->input->GetKey(SDL_SCANCODE_F3) == j1KeyState::KEY_DOWN) {
+
 		dead = false;
-		if(App->scene->active == true){
+		if (App->scene->active == true) {
 
 			App->scene->change_scenes1();
 
@@ -145,22 +145,40 @@ bool j1Player::Update(float dt) {
 		else if (App->scene2->active == true) {
 			App->scene2->change_scenes2();
 		}
-		
+
 	}
+
 	//Restart level//
-	
+
 	if (App->input->GetKey(SDL_SCANCODE_F2) == j1KeyState::KEY_DOWN) {
 
-		App->fade->FadeToBlack(this, this); // Propietats del mapa pls
-		
-		
+		App->fade->FadeToBlack(this, this);
+		position.x = Initial_position.x;
+		position.y = Initial_position.y;
+		App->render->camera.x = 0;
+		App->render->camera.y = 0;
+		dead = false;
+
+
+	}
+
+	//Restart Game//
+	if (App->input->GetKey(SDL_SCANCODE_F1) == j1KeyState::KEY_DOWN) {
+
+		if (App->scene->active == true) {
+
+			App->fade->FadeToBlack(this, this);
 			position.x = Initial_position.x;
 			position.y = Initial_position.y;
 			App->render->camera.x = 0;
 			App->render->camera.y = 0;
 			dead = false;
-		
-		
+
+		}
+		else if (App->scene2->active == true) {
+			App->scene2->change_scenes2();
+			dead = false;
+		}
 	}
 
 	//Dash
