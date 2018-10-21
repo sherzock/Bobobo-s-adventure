@@ -84,6 +84,7 @@ bool j1Player::Update(float dt) {
 		CanPlayerJump = true;
 		CanPlayerDash = false;
 		CanPlayerDash = true;
+
 	}
 	else if (GroundCollision == false) {
 		
@@ -194,7 +195,7 @@ bool j1Player::Update(float dt) {
 		}
 	}
 
-
+	
 
 	//Jump instructions//
 	
@@ -274,7 +275,7 @@ bool j1Player::Update(float dt) {
 		CanPlayerJump = false;
 		CanPlayerDash = false;
 
-		if (DashSpeed >= 12) {
+		if (DashSpeed >= 14) {
 			dash = false;
 			CanPlayerDash = false;
 			isfalling = true;
@@ -285,6 +286,7 @@ bool j1Player::Update(float dt) {
 
 
 	}
+	
 
 	//Death and Win//
 	if (godmode == false) {
@@ -401,6 +403,7 @@ bool j1Player::CleanUp() {
 
 void j1Player::OnCollision(Collider* col_1, Collider* col_2)
 {
+	float ResXspeed = XSpeed;
 	if ((col_1->type == PLAYER_COLLIDER && col_2->type == GROUND_COLLIDER) || (col_2->type == PLAYER_COLLIDER && col_1->type == GROUND_COLLIDER) 
 		|| (col_2->type == NO_COLLIDER && col_1->type == GROUND_COLLIDER)  || (col_1->type == NO_COLLIDER && col_2->type == GROUND_COLLIDER))
 	{
@@ -420,8 +423,19 @@ void j1Player::OnCollision(Collider* col_1, Collider* col_2)
 				Jumpforce = 0;
 				gravity = 0.2f;
 			}
-			
-			
+	}
+
+	if (col_1->rect.x + col_1->rect.w >= col_2->rect.x && col_1->rect.x + col_1->rect.w <= col_2->rect.x + XSpeed) { 
+		XSpeed = 0;
+		position.x -= (col_1->rect.x + col_1->rect.w) - col_2->rect.x + 5;
+		
 
 	}
+	else if (col_1->rect.x <= col_2->rect.x + col_2->rect.w && col_1->rect.x >= col_2->rect.x + col_2->rect.w - XSpeed) { 
+		XSpeed = 0;
+		position.x += (col_2->rect.x + col_2->rect.w) - col_1->rect.x + 5;
+		
+	}
+	
+	XSpeed= ResXspeed;
 };
