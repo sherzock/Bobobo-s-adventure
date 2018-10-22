@@ -93,7 +93,7 @@ bool j1Player::Update(float dt) {
 
 
 	// Movement //
-
+	
 	if (App->input->GetKey(SDL_SCANCODE_D) == j1KeyState::KEY_REPEAT) {
 		position.x += XSpeed;
 
@@ -185,15 +185,18 @@ bool j1Player::Update(float dt) {
 	}
 
 	//Dash
+	if (App->input->GetKey(SDL_SCANCODE_A) != j1KeyState::KEY_REPEAT || App->input->GetKey(SDL_SCANCODE_D) != j1KeyState::KEY_DOWN) {
 
-	if (CanPlayerDash == true) {
-		if (App->input->GetKey(SDL_SCANCODE_LSHIFT) == j1KeyState::KEY_DOWN) {
+		if (CanPlayerDash == true) {
+			if (App->input->GetKey(SDL_SCANCODE_LSHIFT) == j1KeyState::KEY_DOWN) {
 
-		dash = true;
-		CanPlayerDash = false;
-		
+				dash = true;
+				CanPlayerDash = false;
+
+			}
 		}
 	}
+	
 
 	
 
@@ -248,44 +251,50 @@ bool j1Player::Update(float dt) {
 	}	
 
 	
-	if (goingright == true && dash == true) {
 
+		if (goingright == true && dash == true) {
 
-		current_animation = &dashanim;
-		position.x += DashSpeed;
-		DashSpeed += DashAcc;
-		CanPlayerJump = false;
-		CanPlayerDash = false;
-
-		if (DashSpeed >= 14) {
-			dash = false;
+			gravity = 0;
+			current_animation = &dashanim;
+			position.x += DashSpeed;
+			DashSpeed += DashAcc;
+			CanPlayerJump = false;
 			CanPlayerDash = false;
-			isfalling = true;
-			DashSpeed = DashSpeedres;
+			
+
+			if (DashSpeed >= 10) {
+				dash = false;
+				CanPlayerDash = false;
+				isfalling = true;
+				DashSpeed = DashSpeedres;
+
+			}
+
 
 		}
-		
+		else if (goingright == false && dash == true) {
 
-	}
-	else if (goingright == false && dash == true) {
-
-		current_animation = &dashanim;
-		position.x -= DashSpeed;
-		DashSpeed += DashAcc;
-		CanPlayerJump = false;
-		CanPlayerDash = false;
-
-		if (DashSpeed >= 14) {
-			dash = false;
+			gravity = 0;
+			current_animation = &dashanim;
+			position.x -= DashSpeed;
+			DashSpeed += DashAcc;
+			CanPlayerJump = false;
 			CanPlayerDash = false;
-			isfalling = true;
-			DashSpeed = DashSpeedres;
+			
+			
+			if (DashSpeed >= 10) {
+				dash = false;
+				CanPlayerDash = false;
+				isfalling = true;
+				DashSpeed = DashSpeedres;
 
-		}
+			}
+
+
+
 		
-
-
 	}
+	
 	
 
 	//Death and Win//
@@ -425,17 +434,26 @@ void j1Player::OnCollision(Collider* col_1, Collider* col_2)
 			}
 	}
 
-	if (col_1->rect.x + col_1->rect.w >= col_2->rect.x && col_1->rect.x + col_1->rect.w <= col_2->rect.x + XSpeed) { 
-		XSpeed = 0;
-		position.x -= (col_1->rect.x + col_1->rect.w) - col_2->rect.x + 5;
+		if (col_1->rect.x + col_1->rect.w >= col_2->rect.x && col_1->rect.x + col_1->rect.w <= col_2->rect.x + XSpeed+5) { 
+			DashSpeed = 0;
+			position.x -= (col_1->rect.x + col_1->rect.w )+2 - col_2->rect.x ;
+			
+			XSpeed = 0;
+			dash = false;
+			
+			GroundCollision = true;
+			//isfalling = true;
+		}
+		else if (col_1->rect.x <= col_2->rect.x + col_2->rect.w && col_1->rect.x >= col_2->rect.x + col_2->rect.w - XSpeed-5) { 
+			DashSpeed = 0;
+			position.x += (col_2->rect.x + col_2->rect.w)+2- col_1->rect.x;
+			
+			XSpeed = 0;
+			dash = false;
+			
+			GroundCollision = true;
+			//isfalling = true;
+		}
 		
-
-	}
-	else if (col_1->rect.x <= col_2->rect.x + col_2->rect.w && col_1->rect.x >= col_2->rect.x + col_2->rect.w - XSpeed) { 
-		XSpeed = 0;
-		position.x += (col_2->rect.x + col_2->rect.w) - col_1->rect.x + 5;
-		
-	}
-	
 	XSpeed= ResXspeed;
 };

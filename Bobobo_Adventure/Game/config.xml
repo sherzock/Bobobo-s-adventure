@@ -20,8 +20,8 @@
 		<gravityMax atr="4.5f"/>
 		<gravityIterator atr="0.3f"/>
 		<JumpforceIterator atr=" 0.2f"/>
-		<DashSpeed atr=" 4.0f"/>
-		<DashSpeedres atr=" 4.0f"/>
+		<DashSpeed atr=" 3.0f"/>
+		<DashSpeedres atr=" 3.0f"/>
 		<DashAcc atr=" 0.5f"/>
 		
 	</physics>
