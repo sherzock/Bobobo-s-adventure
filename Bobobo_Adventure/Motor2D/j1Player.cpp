@@ -84,34 +84,49 @@ bool j1Player::Update(float dt) {
 		CanPlayerJump = true;
 		CanPlayerDash = false;
 		CanPlayerDash = true;
-
+		
 	}
 	else if (GroundCollision == false) {
 		
 		isfalling = true;
+		
 	}
 
 
 	// Movement //
 	
 	if (App->input->GetKey(SDL_SCANCODE_D) == j1KeyState::KEY_REPEAT) {
-		position.x += XSpeed;
-
-		current_animation = &run;
-		goingright = true;
+		
+		if (wallhit == false) {
+			position.x += XSpeed;
+			current_animation = &run;
+			goingright = true;
+		}
 	}
 	
-	if (position.x >= 0) {
-		if (App->input->GetKey(SDL_SCANCODE_A) == j1KeyState::KEY_REPEAT) {
-			position.x -= XSpeed;
+	if (App->input->GetKey(SDL_SCANCODE_D) == j1KeyState::KEY_UP) {
+		wallhit = false;
+		
+	}
 
-			current_animation = &run;
-			goingright = false;
+	if (position.x >= 0) {
+		if (App->input->GetKey(SDL_SCANCODE_A) == j1KeyState::KEY_REPEAT ) {
+			
+			if (wallhit == false) {
+				position.x -= XSpeed;
+				current_animation = &run;
+				goingright = false;
+			}
+			
+			
 		}
 
 	}
 	
-	
+	if (App->input->GetKey(SDL_SCANCODE_D) == j1KeyState::KEY_UP) {
+		wallhit = false;
+
+	}
 	
 	if (App->input->GetKey(SDL_SCANCODE_D) == j1KeyState::KEY_IDLE && App->input->GetKey(SDL_SCANCODE_A) == j1KeyState::KEY_IDLE) {
 		
@@ -217,11 +232,13 @@ bool j1Player::Update(float dt) {
 	    
 		
 		GroundCollision = false;
+		
 	}
 
 	
 	GroundCollision = false;
 	
+
 	if (GroundCollision == false && jump == false  ) {
 		position.y += gravity;
 		
@@ -414,12 +431,14 @@ void j1Player::OnCollision(Collider* col_1, Collider* col_2)
 {
 	float ResXspeed = XSpeed;
 	if ((col_1->type == PLAYER_COLLIDER && col_2->type == GROUND_COLLIDER) || (col_2->type == PLAYER_COLLIDER && col_1->type == GROUND_COLLIDER) 
-		|| (col_2->type == NO_COLLIDER && col_1->type == GROUND_COLLIDER)  || (col_1->type == NO_COLLIDER && col_2->type == GROUND_COLLIDER))
+		|| (col_2->type == NO_COLLIDER && col_1->type == GROUND_COLLIDER)  || (col_1->type == NO_COLLIDER && col_2->type == GROUND_COLLIDER) )
 	{
 			CanPlayerJump = true;
 			GroundCollision = true;
 			gravity = 0.0f;
 			
+			
+
 			if (App->input->GetKey(SDL_SCANCODE_SPACE) == j1KeyState::KEY_UP && position.y < 1000) {
 
 				jump = false;
@@ -432,28 +451,36 @@ void j1Player::OnCollision(Collider* col_1, Collider* col_2)
 				Jumpforce = 0;
 				gravity = 0.2f;
 			}
+		
+			
+			
+			if (col_1->rect.x + col_1->rect.w >= col_2->rect.x && col_1->rect.x + col_1->rect.w <= col_2->rect.x + XSpeed + 5) {
+				wallhit = true;
+				DashSpeed = 0;
+				current_animation = &idle;
+				position.x -= (col_1->rect.x + col_1->rect.w) + 2 - col_2->rect.x;
+			
+				
+				XSpeed = 0;
+				dash = false;
+				
+				
+			}else if (col_1->rect.x <= col_2->rect.x + col_2->rect.w && col_1->rect.x >= col_2->rect.x + col_2->rect.w - XSpeed - 5) {
+				wallhit = true;
+				DashSpeed = 0;
+				position.x += (col_2->rect.x + col_2->rect.w) + 2 - col_1->rect.x;
+
+				XSpeed = 0;
+				dash = false;
+				
+		
+			}else{
+				wallhit = false;
+			}
+		
 	}
 
-		if (col_1->rect.x + col_1->rect.w >= col_2->rect.x && col_1->rect.x + col_1->rect.w <= col_2->rect.x + XSpeed+5) { 
-			DashSpeed = 0;
-			position.x -= (col_1->rect.x + col_1->rect.w )+2 - col_2->rect.x ;
-			
-			XSpeed = 0;
-			dash = false;
-			
-			GroundCollision = true;
-			//isfalling = true;
-		}
-		else if (col_1->rect.x <= col_2->rect.x + col_2->rect.w && col_1->rect.x >= col_2->rect.x + col_2->rect.w - XSpeed-5) { 
-			DashSpeed = 0;
-			position.x += (col_2->rect.x + col_2->rect.w)+2- col_1->rect.x;
-			
-			XSpeed = 0;
-			dash = false;
-			
-			GroundCollision = true;
-			//isfalling = true;
-		}
+	
 		
 	XSpeed= ResXspeed;
 };
