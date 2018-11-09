@@ -94,47 +94,59 @@ bool j1Player::Update(float dt) {
 
 
 	// Movement //
+
 	
 	if (App->input->GetKey(SDL_SCANCODE_D) == j1KeyState::KEY_REPEAT) {
 		
-		if (wallhit == false) {
-			position.x += XSpeed;
-			current_animation = &run;
-			goingright = true;
+		if (wallhitri == false || wallhitle == true) {
+			
+				position.x += XSpeed;
+				current_animation = &run;
+				goingright = true;
+			
 		}
 	}
 	
-	
-	if (App->input->GetKey(SDL_SCANCODE_D) == j1KeyState::KEY_UP|| App->input->GetKey(SDL_SCANCODE_D) == j1KeyState::KEY_IDLE && App->input->GetKey(SDL_SCANCODE_A) == j1KeyState::KEY_IDLE) {
-		wallhit = false;
-
+	if (App->input->GetKey(SDL_SCANCODE_D) == j1KeyState::KEY_UP || App->input->GetKey(SDL_SCANCODE_D) == j1KeyState::KEY_IDLE && App->input->GetKey(SDL_SCANCODE_A) == j1KeyState::KEY_IDLE || App->input->GetKey(SDL_SCANCODE_A) == j1KeyState::KEY_UP) {
+		wallhitri = false;
+		wallhitle = false;
 	}
+	
 
 	if (position.x >= 0) {
 		if (App->input->GetKey(SDL_SCANCODE_A) == j1KeyState::KEY_REPEAT ) {
 			
-			if (wallhit == false) {
-				position.x -= XSpeed;
-				current_animation = &run;
-				goingright = false;
+			if (wallhitle == false || wallhitri == true ) {
+				
+					position.x -= XSpeed;
+					current_animation = &run;
+					goingright = false;
+				
 			}
 			
 			
 		}
 
 	}
-	
-	
-	if (App->input->GetKey(SDL_SCANCODE_A) == j1KeyState::KEY_UP|| App->input->GetKey(SDL_SCANCODE_A) == j1KeyState::KEY_IDLE && App->input->GetKey(SDL_SCANCODE_D) == j1KeyState::KEY_IDLE) {
-		wallhit = false;
-
+	if (App->input->GetKey(SDL_SCANCODE_A) == j1KeyState::KEY_UP || App->input->GetKey(SDL_SCANCODE_A) == j1KeyState::KEY_IDLE && App->input->GetKey(SDL_SCANCODE_D) == j1KeyState::KEY_IDLE || App->input->GetKey(SDL_SCANCODE_D) == j1KeyState::KEY_UP) {
+		wallhitle = false;
+		wallhitri = false;
 	}
+	
+	if (isfalling == true && CanPlayerJump == false) {
+		wallhitle = false;
+		wallhitri = false;
+	}
+	/*if (wallhitle == true || wallhitri == true) {
+		isfalling = true;
+	}*/
 	
 	if (App->input->GetKey(SDL_SCANCODE_D) == j1KeyState::KEY_IDLE && App->input->GetKey(SDL_SCANCODE_A) == j1KeyState::KEY_IDLE) {
 		
 			current_animation = &idle;
 			
 	}
+	
 	
 	// Debug //
 	//God mode//
@@ -182,7 +194,7 @@ bool j1Player::Update(float dt) {
 
 	}
 
-	if (wallhit == true) {
+	if (wallhitri == true || wallhitle == true) {
 		CanPlayerJump = true;
 	}
 	//Restart Game//
@@ -234,9 +246,9 @@ bool j1Player::Update(float dt) {
 	if (isfalling == true) {
 		
 		current_animation = &falling;
-	    
 		
 		GroundCollision = false;
+		
 		
 	}
 
@@ -460,27 +472,30 @@ void j1Player::OnCollision(Collider* col_1, Collider* col_2)
 			
 			
 			if (col_1->rect.x + col_1->rect.w >= col_2->rect.x && col_1->rect.x + col_1->rect.w <= col_2->rect.x + XSpeed + 5) {
-				wallhit = true;
+				wallhitri = true;
+				wallhitle = false;
 				DashSpeed = 0;
 				current_animation = &idle;
 				position.x -= (col_1->rect.x + col_1->rect.w) + 2 - col_2->rect.x;
-			
+				CanPlayerJump = true;
 				
 				XSpeed = 0;
 				dash = false;
 				
 				
 			}else if (col_1->rect.x <= col_2->rect.x + col_2->rect.w && col_1->rect.x >= col_2->rect.x + col_2->rect.w - XSpeed - 5) {
-				wallhit = true;
+				wallhitle = true;
+				wallhitri = false;
 				DashSpeed = 0;
 				position.x += (col_2->rect.x + col_2->rect.w) + 2 - col_1->rect.x;
-
+				CanPlayerJump = true;
 				XSpeed = 0;
 				dash = false;
 				
 		
 			}else{
-				wallhit = false;
+				wallhitri = false;
+				wallhitle = false;
 			}
 		
 	}

@@ -85,8 +85,8 @@ public:
 	bool goingright = true;
 	bool godmode = false;
 	bool dash = false;
-	bool wallhit = false;
-	
+	bool wallhitri = false;
+	bool wallhitle = false;
 };
 
 #endif // __jPLAYER_H__
