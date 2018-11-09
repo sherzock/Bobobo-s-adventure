@@ -104,9 +104,10 @@ bool j1Player::Update(float dt) {
 		}
 	}
 	
-	if (App->input->GetKey(SDL_SCANCODE_D) == j1KeyState::KEY_UP) {
+	
+	if (App->input->GetKey(SDL_SCANCODE_D) == j1KeyState::KEY_UP|| App->input->GetKey(SDL_SCANCODE_D) == j1KeyState::KEY_IDLE && App->input->GetKey(SDL_SCANCODE_A) == j1KeyState::KEY_IDLE) {
 		wallhit = false;
-		
+
 	}
 
 	if (position.x >= 0) {
@@ -123,7 +124,8 @@ bool j1Player::Update(float dt) {
 
 	}
 	
-	if (App->input->GetKey(SDL_SCANCODE_D) == j1KeyState::KEY_UP) {
+	
+	if (App->input->GetKey(SDL_SCANCODE_A) == j1KeyState::KEY_UP|| App->input->GetKey(SDL_SCANCODE_A) == j1KeyState::KEY_IDLE && App->input->GetKey(SDL_SCANCODE_D) == j1KeyState::KEY_IDLE) {
 		wallhit = false;
 
 	}
@@ -180,6 +182,9 @@ bool j1Player::Update(float dt) {
 
 	}
 
+	if (wallhit == true) {
+		CanPlayerJump = true;
+	}
 	//Restart Game//
 	if (App->input->GetKey(SDL_SCANCODE_F1) == j1KeyState::KEY_DOWN) {
 

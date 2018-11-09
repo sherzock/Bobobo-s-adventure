@@ -8,9 +8,10 @@
 	<scene />
 	<scene2 />
 	<player>
-		<position x="153" y="332.379028" level="1" />
+		<position x="56" y="302" level="1" />
 	</player>
 	<collisions />
+	<pathfinding />
 	<fade />
 	<renderer>
 		<camera x="0" y="0" />
