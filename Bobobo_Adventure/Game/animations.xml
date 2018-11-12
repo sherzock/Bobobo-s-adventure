@@ -50,6 +50,14 @@
      <animation x="321" y="320" w="96" h="65"/>
 	  
     </dash>
+	
+	<wall loop="false">
+	
+     <animation x="3" y="383" w="50" h="65"/>
+   
+	  
+    </wall>
+	
   </player>
   
 </animations>

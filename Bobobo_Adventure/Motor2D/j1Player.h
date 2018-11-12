@@ -52,6 +52,7 @@ public:
 	Animations jumpanim;
 	Animations falling;
 	Animations dashanim;
+	Animations wallgrab;
 	
 	
 	//Player positions//
@@ -87,6 +88,7 @@ public:
 	bool dash = false;
 	bool wallhitri = false;
 	bool wallhitle = false;
+	bool edge = false;
 };
 
 #endif // __jPLAYER_H__
