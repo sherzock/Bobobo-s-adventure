@@ -12,13 +12,13 @@
 
   <player>
 	<physics>
-		<xspeed atr="4.0f"/>
+		<xspeed atr="5.0f"/>
 		<initialspeed atr=" 0.02f"/>
 		<gravity atr="0.0f"/>
-		<jumpforce atr="7.88f"/>
-		<jumpreset atr="7.88f"/>
-		<gravityMax atr="4.5f"/>
-		<gravityIterator atr="0.3f"/>
+		<jumpforce atr="6.88f"/>
+		<jumpreset atr="6.88f"/>
+		<gravityMax atr="5f"/>
+		<gravityIterator atr="0.46f"/>
 		<JumpforceIterator atr=" 0.2f"/>
 		<DashSpeed atr=" 3.0f"/>
 		<DashSpeedres atr=" 3.0f"/>

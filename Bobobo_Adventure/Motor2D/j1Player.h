@@ -6,6 +6,7 @@
 #include "j1Module.h"
 #include "p2Animations.h"
 
+
 struct SDL_Texture;
 
 
@@ -54,7 +55,7 @@ public:
 	Animations dashanim;
 	Animations wallgrab;
 	Animations attackanim;
-	
+	Collider* attackcoll;
 	
 	//Player positions//
 	fPoint position;

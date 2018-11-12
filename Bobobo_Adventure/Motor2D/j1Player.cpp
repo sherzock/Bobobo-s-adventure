@@ -154,16 +154,46 @@ bool j1Player::Update(float dt) {
 	}
 	
 	if (App->input->GetKey(SDL_SCANCODE_C) == j1KeyState::KEY_DOWN ) {
+		
+		if (GroundCollision == true && wallhitle == false && wallhitri == false) {
+			attack = true;
 
-		attack = true;
-
+		}
+		
 	}
-
+	
 	if (attack == true) {
 
-		current_animation = &attackanim;
+		if (goingright == true) {
+			current_animation = &attackanim;
+			//attackcoll = new Collider;
+			attackcoll = App->colls->AddCollider({ (int)position.x + 50 , (int)position.y, 34, 55 }, NO_COLLIDER);
+
+			if (attackanim.Finished() == true) {
+				attackanim.Reset();
+				attack = false;
+
+				App->colls->Delete_Collider(attackcoll);
+
+			}
+		}
+		if (goingright == false) {
+			current_animation = &attackanim;
+			//attackcoll = new Collider;
+			attackcoll = App->colls->AddCollider({ (int)position.x -25 , (int)position.y, 34, 55 }, NO_COLLIDER);
+
+			if (attackanim.Finished() == true) {
+				attackanim.Reset();
+				attack = false;
+
+				App->colls->Delete_Collider(attackcoll);
+
+			}
+		}
+		
 	}
 
+	
 	// Debug //
 	//God mode//
 
