@@ -53,10 +53,15 @@
 	
 	<wall loop="false">
 	
-     <animation x="3" y="383" w="50" h="65"/>
+     <animation x="3" y="383" w="52" h="65"/>
    
-	  
     </wall>
+	
+	<attack loop="false" speed="0.2f">
+	
+     <animation x="3" y="460" w="50" h="65"/>
+   
+    </attack>
 	
   </player>
   

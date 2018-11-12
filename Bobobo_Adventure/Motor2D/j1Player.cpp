@@ -24,7 +24,7 @@ j1Player::j1Player() : j1Module(){
 	falling.LoadAnimations("falling");
 	dashanim.LoadAnimations("dash");
 	wallgrab.LoadAnimations("wall");
-
+	attackanim.LoadAnimations("attack");
 	name.create("player");
 }
 
@@ -153,7 +153,17 @@ bool j1Player::Update(float dt) {
 			
 	}
 	
-	
+	if (App->input->GetKey(SDL_SCANCODE_C) == j1KeyState::KEY_DOWN ) {
+
+		attack = true;
+
+	}
+
+	if (attack == true) {
+
+		current_animation = &attackanim;
+	}
+
 	// Debug //
 	//God mode//
 
