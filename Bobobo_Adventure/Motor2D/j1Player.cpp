@@ -76,7 +76,7 @@ bool j1Player::PreUpdate() {
 	return true;
 }
 
-bool j1Player::Update(float dt) {
+bool j1Player::Update(float dt, float speed) {
 
 	
 	// Ground Collision // 
@@ -102,7 +102,7 @@ bool j1Player::Update(float dt) {
 		
 		if (wallhitri == false || wallhitle == true && GroundCollision == true) {
 			
-				position.x += XSpeed;
+				position.x += XSpeed * dt * speed;
 				current_animation = &run;
 				goingright = true;
 			
@@ -121,7 +121,7 @@ bool j1Player::Update(float dt) {
 			
 			if (wallhitle == false || wallhitri == true) {
 				
-					position.x -= XSpeed;
+					position.x -= XSpeed * dt * speed;
 					current_animation = &run;
 					goingright = false;
 				
@@ -305,18 +305,18 @@ bool j1Player::Update(float dt) {
 	
 
 	if (GroundCollision == false && jump == false  ) {
-		position.y += gravity;
+		position.y += gravity * dt * speed;
 		
 		if (gravity < gravityMax) {
-			gravity += gravityIteratior; 
+			gravity += gravityIteratior * dt * speed;
 			
 		}
 	}
 
 	if (jump == true) {
 		
-		position.y -= Jumpforce; 
-		Jumpforce -= JumpforceIterator;
+		position.y -= Jumpforce * dt * speed;
+		Jumpforce -= JumpforceIterator * dt * speed;
 		current_animation = &jumpanim;
 		CanPlayerJump = false;
 		
@@ -338,8 +338,8 @@ bool j1Player::Update(float dt) {
 
 			gravity = 0;
 			current_animation = &dashanim;
-			position.x += DashSpeed;
-			DashSpeed += DashAcc;
+			position.x += DashSpeed * dt * speed;
+			DashSpeed += DashAcc * dt * speed;
 			CanPlayerJump = false;
 			CanPlayerDash = false;
 			
@@ -358,8 +358,8 @@ bool j1Player::Update(float dt) {
 
 			gravity = 0;
 			current_animation = &dashanim;
-			position.x -= DashSpeed;
-			DashSpeed += DashAcc;
+			position.x -= DashSpeed * dt * speed;
+			DashSpeed += DashAcc * dt * speed;
 			CanPlayerJump = false;
 			CanPlayerDash = false;
 			

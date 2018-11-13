@@ -66,7 +66,7 @@ bool j1Scene2::PreUpdate()
 }
 
 // Called each loop iteration
-bool j1Scene2::Update(float dt)
+bool j1Scene2::Update(float dt, float speed)
 {
 	if (App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
 		App->LoadGame("save_game.xml");
@@ -77,7 +77,7 @@ bool j1Scene2::Update(float dt)
 
 	if (App->render->camera.x > -6500)
 	{
-		App->render->camera.x = -App->play->position.x + 400;
+		App->render->camera.x = -App->play->position.x + 400 * dt * speed;
 		if (App->render->camera.x > 0)
 		{
 			App->render->camera.x = 0;
