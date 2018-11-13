@@ -52,7 +52,7 @@ public:
 	~j1Collisions();
 
 	bool PreUpdate();
-	bool Update(float dt, float speed);
+	bool Update(float dt);
 	bool CleanUp();
 	uint Colliders_Count() const;
 

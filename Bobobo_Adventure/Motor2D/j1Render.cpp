@@ -68,7 +68,7 @@ bool j1Render::PreUpdate()
 	return true;
 }
 
-bool j1Render::Update(float dt, float speed)
+bool j1Render::Update(float dt)
 {
 	return true;
 }

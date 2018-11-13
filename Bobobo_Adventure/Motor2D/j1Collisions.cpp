@@ -96,7 +96,7 @@ bool j1Collisions::CleanUp(){
 
 
 
-bool j1Collisions::Update(float dt, float speed) {
+bool j1Collisions::Update(float dt) {
 
 	if (App->input->GetKey(SDL_SCANCODE_F9) == KEY_DOWN) {
 		ShowColliders = !ShowColliders;

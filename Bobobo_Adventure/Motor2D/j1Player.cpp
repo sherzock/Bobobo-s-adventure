@@ -76,7 +76,7 @@ bool j1Player::PreUpdate() {
 	return true;
 }
 
-bool j1Player::Update(float dt, float speed) {
+bool j1Player::Update(float dt) {
 
 	
 	// Ground Collision // 
@@ -102,7 +102,7 @@ bool j1Player::Update(float dt, float speed) {
 		
 		if (wallhitri == false || wallhitle == true && GroundCollision == true) {
 			
-				position.x += XSpeed * dt * speed;
+				position.x += XSpeed;
 				current_animation = &run;
 				goingright = true;
 			
@@ -121,7 +121,7 @@ bool j1Player::Update(float dt, float speed) {
 			
 			if (wallhitle == false || wallhitri == true) {
 				
-					position.x -= XSpeed * dt * speed;
+					position.x -= XSpeed;
 					current_animation = &run;
 					goingright = false;
 				
@@ -305,18 +305,18 @@ bool j1Player::Update(float dt, float speed) {
 	
 
 	if (GroundCollision == false && jump == false  ) {
-		position.y += gravity * dt * speed;
+		position.y += gravity;
 		
 		if (gravity < gravityMax) {
-			gravity += gravityIteratior * dt * speed;
+			gravity += gravityIteratior; 
 			
 		}
 	}
 
 	if (jump == true) {
 		
-		position.y -= Jumpforce * dt * speed;
-		Jumpforce -= JumpforceIterator * dt * speed;
+		position.y -= Jumpforce; 
+		Jumpforce -= JumpforceIterator;
 		current_animation = &jumpanim;
 		CanPlayerJump = false;
 		
@@ -338,8 +338,8 @@ bool j1Player::Update(float dt, float speed) {
 
 			gravity = 0;
 			current_animation = &dashanim;
-			position.x += DashSpeed * dt * speed;
-			DashSpeed += DashAcc * dt * speed;
+			position.x += DashSpeed;
+			DashSpeed += DashAcc;
 			CanPlayerJump = false;
 			CanPlayerDash = false;
 			
@@ -358,8 +358,8 @@ bool j1Player::Update(float dt, float speed) {
 
 			gravity = 0;
 			current_animation = &dashanim;
-			position.x -= DashSpeed * dt * speed;
-			DashSpeed += DashAcc * dt * speed;
+			position.x -= DashSpeed;
+			DashSpeed += DashAcc;
 			CanPlayerJump = false;
 			CanPlayerDash = false;
 			
@@ -519,7 +519,7 @@ void j1Player::OnCollision(Collider* col_1, Collider* col_2)
 		
 			
 			
-			if (col_1->rect.x + col_1->rect.w >= col_2->rect.x && col_1->rect.x + col_1->rect.w <= col_2->rect.x + XSpeed + 6) {
+			if (col_1->rect.x + col_1->rect.w >= col_2->rect.x && col_1->rect.x + col_1->rect.w <= col_2->rect.x + XSpeed + 5) {
 				wallhitri = true;
 				wallhitle = false;
 				
@@ -532,7 +532,7 @@ void j1Player::OnCollision(Collider* col_1, Collider* col_2)
 				dash = false;
 				current_animation = &wallgrab;
 				
-			}else if (col_1->rect.x <= col_2->rect.x + col_2->rect.w && col_1->rect.x >= col_2->rect.x + col_2->rect.w - XSpeed - 6) {
+			}else if (col_1->rect.x <= col_2->rect.x + col_2->rect.w && col_1->rect.x >= col_2->rect.x + col_2->rect.w - XSpeed - 5) {
 				wallhitle = true;
 				wallhitri = false;
 				

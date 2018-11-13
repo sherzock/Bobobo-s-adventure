@@ -3,8 +3,6 @@
 
 #include "p2List.h"
 #include "j1Module.h"
-#include "j1PerfTimer.h"
-#include "j1Timer.h"
 #include "PugiXml\src\pugixml.hpp"
 
 // Modules
@@ -95,13 +93,12 @@ public:
 	j1Player*			play;
 	j1FadeToBlack*		fade;
 	j1PathFinding*		path;
-	float				dt;
-	float				speed;
 
 private:
 
 	p2List<j1Module*>	modules;
 	uint				frames;
+	float				dt;
 	int					argc;
 	char**				args;
 
@@ -112,16 +109,6 @@ private:
 	bool				want_to_load;
 	p2SString			load_game;
 	mutable p2SString	save_game;
-
-	j1PerfTimer			ptimer;
-	uint64				frame_count = 0;
-	j1Timer				startup_time;
-	j1Timer				frame_time;
-	j1Timer				last_sec_frame_time;
-	j1PerfTimer			delay_timer;
-	uint32				last_sec_frame_count = 0;
-	uint32				prev_last_sec_frame_count = 0;
-	int					frame_cap;
 };
 
 extern j1App* App; 
