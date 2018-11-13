@@ -19,18 +19,35 @@ j1Collisions::j1Collisions() : j1Module()
 	matrix[PLAYER_COLLIDER][PLAYER_COLLIDER] = false;
 	matrix[PLAYER_COLLIDER][GROUND_COLLIDER] = true;
 	matrix[PLAYER_COLLIDER][NO_COLLIDER] = false;
+	matrix[PLAYER_COLLIDER][ATTACK_COLLIDER] = false;
+	matrix[PLAYER_COLLIDER][ENEMY_COLLIDER] = true;
+
 	
 
 	matrix[GROUND_COLLIDER][PLAYER_COLLIDER] = true;
 	matrix[GROUND_COLLIDER][GROUND_COLLIDER] = false;
 	matrix[GROUND_COLLIDER][NO_COLLIDER] = false;
+	matrix[GROUND_COLLIDER][ATTACK_COLLIDER] = false;
+	matrix[GROUND_COLLIDER][ENEMY_COLLIDER] = true;
 	
 
 	matrix[NO_COLLIDER][NO_COLLIDER] = false;
 	matrix[NO_COLLIDER][GROUND_COLLIDER] = true;
 	matrix[NO_COLLIDER][PLAYER_COLLIDER] = false;
+	matrix[NO_COLLIDER][ATTACK_COLLIDER] = false;
+	matrix[NO_COLLIDER][ENEMY_COLLIDER] = false;
+
+	matrix[ATTACK_COLLIDER][ATTACK_COLLIDER] = false;
+	matrix[ATTACK_COLLIDER][GROUND_COLLIDER] = false;
+	matrix[ATTACK_COLLIDER][PLAYER_COLLIDER] = false;
+	matrix[ATTACK_COLLIDER][NO_COLLIDER] = false;
+	matrix[ATTACK_COLLIDER][ENEMY_COLLIDER] = true;
 	
-	
+	matrix[ENEMY_COLLIDER][ENEMY_COLLIDER] = false;
+	matrix[ENEMY_COLLIDER][GROUND_COLLIDER] = true;
+	matrix[ENEMY_COLLIDER][PLAYER_COLLIDER] = true;
+	matrix[ENEMY_COLLIDER][NO_COLLIDER] = false;
+	matrix[ENEMY_COLLIDER][ATTACK_COLLIDER] = true;
 	
 
 }
@@ -120,6 +137,12 @@ bool j1Collisions::Update(float dt) {
 		case PLAYER_COLLIDER:
 			App->render->DrawQuad(colliders[i]->rect, 0, 50, 255, 75); //blue
 			break;
+		case ATTACK_COLLIDER:
+			App->render->DrawQuad(colliders[i]->rect, 158, 103, 52, 75); //brown
+			break;
+		case ENEMY_COLLIDER:
+			App->render->DrawQuad(colliders[i]->rect, 254, 60, 255, 75); //purpule
+			break;
 		
 		}
 	}
@@ -141,6 +164,12 @@ bool j1Collisions::Update(float dt) {
 				break;
 			case PLAYER_COLLIDER:
 				App->render->DrawQuad(colliders[i]->rect, 0, 0, 255, 75); //blue
+				break;
+			case ATTACK_COLLIDER:
+				App->render->DrawQuad(colliders[i]->rect, 158, 103, 52, 75); //brown
+				break;
+			case ENEMY_COLLIDER:
+				App->render->DrawQuad(colliders[i]->rect, 254, 60, 255, 75); //purpule
 				break;
 			}
 		}
