@@ -165,29 +165,44 @@ bool j1Player::Update(float dt) {
 	if (attack == true) {
 
 		if (goingright == true) {
+
 			current_animation = &attackanim;
 			//attackcoll = new Collider;
-			attackcoll = App->colls->AddCollider({ (int)position.x + 50 , (int)position.y, 34, 55 }, NO_COLLIDER);
+			if (attackcoll == nullptr) {
+				attackcoll = App->colls->AddCollider({ (int)position.x + 50 , (int)position.y, 34, 55 }, ATTACK_COLLIDER, this);
 
+			}
+			
 			if (attackanim.Finished() == true) {
 				attackanim.Reset();
+				
+				App->colls->Delete_Collider(attackcoll);
+				attackcoll->to_delete = true;
+				attackcoll = nullptr;
 				attack = false;
 
-				App->colls->Delete_Collider(attackcoll);
+				
 
 			}
 		}
 		if (goingright == false) {
 			current_animation = &attackanim;
 			//attackcoll = new Collider;
-			attackcoll = App->colls->AddCollider({ (int)position.x -25 , (int)position.y, 34, 55 }, NO_COLLIDER);
+			if (attackcoll == nullptr) {
+				attackcoll = App->colls->AddCollider({ (int)position.x - 25 , (int)position.y, 34, 55 }, ATTACK_COLLIDER, this);
+
+			}
+		
 
 			if (attackanim.Finished() == true) {
 				attackanim.Reset();
+				App->colls->Delete_Collider(attackcoll);
+				attackcoll->to_delete = true;
+				attackcoll = nullptr;
 				attack = false;
 
-				App->colls->Delete_Collider(attackcoll);
-
+			
+				
 			}
 		}
 		

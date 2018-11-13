@@ -55,7 +55,7 @@ public:
 	Animations dashanim;
 	Animations wallgrab;
 	Animations attackanim;
-	Collider* attackcoll;
+	Collider* attackcoll = nullptr;
 	
 	//Player positions//
 	fPoint position;
