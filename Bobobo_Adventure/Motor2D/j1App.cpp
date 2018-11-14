@@ -202,6 +202,7 @@ void j1App::FinishUpdate()
 	static char title[256];
 	sprintf_s(title, 256, "Av.FPS: %.2f Last Frame Ms: %02u Last sec frames: %i Last dt: %.3f Time since startup: %.3f Frame Count: %lu ",
 		avg_fps, last_frame_ms, frames_on_last_update, dt, seconds_since_startup, frame_count);
+	App->win->SetTitle(title);
 	double ptime = ptimer.ReadMs();
 	if (last_frame_ms < msForCap)
 		SDL_Delay(msForCap - last_frame_ms);
