@@ -114,7 +114,7 @@ bool j1Scene2::CleanUp()
 	App->map->CleanUp();
 	App->colls->CleanUp();
 	App->tex->CleanUp();
-	App->play->CleanUp();
+	//App->enty->player->CleanUp();
 	return true;
 }
 
@@ -126,6 +126,6 @@ void j1Scene2::change_scenes2() {
 	App->scene2->CleanUp();
 	App->fade->FadeToBlack(App->scene2, App->scene, 0.8f);
 	App->scene->Start();
-	App->play->Start();
+	//App->play->Start();
 
 }

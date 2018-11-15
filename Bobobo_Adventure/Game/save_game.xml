@@ -7,9 +7,9 @@
 	<map />
 	<scene />
 	<scene2 />
-	<player>
-		<position x="56" y="302" level="1" />
-	</player>
+	<entity>
+		<position x="50" y="275" level="1" />
+	</entity>
 	<collisions />
 	<pathfinding />
 	<fade />

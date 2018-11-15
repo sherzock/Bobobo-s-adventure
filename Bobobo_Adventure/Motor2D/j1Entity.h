@@ -6,22 +6,19 @@
 #include "p2Point.h"
 #include "p2Animations.h"
 #include "j1Collisions.h"
+#include "j1EntityManager.h"
 
 
 #define GRAVITY 7
 
 struct Collider;
-
 struct SDL_Texture;
-enum EntityTypes {
-	NO_TYPE,
-	ENTITY_PLAYER,
-
-};
+struct Animation;
+enum entitytypes;
 
 class j1Entity{
 public:
-	j1Entity(EntityTypes type);
+	j1Entity(int x, int y, entitytypes type);
 
 	virtual bool Start() {
 		return true;
@@ -45,7 +42,7 @@ public:
 	virtual bool Save(pugi::xml_node&) const { return true; };
 
 	bool goingright = false;
-	EntityTypes type;
+	
 	fPoint position;
 	float speed;
 	iPoint initial_pos;
@@ -54,6 +51,7 @@ public:
 	SDL_Texture* sprites = nullptr;
 	SDL_Texture* win_sprites = nullptr;
 	bool paused = false;
+	entitytypes type;
 
 	virtual void Draw();
 	virtual void OnCollision(Collider* c1, Collider* c2) {};

@@ -13,7 +13,7 @@
 #include "j1Entity.h"
 
 
-j1Player::j1Player() : j1Entity(EntityTypes::ENTITY_PLAYER)
+j1Player::j1Player(int x, int y, entitytypes type) : j1Entity(x, y, entitytypes::PLAYER)
 {
 		
 	current_animation = NULL;

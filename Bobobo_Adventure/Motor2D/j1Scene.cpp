@@ -44,7 +44,12 @@ bool j1Scene::Start()
 		App->map->Load("Level1map.tmx");
 		App->audio->PlayMusic("audio/music/level1.ogg", 1.0f);
 	}
-	
+
+	if (playeron == false)
+	{
+		App->enty->CreatePlayer();
+		playeron = true;
+	}
 	return true;
 }
 
@@ -67,7 +72,7 @@ bool j1Scene::Update(float dt)
 
 	if (App->render->camera.x > -6500)
 	{
-		App->render->camera.x = -App->play->position.x+ 400;
+		App->render->camera.x = -App->enty->player->position.x+ 400;
 		if (App->render->camera.x > 0)
 		{
 			App->render->camera.x = 0;
@@ -106,7 +111,7 @@ bool j1Scene::CleanUp()
 	App->map->CleanUp();
 	App->colls->CleanUp();
 	App->tex->CleanUp();
-	App->play->CleanUp();
+	//App->enty->player->CleanUp();
 
 	return true;
 	
@@ -121,6 +126,6 @@ void j1Scene::change_scenes1(){
 	App->scene->CleanUp();
 	App->fade->FadeToBlack(App->scene, App->scene2, 0.8f);
 	App->scene2->Start();
-	App->play->Start();
+//	App->play->Start();
 	
 }

@@ -16,7 +16,7 @@
 #include "j1Player.h"
 #include "j1FadeToBlack.h"
 #include "j1Pathfinding.h"
-
+#include "j1EntityManager.h"
 
 // Constructor
 j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
@@ -31,7 +31,8 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	audio = new j1Audio();
 	scene = new j1Scene();
 	scene2 = new j1Scene2();
-	play = new j1Player();
+//	play = new j1Player();
+	enty = new j1EntityManager();
 	map = new j1Map();
 	colls = new j1Collisions();
 	path = new j1PathFinding();
@@ -48,6 +49,8 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(scene);
 	AddModule(scene2);
 	//AddModule(play);
+	AddModule(enty);
+
 	AddModule(colls);
 	AddModule(path);
 	AddModule(fade);

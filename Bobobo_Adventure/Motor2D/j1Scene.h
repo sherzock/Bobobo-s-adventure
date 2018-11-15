@@ -34,6 +34,9 @@ public:
 
 	void change_scenes1();
 
+
+public:
+	bool playeron = false;
 private:
 };
 
