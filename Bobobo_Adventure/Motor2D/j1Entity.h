@@ -50,7 +50,6 @@ public:
 	Collider* collider = nullptr;
 	SDL_Texture* sprites = nullptr;
 	SDL_Texture* win_sprites = nullptr;
-	bool paused = false;
 	entitytypes type;
 
 	virtual void Draw();

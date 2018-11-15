@@ -509,7 +509,7 @@ bool j1Player::CleanUp() {
 }
 
 
-void j1Player::OnCollision(Collider* col_1, Collider* col_2)
+ void j1Player::OnCollision(Collider* col_1, Collider* col_2) 
 {
 	float ResXspeed = XSpeed;
 	if ((col_1->type == PLAYER_COLLIDER && col_2->type == GROUND_COLLIDER) || (col_2->type == PLAYER_COLLIDER && col_1->type == GROUND_COLLIDER) 

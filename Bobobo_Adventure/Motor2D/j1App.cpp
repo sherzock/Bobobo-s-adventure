@@ -32,8 +32,9 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	scene = new j1Scene();
 	scene2 = new j1Scene2();
 //	play = new j1Player();
-	enty = new j1EntityManager();
+	
 	map = new j1Map();
+	enty = new j1EntityManager();
 	colls = new j1Collisions();
 	path = new j1PathFinding();
 	fade = new j1FadeToBlack();
@@ -52,7 +53,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(enty);
 
 	AddModule(colls);
-	AddModule(path);
+	//AddModule(path);
 	AddModule(fade);
 	// render last to swap buffer
 	AddModule(render);

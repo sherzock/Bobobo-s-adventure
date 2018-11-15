@@ -161,11 +161,5 @@ bool j1EntityManager::Save(pugi::xml_node& data) const
 		player->Save(data);
 	}
 
-
-
-	for (p2List_item<j1Entity*>* iterator = entities.start; iterator; iterator = iterator->next)
-	{
-	}
-
 	return true;
 }
