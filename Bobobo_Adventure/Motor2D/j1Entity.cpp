@@ -10,7 +10,13 @@ j1Entity::j1Entity(EntityTypes type) : type(type)
 }
 void j1Entity::Draw()
 {
-	position = { (int)position.x, (int)position.y };
-	App->render->Blit(sprites, position.x, position.y, &(animation->GetCurrentFrame()),SDL_FLIP_NONE);
+	if (goingright == true) {
+		App->render->Blit(sprites, (int)position.x, (int)position.y , &(animation->GetCurrentFrame()), SDL_FLIP_NONE);
+	}
+		
+	else {
+		App->render->Blit(sprites, (int)position.x , (int)position.y , &(animation->GetCurrentFrame()), SDL_FLIP_HORIZONTAL);
+	}
+		
 }
 
