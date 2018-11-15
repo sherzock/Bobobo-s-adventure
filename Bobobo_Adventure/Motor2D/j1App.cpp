@@ -95,6 +95,12 @@ bool j1App::Awake()
 		app_config = config.child("app");
 		title.create(app_config.child("title").child_value());
 		organization.create(app_config.child("organization").child_value());
+		frame_cap = app_config.attribute("framerate_cap").as_uint();
+		if (frame_cap > 0)
+		{
+			msForCap = 1000 / frame_cap;
+		}
+			
 	}
 
 	if(ret == true)
@@ -168,6 +174,10 @@ pugi::xml_node j1App::LoadConfig(pugi::xml_document& config_file) const
 // ---------------------------------------------
 void j1App::PrepareUpdate()
 {
+	frame_count++;
+	last_sec_frame_count++;
+	dt = (float)frame_time.ReadSec();
+	frame_time.Start();
 }
 
 // ---------------------------------------------
@@ -178,6 +188,25 @@ void j1App::FinishUpdate()
 
 	if(want_to_load == true)
 		LoadGameNow();
+
+	if (last_sec_frame_time.Read() > 1000)
+	{
+		last_sec_frame_time.Start();
+		prev_last_sec_frame_count = last_sec_frame_count;
+		last_sec_frame_count = 0;
+	}
+	float avg_fps = float(frame_count) / startup_time.ReadSec();
+	float seconds_since_startup = startup_time.ReadSec();
+	uint32 last_frame_ms = frame_time.Read();
+	uint32 frames_on_last_update = prev_last_sec_frame_count;
+	static char title[256];
+	sprintf_s(title, 256, "Av.FPS: %.2f Last Frame Ms: %02u Last sec frames: %i Last dt: %.3f Time since startup: %.3f Frame Count: %lu ",
+		avg_fps, last_frame_ms, frames_on_last_update, dt, seconds_since_startup, frame_count);
+	App->win->SetTitle(title);
+	double ptime = ptimer.ReadMs();
+	if (last_frame_ms < msForCap)
+		SDL_Delay(msForCap - last_frame_ms);
+
 }
 
 // Call modules before each loop iteration
