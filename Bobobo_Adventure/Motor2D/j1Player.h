@@ -5,12 +5,13 @@
 #include "p2Point.h"
 #include "j1Module.h"
 #include "p2Animations.h"
-
+#include "j1Entity.h"
 
 struct SDL_Texture;
 
 
-class j1Player : public j1Module
+class j1Player : public j1Entity
+
 {
 public:
 
@@ -60,6 +61,7 @@ public:
 	//Player positions//
 	fPoint position;
 	fPoint Initial_position;
+	p2SString name;
 
 	//variables
 	float XSpeed;
@@ -85,7 +87,7 @@ public:
 	bool CanPlayerJump = false;
 	bool CanPlayerDash = false;
 	bool isfalling = false;
-	bool goingright = true;
+	//bool goingright = true;
 	bool godmode = false;
 	bool dash = false;
 	bool wallhitri = false;

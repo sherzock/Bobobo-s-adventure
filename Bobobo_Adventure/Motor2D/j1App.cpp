@@ -47,7 +47,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(map);
 	AddModule(scene);
 	AddModule(scene2);
-	AddModule(play);
+	//AddModule(play);
 	AddModule(colls);
 	AddModule(path);
 	AddModule(fade);

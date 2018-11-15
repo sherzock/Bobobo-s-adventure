@@ -10,9 +10,11 @@
 #include "j1Scene.h"
 #include "j1Scene2.h"
 #include "j1Map.h"
+#include "j1Entity.h"
 
 
-j1Player::j1Player() : j1Module(){
+j1Player::j1Player() : j1Entity(EntityTypes::ENTITY_PLAYER)
+{
 		
 	current_animation = NULL;
 
@@ -65,7 +67,7 @@ bool j1Player::Start() {
 
 	current_animation = &idle;
 	
-	player = App->colls->AddCollider({ (int)position.x, (int)position.y, 50, 55 }, PLAYER_COLLIDER, this);
+	player = App->colls->AddCollider({ (int)position.x, (int)position.y, 50, 55 }, PLAYER_COLLIDER, App->scene);
 
 	return true;
 }
@@ -169,7 +171,7 @@ bool j1Player::Update(float dt) {
 			current_animation = &attackanim;
 			//attackcoll = new Collider;
 			if (attackcoll == nullptr) {
-				attackcoll = App->colls->AddCollider({ (int)position.x + 50 , (int)position.y, 34, 55 }, ATTACK_COLLIDER, this);
+				attackcoll = App->colls->AddCollider({ (int)position.x + 50 , (int)position.y, 34, 55 }, ATTACK_COLLIDER, App->scene);
 
 			}
 			
@@ -189,7 +191,7 @@ bool j1Player::Update(float dt) {
 			current_animation = &attackanim;
 			//attackcoll = new Collider;
 			if (attackcoll == nullptr) {
-				attackcoll = App->colls->AddCollider({ (int)position.x - 25 , (int)position.y, 34, 55 }, ATTACK_COLLIDER, this);
+				attackcoll = App->colls->AddCollider({ (int)position.x - 25 , (int)position.y, 34, 55 }, ATTACK_COLLIDER, App->scene);
 
 			}
 		
@@ -245,7 +247,7 @@ bool j1Player::Update(float dt) {
 
 	if (App->input->GetKey(SDL_SCANCODE_F2) == j1KeyState::KEY_DOWN) {
 
-		App->fade->FadeToBlack(this, this);
+		//App->fade->FadeToBlack(this, this);
 		position.x = Initial_position.x;
 		position.y = Initial_position.y;
 		App->render->camera.x = 0;
@@ -264,7 +266,7 @@ bool j1Player::Update(float dt) {
 
 		if (App->scene->active == true) {
 
-			App->fade->FadeToBlack(this, this);
+			//App->fade->FadeToBlack(this, this);
 			position.x = Initial_position.x;
 			position.y = Initial_position.y;
 			App->render->camera.x = 0;
@@ -404,7 +406,7 @@ bool j1Player::Update(float dt) {
 
 		if (dead == true) {
 
-			App->fade->FadeToBlack(this,this,0.8f);
+			//App->fade->FadeToBlack(this,this,0.8f);
 			position.x = Initial_position.x;
 			position.y = Initial_position.y;
 			dead = false;
