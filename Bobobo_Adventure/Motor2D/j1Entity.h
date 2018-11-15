@@ -7,13 +7,15 @@
 #include "p2Animations.h"
 #include "j1Collisions.h"
 #include "j1EntityManager.h"
+#include "p2DynArray.h"
+#include "p2Log.h"
 
 
 #define GRAVITY 7
 
-struct Collider;
+//struct Collider;
 struct SDL_Texture;
-struct Animation;
+//struct Animation;
 enum entitytypes;
 
 class j1Entity{
@@ -45,7 +47,7 @@ public:
 	
 	fPoint position;
 	float speed;
-	iPoint initial_pos;
+	iPoint Initial_position;
 	Animations* animation = nullptr;
 	Collider* collider = nullptr;
 	SDL_Texture* sprites = nullptr;
@@ -53,7 +55,7 @@ public:
 	entitytypes type;
 
 	virtual void Draw();
-	virtual void OnCollision(Collider* c1, Collider* c2) {};
+	virtual void OnCollision(Collider* col_1, Collider* col_2) {};
 	
 
 };

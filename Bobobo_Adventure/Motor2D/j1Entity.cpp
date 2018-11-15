@@ -1,7 +1,6 @@
 
 #include "j1Entity.h"
 #include "j1Collisions.h"
-#include "j1Entity.h"
 #include "j1App.h"
 #include "j1Render.h"
 

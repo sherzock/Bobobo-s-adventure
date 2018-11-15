@@ -131,13 +131,13 @@ void j1EntityManager::CreatePlayer()
 	player = (j1Player*)CreateEntity(PLAYER);
 }
 
-void j1EntityManager::OnCollision(Collider* c1, Collider* c2)
+void j1EntityManager::OnCollision(Collider* col_1, Collider* col_2) 
 {
 	for (p2List_item<j1Entity*>* iterator = entities.start; iterator != NULL; iterator = iterator->next)
 	{
-		if (iterator->data->collider == c1)
+		if (iterator->data->collider == col_1)
 		{
-			iterator->data->OnCollision(c1, c2);
+			iterator->data->OnCollision(col_1, col_2);
 			break;
 		}
 	}

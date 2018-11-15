@@ -71,7 +71,7 @@ public:
 		return true;
 	}
 
-	virtual void OnCollision(Collider* c1, Collider* c2) {} //Pregunatr aixo LATER
+	virtual void OnCollision(Collider* col_1, Collider* col_2) {} //Pregunatr aixo LATER
 
 public:
 

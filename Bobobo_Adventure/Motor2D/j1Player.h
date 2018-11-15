@@ -41,7 +41,7 @@ public:
 	bool Save(pugi::xml_node&) const;
 
 	//oncollision checks if its colliding//
-	void OnCollision(Collider* col_1, Collider* col_2)override;
+	void OnCollision(Collider* col_1, Collider* col_2);
 
 public:
 	
@@ -59,8 +59,8 @@ public:
 	Collider* attackcoll = nullptr;
 	
 	//Player positions//
-	fPoint position;
-	fPoint Initial_position;
+	//fPoint position;
+	//fPoint Initial_position;
 	p2SString name;
 
 	//variables

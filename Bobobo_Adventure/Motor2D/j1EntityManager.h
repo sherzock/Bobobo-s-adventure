@@ -6,6 +6,7 @@
 #include "p2List.h"
 #include "p2Point.h"
 #include "j1Entity.h"
+#include "j1Collisions.h"
 
 #define MAX_ENEMIES 50
 
@@ -45,7 +46,7 @@ public:
 
 	j1Entity* CreateEntity(entitytypes type, int x = 0, int y = 0);
 
-	void OnCollision(Collider* c1, Collider* c2);
+	void OnCollision(Collider* col_1, Collider* col_2);
 	void CreatePlayer();
 	void AddEnemy(int x, int y, entitytypes type);
 	void CreateEnemy(const EnemyInfo& info);
