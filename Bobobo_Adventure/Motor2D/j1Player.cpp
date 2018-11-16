@@ -594,3 +594,5 @@ bool j1Player::CleanUp() {
  
  
  };
+
+ void j1Player::LogicalPhysics(){}

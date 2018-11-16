@@ -43,6 +43,7 @@ public:
 
 	//oncollision checks if its colliding//
 	void OnCollision(Collider* col_1, Collider* col_2);
+	
 
 public:
 	
