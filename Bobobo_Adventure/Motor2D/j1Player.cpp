@@ -55,7 +55,7 @@ bool j1Player::Start() {
 
 	current_animation = &idle;
 	
-	collider = App->colls->AddCollider({ (int)position.x, (int)position.y, 50, 55 }, PLAYER_COLLIDER, App->scene);
+	collider = App->colls->AddCollider({ (int)position.x, (int)position.y, 50, 55 }, PLAYER_COLLIDER, App->enty);
 
 	return true;
 }
@@ -508,20 +508,22 @@ bool j1Player::CleanUp() {
 			GroundCollision = true;
 			gravity = 0.0f;
 			current_animation = &run;
-			
+		
 
 			if (App->input->GetKey(SDL_SCANCODE_SPACE) == j1KeyState::KEY_UP && position.y < 1000) {
 
 				jump = false;
 				current_animation = &run;
 			}
-			if (jump == true ) {
-				position.y += 8;
+			
+			
+		/*	if (jump == true && CanPlayerJump == false ) {
+				position.y += 1;
 				GroundCollision = false;
 				isfalling = true;
 				Jumpforce = 0;
 				gravity = 0.2f;
-			}
+			}*/
 		
 			
 			
