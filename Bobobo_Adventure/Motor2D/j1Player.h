@@ -77,6 +77,7 @@ public:
 	float DashSpeed;
 	float DashSpeedres ;
 	float DashAcc;
+	float FSpeed;
 	uint currentTime;
 	uint lastTime;
 
