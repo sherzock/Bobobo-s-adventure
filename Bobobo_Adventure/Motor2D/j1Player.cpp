@@ -75,12 +75,12 @@ bool j1Player::Update(float dt) {
 		CanPlayerJump = true;
 		CanPlayerDash = false;
 		CanPlayerDash = true;
-		
+		airborne = false;
 	}
 	else if (GroundCollision == false) {
 		
 		isfalling = true;
-		
+		airborne = true;
 		
 	}
 
@@ -517,13 +517,14 @@ bool j1Player::CleanUp() {
 			}
 			
 			
-		/*	if (jump == true && CanPlayerJump == false ) {
-				position.y += 1;
+			if (jump == true && airborne == true && wallhitle == false && wallhitri == false) {
 				GroundCollision = false;
 				isfalling = true;
 				Jumpforce = 0;
-				gravity = 0.2f;
-			}*/
+				position.y += 6;
+			
+				//gravity = 0.2f;
+			}
 		
 			
 			

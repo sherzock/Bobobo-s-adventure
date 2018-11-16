@@ -94,6 +94,7 @@ public:
 	bool wallhitri = false;
 	bool wallhitle = false;
 	bool attack = false;
+	bool airborne = false;
 };
 
 #endif // __jPLAYER_H__
