@@ -17,7 +17,7 @@ public:
 
 	j1Player(int x, int y, entitytypes type);
 
-	Collider* player;
+	//Collider* player;
 	SDL_Texture* graphics = nullptr;
 	// Destructor//
 	virtual ~j1Player();

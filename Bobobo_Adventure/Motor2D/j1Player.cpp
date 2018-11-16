@@ -55,7 +55,7 @@ bool j1Player::Start() {
 
 	current_animation = &idle;
 	
-	player = App->colls->AddCollider({ (int)position.x, (int)position.y, 50, 55 }, PLAYER_COLLIDER, App->scene);
+	collider = App->colls->AddCollider({ (int)position.x, (int)position.y, 50, 55 }, PLAYER_COLLIDER, App->scene);
 
 	return true;
 }
@@ -68,7 +68,7 @@ bool j1Player::PreUpdate() {
 
 bool j1Player::Update(float dt) {
 
-	
+	collider->Set_Pos(position.x, position.y);
 	// Ground Collision // 
 	if (GroundCollision == true) {
 		isfalling = false;
@@ -209,10 +209,10 @@ bool j1Player::Update(float dt) {
 	
 	if (godmode == true) {
 
-		player->type = NO_COLLIDER;
+		collider->type = NO_COLLIDER;
 	}
 	else if (godmode == false) {
-		player->type = PLAYER_COLLIDER;
+		collider->type = PLAYER_COLLIDER;
 	}
 
 
