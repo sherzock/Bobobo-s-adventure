@@ -312,10 +312,10 @@ bool j1Player::Update(float dt) {
 	
 
 	if (GroundCollision == false && jump == false  ) {
-		position.y += gravity /** dt * speed*/;
+		position.y += gravity * dt * speed / 1.5;
 		
 		if (gravity < gravityMax) {
-			gravity += gravityIteratior /** dt * speed*/;
+			gravity += gravityIteratior * dt* speed ;
 			
 		}
 	}
@@ -523,9 +523,9 @@ bool j1Player::CleanUp() {
 				GroundCollision = false;
 				isfalling = true;
 				Jumpforce = 0;
-				position.y += 6;
+				position.y += 10;
 			
-				//gravity = 0.2f;
+				
 			}
 		
 			
