@@ -34,6 +34,8 @@ public:
 	virtual bool PreUpdate() {
 		return true;
 	};
+	virtual bool Awake(pugi::xml_node&) { return true; };
+	
 	virtual bool CleanUp() {
 		return true;
 	};
@@ -44,7 +46,7 @@ public:
 	virtual bool Save(pugi::xml_node&) const { return true; };
 
 	bool goingright = false;
-	
+	p2SString name;
 	fPoint position;
 	float speed;
 	iPoint Initial_position;

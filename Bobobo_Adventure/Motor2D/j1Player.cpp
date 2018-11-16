@@ -28,6 +28,7 @@ j1Player::j1Player(int x, int y, entitytypes type) : j1Entity(x, y, entitytypes:
 	wallgrab.LoadAnimations("wall");
 	attackanim.LoadAnimations("attack");
 	name.create("player");
+	
 }
 
 j1Player::~j1Player() {}

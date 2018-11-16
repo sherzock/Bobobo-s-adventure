@@ -61,7 +61,7 @@ public:
 	//Player positions//
 	//fPoint position;
 	//fPoint Initial_position;
-	p2SString name;
+	
 
 	//variables
 	float XSpeed;

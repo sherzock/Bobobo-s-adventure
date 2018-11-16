@@ -31,17 +31,20 @@ bool j1EntityManager::Start()
 
 bool j1EntityManager::PreUpdate()
 {
+	return true;
+}
 
-		for (uint i = 0; i < MAX_ENEMIES; ++i)
-		{
-			if (queue[i].type != entitytypes::NO_TYPE)
-			{
-				CreateEnemy(queue[i]);
-				queue[i].type = entitytypes::NO_TYPE;
-			}
-		}
+bool j1EntityManager::Awake(pugi::xml_node& config) {
+
+
+
+	for (p2List_item<j1Entity*>* iterator = entities.start; iterator != nullptr; iterator = iterator->next)
+	{
+		iterator->data->Awake(config);
+	}
 
 	return true;
+
 }
 
 bool j1EntityManager::Update(float dt)
@@ -119,6 +122,8 @@ void j1EntityManager::CreateEnemy(const EnemyInfo& info)
 		{
 			j1Entity* entity;
 			
+			if (queue[i].type == PLAYER)
+				entity = new j1Player(info.position.x, info.position.y, info.type);
 
 			entities.add(entity);
 			entity->Start();
