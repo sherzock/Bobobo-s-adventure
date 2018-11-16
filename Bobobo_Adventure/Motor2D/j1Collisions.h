@@ -22,15 +22,6 @@ enum COLLIDER_TYPE
 	
 };
 
-enum CollisionDirection
-{
-	NO_COLLISION = 0,
-	FROM_ABOVE,
-	FROM_BELOW,
-	FROM_RIGHT,
-	FROM_LEFT
-};
-
 struct Collider
 {
 	SDL_Rect rect;
