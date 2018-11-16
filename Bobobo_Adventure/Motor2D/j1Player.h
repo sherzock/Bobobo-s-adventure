@@ -24,7 +24,8 @@ public:
 
 	// Called before render is available//
 	bool Awake(pugi::xml_node& config);
-
+	
+	void Sleeping();
 	// Called before the first frame//
 	bool Start();
 
@@ -59,8 +60,8 @@ public:
 	Collider* attackcoll = nullptr;
 	
 	//Player positions//
-	//fPoint position;
-	//fPoint Initial_position;
+	fPoint position;
+	fPoint Initial_position;
 	
 
 	//variables

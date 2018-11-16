@@ -36,21 +36,7 @@ j1Player::~j1Player() {}
 
 bool j1Player::Awake(pugi::xml_node& config) {
 	
-	position.x = config.child("position").attribute("x").as_int();
-	position.y = config.child("position").attribute("y").as_int();
 
-	pugi::xml_node physics = config.child("physics");
-	XSpeed = physics.child("xspeed").attribute("atr").as_float();
-	initialspeed = physics.child("initialspeed").attribute("atr").as_float();
-	gravity = physics.child("gravity").attribute("atr").as_float();
-	Jumpforce = physics.child("jumpforce").attribute("atr").as_float();
-	Jumpreset = physics.child("jumpreset").attribute("atr").as_float();
-	gravityMax = physics.child("gravityMax").attribute("atr").as_float();;
-	gravityIteratior = physics.child("gravityIterator").attribute("atr").as_float();;
-	JumpforceIterator = physics.child("JumpforceIterator").attribute("atr").as_float();
-	DashSpeed = physics.child("DashSpeed").attribute("atr").as_float();
-	DashSpeedres = physics.child("DashSpeedres").attribute("atr").as_float();
-	DashAcc = physics.child("DashAcc").attribute("atr").as_float();
 	return true;
 }
 
@@ -65,6 +51,7 @@ bool j1Player::Start() {
 
 	Initial_position.x = position.x;
 	Initial_position.y = position.y;
+	Sleeping();
 
 	current_animation = &idle;
 	
@@ -574,3 +561,31 @@ bool j1Player::CleanUp() {
 		
 	XSpeed= ResXspeed;
 };
+
+ void j1Player::Sleeping() {
+ 
+	 
+	 pugi::xml_document config_file;
+	 config_file.load_file("config.xml");
+	 pugi::xml_node config;
+	 config = config_file.child("config");
+ 
+	 position.x = config.child("position").attribute("x").as_int();
+	 position.y = config.child("position").attribute("y").as_int();
+
+	 pugi::xml_node physics = config.child("player").child("physics");
+	
+	 XSpeed = physics.child("xspeed").attribute("atr").as_float();
+	 initialspeed = physics.child("initialspeed").attribute("atr").as_float();
+	 gravity = physics.child("gravity").attribute("atr").as_float();
+	 Jumpforce = physics.child("jumpforce").attribute("atr").as_float();
+	 Jumpreset = physics.child("jumpreset").attribute("atr").as_float();
+	 gravityMax = physics.child("gravityMax").attribute("atr").as_float();;
+	 gravityIteratior = physics.child("gravityIterator").attribute("atr").as_float();;
+	 JumpforceIterator = physics.child("JumpforceIterator").attribute("atr").as_float();
+	 DashSpeed = physics.child("DashSpeed").attribute("atr").as_float();
+	 DashSpeedres = physics.child("DashSpeedres").attribute("atr").as_float();
+	 DashAcc = physics.child("DashAcc").attribute("atr").as_float();
+ 
+ 
+ };
