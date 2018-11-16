@@ -14,6 +14,19 @@
 // Details: http://theory.stanford.edu/~amitp/GameProgramming/
 // --------------------------------------------------
 
+enum Movement
+{
+	NONE = -1,
+	UP,
+	DOWN,
+	RIGHT,
+	LEFT,
+	UP_RIGHT,
+	UP_LEFT,
+	DOWN_RIGHT,
+	DOWN_LEFT
+};
+
 class j1PathFinding : public j1Module
 {
 public:
@@ -30,7 +43,7 @@ public:
 	void SetMap(uint width, uint height, uchar* data);
 
 	// Main function to request a path from A to B
-	int CreatePath(const iPoint& origin, const iPoint& destination);
+	p2DynArray<iPoint>* CreatePath( iPoint& origin, iPoint& destination);
 
 	// To request all tiles involved in the last generated path
 	const p2DynArray<iPoint>* GetLastPath() const;
@@ -44,8 +57,10 @@ public:
 	// Utility: return the walkability value of a tile
 	uchar GetTileAt(const iPoint& pos) const;
 
-private:
+	Movement CheckDirection(p2DynArray<iPoint>& path)const;
 
+private:
+	p2DynArray<iPoint>*	_path = nullptr;
 	// size of the map
 	uint width;
 	uint height;
