@@ -23,6 +23,7 @@
 		<DashSpeed atr=" 3.0f"/>
 		<DashSpeedres atr=" 3.0f"/>
 		<DashAcc atr=" 0.5f"/>
+		<Fspeed atr=" 50f"/>
 		
 	</physics>
   </player>

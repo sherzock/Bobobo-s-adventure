@@ -68,7 +68,7 @@ bool j1Player::PreUpdate() {
 
 bool j1Player::Update(float dt) {
 
-	float speed = 50.0f;
+	
 
 	collider->Set_Pos(position.x, position.y);
 	// Ground Collision // 
@@ -94,7 +94,7 @@ bool j1Player::Update(float dt) {
 		
 		if (wallhitri == false || wallhitle == true && GroundCollision == true) {
 			
-				position.x += XSpeed* dt * speed;
+				position.x += XSpeed* dt * FSpeed;
 				current_animation = &run;
 				goingright = true;
 			
@@ -113,7 +113,7 @@ bool j1Player::Update(float dt) {
 			
 			if (wallhitle == false || wallhitri == true) {
 				
-					position.x -= XSpeed* dt * speed;
+					position.x -= XSpeed* dt * FSpeed;
 					current_animation = &run;
 					goingright = false;
 				
@@ -312,18 +312,18 @@ bool j1Player::Update(float dt) {
 	
 
 	if (GroundCollision == false && jump == false  ) {
-		position.y += gravity * dt * speed / 1.5;
+		position.y += gravity * dt * FSpeed;
 		
-		if (gravity < gravityMax) {
-			gravity += gravityIteratior * dt* speed ;
+		if (gravity < gravityMax*0.8) {
+			gravity += gravityIteratior * dt* FSpeed;
 			
 		}
 	}
 
 	if (jump == true) {
 		
-		position.y -= Jumpforce * dt * speed;
-		Jumpforce -= JumpforceIterator * dt * speed;
+		position.y -= Jumpforce * dt * FSpeed*1.5;
+		Jumpforce -= JumpforceIterator * dt * FSpeed * 1.5;
 		current_animation = &jumpanim;
 		CanPlayerJump = false;
 		
@@ -345,8 +345,8 @@ bool j1Player::Update(float dt) {
 
 			gravity = 0;
 			current_animation = &dashanim;
-			position.x += DashSpeed * dt * speed;
-			DashSpeed += DashAcc * dt * speed;
+			position.x += DashSpeed * dt * FSpeed;
+			DashSpeed += DashAcc * dt * FSpeed;
 			CanPlayerJump = false;
 			CanPlayerDash = false;
 			
@@ -365,8 +365,8 @@ bool j1Player::Update(float dt) {
 
 			gravity = 0;
 			current_animation = &dashanim;
-			position.x -= DashSpeed* dt * speed;
-			DashSpeed += DashAcc * dt * speed;
+			position.x -= DashSpeed* dt * FSpeed;
+			DashSpeed += DashAcc * dt * FSpeed;
 			CanPlayerJump = false;
 			CanPlayerDash = false;
 			
@@ -510,7 +510,7 @@ bool j1Player::CleanUp() {
 			GroundCollision = true;
 			gravity = 0.0f;
 			current_animation = &run;
-		
+			
 
 			if (App->input->GetKey(SDL_SCANCODE_SPACE) == j1KeyState::KEY_UP && position.y < 1000) {
 
@@ -591,7 +591,7 @@ bool j1Player::CleanUp() {
 	 DashSpeed = physics.child("DashSpeed").attribute("atr").as_float();
 	 DashSpeedres = physics.child("DashSpeedres").attribute("atr").as_float();
 	 DashAcc = physics.child("DashAcc").attribute("atr").as_float();
- 
+	 FSpeed = physics.child("Fspeed").attribute("atr").as_float();
  
  };
 
