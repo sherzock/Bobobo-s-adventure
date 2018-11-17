@@ -7,6 +7,7 @@
 #include "p2Log.h"
 #include "j1Map.h"
 #include "SDL\include\SDL.h"
+#include "Brofiler/Brofiler.h"
 
 j1Collisions::j1Collisions() : j1Module()
 {
@@ -55,6 +56,8 @@ j1Collisions::j1Collisions() : j1Module()
 j1Collisions::~j1Collisions() {}
 
 bool j1Collisions::PreUpdate(){
+
+	BROFILER_CATEGORY("Collisions PreUpdate", Profiler::Color::MediumVioletRed)
 
 	for (uint i = 0; i < MAX_NUM_COLLIDERS; ++i) {
 		
@@ -114,6 +117,8 @@ bool j1Collisions::CleanUp(){
 
 
 bool j1Collisions::Update(float dt) {
+	BROFILER_CATEGORY("Collision Update", Profiler::Color::Tomato)
+
 
 	if (App->input->GetKey(SDL_SCANCODE_F9) == KEY_DOWN) {
 		ShowColliders = !ShowColliders;

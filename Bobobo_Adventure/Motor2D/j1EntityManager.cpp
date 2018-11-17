@@ -10,6 +10,8 @@
 #include "j1Scene2.h"
 #include "j1Player.h"
 #include "j1FlyingEnemy.h"
+#include "Brofiler/Brofiler.h"
+
 
 
 j1EntityManager::j1EntityManager()
@@ -31,6 +33,8 @@ bool j1EntityManager::Start()
 
 bool j1EntityManager::PreUpdate()
 {
+
+	BROFILER_CATEGORY("EntityManager PreUpdate", Profiler::Color::MediumVioletRed)
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 	{
 		if (queue[i].type != entitytypes::NO_TYPE)
@@ -39,6 +43,8 @@ bool j1EntityManager::PreUpdate()
 			queue[i].type = entitytypes::NO_TYPE;
 		}
 	}
+
+
 
 	return true;
 }
@@ -58,6 +64,7 @@ bool j1EntityManager::Awake(pugi::xml_node& config) {
 
 bool j1EntityManager::Update(float dt)
 {
+	BROFILER_CATEGORY("EntityManager Update", Profiler::Color::Tomato)
 
 		for (p2List_item<j1Entity*>* iterator = entities.start; iterator != nullptr; iterator = iterator->next)
 		{
@@ -69,6 +76,7 @@ bool j1EntityManager::Update(float dt)
 
 bool j1EntityManager::PostUpdate()
 {
+	BROFILER_CATEGORY("EntityManager PostUpdate", Profiler::Color::MediumVioletRed)
 
 		for (p2List_item<j1Entity*>* iterator = entities.start; iterator != nullptr; iterator = iterator->next)
 		{

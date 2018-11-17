@@ -11,6 +11,7 @@
 #include "j1Scene2.h"
 #include "j1Map.h"
 #include "j1Entity.h"
+#include "Brofiler/Brofiler.h"
 
 
 j1Player::j1Player(int x, int y, entitytypes type) : j1Entity(x, y, entitytypes::PLAYER)
@@ -59,12 +60,14 @@ bool j1Player::Start() {
 
 
 bool j1Player::PreUpdate() {
+	BROFILER_CATEGORY("Player PreUpdate", Profiler::Color::MediumVioletRed)
 
 	return true;
 }
 
 bool j1Player::Update(float dt) {
 
+	BROFILER_CATEGORY("Player Update", Profiler::Color::Tomato)
 	
 
 	collider->Set_Pos(position.x, position.y);
@@ -446,6 +449,7 @@ bool j1Player::Update(float dt) {
 
 bool j1Player::PostUpdate() {
 
+	BROFILER_CATEGORY("Player PostUpdate", Profiler::Color::MediumVioletRed)
 	return true;
 }
 

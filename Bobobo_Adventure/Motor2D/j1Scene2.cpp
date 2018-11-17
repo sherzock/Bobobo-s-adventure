@@ -12,6 +12,7 @@
 #include "j1Player.h"
 #include "j1FadeToBlack.h"
 #include "j1Collisions.h"
+#include "Brofiler/Brofiler.h"
 
 
 j1Scene2::j1Scene2() : j1Module()
@@ -60,7 +61,7 @@ bool j1Scene2::Start()
 // Called each loop iteration
 bool j1Scene2::PreUpdate()
 {
-	
+	BROFILER_CATEGORY("Scene2 PreUpdate", Profiler::Color::MediumVioletRed)
 
 	return true;
 }
@@ -68,6 +69,8 @@ bool j1Scene2::PreUpdate()
 // Called each loop iteration
 bool j1Scene2::Update(float dt)
 {
+	BROFILER_CATEGORY("Scene2 Update", Profiler::Color::Tomato)
+
 	if (App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
 		App->LoadGame("save_game.xml");
 
@@ -100,6 +103,8 @@ bool j1Scene2::Update(float dt)
 // Called each loop iteration
 bool j1Scene2::PostUpdate()
 {
+	BROFILER_CATEGORY("Scene2 PostUpdate", Profiler::Color::MediumVioletRed)
+
 	bool ret = true;
 
 	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
@@ -115,7 +120,7 @@ bool j1Scene2::CleanUp()
 	App->map->CleanUp();
 	App->colls->CleanUp();
 	App->tex->CleanUp();
-	App->enty->player->CleanUp();
+	/*App->enty->player->CleanUp();*/
 	App->enty->CleanUp();
 	return true;
 }
