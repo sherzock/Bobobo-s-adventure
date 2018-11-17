@@ -54,7 +54,7 @@ bool j1Scene::Start()
 		playeron = true;
 	}
 
-	App->enty->AddEnemy(20, 20, FLYINGENEMY);
+	App->enty->AddEnemy(300, 50, FLYINGENEMY);
 	
 	return true;
 }

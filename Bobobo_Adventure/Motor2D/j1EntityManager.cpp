@@ -111,6 +111,10 @@ j1Entity* j1EntityManager::CreateEntity(entitytypes type, int x, int y)
 		ret = new j1Player(x, y, type);
 		if (ret != nullptr) entities.add(ret);
 		break;
+	case FLYINGENEMY:
+		ret = new j1FlyingEnemy(x, y, type);
+		if (ret != nullptr) entities.add(ret);
+		break;
 
 	}
 	return ret;

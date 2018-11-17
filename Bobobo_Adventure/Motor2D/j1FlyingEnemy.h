@@ -35,6 +35,7 @@ public:
 	Animations flying;
 	fPoint initPos;
 	iPoint colliderSize;
+	bool dead;
 };
 
 #endif // _j1FlyingEnemy_H__

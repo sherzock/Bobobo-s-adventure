@@ -42,7 +42,9 @@ bool j1FlyingEnemy::Update(float dt)
 
 	collider->Set_Pos(position.x, position.y);
 	Draw();
-
+	if (dead == true) {
+		position.x += 50;
+	}
 
 	return true;
 }
@@ -58,6 +60,11 @@ bool j1FlyingEnemy::CleanUp()
 
 void j1FlyingEnemy::OnCollision(Collider * col_1, Collider * col_2)
 {
+	if ((col_1->type == ATTACK_COLLIDER && col_2->type == ENEMY_COLLIDER) || (col_2->type == ATTACK_COLLIDER && col_1->type == ENEMY_COLLIDER))
+	{
+		dead = true;
+	}
+
 }
 
 bool j1FlyingEnemy::Load(pugi::xml_node &)

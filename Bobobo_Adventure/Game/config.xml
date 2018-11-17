@@ -15,8 +15,8 @@
 		<xspeed atr="5.0f"/>
 		<initialspeed atr=" 0.02f"/>
 		<gravity atr="0.0f"/>
-		<jumpforce atr="6.88f"/>
-		<jumpreset atr="6.88f"/>
+		<jumpforce atr="5.88f"/>
+		<jumpreset atr="5.88f"/>
 		<gravityMax atr="5f"/>
 		<gravityIterator atr="0.46f"/>
 		<JumpforceIterator atr=" 0.2f"/>

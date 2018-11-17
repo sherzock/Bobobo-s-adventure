@@ -68,7 +68,7 @@ bool j1Player::PreUpdate() {
 bool j1Player::Update(float dt) {
 
 	BROFILER_CATEGORY("Player Update", Profiler::Color::Tomato)
-	
+		
 
 	collider->Set_Pos(position.x, position.y);
 	// Ground Collision // 
@@ -312,7 +312,7 @@ bool j1Player::Update(float dt) {
 	GroundCollision = false;
 	
 
-	if (GroundCollision == false && jump == false  ) {
+	if (GroundCollision == false && jump == false) {
 		position.y += gravity * dt * FSpeed;
 		
 		if (gravity < gravityMax*0.8) {
@@ -563,8 +563,10 @@ bool j1Player::CleanUp() {
 			}
 			
 	}
-
-	
+	if ((col_1->type == PLAYER_COLLIDER && col_2->type == ENEMY_COLLIDER) || (col_2->type == PLAYER_COLLIDER && col_1->type == ENEMY_COLLIDER))
+	{
+		dead = true;
+	}
 		
 	XSpeed= ResXspeed;
 };
@@ -581,7 +583,7 @@ bool j1Player::CleanUp() {
 	 position.y = config.child("position").attribute("y").as_int();
 
 	 pugi::xml_node physics = config.child("player").child("physics");
-	
+	 gravityMax = physics.child("gravityMax").attribute("atr").as_float();
 
 	 position.x = App->map->map_file.child("map").child("properties").child("property").attribute("value").as_int();
 	 position.y = App->map->map_file.child("map").child("properties").child("property").next_sibling("property").attribute("value").as_int();
@@ -590,7 +592,7 @@ bool j1Player::CleanUp() {
 	 gravity = physics.child("gravity").attribute("atr").as_float();
 	 Jumpforce = physics.child("jumpforce").attribute("atr").as_float();
 	 Jumpreset = physics.child("jumpreset").attribute("atr").as_float();
-	 gravityMax = physics.child("gravityMax").attribute("atr").as_float();;
+	 
 	 gravityIteratior = physics.child("gravityIterator").attribute("atr").as_float();;
 	 JumpforceIterator = physics.child("JumpforceIterator").attribute("atr").as_float();
 	 DashSpeed = physics.child("DashSpeed").attribute("atr").as_float();
