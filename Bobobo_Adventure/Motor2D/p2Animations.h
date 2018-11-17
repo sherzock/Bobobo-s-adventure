@@ -51,6 +51,7 @@ public:
 		}
 	}
 
+
 	void LoadAnimationsEnemies(p2SString name) {
 		pugi::xml_parse_result result = animations.load_file("animations.xml");
 		if (result != NULL) {
@@ -63,6 +64,7 @@ public:
 			}
 		}
 	}
+
 
 	bool Finished(){
 		if (loops > 0) {
