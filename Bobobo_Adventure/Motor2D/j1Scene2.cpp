@@ -116,6 +116,7 @@ bool j1Scene2::CleanUp()
 	App->colls->CleanUp();
 	App->tex->CleanUp();
 	App->enty->player->CleanUp();
+	App->enty->CleanUp();
 	return true;
 }
 

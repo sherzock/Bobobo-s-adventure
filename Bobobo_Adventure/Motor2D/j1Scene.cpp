@@ -12,6 +12,7 @@
 #include "j1Player.h"
 #include "j1Collisions.h"
 #include "j1FadeToBlack.h"
+#include "j1Pathfinding.h"
 
 j1Scene::j1Scene() : j1Module()
 {
@@ -50,6 +51,9 @@ bool j1Scene::Start()
 		App->enty->CreatePlayer();
 		playeron = true;
 	}
+
+	App->enty->AddEnemy(20, 20, FLYINGENEMY);
+
 	return true;
 }
 
@@ -112,6 +116,7 @@ bool j1Scene::CleanUp()
 	App->colls->CleanUp();
 	App->tex->CleanUp();
 	App->enty->player->CleanUp();
+	App->enty->CleanUp();
 
 	return true;
 	

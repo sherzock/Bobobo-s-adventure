@@ -69,5 +69,25 @@
     </attack>
 	
   </player>
+  <enemies>
+	<FlyingEnemy_flying loop="true" speed="0.3f">
+	 <animation x="10" y="5" w="25" h="30"/>
+     <animation x="47" y="8" w="28" h="27"/>
+	 <animation x="90" y="5" w="25" h="30"/>
+	 <animation x="127" y="8" w="28" h="27"/>
+	 <animation x="170" y="5" w="25" h="29"/>
+	 <animation x="207" y="8" w="28" h="26"/>
+	 <animation x="250" y="5" w="25" h="29"/>
+     <animation x="287" y="8" w="28" h="26"/>
+	 <animation x="330" y="5" w="25" h="30"/>
+	 <animation x="367" y="8" w="28" h="27"/>
+	 <animation x="410" y="5" w="25" h="30"/>
+	 <animation x="447" y="8" w="28" h="27"/>
+	 <animation x="490" y="5" w="25" h="31"/>
+     <animation x="527" y="8" w="28" h="28"/>
+	 <animation x="570" y="5" w="25" h="31"/>
+	 <animation x="607" y="8" w="28" h="28"/>
+	</FlyingEnemy_flying>
+  </enemies>
   
 </animations>
