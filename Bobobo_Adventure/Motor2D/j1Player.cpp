@@ -46,9 +46,6 @@ bool j1Player::Start() {
 	graphics = App->tex->Load("textures/character.png");
 
 
-	position.x = App->map->map_file.child("map").child("properties").child("property").attribute("value").as_int();
-	position.y = App->map->map_file.child("map").child("properties").child("property").next_sibling("property").attribute("value").as_int();
-
 	Initial_position.x = position.x;
 	Initial_position.y = position.y;
 	Sleeping();
@@ -252,11 +249,12 @@ bool j1Player::Update(float dt) {
 	}
 
 	//Restart Game//
+
 	if (App->input->GetKey(SDL_SCANCODE_F1) == j1KeyState::KEY_DOWN) {
 
 		if (App->scene->active == true) {
 
-			//App->fade->FadeToBlack(this, this);
+			App->fade->FadeToBlack(App->scene, App->scene);
 			position.x = Initial_position.x;
 			position.y = Initial_position.y;
 			App->render->camera.x = 0;
@@ -580,6 +578,9 @@ bool j1Player::CleanUp() {
 
 	 pugi::xml_node physics = config.child("player").child("physics");
 	
+
+	 position.x = App->map->map_file.child("map").child("properties").child("property").attribute("value").as_int();
+	 position.y = App->map->map_file.child("map").child("properties").child("property").next_sibling("property").attribute("value").as_int();
 	 XSpeed = physics.child("xspeed").attribute("atr").as_float();
 	 initialspeed = physics.child("initialspeed").attribute("atr").as_float();
 	 gravity = physics.child("gravity").attribute("atr").as_float();

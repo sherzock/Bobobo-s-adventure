@@ -77,7 +77,8 @@ bool j1Scene2::Update(float dt)
 
 	if (App->render->camera.x > -6500)
 	{
-		App->render->camera.x = -App->play->position.x + 400;
+		App->render->camera.x = -App->enty->player->position.x + 400;
+		
 		if (App->render->camera.x > 0)
 		{
 			App->render->camera.x = 0;
@@ -114,7 +115,7 @@ bool j1Scene2::CleanUp()
 	App->map->CleanUp();
 	App->colls->CleanUp();
 	App->tex->CleanUp();
-	//App->enty->player->CleanUp();
+	App->enty->player->CleanUp();
 	return true;
 }
 
@@ -126,6 +127,6 @@ void j1Scene2::change_scenes2() {
 	App->scene2->CleanUp();
 	App->fade->FadeToBlack(App->scene2, App->scene, 0.8f);
 	App->scene->Start();
-	//App->play->Start();
+	App->enty->player->Start();
 
 }
