@@ -9,6 +9,7 @@
 #include "j1Scene.h"
 #include "j1Scene2.h"
 #include "j1Player.h"
+#include "Brofiler/Brofiler.h"
 
 
 
@@ -31,6 +32,7 @@ bool j1EntityManager::Start()
 
 bool j1EntityManager::PreUpdate()
 {
+	BROFILER_CATEGORY("EntityManager PreUpdate", Profiler::Color::MediumVioletRed)
 	return true;
 }
 
@@ -49,6 +51,7 @@ bool j1EntityManager::Awake(pugi::xml_node& config) {
 
 bool j1EntityManager::Update(float dt)
 {
+	BROFILER_CATEGORY("EntityManager Update", Profiler::Color::Tomato)
 
 		for (p2List_item<j1Entity*>* iterator = entities.start; iterator != nullptr; iterator = iterator->next)
 		{
@@ -60,6 +63,7 @@ bool j1EntityManager::Update(float dt)
 
 bool j1EntityManager::PostUpdate()
 {
+	BROFILER_CATEGORY("EntityManager PostUpdate", Profiler::Color::MediumVioletRed)
 
 		for (p2List_item<j1Entity*>* iterator = entities.start; iterator != nullptr; iterator = iterator->next)
 		{

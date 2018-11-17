@@ -10,6 +10,7 @@
 #include "j1Player.h"
 #include "j1Map.h"
 #include "j1Scene.h"
+#include "Brofiler/Brofiler.h"
 
 j1FlyingEnemy::j1FlyingEnemy(int x, int y, entitytypes type) : j1Entity(x, y, entitytypes::FLYINGENEMY)
 {
@@ -36,6 +37,9 @@ bool j1FlyingEnemy::Start()
 
 bool j1FlyingEnemy::Update(float dt)
 {
+	BROFILER_CATEGORY("FlyingEnemy Update", Profiler::Color::Tomato)
+
+
 	collider->Set_Pos(position.x, position.y);
 
 
