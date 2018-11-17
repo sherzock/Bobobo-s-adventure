@@ -48,6 +48,7 @@ public:
 	bool goingright = false;
 	p2SString name;
 	fPoint position;
+	
 	float speed;
 	iPoint Initial_position;
 	Animations* animation = nullptr;

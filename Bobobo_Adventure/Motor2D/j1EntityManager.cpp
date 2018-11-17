@@ -9,7 +9,7 @@
 #include "j1Scene.h"
 #include "j1Scene2.h"
 #include "j1Player.h"
-
+#include "j1FlyingEnemy.h"
 
 
 j1EntityManager::j1EntityManager()
@@ -31,6 +31,15 @@ bool j1EntityManager::Start()
 
 bool j1EntityManager::PreUpdate()
 {
+	for (uint i = 0; i < MAX_ENEMIES; ++i)
+	{
+		if (queue[i].type != entitytypes::NO_TYPE)
+		{
+			CreateEnemy(queue[i]);
+			queue[i].type = entitytypes::NO_TYPE;
+		}
+	}
+
 	return true;
 }
 
@@ -110,6 +119,8 @@ void j1EntityManager::AddEnemy(int x, int y, entitytypes type)
 			queue[i].position.y = y;
 			break;
 		}
+
+
 	}
 }
 
@@ -122,9 +133,10 @@ void j1EntityManager::CreateEnemy(const EnemyInfo& info)
 		{
 			j1Entity* entity;
 			
-			if (queue[i].type == PLAYER)
-				entity = new j1Player(info.position.x, info.position.y, info.type);
-
+			 if (queue[i].type == FLYINGENEMY) {
+				entity = new j1FlyingEnemy(info.position.x, info.position.y, info.type);
+			}
+			
 			entities.add(entity);
 			entity->Start();
 		}

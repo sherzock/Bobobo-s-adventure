@@ -29,7 +29,7 @@ bool j1FlyingEnemy::Start()
 	sprites = App->tex->Load("textures/enemy2.png");
 	Sleeping();
 	animation = &flying;
-	collider = App->colls->AddCollider({ (int)position.x, (int)position.y, colliderSize.x, colliderSize.y }, ENEMY_COLLIDER, App->enty);
+	collider = App->colls->AddCollider({ (int)position.x, (int)position.y, 30/*colliderSize.x*/,30/*colliderSize.y*/ }, ENEMY_COLLIDER, App->enty);
 
 	return true;
 }
@@ -37,7 +37,7 @@ bool j1FlyingEnemy::Start()
 bool j1FlyingEnemy::Update(float dt)
 {
 	collider->Set_Pos(position.x, position.y);
-
+	Draw();
 
 
 	return true;
@@ -80,10 +80,10 @@ void j1FlyingEnemy::Sleeping()
 	pugi::xml_node harpy;
 	harpy = config.child("harpy");
 
-	speed = harpy.attribute("speed").as_int();
 
-	colliderSize.x = harpy.child("colliderSize").attribute("w").as_int();
-	colliderSize.y = harpy.child("colliderSize").attribute("h").as_int();
+
+	//colliderSize.x = harpy.child("colliderSize").attribute("w").as_int();
+	//colliderSize.y = harpy.child("colliderSize").attribute("h").as_int();
 }
 
 void j1FlyingEnemy::fly(p2DynArray<iPoint>& path, float dt)

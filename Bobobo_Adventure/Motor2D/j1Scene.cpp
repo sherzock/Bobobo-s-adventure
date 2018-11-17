@@ -13,6 +13,7 @@
 #include "j1Collisions.h"
 #include "j1FadeToBlack.h"
 #include "j1Pathfinding.h"
+#include "j1EntityManager.h"
 
 j1Scene::j1Scene() : j1Module()
 {
@@ -53,7 +54,7 @@ bool j1Scene::Start()
 	}
 
 	App->enty->AddEnemy(20, 20, FLYINGENEMY);
-
+	
 	return true;
 }
 
