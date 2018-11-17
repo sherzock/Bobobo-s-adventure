@@ -219,7 +219,7 @@ bool j1Player::Update(float dt) {
 
 
 	//Change level//
-	if (App->input->GetKey(SDL_SCANCODE_F3) == j1KeyState::KEY_DOWN) {
+	/*if (App->input->GetKey(SDL_SCANCODE_F3) == j1KeyState::KEY_DOWN) {
 
 		dead = false;
 		if (App->scene->active == true) {
@@ -231,11 +231,11 @@ bool j1Player::Update(float dt) {
 			App->scene2->change_scenes2();
 		}
 
-	}
+	}*/
 
 	//Restart level//
 
-	if (App->input->GetKey(SDL_SCANCODE_F2) == j1KeyState::KEY_DOWN) {
+/*	if (App->input->GetKey(SDL_SCANCODE_F2) == j1KeyState::KEY_DOWN) {
 
 		//App->fade->FadeToBlack(this, this);
 		position.x = Initial_position.x;
@@ -249,11 +249,11 @@ bool j1Player::Update(float dt) {
 
 	if (wallhitri == true || wallhitle == true) {
 		CanPlayerJump = true;
-	}
+	}*/
 
 	//Restart Game//
 
-	if (App->input->GetKey(SDL_SCANCODE_F1) == j1KeyState::KEY_DOWN) {
+	/*if (App->input->GetKey(SDL_SCANCODE_F1) == j1KeyState::KEY_DOWN) {
 
 		if (App->scene->active == true) {
 
@@ -269,7 +269,7 @@ bool j1Player::Update(float dt) {
 			App->scene2->change_scenes2();
 			dead = false;
 		}
-	}
+	}*/
 
 	//Dash
 	if (App->input->GetKey(SDL_SCANCODE_A) != j1KeyState::KEY_REPEAT || App->input->GetKey(SDL_SCANCODE_D) != j1KeyState::KEY_DOWN) {

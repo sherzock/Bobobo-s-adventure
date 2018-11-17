@@ -41,7 +41,7 @@ bool j1Scene::Start()
 {
 	
 	//App->map->Load("Testmap2.tmx");
-
+	
 	if (active == true)	{
 	
 		App->map->Load("Level1map.tmx");
@@ -77,6 +77,22 @@ bool j1Scene::Update(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
 		App->SaveGame("save_game.xml");
 
+	
+
+	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN || App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN){
+		
+		App->fade->FadeToBlack(this, App->scene);
+		App->enty->player->position.x = App->enty->player->Initial_position.x;
+		App->enty->player->position.y = App->enty->player->Initial_position.y;
+		App->render->camera.x = 0;
+	}
+	
+	
+	if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN) {	
+		change_scenes1();
+			
+	}
+		
 
 	if (App->render->camera.x > -6500)
 	{
@@ -121,7 +137,6 @@ bool j1Scene::CleanUp()
 	App->map->CleanUp();
 	App->colls->CleanUp();
 	App->tex->CleanUp();
-	/*App->enty->player->CleanUp();*/
 	App->enty->CleanUp();
 
 	return true;
@@ -131,12 +146,16 @@ bool j1Scene::CleanUp()
 
 
 void j1Scene::change_scenes1(){
+	
+
 	App->scene2->active = true;
 	App->scene->active = false;
 	CleanUp();
-	App->scene->CleanUp();
 	App->fade->FadeToBlack(App->scene, App->scene2, 0.8f);
+	App->enty->CreatePlayer();
+	App->enty->Start();
+
 	App->scene2->Start();
-	App->enty->player->Start();
-	
+
+
 }

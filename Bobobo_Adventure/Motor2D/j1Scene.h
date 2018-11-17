@@ -37,6 +37,7 @@ public:
 
 public:
 	bool playeron = false;
+	
 private:
 };
 

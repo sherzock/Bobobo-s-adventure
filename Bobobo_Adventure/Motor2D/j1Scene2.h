@@ -34,6 +34,8 @@ public:
 
 	void change_scenes2();
 private:
+	bool playeron = false;
+
 };
 
 #endif // __j1SCENE2_H__

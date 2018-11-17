@@ -42,6 +42,7 @@ bool j1Scene2::Awake()
 bool j1Scene2::Start()
 {
 	
+	
 	if (App->scene->active == true)
 		active = false;
 	
@@ -51,7 +52,11 @@ bool j1Scene2::Start()
 	//App->map->Load("Testmap2.tmx");
 	}
 	
-		
+	if (playeron == false)
+	{
+		App->enty->CreatePlayer();
+		playeron = true;
+	}
 	
 
 	
@@ -90,6 +95,27 @@ bool j1Scene2::Update(float dt)
 	}
 
 
+	
+
+	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN || App->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN) {
+	
+		change_scenes2();
+		
+	}
+
+
+	if (App->input->GetKey(SDL_SCANCODE_F2) == j1KeyState::KEY_DOWN) {
+
+		App->fade->FadeToBlack(this, this);
+		App->enty->player->position.x = App->enty->player->Initial_position.x;
+		App->enty->player->position.y = App->enty->player->Initial_position.y;
+		App->render->camera.x = 0;
+
+
+
+	}
+
+
 	App->map->Draw();
 
 
@@ -120,19 +146,24 @@ bool j1Scene2::CleanUp()
 	App->map->CleanUp();
 	App->colls->CleanUp();
 	App->tex->CleanUp();
-	/*App->enty->player->CleanUp();*/
 	App->enty->CleanUp();
 	return true;
 }
 
 void j1Scene2::change_scenes2() {
 	
-	App->scene->active = true;
-	App->scene2->active = false;
-	CleanUp();
-	App->scene2->CleanUp();
-	App->fade->FadeToBlack(App->scene2, App->scene, 0.8f);
-	App->scene->Start();
-	App->enty->player->Start();
+	
+		
+		App->scene->active = true;
+		App->scene2->active = false;
 
+		CleanUp();
+		App->fade->FadeToBlack(App->scene2, App->scene, 0.8f);
+		App->enty->CreatePlayer();
+		App->enty->Start();
+		App->scene->Start();
+	
+		
+
+	
 }
