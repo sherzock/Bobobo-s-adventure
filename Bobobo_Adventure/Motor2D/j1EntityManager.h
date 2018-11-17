@@ -20,7 +20,6 @@ enum entitytypes
 {
 	NO_TYPE,
 	PLAYER,
-
 };
 
 struct EnemyInfo

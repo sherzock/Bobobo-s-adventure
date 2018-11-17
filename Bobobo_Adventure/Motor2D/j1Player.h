@@ -7,6 +7,8 @@
 #include "p2Animations.h"
 #include "j1Entity.h"
 
+
+
 struct SDL_Texture;
 
 
@@ -25,7 +27,7 @@ public:
 	// Called before render is available//
 	bool Awake(pugi::xml_node& config);
 	
-	void Sleeping();
+	void LoadXML();
 	// Called before the first frame//
 	bool Start();
 
@@ -64,6 +66,8 @@ public:
 	fPoint position;
 	fPoint Initial_position;
 	
+   const int playerwidth =50;
+   const int playerheight = 55;
 
 	//variables
 	float XSpeed;

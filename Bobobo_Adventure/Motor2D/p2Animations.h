@@ -50,6 +50,7 @@ public:
 		}
 	}
 
+
 	bool Finished(){
 		if (loops > 0) {
 			loops = 0;

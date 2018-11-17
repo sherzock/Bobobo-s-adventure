@@ -44,15 +44,15 @@ bool j1Player::Awake(pugi::xml_node& config) {
 bool j1Player::Start() {
 	
 	graphics = App->tex->Load("textures/character.png");
-
+	LoadXML();
 
 	Initial_position.x = position.x;
 	Initial_position.y = position.y;
-	Sleeping();
+	
 
 	current_animation = &idle;
 	
-	collider = App->colls->AddCollider({ (int)position.x, (int)position.y, 50, 55 }, PLAYER_COLLIDER, App->enty);
+	collider = App->colls->AddCollider({ (int)position.x, (int)position.y, playerwidth, playerheight }, PLAYER_COLLIDER, App->enty);
 
 	return true;
 }
@@ -565,7 +565,7 @@ bool j1Player::CleanUp() {
 	XSpeed= ResXspeed;
 };
 
- void j1Player::Sleeping() {
+ void j1Player::LoadXML() {
  
 	 
 	 pugi::xml_document config_file;
