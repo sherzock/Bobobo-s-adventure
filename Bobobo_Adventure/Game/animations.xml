@@ -89,6 +89,18 @@
 	 <animation x="570" y="5" w="25" h="31"/>
 	 <animation x="607" y="8" w="28" h="28"/>
 	</FlyingEnemy_flying>
+	<WalkingEnemy_walking loop="true" speed="0.3f">
+	 <animation x="17" y="78" w="38" h="63"/>
+	 <animation x="72" y="78" w="43" h="63"/>
+	 <animation x="127" y="78" w="38" h="63"/>
+	 <animation x="177" y="81" w="47" h="60"/>
+	</WalkingEnemy_walking>
+	<WalkingEnemy_idle loop="true" speed="0.09f">
+	 <animation x="4" y="4" w="59" h="64"/>
+	 <animation x="75" y="8" w="48" h="60"/>
+	 <animation x="132" y="4" w="60" h="63"/>
+	 <animation x="203" y="7" w="52" h="61"/>
+	</WalkingEnemy_idle>
   </enemies>
   
 </animations>

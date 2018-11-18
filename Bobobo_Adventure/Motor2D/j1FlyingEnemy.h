@@ -37,7 +37,6 @@ public:
 	Animations flying;
 	fPoint initPos;
 	iPoint colliderSize;
-	bool dead;
 	int range = 1000;
 	Movement direction;
 };

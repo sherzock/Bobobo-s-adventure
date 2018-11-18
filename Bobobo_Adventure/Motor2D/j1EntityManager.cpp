@@ -10,6 +10,7 @@
 #include "j1Scene2.h"
 #include "j1Player.h"
 #include "j1FlyingEnemy.h"
+#include "j1WalkingEnemy.h"
 #include "Brofiler/Brofiler.h"
 
 
@@ -115,6 +116,10 @@ j1Entity* j1EntityManager::CreateEntity(entitytypes type, int x, int y)
 		ret = new j1FlyingEnemy(x, y, type);
 		if (ret != nullptr) entities.add(ret);
 		break;
+	case WALKINGENEMY:
+		ret = new j1WalkingEnemy(x, y, type);
+		if (ret != nullptr) entities.add(ret);
+		break;
 
 	}
 	return ret;
@@ -148,6 +153,9 @@ void j1EntityManager::CreateEnemy(const EnemyInfo& info)
 			 if (queue[i].type == FLYINGENEMY) {
 				entity = new j1FlyingEnemy(info.position.x, info.position.y, info.type);
 			}
+			 if (queue[i].type == WALKINGENEMY) {
+				 entity = new j1WalkingEnemy(info.position.x, info.position.y, info.type);
+			 }
 			
 			entities.add(entity);
 			entity->Start();

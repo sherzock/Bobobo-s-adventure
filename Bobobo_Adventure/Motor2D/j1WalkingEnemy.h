@@ -21,7 +21,7 @@ public:
 	bool Update(float dt);
 	bool CleanUp();
 
-	void fly(p2DynArray<iPoint>& path, float dt);
+	void walk(p2DynArray<iPoint>& path, float dt);
 	void OnCollision(Collider* col_1, Collider* col_2);
 	void Sleeping();
 
@@ -34,11 +34,12 @@ public:
 
 	p2DynArray<iPoint>* path;
 	bool path_created = false;
-	Animations flying;
+	Animations idle;
+	Animations walking;
 	fPoint initPos;
 	iPoint colliderSize;
-	bool dead;
-	uint32 range = 100;
+	int range = 1000;
+	Movement direction;
 };
 
-#endif // _j1FlyingEnemy_H__
+#endif // _j1WalkingEnemy_H__

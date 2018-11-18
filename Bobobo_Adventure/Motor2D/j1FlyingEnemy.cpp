@@ -80,11 +80,8 @@ void j1FlyingEnemy::OnCollision(Collider * col_1, Collider * col_2)
 {
 	if ((col_1->type == ATTACK_COLLIDER && col_2->type == ENEMY_COLLIDER) || (col_2->type == ATTACK_COLLIDER && col_1->type == ENEMY_COLLIDER))
 	{
-		dead = true;
-		CleanUp();
-		
+		CleanUp();	
 	}
-
 }
 
 bool j1FlyingEnemy::Load(pugi::xml_node &)
@@ -104,12 +101,6 @@ bool j1FlyingEnemy::Save(pugi::xml_node& data)const
 
 void j1FlyingEnemy::Sleeping()
 {
-	pugi::xml_document config_file;
-	config_file.load_file("config.xml");
-	pugi::xml_node config;
-	config = config_file.child("config");
-	pugi::xml_node harpy;
-	harpy = config.child("harpy");
 }
 
 void j1FlyingEnemy::fly(p2DynArray<iPoint>& path, float dt)
