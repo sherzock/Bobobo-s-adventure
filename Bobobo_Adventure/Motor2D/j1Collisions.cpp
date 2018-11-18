@@ -79,7 +79,7 @@ bool j1Collisions::PreUpdate(){
 	for (uint i = 0; i < MAX_NUM_COLLIDERS; ++i) {
 		if (colliders[i] == nullptr)
 			continue;
-		if (colliders[i]->type == PLAYER_COLLIDER || colliders[i]->type == NO_COLLIDER ){
+		if (colliders[i]->type == PLAYER_COLLIDER || colliders[i]->type == NO_COLLIDER || colliders[i]->type == ENEMY_COLLIDER){
 
 			collider1 = colliders[i];
 

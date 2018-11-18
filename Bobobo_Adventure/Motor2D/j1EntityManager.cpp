@@ -155,6 +155,7 @@ void j1EntityManager::CreateEnemy(const EnemyInfo& info)
 	}
 }
 
+
 void j1EntityManager::DestroyEntities()
 {
 	for (int i = 0; i < MAX_ENEMIES; i++)
