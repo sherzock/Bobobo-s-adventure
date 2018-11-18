@@ -68,7 +68,7 @@ void j1Map::Draw()
 								if (pos.x <(-(App->render->camera.x) + App->render->camera.w) && pos.x >(-(App->render->camera.x)- 1185))
 								App->render->Blit(tileset->texture, pos.x, pos.y, &r, SDL_FLIP_NONE, map_file.child("map").child("layer").next_sibling("layer").next_sibling("layer").next_sibling("layer").child("properties").child("property").attribute("value").as_float());
 							}
-							else if (layer->data->name != "Walk") {
+							else /*if (layer->data->name != "Walk")*/ {
 								if (pos.x <(-(App->render->camera.x) + App->render->camera.w) && pos.x >(-(App->render->camera.x) - 170)) {
 
 								App->render->Blit(tileset->texture, pos.x, pos.y, &r, SDL_FLIP_NONE);
@@ -85,6 +85,19 @@ void j1Map::Draw()
 
 }
 
+int Properties::Get(const char* value, int default_value) const
+{
+	p2List_item<Property*>* item = list.start;
+
+	while (item)
+	{
+		if (item->data->name == value)
+			return item->data->value;
+		item = item->next;
+	}
+
+	return default_value;
+}
 
 iPoint j1Map::MapToWorld(int x, int y) const
 {
@@ -521,5 +534,53 @@ bool j1Map::Colliders_on_map(const char * filename) {
 				GROUND_COLLIDER);
 		}
 	}
+	return ret;
+}
+
+bool j1Map::CreateWalkabilityMap(int& width, int& height, uchar** buffer) const
+{
+	bool ret = false;
+	p2List_item<MapLayer*>* item;
+	item = data.layers.start;
+
+	for (item = data.layers.start; item != NULL; item = item->next)
+	{
+		MapLayer* layer = item->data;
+
+		if (layer->properties.Get("Navigation", 0) == 0)
+			continue;
+
+		uchar* map = new uchar[layer->width*layer->height];
+		memset(map, 1, layer->width*layer->height);
+
+		for (int y = 0; y < data.height; ++y)
+		{
+			for (int x = 0; x < data.width; ++x)
+			{
+				int i = (y*layer->width) + x;
+
+				int tile_id = layer->Get(x, y);
+				TileSet* tileset = (tile_id > 0) ? GetTilesetFromTileId(tile_id) : NULL;
+
+				if (tileset != NULL)
+				{
+					map[i] = (tile_id - tileset->firstgid) > 0 ? 0 : 1;
+					/*TileType* ts = tileset->GetTileType(tile_id);
+					if(ts != NULL)
+					{
+					map[i] = ts->properties.Get("walkable", 1);
+					}*/
+				}
+			}
+		}
+
+		*buffer = map;
+		width = data.width;
+		height = data.height;
+		ret = true;
+
+		break;
+	}
+
 	return ret;
 }

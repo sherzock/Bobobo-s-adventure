@@ -2,9 +2,9 @@
 #define __j1PATHFINDING_H__
 
 #include "j1Module.h"
-#include "p2List.h"
 #include "p2Point.h"
 #include "p2DynArray.h"
+#include "p2List.h"
 
 #define DEFAULT_PATH_LENGTH 50
 #define INVALID_WALK_CODE 255
@@ -44,7 +44,7 @@ public:
 	void SetMap(uint width, uint height, uchar* data);
 
 	// Main function to request a path from A to B
-	p2DynArray<iPoint>* CreatePath( iPoint& origin, iPoint& destination);
+	p2DynArray<iPoint>* CreatePath(iPoint& origin, iPoint& destination);
 
 	// To request all tiles involved in the last generated path
 	const p2DynArray<iPoint>* GetLastPath() const;
@@ -59,6 +59,8 @@ public:
 	uchar GetTileAt(const iPoint& pos) const;
 
 	Movement CheckDirection(p2DynArray<iPoint>& path)const;
+	Movement CheckDirectionGround(p2DynArray<iPoint>& path)const;
+
 
 private:
 	p2DynArray<iPoint>*	_path = nullptr;
@@ -71,7 +73,7 @@ private:
 	p2DynArray<iPoint> last_path;
 };
 
-// forward declaration
+/// forward declaration
 struct PathList;
 
 // ---------------------------------------------------------------------
@@ -113,7 +115,6 @@ struct PathList
 	// The list itself, note they are not pointers!
 	p2List<PathNode> list;
 };
-
 
 
 #endif // __j1PATHFINDING_H__

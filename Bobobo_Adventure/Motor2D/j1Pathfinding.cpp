@@ -1,7 +1,7 @@
 #include "p2Defs.h"
 #include "p2Log.h"
 #include "j1App.h"
-#include "j1PathFinding.h"
+#include "j1Pathfinding.h"
 
 j1PathFinding::j1PathFinding() : j1Module(), map(NULL), last_path(DEFAULT_PATH_LENGTH), width(0), height(0)
 {
@@ -81,6 +81,25 @@ Movement j1PathFinding::CheckDirection(p2DynArray<iPoint>& path) const
 	else return NONE;
 }
 
+Movement j1PathFinding::CheckDirectionGround(p2DynArray<iPoint>& path) const
+{
+	if (path.Count() >= 2)
+	{
+		iPoint tile = path[0];
+		iPoint next_tile = path[1];
+
+		int x_difference = next_tile.x - tile.x;
+		int y_difference = next_tile.y - tile.y;
+
+		if (x_difference == 1) return RIGHT;
+		else if (x_difference == -1) return LEFT;
+		else if (y_difference == 1)	return DOWN;
+		else if (y_difference == -1) return UP;
+	}
+
+	else return NONE;
+}
+
 // To request all tiles involved in the last generated path
 const p2DynArray<iPoint>* j1PathFinding::GetLastPath() const
 {
@@ -143,6 +162,7 @@ uint PathNode::FindWalkableAdjacents(PathList& list_to_fill) const
 	iPoint cell;
 	uint before = list_to_fill.list.count();
 
+
 	//north-east
 	cell.create(pos.x + 1, pos.y + 1);
 	if (App->path->IsWalkable(cell))
@@ -183,6 +203,8 @@ uint PathNode::FindWalkableAdjacents(PathList& list_to_fill) const
 	if (App->path->IsWalkable(cell))
 		list_to_fill.list.add(PathNode(-1, -1, cell, this));
 
+
+
 	return list_to_fill.list.count();
 }
 
@@ -200,7 +222,11 @@ int PathNode::Score() const
 int PathNode::CalculateF(const iPoint& destination)
 {
 	g = parent->g + 1;
-	h = pos.DistanceTo(destination);
+
+	int x_distance = abs(pos.x - destination.x);
+	int y_distance = abs(pos.y - destination.y);
+
+	h = (x_distance + y_distance) * min(x_distance, y_distance);
 
 	return g + h;
 }
