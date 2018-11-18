@@ -50,7 +50,10 @@ struct MapLayer
 		RELEASE(data);
 	}
 	
-	inline uint Get(int x, int y) const;
+	inline uint Get(int x, int y) const
+	{
+		return data[(y*width) + x];
+	}
 	
 };
 
@@ -70,9 +73,9 @@ struct ImageLayer
 
 };
 
-uint MapLayer::Get(int x, int y) const {
-	return (y * width) + x;
-}
+//uint MapLayer::Get(int x, int y) const {
+//	return (y * width) + x;
+//}
 
 // ----------------------------------------------------
 struct TileSet
@@ -142,6 +145,7 @@ public:
 	
 	iPoint MapToWorld(int x, int y) const;
 	iPoint WorldToMap(int x, int y) const;
+	bool CreateWalkabilityMap(int& width, int& height, uchar** buffer) const;
 
 private:
 

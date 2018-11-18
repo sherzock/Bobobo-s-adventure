@@ -108,11 +108,6 @@ void j1FlyingEnemy::Sleeping()
 	config = config_file.child("config");
 	pugi::xml_node harpy;
 	harpy = config.child("harpy");
-
-
-
-	//colliderSize.x = harpy.child("colliderSize").attribute("w").as_int();
-	//colliderSize.y = harpy.child("colliderSize").attribute("h").as_int();
 }
 
 void j1FlyingEnemy::fly(p2DynArray<iPoint>& path, float dt)

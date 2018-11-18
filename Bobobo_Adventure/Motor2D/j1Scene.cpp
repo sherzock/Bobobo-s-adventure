@@ -40,11 +40,22 @@ bool j1Scene::Awake()
 bool j1Scene::Start()
 {
 	
-	//App->map->Load("Testmap2.tmx");
 	
 	if (active == true)	{
 	
-		App->map->Load("Level1map.tmx");
+		if (App->map->Load("Level1map.tmx"))
+		{
+			int w, h;
+			uchar* data = NULL;
+			if (App->map->CreateWalkabilityMap(w, h, &data))
+			{
+				App->path->SetMap(w, h, data);
+			}
+
+			RELEASE_ARRAY(data);
+		}
+		debug_tex = App->tex->Load("maps/path2.png");
+
 		App->audio->PlayMusic("audio/music/level1.ogg", 1.0f);
 	}
 
@@ -55,7 +66,7 @@ bool j1Scene::Start()
 	}
 
 
-	App->enty->AddEnemy(300, 50, FLYINGENEMY);
+	App->enty->AddEnemy(300, 400, FLYINGENEMY);
 	
 	return true;
 }
@@ -108,6 +119,28 @@ bool j1Scene::Update(float dt)
 			
 	}
 
+
+	if (App->colls->ShowColliders) {
+		int x, y;
+		App->input->GetMousePosition(x, y);
+		iPoint map_coordinates = App->map->WorldToMap(x - App->render->camera.x, y - App->render->camera.y);
+
+		// Debug pathfinding ------------------------------
+		App->input->GetMousePosition(x, y);
+		iPoint p = App->render->ScreenToWorld(x, y);
+		p = App->map->WorldToMap(p.x, p.y);
+		p = App->map->MapToWorld(p.x, p.y);
+
+		App->render->Blit(debug_tex, p.x, p.y, NULL, SDL_FLIP_NONE, NULL, NULL, NULL);
+
+		const p2DynArray<iPoint>* path = App->path->GetLastPath();
+
+		for (uint i = 0; i < path->Count(); ++i)
+		{
+			iPoint pos = App->map->MapToWorld(path->At(i)->x, path->At(i)->y);
+			App->render->Blit(debug_tex, pos.x, pos.y, NULL, SDL_FLIP_NONE, NULL, NULL, NULL);
+		}
+	}
 	
 	App->map->Draw();
 
