@@ -40,7 +40,7 @@ bool j1FlyingEnemy::Update(float dt)
 	BROFILER_CATEGORY("FlyingEnemy Update", Profiler::Color::Tomato)
 	collider->Set_Pos(position.x, position.y);
 		
-	/*if ((App->enty->player->position.x - position.x) <= range && (App->enty->player->position.x - position.x) >= -range && App->enty->player->collider->type == PLAYER_COLLIDER)
+	if ((App->enty->player->position.x - position.x) <= range && (App->enty->player->position.x - position.x) >= -range && App->enty->player->collider->type == PLAYER_COLLIDER)
 	{
 			iPoint origin = { App->map->WorldToMap((int)position.x + colliderSize.x / 2, (int)position.y + colliderSize.y / 2) };
 			iPoint destination;
@@ -57,7 +57,7 @@ bool j1FlyingEnemy::Update(float dt)
 			}
 	}
 	else if (path_created)
-		path->Clear();*/
+		path->Clear();
 
 	Draw();
 	if (dead == true) {
@@ -117,7 +117,7 @@ void j1FlyingEnemy::Sleeping()
 
 void j1FlyingEnemy::fly(p2DynArray<iPoint>& path, float dt)
 {
-	/*direction = App->path->CheckDirection(path);
+	direction = App->path->CheckDirection(path);
 
 	if (direction == Movement::DOWN_RIGHT)
 	{
@@ -142,5 +142,5 @@ void j1FlyingEnemy::fly(p2DynArray<iPoint>& path, float dt)
 	else if (direction == Movement::RIGHT)
 	position.x += speed * dt;
 	else if (direction == Movement::LEFT)
-	position.x -= speed * dt;*/
+	position.x -= speed * dt;
 }

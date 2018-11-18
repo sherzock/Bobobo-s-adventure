@@ -445,6 +445,7 @@ bool j1Map::LoadLayer(const pugi::xml_node& node, MapLayer* layer)
 	layer->width = node.attribute("width").as_uint();
 	layer->height = node.attribute("height").as_uint();
 	layer->data = new uint[layer->width * layer->height];
+	LoadProperties(node, layer->properties);
 	pugi::xml_node layer_data = node.child("data");
 
 	memset(layer->data, 0, sizeof(uint)*layer->height*layer->width);
@@ -454,6 +455,30 @@ bool j1Map::LoadLayer(const pugi::xml_node& node, MapLayer* layer)
 	for (pugi::xml_node tile = layer_data.child("tile"); tile; tile = tile.next_sibling("tile"))
 	{
 		layer->data[i++] = tile.attribute("gid").as_uint(0);
+	}
+
+	return ret;
+}
+
+bool j1Map::LoadProperties(pugi::xml_node node, Properties& properties)
+{
+	bool ret = false;
+
+	pugi::xml_node data = node.child("properties");
+
+	if (data != NULL)
+	{
+		pugi::xml_node prop;
+
+		for (prop = data.child("property"); prop; prop = prop.next_sibling("property"))
+		{
+			Properties::Property* p = new Properties::Property();
+
+			p->name = prop.attribute("name").as_string();
+			p->value = prop.attribute("value").as_int();
+
+			properties.list.add(p);
+		}
 	}
 
 	return ret;
@@ -473,25 +498,21 @@ bool j1Map::LoadParallax(pugi::xml_node& node, ImageLayer* image)
 
 bool j1Map::Colliders_on_map(const char * filename) {
 	bool ret = true;
-
 	p2SString tmp("%s%s", folder.GetString(), filename);
-
 	pugi::xml_parse_result result = map_file.load_file(tmp.GetString());
-
 	if (result == NULL)
 	{
-		LOG("xml file not loaded %s. pugi error: %s", filename, result.description());
+		LOG("Could not load tiled xml file %s. pugi error: %s", filename, result.description());
+		ret = false;
 	}
-	pugi::xml_node auxiliarnode;
-	const char* nameattribute;
 	pugi::xml_node obj;
-	for (auxiliarnode = map_file.child("map").child("objectgroup"); auxiliarnode && ret; auxiliarnode = auxiliarnode.next_sibling("objectgroup"))
+	pugi::xml_node group;
+	const char* object_name;
+	for (group = map_file.child("map").child("objectgroup"); group && ret; group = group.next_sibling("objectgroup"))
 	{
-		nameattribute = auxiliarnode.attribute("name").as_string();
-	
-		for (obj = auxiliarnode.child("object"); obj && ret; obj = obj.next_sibling("object"))
+		object_name = group.attribute("name").as_string();
+		for (obj = group.child("object"); obj && ret; obj = obj.next_sibling("object"))
 		{
-
 			App->colls->AddCollider({
 				obj.attribute("x").as_int(),
 				obj.attribute("y").as_int(),

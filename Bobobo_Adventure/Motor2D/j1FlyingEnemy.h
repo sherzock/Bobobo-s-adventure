@@ -39,6 +39,7 @@ public:
 	iPoint colliderSize;
 	bool dead;
 	uint32 range = 100;
+	Movement direction;
 };
 
 #endif // _j1FlyingEnemy_H__

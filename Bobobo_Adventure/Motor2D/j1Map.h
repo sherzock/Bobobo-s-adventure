@@ -40,6 +40,7 @@ struct MapLayer
 	uint				width;
 	uint				height;
 	uint*				data;
+	Properties			properties;
 	
 	MapLayer() : data(NULL)
 	{}
@@ -147,7 +148,7 @@ private:
 	bool LoadMap();
 	bool LoadTilesetDetails(pugi::xml_node& tileset_node, TileSet* set);
 	bool LoadTilesetImage(pugi::xml_node& tileset_node, TileSet* set);
-	
+	bool LoadProperties(pugi::xml_node node, Properties& properties);
 	bool LoadLayer(const pugi::xml_node& node, MapLayer* layer);
 	bool Colliders_on_map(const char * filename);
 	bool LoadParallax(pugi::xml_node& node, ImageLayer* image);
