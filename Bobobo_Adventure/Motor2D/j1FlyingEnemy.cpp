@@ -63,7 +63,15 @@ bool j1FlyingEnemy::Update(float dt)
 	else if (path_created)
 		path->Clear();
 
-	Draw();
+	SDL_Rect rect = animation->GetCurrentFrame();
+	
+	if (position.x - App->enty->player->position.x >= 0) {
+		Draw(rect, true, 0, 0);
+	}else {
+		Draw(rect, false, 0, 0);
+	}
+	
+	
 	
 	return true;
 }

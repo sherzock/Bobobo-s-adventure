@@ -59,7 +59,7 @@ bool j1WalkingEnemy::Update(float dt)
 	else if (path_created)
 	path->Clear();*/
 
-	Draw();
+	//Draw();
 	if (dead == true) {
 		position.x += 50;
 	}
