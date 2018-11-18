@@ -155,6 +155,22 @@ void j1EntityManager::CreateEnemy(const EnemyInfo& info)
 	}
 }
 
+void j1EntityManager::DestroyEntities()
+{
+	for (int i = 0; i < MAX_ENEMIES; i++)
+	{
+		queue[i].type = entitytypes::NO_TYPE;
+	}
+
+	for (p2List_item<j1Entity*>* iterator = entities.start; iterator; iterator = iterator->next) {
+
+		iterator->data->CleanUp();
+		int num = entities.find(iterator->data);
+		RELEASE(entities.At(num)->data);
+		entities.del(entities.At(num));
+	}
+}
+
 void j1EntityManager::CreatePlayer()
 {
 	player = (j1Player*)CreateEntity(PLAYER);

@@ -52,6 +52,7 @@ public:
 	void CreatePlayer();
 	void AddEnemy(int x, int y, entitytypes type);
 	void CreateEnemy(const EnemyInfo& info);
+	void DestroyEntities();
 
 public:
 
