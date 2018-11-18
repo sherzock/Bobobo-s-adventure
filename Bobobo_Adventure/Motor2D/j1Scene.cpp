@@ -224,6 +224,11 @@ void j1Scene::AddAllEnemies() {
 
 
 	App->enty->AddEnemy(500, 530, WALKINGENEMY);
-	App->enty->AddEnemy(800, 380, FLYINGENEMY);
+	App->enty->AddEnemy(800, 470, FLYINGENEMY);
 	App->enty->AddEnemy(1500, 100, FLYINGENEMY);
+	App->enty->AddEnemy(3500, 100, FLYINGENEMY);
+	App->enty->AddEnemy(6500, 500, WALKINGENEMY);
+	App->enty->AddEnemy(7500, 400, FLYINGENEMY);
+	App->enty->AddEnemy(4500, 400, FLYINGENEMY);
+	App->enty->AddEnemy(4600, 450, WALKINGENEMY);
 }

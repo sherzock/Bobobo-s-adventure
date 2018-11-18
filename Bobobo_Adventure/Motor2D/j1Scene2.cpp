@@ -172,5 +172,10 @@ void j1Scene2::change_scenes2() {
 void j1Scene2::AddAllEnemies2() {
 
 
-	App->enty->AddEnemy(300, 400, FLYINGENEMY);
+	App->enty->AddEnemy(400, 200, FLYINGENEMY);
+	App->enty->AddEnemy(1000, 600, FLYINGENEMY);
+	App->enty->AddEnemy(2300, 50, FLYINGENEMY);
+	App->enty->AddEnemy(4000, 200, FLYINGENEMY);
+	App->enty->AddEnemy(5000, 400, FLYINGENEMY);
+
 }

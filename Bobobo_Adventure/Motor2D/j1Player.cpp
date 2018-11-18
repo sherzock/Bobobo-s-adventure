@@ -213,6 +213,28 @@ bool j1Player::Update(float dt) {
 	if (godmode == true) {
 
 		collider->type = NO_COLLIDER;
+		gravity = 0;
+		if (App->input->GetKey(SDL_SCANCODE_D) == j1KeyState::KEY_REPEAT) {
+		
+			position.x += 8;
+			
+		}
+		if (App->input->GetKey(SDL_SCANCODE_A) == j1KeyState::KEY_REPEAT) {
+
+			position.x -= 8;
+
+		}
+		if (App->input->GetKey(SDL_SCANCODE_S) == j1KeyState::KEY_REPEAT) {
+
+			position.y += 8;
+
+		}
+		if (App->input->GetKey(SDL_SCANCODE_W) == j1KeyState::KEY_REPEAT) {
+
+			position.y -= 8;
+
+		}
+
 	}
 	else if (godmode == false) {
 		collider->type = PLAYER_COLLIDER;
