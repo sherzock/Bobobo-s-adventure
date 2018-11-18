@@ -126,9 +126,6 @@ bool j1Scene2::Update(float dt)
 
 
 
-	p2SString title( "Bobobo Adventure");
-
-	App->win->SetTitle(title.GetString());
 	return true;
 }
 
