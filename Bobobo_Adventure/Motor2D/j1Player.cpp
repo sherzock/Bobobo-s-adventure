@@ -350,14 +350,14 @@ bool j1Player::Update(float dt) {
 		if (dead == true) {
 
 			//App->fade->FadeToBlack(this,this,0.8f);
-			position.x = Initial_position.x;
-			position.y = Initial_position.y;
+			position.x = 30;
+			position.y = 350;
 			dead = false;
 		}
 	}
 	
 
-	
+	/*
 	if (position.x >= App->map->map_file.child("map").child("properties").child("property").next_sibling("property").next_sibling("property").next_sibling("property").attribute("value").as_float()-300 && App->scene->active == true) {
 
 		win1 = true;
@@ -366,14 +366,14 @@ bool j1Player::Update(float dt) {
 
 		win2 = true;
 	}
-
-	if (win1 == true) {
+	*/
+	/*if (win1 == true) {
 		App->scene->change_scenes1();
 		position.x = Initial_position.x;
 	}
 	else if (win2 == true) {
 		App->scene2->change_scenes2();
-	}
+	}*/
 
 
 

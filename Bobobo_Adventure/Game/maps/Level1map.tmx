@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="550" height="50" tilewidth="16" tileheight="16" nextobjectid="126">
  <properties>
-  <property name="Spawnx" type="int" value="50"/>
+  <property name="Spawnx" type="int" value="30"/>
   <property name="Spawny" type="int" value="550"/>
   <property name="deathdis" type="float" value="700"/>
   <property name="windis" type="float" value="6250"/>

@@ -92,7 +92,7 @@ bool j1Scene2::Update(float dt)
 
 	
 
-	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN || App->input->GetKey(SDL_SCANCODE_F4) == KEY_DOWN) {
+	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN || App->input->GetKey(SDL_SCANCODE_F4) == KEY_DOWN || App->enty->player->position.x >= App->map->map_file.child("map").child("properties").child("property").next_sibling("property").next_sibling("property").next_sibling("property").attribute("value").as_float() - 100) {
 	
 		change_scenes2();
 		
@@ -108,6 +108,13 @@ bool j1Scene2::Update(float dt)
 
 
 
+	}
+	if (App->enty->player->win1 == true) {
+		App->scene->change_scenes1();
+
+	}
+	else if (App->enty->player->win2 == true) {
+		App->scene2->change_scenes2();
 	}
 
 

@@ -64,7 +64,7 @@ bool j1Scene::Start()
 		App->enty->CreatePlayer();
 		playeron = true;
 	}
-
+	App->enty->player->position.x = App->enty->player->Initial_position.x;
 
 	App->enty->AddEnemy(300, 400, FLYINGENEMY);
 	
@@ -103,11 +103,26 @@ bool j1Scene::Update(float dt)
 	}
 	
 	
-	if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN) {	
+	if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN || App->enty->player->position.x >= App->map->map_file.child("map").child("properties").child("property").next_sibling("property").next_sibling("property").next_sibling("property").attribute("value").as_float() - 300) {
 		change_scenes1();
 			
 	}
 		
+
+	/*if (App->enty->player->position.x >= App->map->map_file.child("map").child("properties").child("property").next_sibling("property").next_sibling("property").next_sibling("property").attribute("value").as_float() - 300) {
+
+		change_scenes1();
+	}
+	/*else if (position.x >= App->map->map_file.child("map").child("properties").child("property").next_sibling("property").next_sibling("property").next_sibling("property").attribute("value").as_float() && App->scene2->active == true) {
+
+		App->enty->player->win2 = true;
+	}
+	*/
+	
+	/*else if (App->enty->player->win2 == true) {
+		App->scene2->change_scenes2();
+	}
+	*/
 
 	if (App->render->camera.x > -7500)
 	{
