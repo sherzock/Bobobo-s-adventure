@@ -159,6 +159,7 @@ void j1EntityManager::CreateEnemy(const EnemyInfo& info)
 			
 			entities.add(entity);
 			entity->Start();
+			break;
 		}
 	}
 }
