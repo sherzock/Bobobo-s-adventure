@@ -29,7 +29,7 @@ bool j1WalkingEnemy::Start()
 {
 
 	sprites = App->tex->Load("textures/enemy1_3.png");
-	Sleeping();
+	LoadXML();
 	animation = &idle;
 	collider = App->colls->AddCollider({ (int)position.x, (int)position.y, 55,50 }, ENEMY_COLLIDER, App->enty);
 
@@ -91,33 +91,6 @@ bool j1WalkingEnemy::CleanUp()
 	return true;
 }
 
-void j1WalkingEnemy::OnCollision(Collider * col_1, Collider * col_2)
-{
-
-	COLLISION_DIRECTION direction;
-
-	if ((col_1->type == GROUND_COLLIDER && col_2->type == ENEMY_COLLIDER) || (col_2->type == GROUND_COLLIDER && col_1->type == ENEMY_COLLIDER))
-	{
-		direction = col_1->CheckDirection(col_2->rect);
-
-		if (direction == UP_COLLISION)
-			position.y = col_2->rect.y - 50 + 1;
-
-		else if (direction == DOWN_COLLISION)
-			position.y = col_2->rect.y + col_2->rect.h;
-
-		else if (direction == RIGHT_COLLISION)
-			position.x = col_2->rect.x + col_2->rect.w;
-
-		else if (direction == LEFT_COLLISION)
-			position.x = col_2->rect.x - 55 ;
-	}
-
-	if ((col_1->type == ATTACK_COLLIDER && col_2->type == ENEMY_COLLIDER) || (col_2->type == ATTACK_COLLIDER && col_1->type == ENEMY_COLLIDER))
-	{
-		CleanUp();
-	}
-}
 
 bool j1WalkingEnemy::Load(pugi::xml_node &)
 {
@@ -134,7 +107,36 @@ bool j1WalkingEnemy::Save(pugi::xml_node& data)const
 	return true;
 }
 
-void j1WalkingEnemy::Sleeping()
+void j1WalkingEnemy::OnCollision(Collider * col_1, Collider * col_2)
+{
+
+	COLLISION_DIRECTION direction;
+
+	if ((col_1->type == GROUND_COLLIDER && col_2->type == ENEMY_COLLIDER) || (col_2->type == GROUND_COLLIDER && col_1->type == ENEMY_COLLIDER))
+	{
+		direction = col_1->CheckDirection(col_2->rect);
+
+		if (direction == UP_COLLISION)
+			position.y = col_2->rect.y - 50 + 1;
+
+		else if (direction == DOWN_COLLISION)
+			position.y = col_2->rect.y + col_2->rect.h;
+
+		else if (direction == RIGHT_COLLISION)
+			position.x = col_2->rect.x + 55;
+
+		else if (direction == LEFT_COLLISION)
+			position.x = col_2->rect.x - 55 ;
+	}
+
+	if ((col_1->type == ATTACK_COLLIDER && col_2->type == ENEMY_COLLIDER) || (col_2->type == ATTACK_COLLIDER && col_1->type == ENEMY_COLLIDER))
+	{
+		CleanUp();
+	}
+}
+
+
+void j1WalkingEnemy::LoadXML()
 {
 }
 

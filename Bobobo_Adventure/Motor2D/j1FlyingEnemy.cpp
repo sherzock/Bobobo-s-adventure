@@ -29,7 +29,7 @@ bool j1FlyingEnemy::Start()
 {
 
 	sprites = App->tex->Load("textures/enemy2.png");
-	Sleeping();
+	LoadXML();
 	animation = &flying;
 	collider = App->colls->AddCollider({ (int)position.x, (int)position.y, 30,30 }, ENEMY_COLLIDER, App->enty);
 
@@ -85,13 +85,6 @@ bool j1FlyingEnemy::CleanUp()
 	return true;
 }
 
-void j1FlyingEnemy::OnCollision(Collider * col_1, Collider * col_2)
-{
-	if ((col_1->type == ATTACK_COLLIDER && col_2->type == ENEMY_COLLIDER) || (col_2->type == ATTACK_COLLIDER && col_1->type == ENEMY_COLLIDER))
-	{
-		CleanUp();	
-	}
-}
 
 bool j1FlyingEnemy::Load(pugi::xml_node & data)
 {
@@ -117,7 +110,7 @@ bool j1FlyingEnemy::Save(pugi::xml_node& data)const
 
 	fly.append_attribute("x") = position.x;
 	fly.append_attribute("y") = position.y;
-	
+
 	if (App->scene->active == true)
 	{
 		fly.append_attribute("level") = 1;
@@ -130,7 +123,15 @@ bool j1FlyingEnemy::Save(pugi::xml_node& data)const
 	return true;
 }
 
-void j1FlyingEnemy::Sleeping()
+
+void j1FlyingEnemy::OnCollision(Collider * col_1, Collider * col_2)
+{
+	if ((col_1->type == ATTACK_COLLIDER && col_2->type == ENEMY_COLLIDER) || (col_2->type == ATTACK_COLLIDER && col_1->type == ENEMY_COLLIDER))
+	{
+		CleanUp();	
+	}
+}
+void j1FlyingEnemy::LoadXML()
 {
 }
 

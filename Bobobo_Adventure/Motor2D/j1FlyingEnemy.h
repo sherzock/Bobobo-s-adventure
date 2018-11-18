@@ -23,7 +23,7 @@ public:
 
 	void fly(p2DynArray<iPoint>& path, float dt);
 	void OnCollision(Collider* col_1, Collider* col_2);
-	void Sleeping();
+	void LoadXML();
 
 	bool Load(pugi::xml_node&);
 	bool Save(pugi::xml_node&) const;
