@@ -43,8 +43,10 @@ bool j1Scene2::Start()
 {
 	
 	
-	if (App->scene->active == true)
+	if (App->scene->active == true) {
 		active = false;
+	}
+		
 	
 	if (active == true) {
 	App->map->Load("Level2map.tmx");
@@ -52,8 +54,10 @@ bool j1Scene2::Start()
 	//App->map->Load("Testmap2.tmx");
 	}
 	
+	if (active == true) {
+		AddAllEnemies2();
+	}
 	
-
 	
 	return true;
 }

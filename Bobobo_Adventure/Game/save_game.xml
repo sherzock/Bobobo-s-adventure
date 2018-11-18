@@ -8,7 +8,8 @@
 	<scene />
 	<scene2 />
 	<entity>
-		<position x="30" y="550" level="1" />
+		<position x="34" y="550" level="1" />
+		<position2 x="223.199768" y="476.800415" level="1" />
 	</entity>
 	<collisions />
 	<fade />

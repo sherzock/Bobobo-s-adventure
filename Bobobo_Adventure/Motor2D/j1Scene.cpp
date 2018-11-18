@@ -64,8 +64,9 @@ bool j1Scene::Start()
 		App->enty->CreatePlayer();
 		playeron = true;
 	}
+	if (active == true) {
 	AddAllEnemies();
-
+	}
 	
 	
 	return true;
