@@ -218,59 +218,11 @@ bool j1Player::Update(float dt) {
 	}
 
 
-	//Change level//
-/*	if (App->input->GetKey(SDL_SCANCODE_F3) == j1KeyState::KEY_DOWN) {
-
-		dead = false;
-		if (App->scene->active == true) {
-
-			App->scene->change_scenes1();
-
-		}
-		else if (App->scene2->active == true) {
-			App->scene2->change_scenes2();
-		}
-
-	}
-
-//	Restart level//
-
-	if (App->input->GetKey(SDL_SCANCODE_F2) == j1KeyState::KEY_DOWN) {
-
-		//App->fade->FadeToBlack(this, this);
-		position.x = Initial_position.x;
-		position.y = Initial_position.y;
-		App->render->camera.x = 0;
-		App->render->camera.y = 0;
-		dead = false;
-
-
-	}*/
 
 	if (wallhitri == true || wallhitle == true) {
 		CanPlayerJump = true;
 	}
 
-//	Restart Game//
-
-/*	if (App->input->GetKey(SDL_SCANCODE_F1) == j1KeyState::KEY_DOWN) {
-
-		if (App->scene->active == true) {
-
-			App->fade->FadeToBlack(App->scene, App->scene);
-			position.x = Initial_position.x;
-			position.y = Initial_position.y;
-			App->render->camera.x = 0;
-			App->render->camera.y = 0;
-			dead = false;
-
-		}
-		else if (App->scene2->active == true) {
-			App->scene2->change_scenes2();
-			dead = false;
-		}
-	}
-	*/
 	//Dash
 	if (App->input->GetKey(SDL_SCANCODE_A) != j1KeyState::KEY_REPEAT || App->input->GetKey(SDL_SCANCODE_D) != j1KeyState::KEY_DOWN) {
 
@@ -406,7 +358,7 @@ bool j1Player::Update(float dt) {
 	
 
 	
-	if (position.x >= App->map->map_file.child("map").child("properties").child("property").next_sibling("property").next_sibling("property").next_sibling("property").attribute("value").as_float() && App->scene->active == true) {
+	if (position.x >= App->map->map_file.child("map").child("properties").child("property").next_sibling("property").next_sibling("property").next_sibling("property").attribute("value").as_float()-300 && App->scene->active == true) {
 
 		win1 = true;
 	}
@@ -417,13 +369,13 @@ bool j1Player::Update(float dt) {
 
 	if (win1 == true) {
 		App->scene->change_scenes1();
-
+		position.x = Initial_position.x;
 	}
-	/*else if (win2 == true) {
+	else if (win2 == true) {
 		App->scene2->change_scenes2();
-	}*/
+	}
 
-	//player->Set_Pos(position.x,position.y);
+
 
 	
 	if(win1 == false || win2 == false){

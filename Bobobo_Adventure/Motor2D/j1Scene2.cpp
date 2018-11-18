@@ -52,11 +52,6 @@ bool j1Scene2::Start()
 	//App->map->Load("Testmap2.tmx");
 	}
 	
-	if (playeron == false)
-	{
-		App->enty->CreatePlayer();
-		playeron = true;
-	}
 	
 
 	
@@ -83,7 +78,7 @@ bool j1Scene2::Update(float dt)
 		App->SaveGame("save_game.xml");
 
 
-	if (App->render->camera.x > -6500)
+	if (App->render->camera.x > -7500)
 	{
 		App->render->camera.x = -App->enty->player->position.x + 400;
 		
@@ -107,8 +102,8 @@ bool j1Scene2::Update(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_F2) == j1KeyState::KEY_DOWN) {
 
 		App->fade->FadeToBlack(this, this);
-		App->enty->player->position.x = App->enty->player->Initial_position.x;
-		App->enty->player->position.y = App->enty->player->Initial_position.y;
+		App->enty->player->position.x = 30;
+		App->enty->player->position.y = 300;
 		App->render->camera.x = 0;
 
 
@@ -154,11 +149,13 @@ void j1Scene2::change_scenes2() {
 		
 	App->scene->active = true;
 	App->scene2->active = false;
-
 	CleanUp();
+	App->enty->CleanUp();
 	App->fade->FadeToBlack(App->scene2, App->scene, 0.8f);
 	App->enty->CreatePlayer();
 	App->enty->Start();
+	App->enty->player->position.x = 30;
+	App->enty->player->position.y = 550;
 	App->scene->Start();
 	
 	

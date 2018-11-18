@@ -48,11 +48,12 @@ bool j1Scene::Start()
 		App->audio->PlayMusic("audio/music/level1.ogg", 1.0f);
 	}
 
-	/*if (playeron == false)
+	if (playeron == false)
 	{
 		App->enty->CreatePlayer();
 		playeron = true;
-	}*/
+	}
+
 
 	App->enty->AddEnemy(300, 50, FLYINGENEMY);
 	
@@ -97,7 +98,7 @@ bool j1Scene::Update(float dt)
 	}
 		
 
-	if (App->render->camera.x > -6500)
+	if (App->render->camera.x > -7500)
 	{
 		App->render->camera.x = -App->enty->player->position.x+ 400;
 		if (App->render->camera.x > 0)
@@ -158,8 +159,8 @@ void j1Scene::change_scenes1(){
 	App->fade->FadeToBlack(App->scene, App->scene2, 0.8f);
 	App->enty->CreatePlayer();
 	App->enty->Start();
-
 	App->scene2->Start();
-
+	App->enty->player->position.x = 30;
+	App->enty->player->position.y = 300;
 
 }
