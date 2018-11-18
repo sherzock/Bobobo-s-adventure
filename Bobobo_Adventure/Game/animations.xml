@@ -1,6 +1,6 @@
 <animations>
   <player>
-    <idle loop="true" speed="0.2f">
+    <idle loop="true" speed="20f">
 	
       <animation x="2" y="21" w="42" h="61"/>
       <animation x="60" y="21" w="44" h="60"/>
@@ -13,7 +13,7 @@
 
    
 
-    <run loop="true" speed="0.3f">
+    <run loop="true" speed="20f">
 	
       <animation x="0" y="101" w="44" h="57"/>
       <animation x="60" y="94" w="52" h="64"/>
@@ -35,14 +35,14 @@
 	  
     </jumpanim>
 
-     <falling loop="true" speed="0.1f">
+     <falling loop="true" speed="20f">
      
 	 <animation x="2" y="244" w="63" h="69"/>
    	 <animation x="78" y="244" w="63" h="69"/>
 	 
     </falling>
 
-	 <dash loop="true" speed="0.2f">
+	 <dash loop="true" speed="20">
 	
      <animation x="3" y="323" w="96" h="65"/>
      <animation x="106" y="320" w="96" h="65"/> 
@@ -57,7 +57,7 @@
    
     </wall>
 	
-	<attack loop="false " speed="0.3f">
+	<attack loop="false " speed="20f">
 	
      <animation x="3" y="460" w="50" h="65"/>
      <animation x="64" y="460" w="70" h="65"/>
@@ -67,7 +67,7 @@
 	 <animation x="360" y="460" w="60" h="65"/>
 	  
     </attack>
-	<death loop="false " speed="0.03f">
+	<death loop="false " speed="10f">
 	
      <animation x="70" y="385" w="60" h="65"/>
      <animation x="137" y="385" w="70" h="65"/>

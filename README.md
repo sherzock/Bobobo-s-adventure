@@ -28,8 +28,11 @@ This game is a basic plataformer made by Jacobo Galofre and Ferran Barnes at UPC
   <li>F6 - Load</li>
   <li>F9 - Show Colliders</li>
   <li>F10 - Godmode</li>
+   <li>F11 - Cap Fps</li>
 </ul> 
 
+<h3>Innovations</h3>
+Wall jump fully implemented and you can attack enemies to destroy them.
 
 
 <h6>Copyright</h6>

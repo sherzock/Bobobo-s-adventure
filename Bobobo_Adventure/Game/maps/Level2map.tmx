@@ -92123,9 +92123,7 @@
   <object id="151" x="6160" y="503" width="63" height="25"/>
   <object id="152" x="6258" y="459" width="569" height="36"/>
  </objectgroup>
- <objectgroup name="Death colliders">
-  <object id="61" x="41.6667" y="780.333" width="6867" height="190"/>
- </objectgroup>
+ <objectgroup name="Death colliders"/>
  <objectgroup name="Win Colliders"/>
  <layer name="Walk" width="460" height="50">
   <properties>

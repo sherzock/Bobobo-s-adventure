@@ -252,7 +252,7 @@ bool j1Player::Update(float dt) {
 	}
 	//Conditions for movement
 	
-	if (isfalling == true && wallhitle == false && wallhitri == false /*|| GroundCollision == false*/) {
+	if (isfalling == true && wallhitle == false && wallhitri == false ) {
 		
 		animation = &falling;
 		
@@ -351,7 +351,7 @@ bool j1Player::Update(float dt) {
 		if (dead == true) {
 		
 			animation = &deadanim;
-			if(App->scene->active == true /*&& deadanim.Finished() == true*/){
+			if(App->scene->active == true ){
 				App->fade->FadeToBlack(App->scene, App->scene,0.8f);
 				position.x = 30;
 				position.y = 520;
@@ -360,7 +360,7 @@ bool j1Player::Update(float dt) {
 				App->scene->AddAllEnemies();
 				deadanim.Reset();
 			}
-			if (App->scene2->active == true /*&& deadanim.Finished() == true*/) {
+			if (App->scene2->active == true ) {
 				App->fade->FadeToBlack(App->scene2, App->scene2,0.8f);
 				position.x = 30;
 				position.y = 350;
