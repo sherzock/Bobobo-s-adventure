@@ -68,7 +68,7 @@ void j1Map::Draw()
 								if (pos.x <(-(App->render->camera.x) + App->render->camera.w) && pos.x >(-(App->render->camera.x)- 1185))
 								App->render->Blit(tileset->texture, pos.x, pos.y, &r, SDL_FLIP_NONE, map_file.child("map").child("layer").next_sibling("layer").next_sibling("layer").next_sibling("layer").child("properties").child("property").attribute("value").as_float());
 							}
-							else /*if (layer->data->name != "Walk")*/ {
+							else if (layer->data->name != "Walk") {
 								if (pos.x <(-(App->render->camera.x) + App->render->camera.w) && pos.x >(-(App->render->camera.x) - 170)) {
 
 								App->render->Blit(tileset->texture, pos.x, pos.y, &r, SDL_FLIP_NONE);
@@ -101,10 +101,17 @@ int Properties::Get(const char* value, int default_value) const
 
 iPoint j1Map::MapToWorld(int x, int y) const
 {
-	iPoint ret;
+	iPoint ret(0, 0);
 
-	ret.x = x * data.tile_width;
-	ret.y = y * data.tile_height;
+	// Translates x,y coordinates from map positions to world positions
+	if (data.type == MapTypes::MAPTYPE_ORTHOGONAL) {
+		ret.x = x * data.tile_width;
+		ret.y = y * data.tile_height;
+	}
+	else if (data.type == MapTypes::MAPTYPE_ISOMETRIC) {
+		ret.x = (x - y) * (data.tile_width / 2);
+		ret.y = (x + y) * (data.tile_height / 2);
+	}
 
 	return ret;
 }
@@ -112,10 +119,16 @@ iPoint j1Map::MapToWorld(int x, int y) const
 iPoint j1Map::WorldToMap(int x, int y) const
 {
 	iPoint ret(0, 0);
-	
-	ret.x = (data.tile_width / 2) *x - y;
-	ret.x = (data.tile_height / 2) *x - y;
-
+	// Orthographic world to map coordinates
+	if (data.type == MapTypes::MAPTYPE_ORTHOGONAL) {
+		ret.x = x / data.tile_width;
+		ret.y = y / data.tile_height;
+	}
+	// Isometric world to map coordinates
+	else if (data.type == MapTypes::MAPTYPE_ISOMETRIC) {
+		ret.x = (x / (data.tile_width / 2) + y / (data.tile_height / 2)) / 2;
+		ret.y = (y / (data.tile_height / 2) - x / (data.tile_width / 2)) / 2;
+	}
 	return ret;
 }
 

@@ -49,13 +49,16 @@ bool j1FlyingEnemy::Update(float dt)
 			else
 				destination = { App->map->WorldToMap((int)App->enty->player->position.x, (int)App->enty->player->position.y + App->enty->player->playerheight / 2) };
 
-			if (!App->enty->player->dead && App->path->IsWalkable(destination) && App->path->IsWalkable(origin))
+			if (App->path->IsWalkable(destination) && App->path->IsWalkable(origin))
 			{
 				path = App->path->CreatePath(origin, destination);
 				fly(*path, dt);
 				path_created = true;
 			}
 	}
+	if (App->enty->player->position == App->enty->player->Initial_position)
+		position = initPos;
+
 	else if (path_created)
 		path->Clear();
 
@@ -114,6 +117,7 @@ void j1FlyingEnemy::fly(p2DynArray<iPoint>& path, float dt)
 {
 	direction = App->path->CheckDirection(path);
 
+	speed = 100.0f;
 	if (direction == Movement::DOWN_RIGHT)
 	{
 	position.y += speed * dt;
