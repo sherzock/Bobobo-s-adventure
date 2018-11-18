@@ -167,3 +167,9 @@ void j1Scene2::change_scenes2() {
 	
 	
 }
+
+void j1Scene2::AddAllEnemies2() {
+
+
+	App->enty->AddEnemy(300, 400, FLYINGENEMY);
+}

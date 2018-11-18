@@ -348,11 +348,24 @@ bool j1Player::Update(float dt) {
 		}
 
 		if (dead == true) {
-
-			//App->fade->FadeToBlack(this,this,0.8f);
-			position.x = 30;
-			position.y = 350;
-			dead = false;
+		
+			if(App->scene->active == true){
+				App->fade->FadeToBlack(App->scene, App->scene,0.8f);
+				position.x = 30;
+				position.y = 520;
+				dead = false;
+				App->enty->DestroyEnemies();
+				App->scene->AddAllEnemies();
+			}
+			if (App->scene2->active == true) {
+				App->fade->FadeToBlack(App->scene2, App->scene2,0.8f);
+				position.x = 30;
+				position.y = 350;
+				dead = false;
+				App->enty->DestroyEnemies();
+				App->scene2->AddAllEnemies2();
+			}
+			
 		}
 	}
 	

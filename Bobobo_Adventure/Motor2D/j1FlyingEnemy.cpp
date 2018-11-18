@@ -63,10 +63,7 @@ bool j1FlyingEnemy::Update(float dt)
 		path->Clear();
 
 	Draw();
-	if (dead == true) {
-		position.x += 50;
-	}
-
+	
 	return true;
 }
 

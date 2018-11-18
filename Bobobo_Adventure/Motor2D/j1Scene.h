@@ -33,7 +33,7 @@ public:
 	bool CleanUp();
 
 	void change_scenes1();
-
+	void AddAllEnemies();
 
 public:
 	bool playeron = false;

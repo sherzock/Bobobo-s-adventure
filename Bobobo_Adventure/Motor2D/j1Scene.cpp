@@ -64,9 +64,9 @@ bool j1Scene::Start()
 		App->enty->CreatePlayer();
 		playeron = true;
 	}
-	App->enty->player->position.x = App->enty->player->Initial_position.x;
+	AddAllEnemies();
 
-	App->enty->AddEnemy(300, 400, FLYINGENEMY);
+	
 	
 	return true;
 }
@@ -130,7 +130,7 @@ bool j1Scene::Update(float dt)
 	
 	if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN || App->enty->player->position.x >= App->map->map_file.child("map").child("properties").child("property").next_sibling("property").next_sibling("property").next_sibling("property").attribute("value").as_float() - 300) {
 		change_scenes1();
-			
+		
 	}
 		
 
@@ -236,4 +236,10 @@ void j1Scene::change_scenes1(){
 	App->enty->player->position.x = 30;
 	App->enty->player->position.y = 300;
 
+}
+
+void j1Scene::AddAllEnemies() {
+
+
+	App->enty->AddEnemy(300, 400, FLYINGENEMY);
 }
