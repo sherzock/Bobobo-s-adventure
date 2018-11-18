@@ -88,7 +88,8 @@ public:
 	//logical booleans//
 	bool updatedTime = false;
 	bool dead = false;
-	bool win = false;
+	bool win1 = false;
+	bool win2 = false;
 	bool GroundCollision = false;
 	bool jump = false;
 	bool CanPlayerJump = false;

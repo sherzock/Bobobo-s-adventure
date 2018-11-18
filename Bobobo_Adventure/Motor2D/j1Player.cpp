@@ -219,7 +219,7 @@ bool j1Player::Update(float dt) {
 
 
 	//Change level//
-	if (App->input->GetKey(SDL_SCANCODE_F3) == j1KeyState::KEY_DOWN) {
+/*	if (App->input->GetKey(SDL_SCANCODE_F3) == j1KeyState::KEY_DOWN) {
 
 		dead = false;
 		if (App->scene->active == true) {
@@ -245,7 +245,7 @@ bool j1Player::Update(float dt) {
 		dead = false;
 
 
-	}
+	}*/
 
 	if (wallhitri == true || wallhitle == true) {
 		CanPlayerJump = true;
@@ -253,7 +253,7 @@ bool j1Player::Update(float dt) {
 
 //	Restart Game//
 
-	if (App->input->GetKey(SDL_SCANCODE_F1) == j1KeyState::KEY_DOWN) {
+/*	if (App->input->GetKey(SDL_SCANCODE_F1) == j1KeyState::KEY_DOWN) {
 
 		if (App->scene->active == true) {
 
@@ -270,7 +270,7 @@ bool j1Player::Update(float dt) {
 			dead = false;
 		}
 	}
-
+	*/
 	//Dash
 	if (App->input->GetKey(SDL_SCANCODE_A) != j1KeyState::KEY_REPEAT || App->input->GetKey(SDL_SCANCODE_D) != j1KeyState::KEY_DOWN) {
 
@@ -405,41 +405,45 @@ bool j1Player::Update(float dt) {
 	}
 	
 
-	if (position.x >= App->map->map_file.child("map").child("properties").child("property").next_sibling("property").next_sibling("property").next_sibling("property").attribute("value").as_float()) {
-		
-		win = true;
+	
+	if (position.x >= App->map->map_file.child("map").child("properties").child("property").next_sibling("property").next_sibling("property").next_sibling("property").attribute("value").as_float() && App->scene->active == true) {
+
+		win1 = true;
+	}
+	else if (position.x >= App->map->map_file.child("map").child("properties").child("property").next_sibling("property").next_sibling("property").next_sibling("property").attribute("value").as_float() && App->scene2->active == true) {
+
+		win2 = true;
 	}
 
-	if (win == true) {
-		
-		dead = false;
-		if (App->scene->active == true) {
+	if (win1 == true) {
+		App->scene->change_scenes1();
 
-			App->scene->change_scenes1();
-
-		}
-		else if (App->scene2->active == true) {
-			App->scene2->change_scenes2();
-		}
-		win = false;
 	}
-
+	/*else if (win2 == true) {
+		App->scene2->change_scenes2();
+	}*/
 
 	//player->Set_Pos(position.x,position.y);
 
-	SDL_Rect character = current_animation->GetCurrentFrame();
 	
-	//Blit animations
-	if (goingright == false) {
+	if(win1 == false || win2 == false){
+		SDL_Rect character = current_animation->GetCurrentFrame();
 
-		App->render->Blit(graphics, (int)position.x, (int)position.y, &character, SDL_FLIP_HORIZONTAL);
+		//Blit animations
+		if (goingright == false) {
 
+			App->render->Blit(graphics, (int)position.x, (int)position.y, &character, SDL_FLIP_HORIZONTAL);
+
+		}
+		else if (goingright == true) {
+
+			App->render->Blit(graphics, (int)position.x, (int)position.y, &character, SDL_FLIP_NONE);
+
+		}
 	}
-	else if(goingright == true) {
-
-		App->render->Blit(graphics, (int)position.x, (int)position.y, &character, SDL_FLIP_NONE);
-
-	}
+	
+	
+	
 
 
 	
@@ -450,6 +454,7 @@ bool j1Player::Update(float dt) {
 bool j1Player::PostUpdate() {
 
 	BROFILER_CATEGORY("Player PostUpdate", Profiler::Color::MediumVioletRed)
+		
 	return true;
 }
 
