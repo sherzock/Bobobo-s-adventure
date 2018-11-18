@@ -223,5 +223,5 @@ void j1Scene::change_scenes1(){
 void j1Scene::AddAllEnemies() {
 
 
-	App->enty->AddEnemy(500, 400, WALKINGENEMY);
+	App->enty->AddEnemy(500, 530, WALKINGENEMY);
 }

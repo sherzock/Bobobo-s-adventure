@@ -31,7 +31,7 @@ bool j1FlyingEnemy::Start()
 	sprites = App->tex->Load("textures/enemy2.png");
 	Sleeping();
 	animation = &flying;
-	collider = App->colls->AddCollider({ (int)position.x, (int)position.y, 30/*colliderSize.x*/,30/*colliderSize.y*/ }, ENEMY_COLLIDER, App->enty);
+	collider = App->colls->AddCollider({ (int)position.x, (int)position.y, 30,30 }, ENEMY_COLLIDER, App->enty);
 
 	return true;
 }
@@ -63,12 +63,12 @@ bool j1FlyingEnemy::Update(float dt)
 	else if (path_created)
 		path->Clear();
 
-	SDL_Rect rect = animation->GetCurrentFrame();
+	SDL_Rect rect = animation->GetCurrentFrame(dt);
 	
 	if (position.x - App->enty->player->position.x >= 0) {
-		Draw(rect, true, 0, 0);
+		Draw(true, rect);
 	}else {
-		Draw(rect, false, 0, 0);
+		Draw(false, rect);
 	}
 	
 	

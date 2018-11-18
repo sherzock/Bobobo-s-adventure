@@ -17,7 +17,7 @@ j1WalkingEnemy::j1WalkingEnemy(int x, int y, entitytypes type) : j1Entity(x, y, 
 	animation = NULL;
 
 	idle.LoadAnimationsEnemies("WalkingEnemy_idle");
-	walking.LoadAnimationsEnemies("WalkingEnemy_walk");
+	walking.LoadAnimationsEnemies("WalkingEnemy_walking");
 
 	initPos.x = position.x = x;
 	initPos.y = position.y = y;
@@ -31,7 +31,8 @@ bool j1WalkingEnemy::Start()
 	sprites = App->tex->Load("textures/enemy1_3.png");
 	Sleeping();
 	animation = &idle;
-	collider = App->colls->AddCollider({ (int)position.x, (int)position.y, 55,60 }, ENEMY_COLLIDER, App->enty);
+	collider = App->colls->AddCollider({ (int)position.x, (int)position.y, 55,50 }, ENEMY_COLLIDER, App->enty);
+
 
 	return true;
 }
@@ -43,10 +44,10 @@ bool j1WalkingEnemy::Update(float dt)
 
 	position.y += GRAVITY + GRAVITY * dt;
 
-	if (path_created) {
+
 		if ((App->enty->player->position.x - position.x) <= range && (App->enty->player->position.x - position.x) >= -range && App->enty->player->collider->type == PLAYER_COLLIDER)
 		{
-			iPoint origin = { App->map->WorldToMap((int)position.x + colliderSize.x / 2, (int)position.y + colliderSize.y / 2) };
+			iPoint origin = { App->map->WorldToMap((int)position.x + 55 / 2, (int)position.y + 60 / 2) };
 			iPoint destination;
 			if (position.x < App->enty->player->position.x)
 				destination = { App->map->WorldToMap((int)App->enty->player->position.x + App->enty->player->playerwidth + 1, (int)App->enty->player->position.y + App->enty->player->playerheight / 2) };
@@ -62,24 +63,20 @@ bool j1WalkingEnemy::Update(float dt)
 		}
 		else if (path_created)
 			path->Clear();
-	}
+	
 	if (App->enty->player->position == App->enty->player->Initial_position)
 	{
 		animation = &idle;
 		position = initPos;
 	}
-		
 
-	else if (path_created)
-		path->Clear();
-
-	SDL_Rect rect = animation->GetCurrentFrame();
+	SDL_Rect rect = animation->GetCurrentFrame(dt);
 
 	if (position.x - App->enty->player->position.x >= 0) {
-		Draw(rect, true, 0, 0);
+		Draw(true, rect);
 	}
 	else {
-		Draw(rect, false, 0, 0);
+		Draw(false, rect);
 	}
 
 	return true;
@@ -104,7 +101,7 @@ void j1WalkingEnemy::OnCollision(Collider * col_1, Collider * col_2)
 		direction = col_1->CheckDirection(col_2->rect);
 
 		if (direction == UP_COLLISION)
-			position.y = col_2->rect.y - colliderSize.y - 1;
+			position.y = col_2->rect.y - 50 + 1;
 
 		else if (direction == DOWN_COLLISION)
 			position.y = col_2->rect.y + col_2->rect.h;
@@ -113,7 +110,7 @@ void j1WalkingEnemy::OnCollision(Collider * col_1, Collider * col_2)
 			position.x = col_2->rect.x + col_2->rect.w;
 
 		else if (direction == LEFT_COLLISION)
-			position.x = col_2->rect.x - colliderSize.x;
+			position.x = col_2->rect.x - 55;
 	}
 
 	if ((col_1->type == ATTACK_COLLIDER && col_2->type == ENEMY_COLLIDER) || (col_2->type == ATTACK_COLLIDER && col_1->type == ENEMY_COLLIDER))
@@ -145,7 +142,7 @@ void j1WalkingEnemy::walk(p2DynArray<iPoint>& path, float dt)
 {
 	direction = App->path->CheckDirectionGround(path);
 
-	speed = 100.0f;
+	speed = 50.0f;
 	if (direction == Movement::DOWN)
 	{
 		animation = &walking;
