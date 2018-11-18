@@ -38,7 +38,7 @@ public:
 	fPoint initPos;
 	iPoint colliderSize;
 	bool dead;
-	int range = 100;
+	int range = 1000;
 	Movement direction;
 };
 
