@@ -1,5 +1,5 @@
-#ifndef _j1FlyingEnemy_H__
-#define __j1FlyingEnemy_H__
+#ifndef _j1WalkingEnemy_H__
+#define __j1WalkingEnemy_H__
 
 #include "PugiXml/src/pugixml.hpp"
 #include "p2Point.h"
@@ -8,14 +8,14 @@
 #include "j1Pathfinding.h"
 #include "j1Entity.h"
 
-class j1FlyingEnemy : public j1Entity
+class j1WalkingEnemy : public j1Entity
 {
 public:
 	void Pathing(p2DynArray<iPoint>& path, float dt);
 
-	j1FlyingEnemy(int x, int y, entitytypes type);
+	j1WalkingEnemy(int x, int y, entitytypes type);
 
-	virtual ~j1FlyingEnemy();
+	virtual ~j1WalkingEnemy();
 
 	bool Start();
 	bool Update(float dt);

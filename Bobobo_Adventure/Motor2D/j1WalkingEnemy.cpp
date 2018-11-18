@@ -1,4 +1,4 @@
-#include "j1FlyingEnemy.h"
+#include "j1WalkingEnemy.h"
 #include "p2Defs.h"
 #include "p2Log.h"
 #include "j1App.h"
@@ -12,7 +12,7 @@
 #include "j1Scene.h"
 #include "Brofiler/Brofiler.h"
 
-j1FlyingEnemy::j1FlyingEnemy(int x, int y, entitytypes type) : j1Entity(x, y, entitytypes::FLYINGENEMY)
+j1WalkingEnemy::j1WalkingEnemy(int x, int y, entitytypes type) : j1Entity(x, y, entitytypes::FLYINGENEMY)
 {
 	animation = NULL;
 
@@ -22,9 +22,9 @@ j1FlyingEnemy::j1FlyingEnemy(int x, int y, entitytypes type) : j1Entity(x, y, en
 	initPos.y = position.y = y;
 }
 
-j1FlyingEnemy::~j1FlyingEnemy() {}
+j1WalkingEnemy::~j1WalkingEnemy() {}
 
-bool j1FlyingEnemy::Start()
+bool j1WalkingEnemy::Start()
 {
 
 	sprites = App->tex->Load("textures/enemy2.png");
@@ -35,29 +35,29 @@ bool j1FlyingEnemy::Start()
 	return true;
 }
 
-bool j1FlyingEnemy::Update(float dt)
+bool j1WalkingEnemy::Update(float dt)
 {
 	BROFILER_CATEGORY("FlyingEnemy Update", Profiler::Color::Tomato)
-	collider->Set_Pos(position.x, position.y);
-		
+		collider->Set_Pos(position.x, position.y);
+
 	/*if ((App->enty->player->position.x - position.x) <= range && (App->enty->player->position.x - position.x) >= -range && App->enty->player->collider->type == PLAYER_COLLIDER)
 	{
-			iPoint origin = { App->map->WorldToMap((int)position.x + colliderSize.x / 2, (int)position.y + colliderSize.y / 2) };
-			iPoint destination;
-			if (position.x < App->enty->player->position.x)
-				destination = { App->map->WorldToMap((int)App->enty->player->position.x + App->enty->player->playerwidth + 1, (int)App->enty->player->position.y + App->enty->player->playerheight / 2) };
-			else
-				destination = { App->map->WorldToMap((int)App->enty->player->position.x, (int)App->enty->player->position.y + App->enty->player->playerheight / 2) };
+	iPoint origin = { App->map->WorldToMap((int)position.x + colliderSize.x / 2, (int)position.y + colliderSize.y / 2) };
+	iPoint destination;
+	if (position.x < App->enty->player->position.x)
+	destination = { App->map->WorldToMap((int)App->enty->player->position.x + App->enty->player->playerwidth + 1, (int)App->enty->player->position.y + App->enty->player->playerheight / 2) };
+	else
+	destination = { App->map->WorldToMap((int)App->enty->player->position.x, (int)App->enty->player->position.y + App->enty->player->playerheight / 2) };
 
-			if (!App->enty->player->dead && App->path->IsWalkable(destination) && App->path->IsWalkable(origin))
-			{
-				path = App->path->CreatePath(origin, destination);
-				fly(*path, dt);
-				path_created = true;
-			}
+	if (!App->enty->player->dead && App->path->IsWalkable(destination) && App->path->IsWalkable(origin))
+	{
+	path = App->path->CreatePath(origin, destination);
+	fly(*path, dt);
+	path_created = true;
+	}
 	}
 	else if (path_created)
-		path->Clear();*/
+	path->Clear();*/
 
 	Draw();
 	if (dead == true) {
@@ -67,7 +67,7 @@ bool j1FlyingEnemy::Update(float dt)
 	return true;
 }
 
-bool j1FlyingEnemy::CleanUp()
+bool j1WalkingEnemy::CleanUp()
 {
 	App->tex->UnLoad(sprites);
 	if (collider != nullptr)
@@ -76,7 +76,7 @@ bool j1FlyingEnemy::CleanUp()
 	return true;
 }
 
-void j1FlyingEnemy::OnCollision(Collider * col_1, Collider * col_2)
+void j1WalkingEnemy::OnCollision(Collider * col_1, Collider * col_2)
 {
 	if ((col_1->type == ATTACK_COLLIDER && col_2->type == ENEMY_COLLIDER) || (col_2->type == ATTACK_COLLIDER && col_1->type == ENEMY_COLLIDER))
 	{
@@ -85,12 +85,12 @@ void j1FlyingEnemy::OnCollision(Collider * col_1, Collider * col_2)
 
 }
 
-bool j1FlyingEnemy::Load(pugi::xml_node &)
+bool j1WalkingEnemy::Load(pugi::xml_node &)
 {
 	return true;
 }
 
-bool j1FlyingEnemy::Save(pugi::xml_node& data)const
+bool j1WalkingEnemy::Save(pugi::xml_node& data)const
 {
 	pugi::xml_node pos = data.append_child("position");
 
@@ -100,7 +100,7 @@ bool j1FlyingEnemy::Save(pugi::xml_node& data)const
 	return true;
 }
 
-void j1FlyingEnemy::Sleeping()
+void j1WalkingEnemy::Sleeping()
 {
 	pugi::xml_document config_file;
 	config_file.load_file("config.xml");
@@ -115,7 +115,7 @@ void j1FlyingEnemy::Sleeping()
 	//colliderSize.y = harpy.child("colliderSize").attribute("h").as_int();
 }
 
-void j1FlyingEnemy::fly(p2DynArray<iPoint>& path, float dt)
+void j1WalkingEnemy::fly(p2DynArray<iPoint>& path, float dt)
 {
 	/*direction = App->path->CheckDirection(path);
 
