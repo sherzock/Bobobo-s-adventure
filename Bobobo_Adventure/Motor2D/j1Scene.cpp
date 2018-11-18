@@ -48,11 +48,11 @@ bool j1Scene::Start()
 		App->audio->PlayMusic("audio/music/level1.ogg", 1.0f);
 	}
 
-	if (playeron == false)
+	/*if (playeron == false)
 	{
 		App->enty->CreatePlayer();
 		playeron = true;
-	}
+	}*/
 
 	App->enty->AddEnemy(300, 50, FLYINGENEMY);
 	
@@ -71,8 +71,11 @@ bool j1Scene::Update(float dt)
 {
 	BROFILER_CATEGORY("Scene1 Update", Profiler::Color::Tomato)
 
-	if (App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
-		App->LoadGame("save_game.xml");
+		if (App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN) {
+			
+			App->LoadGame("save_game.xml");
+		}
+		
 
 	if (App->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
 		App->SaveGame("save_game.xml");
@@ -151,6 +154,7 @@ void j1Scene::change_scenes1(){
 	App->scene2->active = true;
 	App->scene->active = false;
 	CleanUp();
+	App->enty->CleanUp();
 	App->fade->FadeToBlack(App->scene, App->scene2, 0.8f);
 	App->enty->CreatePlayer();
 	App->enty->Start();

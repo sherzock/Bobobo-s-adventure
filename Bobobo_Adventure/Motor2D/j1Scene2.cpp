@@ -97,7 +97,7 @@ bool j1Scene2::Update(float dt)
 
 	
 
-	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN || App->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN) {
+	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN || App->input->GetKey(SDL_SCANCODE_F4) == KEY_DOWN) {
 	
 		change_scenes2();
 		
@@ -151,19 +151,15 @@ bool j1Scene2::CleanUp()
 }
 
 void j1Scene2::change_scenes2() {
-	
-	
 		
-		App->scene->active = true;
-		App->scene2->active = false;
+	App->scene->active = true;
+	App->scene2->active = false;
 
-		CleanUp();
-		App->fade->FadeToBlack(App->scene2, App->scene, 0.8f);
-		App->enty->CreatePlayer();
-		App->enty->Start();
-		App->scene->Start();
+	CleanUp();
+	App->fade->FadeToBlack(App->scene2, App->scene, 0.8f);
+	App->enty->CreatePlayer();
+	App->enty->Start();
+	App->scene->Start();
 	
-		
-
 	
 }

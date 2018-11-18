@@ -89,17 +89,17 @@ bool j1EntityManager::PostUpdate()
 bool j1EntityManager::CleanUp()
 {
 
-	for (p2List_item<j1Entity*>* iterator = entities.start; iterator != nullptr; iterator = iterator->next)
+	bool ret = true;
+
+	p2List_item<j1Entity*>* item;
+	for (item = entities.end; item != NULL && ret == true; item = item->prev)
 	{
-		iterator->data->CleanUp();
-		int index = entities.find(iterator->data);
-		RELEASE(entities.At(index)->data);
-		entities.del(entities.At(index));
+		ret = item->data->CleanUp();
 	}
 
-	player = nullptr;
-	
-	return true;
+	entities.clear();
+
+	return ret;
 }
 
 j1Entity* j1EntityManager::CreateEntity(entitytypes type, int x, int y)

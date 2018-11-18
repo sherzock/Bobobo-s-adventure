@@ -360,10 +360,11 @@ bool j1App::LoadGameNow()
 
 	pugi::xml_parse_result result = data.load_file(load_game.GetString());
 
+	
 	if (result != NULL){
 		
 		("Loading new Game State from %s...", load_game.GetString());
-
+		
 		root = data.child("game_state");
 
 		p2List_item<j1Module*>* item = modules.start;

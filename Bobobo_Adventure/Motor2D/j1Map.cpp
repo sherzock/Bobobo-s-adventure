@@ -68,7 +68,7 @@ void j1Map::Draw()
 								if (pos.x <(-(App->render->camera.x) + App->render->camera.w) && pos.x >(-(App->render->camera.x)- 1185))
 								App->render->Blit(tileset->texture, pos.x, pos.y, &r, SDL_FLIP_NONE, map_file.child("map").child("layer").next_sibling("layer").next_sibling("layer").next_sibling("layer").child("properties").child("property").attribute("value").as_float());
 							}
-							else {
+							else if (layer->data->name != "Walk") {
 								if (pos.x <(-(App->render->camera.x) + App->render->camera.w) && pos.x >(-(App->render->camera.x) - 170)) {
 
 								App->render->Blit(tileset->texture, pos.x, pos.y, &r, SDL_FLIP_NONE);
