@@ -23,7 +23,6 @@ This game is a basic plataformer made by Jacobo Galofre and Ferran Barnes at UPC
 <ul>
   <li>F1 - Restart Game</li>
   <li>F2 - Restart level</li>
-
   <li>F5 - Quicksave</li>
   <li>F6 - Load</li>
   <li>F9 - Show Colliders</li>
@@ -33,6 +32,18 @@ This game is a basic plataformer made by Jacobo Galofre and Ferran Barnes at UPC
 
 <h3>Innovations</h3>
 Wall jump fully implemented and you can attack enemies to destroy them.
+
+<h3>Work by each member</h3>
+Ferran Barnes:
+Player
+Maps
+Entity Manager
+
+Jacobo Galofre:
+Pathfinding
+Both Enemies
+
+The rest was made by both members.
 
 
 <h6>Copyright</h6>
