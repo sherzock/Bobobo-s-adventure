@@ -50,7 +50,6 @@ public:
 public:
 	
 	
-	Animations* current_animation = nullptr;
 
 	// Animations of the player
 	Animations idle;

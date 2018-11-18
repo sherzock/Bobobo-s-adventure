@@ -17,7 +17,7 @@
 j1Player::j1Player(int x, int y, entitytypes type) : j1Entity(x, y, entitytypes::PLAYER)
 {
 		
-	current_animation = NULL;
+	animation = NULL;
 
 	
 
@@ -52,7 +52,7 @@ bool j1Player::Start() {
 	Initial_position.y = position.y;
 	
 
-	current_animation = &idle;
+	animation = &idle;
 	
 	collider = App->colls->AddCollider({ (int)position.x, (int)position.y, playerwidth, playerheight }, PLAYER_COLLIDER, App->enty);
 
@@ -96,7 +96,7 @@ bool j1Player::Update(float dt) {
 		if (wallhitri == false || wallhitle == true && GroundCollision == true) {
 			
 				position.x += XSpeed* dt * FSpeed;
-				current_animation = &run;
+				animation = &run;
 				goingright = true;
 			
 		}
@@ -115,7 +115,7 @@ bool j1Player::Update(float dt) {
 			if (wallhitle == false || wallhitri == true) {
 				
 					position.x -= XSpeed* dt * FSpeed;
-					current_animation = &run;
+					animation = &run;
 					goingright = false;
 				
 			}
@@ -136,13 +136,13 @@ bool j1Player::Update(float dt) {
 	}
 	
 	
-	if (current_animation == &run && GroundCollision == false) {
-		current_animation = &falling;
+	if (animation == &run && GroundCollision == false) {
+		animation = &falling;
 	}
 	
 	if (App->input->GetKey(SDL_SCANCODE_D) == j1KeyState::KEY_IDLE && App->input->GetKey(SDL_SCANCODE_A) == j1KeyState::KEY_IDLE) {
 		
-			current_animation = &idle;
+		animation = &idle;
 			
 	}
 	
@@ -159,7 +159,7 @@ bool j1Player::Update(float dt) {
 
 		if (goingright == true) {
 
-			current_animation = &attackanim;
+			animation = &attackanim;
 			//attackcoll = new Collider;
 			if (attackcoll == nullptr) {
 				attackcoll = App->colls->AddCollider({ (int)position.x + 50 , (int)position.y, 34, 55 }, ATTACK_COLLIDER, App->scene);
@@ -179,7 +179,7 @@ bool j1Player::Update(float dt) {
 			}
 		}
 		if (goingright == false) {
-			current_animation = &attackanim;
+			animation = &attackanim;
 			//attackcoll = new Collider;
 			if (attackcoll == nullptr) {
 				attackcoll = App->colls->AddCollider({ (int)position.x - 25 , (int)position.y, 34, 55 }, ATTACK_COLLIDER, App->scene);
@@ -254,7 +254,7 @@ bool j1Player::Update(float dt) {
 	
 	if (isfalling == true && wallhitle == false && wallhitri == false /*|| GroundCollision == false*/) {
 		
-		current_animation = &falling;
+		animation = &falling;
 		
 		GroundCollision = false;
 		
@@ -278,7 +278,7 @@ bool j1Player::Update(float dt) {
 		
 		position.y -= Jumpforce * dt * FSpeed*1.5;
 		Jumpforce -= JumpforceIterator * dt * FSpeed * 1.5;
-		current_animation = &jumpanim;
+		animation = &jumpanim;
 		CanPlayerJump = false;
 		
 
@@ -298,7 +298,7 @@ bool j1Player::Update(float dt) {
 		if (goingright == true && dash == true) {
 
 			gravity = 0;
-			current_animation = &dashanim;
+			animation = &dashanim;
 			position.x += DashSpeed * dt * FSpeed;
 			DashSpeed += DashAcc * dt * FSpeed;
 			CanPlayerJump = false;
@@ -318,7 +318,7 @@ bool j1Player::Update(float dt) {
 		else if (goingright == false && dash == true) {
 
 			gravity = 0;
-			current_animation = &dashanim;
+			animation = &dashanim;
 			position.x -= DashSpeed* dt * FSpeed;
 			DashSpeed += DashAcc * dt * FSpeed;
 			CanPlayerJump = false;
@@ -350,8 +350,8 @@ bool j1Player::Update(float dt) {
 
 		if (dead == true) {
 		
-			current_animation = &deadanim;
-			if(App->scene->active == true && deadanim.Finished() == true){
+			animation = &deadanim;
+			if(App->scene->active == true /*&& deadanim.Finished() == true*/){
 				App->fade->FadeToBlack(App->scene, App->scene,0.8f);
 				position.x = 30;
 				position.y = 520;
@@ -360,7 +360,7 @@ bool j1Player::Update(float dt) {
 				App->scene->AddAllEnemies();
 				deadanim.Reset();
 			}
-			if (App->scene2->active == true && deadanim.Finished() == true) {
+			if (App->scene2->active == true /*&& deadanim.Finished() == true*/) {
 				App->fade->FadeToBlack(App->scene2, App->scene2,0.8f);
 				position.x = 30;
 				position.y = 350;
@@ -373,30 +373,9 @@ bool j1Player::Update(float dt) {
 		}
 	}
 	
-
-	/*
-	if (position.x >= App->map->map_file.child("map").child("properties").child("property").next_sibling("property").next_sibling("property").next_sibling("property").attribute("value").as_float()-300 && App->scene->active == true) {
-
-		win1 = true;
-	}
-	else if (position.x >= App->map->map_file.child("map").child("properties").child("property").next_sibling("property").next_sibling("property").next_sibling("property").attribute("value").as_float() && App->scene2->active == true) {
-
-		win2 = true;
-	}
-	*/
-	/*if (win1 == true) {
-		App->scene->change_scenes1();
-		position.x = Initial_position.x;
-	}
-	else if (win2 == true) {
-		App->scene2->change_scenes2();
-	}*/
-
-
-
 	
 	if(win1 == false || win2 == false){
-		SDL_Rect character = current_animation->GetCurrentFrame();
+		SDL_Rect character = animation->GetCurrentFrame(dt);
 
 		//Blit animations
 		if (goingright == false) {
@@ -485,13 +464,13 @@ bool j1Player::CleanUp() {
 			CanPlayerJump = true;
 			GroundCollision = true;
 			gravity = 0.0f;
-			current_animation = &run;
+			animation = &run;
 			
 
 			if (App->input->GetKey(SDL_SCANCODE_SPACE) == j1KeyState::KEY_UP && position.y < 1000) {
 
 				jump = false;
-				current_animation = &run;
+				animation = &run;
 			}
 			
 			
@@ -517,7 +496,7 @@ bool j1Player::CleanUp() {
 				
 				XSpeed = 0;
 				dash = false;
-				current_animation = &wallgrab;
+				animation = &wallgrab;
 				
 			}else if (col_1->rect.x <= col_2->rect.x + col_2->rect.w && col_1->rect.x >= col_2->rect.x + col_2->rect.w - XSpeed - 5) {
 				wallhitle = true;
@@ -528,12 +507,12 @@ bool j1Player::CleanUp() {
 				CanPlayerJump = true;
 				XSpeed = 0;
 				dash = false;
-				current_animation = &wallgrab;
+				animation = &wallgrab;
 		
 			}else{
 				wallhitri = false;
 				wallhitle = false;
-				current_animation = &falling;
+				animation = &falling;
 			}
 			
 	}
