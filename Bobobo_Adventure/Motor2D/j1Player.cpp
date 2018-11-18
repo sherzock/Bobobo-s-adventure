@@ -351,7 +351,7 @@ bool j1Player::Update(float dt) {
 		if (dead == true) {
 		
 			animation = &deadanim;
-			if(App->scene->active == true && deadanim.Finished() == true){
+			if(App->scene->active == true /*&& deadanim.Finished() == true*/){
 				App->fade->FadeToBlack(App->scene, App->scene,0.8f);
 				position.x = 30;
 				position.y = 520;
@@ -360,7 +360,7 @@ bool j1Player::Update(float dt) {
 				App->scene->AddAllEnemies();
 				deadanim.Reset();
 			}
-			if (App->scene2->active == true && deadanim.Finished() == true) {
+			if (App->scene2->active == true /*&& deadanim.Finished() == true*/) {
 				App->fade->FadeToBlack(App->scene2, App->scene2,0.8f);
 				position.x = 30;
 				position.y = 350;
@@ -373,27 +373,6 @@ bool j1Player::Update(float dt) {
 		}
 	}
 	
-
-	/*
-	if (position.x >= App->map->map_file.child("map").child("properties").child("property").next_sibling("property").next_sibling("property").next_sibling("property").attribute("value").as_float()-300 && App->scene->active == true) {
-
-		win1 = true;
-	}
-	else if (position.x >= App->map->map_file.child("map").child("properties").child("property").next_sibling("property").next_sibling("property").next_sibling("property").attribute("value").as_float() && App->scene2->active == true) {
-
-		win2 = true;
-	}
-	*/
-	/*if (win1 == true) {
-		App->scene->change_scenes1();
-		position.x = Initial_position.x;
-	}
-	else if (win2 == true) {
-		App->scene2->change_scenes2();
-	}*/
-
-
-
 	
 	if(win1 == false || win2 == false){
 		SDL_Rect character = animation->GetCurrentFrame(dt);
