@@ -57,7 +57,7 @@ public:
 	SDL_Texture* win_sprites = nullptr;
 	entitytypes type;
 
-	virtual void Draw();
+	virtual void Draw(SDL_Rect rect, bool flip, int x, int y);
 	virtual void OnCollision(Collider* col_1, Collider* col_2) {};
 	
 

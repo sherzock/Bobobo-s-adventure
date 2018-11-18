@@ -60,6 +60,7 @@ public:
 	Animations dashanim;
 	Animations wallgrab;
 	Animations attackanim;
+	Animations deadanim;
 	Collider* attackcoll = nullptr;
 	
 	//Player positions//

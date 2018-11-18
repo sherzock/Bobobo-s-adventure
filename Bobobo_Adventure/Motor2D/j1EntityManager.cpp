@@ -219,10 +219,19 @@ void j1EntityManager::OnCollision(Collider* col_1, Collider* col_2)
 
 bool j1EntityManager::Load(pugi::xml_node& data)
 {
-	if (player != nullptr)
+	/*if (player != nullptr)
 	{
 		player->Load(data);
+	}*/
+	p2List_item <j1Entity*> *entity = entities.start;
+
+	while (entity != NULL )
+	{
+		entity->data->Load(data);
+
+		entity = entity->next;
 	}
+
 
 
 	return true;
@@ -230,9 +239,18 @@ bool j1EntityManager::Load(pugi::xml_node& data)
 
 bool j1EntityManager::Save(pugi::xml_node& data) const
 {
-	if (player != nullptr)
+	/*if (player != nullptr)
 	{
 		player->Save(data);
+	}*/
+
+	p2List_item <j1Entity*> *entity = entities.start;
+
+	while (entity != NULL)
+	{
+		entity->data->Save(data);
+
+		entity = entity->next;
 	}
 
 	return true;

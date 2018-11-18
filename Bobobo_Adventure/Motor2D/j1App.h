@@ -123,6 +123,7 @@ private:
 	uint32				frame_cap;
 	uint32				msForCap;
 	float				dt;
+	bool				capfps = true;
 
 };
 

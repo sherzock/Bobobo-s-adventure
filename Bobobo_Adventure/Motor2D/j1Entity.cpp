@@ -7,7 +7,7 @@
 j1Entity::j1Entity(int x, int y, entitytypes type) : position(x, y), type(type){
 }
 
-void j1Entity::Draw(){
+void j1Entity::Draw(SDL_Rect rect, bool goingright, int x, int y){
 	if (goingright == true) {
 		App->render->Blit(sprites, (int)position.x, (int)position.y , &(animation->GetCurrentFrame()), SDL_FLIP_NONE);
 	}

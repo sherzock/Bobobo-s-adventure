@@ -10,6 +10,7 @@
 #include "j1Player.h"
 #include "j1Map.h"
 #include "j1Scene.h"
+#include "j1Scene2.h"
 #include "Brofiler/Brofiler.h"
 
 j1FlyingEnemy::j1FlyingEnemy(int x, int y, entitytypes type) : j1Entity(x, y, entitytypes::FLYINGENEMY)
@@ -62,7 +63,15 @@ bool j1FlyingEnemy::Update(float dt)
 	else if (path_created)
 		path->Clear();
 
-	Draw();
+	SDL_Rect rect = animation->GetCurrentFrame();
+	
+	if (position.x - App->enty->player->position.x >= 0) {
+		Draw(rect, true, 0, 0);
+	}else {
+		Draw(rect, false, 0, 0);
+	}
+	
+	
 	
 	return true;
 }
@@ -84,17 +93,39 @@ void j1FlyingEnemy::OnCollision(Collider * col_1, Collider * col_2)
 	}
 }
 
-bool j1FlyingEnemy::Load(pugi::xml_node &)
+bool j1FlyingEnemy::Load(pugi::xml_node & data)
 {
+	if (data.child("position2").attribute("level").as_int() == 2 && App->scene->active == true)
+	{
+		App->scene->change_scenes1();
+	}
+	if (data.child("position2").attribute("level").as_int() == 1 && App->scene2->active == true)
+	{
+		App->scene2->change_scenes2();
+	}
+
+	position.x = data.child("position2").attribute("x").as_int();
+	position.y = data.child("position2").attribute("y").as_int();
+
+
 	return true;
 }
 
 bool j1FlyingEnemy::Save(pugi::xml_node& data)const
 {
-	pugi::xml_node pos = data.append_child("position");
+	pugi::xml_node fly = data.append_child("position2");
 
-	pos.append_attribute("x") = position.x;
-	pos.append_attribute("y") = position.y;
+	fly.append_attribute("x") = position.x;
+	fly.append_attribute("y") = position.y;
+	
+	if (App->scene->active == true)
+	{
+		fly.append_attribute("level") = 1;
+	}
+	else if (App->scene2)
+	{
+		fly.append_attribute("level") = 2;
+	}
 
 	return true;
 }

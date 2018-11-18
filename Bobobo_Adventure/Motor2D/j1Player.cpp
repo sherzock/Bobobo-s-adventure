@@ -28,6 +28,7 @@ j1Player::j1Player(int x, int y, entitytypes type) : j1Entity(x, y, entitytypes:
 	dashanim.LoadAnimations("dash");
 	wallgrab.LoadAnimations("wall");
 	attackanim.LoadAnimations("attack");
+	deadanim.LoadAnimations("death");
 	name.create("player");
 	
 }
@@ -349,21 +350,24 @@ bool j1Player::Update(float dt) {
 
 		if (dead == true) {
 		
-			if(App->scene->active == true){
+			current_animation = &deadanim;
+			if(App->scene->active == true && deadanim.Finished() == true){
 				App->fade->FadeToBlack(App->scene, App->scene,0.8f);
 				position.x = 30;
 				position.y = 520;
 				dead = false;
 				App->enty->DestroyEnemies();
 				App->scene->AddAllEnemies();
+				deadanim.Reset();
 			}
-			if (App->scene2->active == true) {
+			if (App->scene2->active == true && deadanim.Finished() == true) {
 				App->fade->FadeToBlack(App->scene2, App->scene2,0.8f);
 				position.x = 30;
 				position.y = 350;
 				dead = false;
 				App->enty->DestroyEnemies();
 				App->scene2->AddAllEnemies2();
+				deadanim.Reset();
 			}
 			
 		}

@@ -64,8 +64,9 @@ bool j1Scene::Start()
 		App->enty->CreatePlayer();
 		playeron = true;
 	}
+	if (active == true) {
 	AddAllEnemies();
-
+	}
 	
 	
 	return true;
@@ -170,10 +171,7 @@ bool j1Scene::Update(float dt)
 
 
 	
-	
-	p2SString title("Bobobo Adventure");
 
-	App->win->SetTitle(title.GetString());
 	return true;
 	
 }

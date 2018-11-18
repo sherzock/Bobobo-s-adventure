@@ -1,6 +1,6 @@
 <h1>Bobobo's bizarre adventure</h1>
 
-<p>Link to our github <a href="https://github.com/sherzock/DevelopmentGame">Bobobo's bizarre adventure</a>.</p>
+<p>Link to our github <a href="https://github.com/sherzock/Bobobo-s-adventure">Bobobo's bizarre adventure</a>.</p>
 
 <h2>Game</h2>
 
@@ -15,6 +15,7 @@ This game is a basic plataformer made by Jacobo Galofre and Ferran Barnes at UPC
   <li>D - Right</li>
   <li>Spacebar - jump</li>
   <li>Left shift - dash</li>
+  <li>C - Attack</li>
 </ul> 
 
 <h3>Debbuging tools</h3>
@@ -22,9 +23,9 @@ This game is a basic plataformer made by Jacobo Galofre and Ferran Barnes at UPC
 <ul>
   <li>F1 - Restart Game</li>
   <li>F2 - Restart level</li>
-  <li>F3 - Change level </li>
+
   <li>F5 - Quicksave</li>
-  <li>F5 - Load</li>
+  <li>F6 - Load</li>
   <li>F9 - Show Colliders</li>
   <li>F10 - Godmode</li>
 </ul> 

@@ -200,17 +200,47 @@ void j1App::FinishUpdate()
 		prev_last_sec_frame_count = last_sec_frame_count;
 		last_sec_frame_count = 0;
 	}
+
+	
+	if (App->input->GetKey(SDL_SCANCODE_F11) == j1KeyState::KEY_DOWN) {
+		capfps = !capfps;
+		frame_count = 0;
+	}
+
 	float avg_fps = float(frame_count) / startup_time.ReadSec();
 	float seconds_since_startup = startup_time.ReadSec();
 	uint32 last_frame_ms = frame_time.Read();
 	uint32 frames_on_last_update = prev_last_sec_frame_count;
-	static char title[256];
-	sprintf_s(title, 256, "Av.FPS: %.2f Last Frame Ms: %02u Last sec frames: %i Last dt: %.3f Time since startup: %.3f Frame Count: %lu ",
-		avg_fps, last_frame_ms, frames_on_last_update, dt, seconds_since_startup, frame_count);
-	App->win->SetTitle(title);
 	double ptime = ptimer.ReadMs();
 	if (last_frame_ms < msForCap)
 		SDL_Delay(msForCap - last_frame_ms);
+
+	if ((last_frame_ms < (1000 / frame_cap)) && capfps == true) {
+		SDL_Delay((1000 / frame_cap) - last_frame_ms);
+	}
+
+
+	static char title[256];
+	char* cap;
+	char* vsync;
+
+	if (capfps == true) {
+		cap = "on";
+	}else {
+		cap = "off";
+	}
+	
+	if (App->render->Vsyncon == true) {
+		vsync = "on";
+	}else {
+		vsync = "off";
+	}
+		
+	sprintf_s(title, 256, "Bobobo's adventure ~ FPS: %d / Av.FPS: %.2f / Last Frame Ms: %02u / Cap %s / VSYNC %s",
+		frames_on_last_update, avg_fps, last_frame_ms, cap, vsync);	App->win->SetTitle(title);
+	
+
+	
 
 }
 
