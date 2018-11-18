@@ -20,7 +20,8 @@ enum entitytypes
 {
 	NO_TYPE,
 	PLAYER,
-	FLYINGENEMY
+	FLYINGENEMY,
+	WALKINGENEMY
 
 };
 

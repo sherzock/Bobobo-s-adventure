@@ -22,6 +22,15 @@ enum COLLIDER_TYPE
 	
 };
 
+enum COLLISION_DIRECTION
+{
+	NONE_COLLISION,
+	UP_COLLISION,
+	DOWN_COLLISION,
+	RIGHT_COLLISION,
+	LEFT_COLLISION
+};
+
 struct Collider
 {
 	SDL_Rect rect;
@@ -35,6 +44,7 @@ struct Collider
 
 	void Set_Pos(int x, int y) { rect.x = x; rect.y = y; }
 	bool Check_Collision(const SDL_Rect& r) const;
+	COLLISION_DIRECTION CheckDirection(const SDL_Rect& r) const;
 };
 
 class j1Collisions : public j1Module

@@ -11,7 +11,7 @@
 #include "p2Log.h"
 
 
-#define GRAVITY 7
+#define GRAVITY 1
 
 //struct Collider;
 struct SDL_Texture;
@@ -57,7 +57,7 @@ public:
 	SDL_Texture* win_sprites = nullptr;
 	entitytypes type;
 
-	virtual void Draw(SDL_Rect rect, bool flip, int x, int y);
+	virtual void Draw(bool flip, SDL_Rect rect);
 	virtual void OnCollision(Collider* col_1, Collider* col_2) {};
 	
 

@@ -133,22 +133,6 @@ bool j1Scene::Update(float dt)
 		change_scenes1();
 		
 	}
-		
-
-	/*if (App->enty->player->position.x >= App->map->map_file.child("map").child("properties").child("property").next_sibling("property").next_sibling("property").next_sibling("property").attribute("value").as_float() - 300) {
-
-		change_scenes1();
-	}
-	/*else if (position.x >= App->map->map_file.child("map").child("properties").child("property").next_sibling("property").next_sibling("property").next_sibling("property").attribute("value").as_float() && App->scene2->active == true) {
-
-		App->enty->player->win2 = true;
-	}
-	*/
-	
-	/*else if (App->enty->player->win2 == true) {
-		App->scene2->change_scenes2();
-	}
-	*/
 
 	if (App->render->camera.x > -7500)
 	{
@@ -239,5 +223,5 @@ void j1Scene::change_scenes1(){
 void j1Scene::AddAllEnemies() {
 
 
-	App->enty->AddEnemy(300, 400, FLYINGENEMY);
+	App->enty->AddEnemy(500, 530, WALKINGENEMY);
 }

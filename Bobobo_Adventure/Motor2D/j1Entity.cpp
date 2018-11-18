@@ -7,13 +7,13 @@
 j1Entity::j1Entity(int x, int y, entitytypes type) : position(x, y), type(type){
 }
 
-void j1Entity::Draw(SDL_Rect rect, bool goingright, int x, int y){
+void j1Entity::Draw(bool goingright, SDL_Rect rect){
 	if (goingright == true) {
-		App->render->Blit(sprites, (int)position.x, (int)position.y , &(animation->GetCurrentFrame()), SDL_FLIP_NONE);
+		App->render->Blit(sprites, (int)position.x, (int)position.y , &rect, SDL_FLIP_NONE);
 	}
 		
 	else {
-		App->render->Blit(sprites, (int)position.x , (int)position.y , &(animation->GetCurrentFrame()), SDL_FLIP_HORIZONTAL);
+		App->render->Blit(sprites, (int)position.x , (int)position.y , &rect, SDL_FLIP_HORIZONTAL);
 	}
 		
 }
