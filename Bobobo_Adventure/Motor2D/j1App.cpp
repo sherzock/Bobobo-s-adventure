@@ -212,8 +212,6 @@ void j1App::FinishUpdate()
 	uint32 last_frame_ms = frame_time.Read();
 	uint32 frames_on_last_update = prev_last_sec_frame_count;
 	double ptime = ptimer.ReadMs();
-	if (last_frame_ms < msForCap)
-		SDL_Delay(msForCap - last_frame_ms);
 
 	if ((last_frame_ms < (1000 / frame_cap)) && capfps == true) {
 		SDL_Delay((1000 / frame_cap) - last_frame_ms);

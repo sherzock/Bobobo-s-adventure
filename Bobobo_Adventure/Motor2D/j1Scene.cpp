@@ -56,7 +56,7 @@ bool j1Scene::Start()
 		}
 		debug_tex = App->tex->Load("maps/path2.png");
 
-		App->audio->PlayMusic("audio/music/level1.ogg", 1.0f);
+		App->audio->PlayMusic("audio/music/level1.ogg");
 	}
 
 	if (playeron == false)
