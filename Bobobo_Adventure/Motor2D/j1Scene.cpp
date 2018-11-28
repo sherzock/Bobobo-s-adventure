@@ -213,6 +213,7 @@ void j1Scene::change_scenes1(){
 	App->enty->CleanUp();
 	App->fade->FadeToBlack(App->scene, App->scene2, 0.8f);
 	App->enty->CreatePlayer();
+	App->enty->player->XSpeed = 0;
 	App->enty->Start();
 	App->scene2->Start();
 	App->enty->player->position.x = 30;
