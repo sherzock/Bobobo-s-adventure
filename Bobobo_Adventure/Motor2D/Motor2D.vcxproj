@@ -76,6 +76,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="j1Coin.cpp" />
     <ClCompile Include="j1Collisions.cpp" />
     <ClCompile Include="j1Entity.cpp" />
     <ClCompile Include="j1EntityManager.cpp" />
@@ -100,6 +101,7 @@
     <ClCompile Include="j1Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="j1Coin.h" />
     <ClInclude Include="j1EntityManager.h" />
     <ClInclude Include="j1FlyingEnemy.h" />
     <ClInclude Include="j1PerfTimer.h" />

@@ -67,6 +67,9 @@
     <ClCompile Include="j1WalkingEnemy.cpp">
       <Filter>Desenvolupament  ========\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="j1Coin.cpp">
+      <Filter>Desenvolupament  ========\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -154,6 +157,9 @@
       <Filter>Desenvolupament  ========\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="j1WalkingEnemy.h">
+      <Filter>Desenvolupament  ========\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Coin.h">
       <Filter>Desenvolupament  ========\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
