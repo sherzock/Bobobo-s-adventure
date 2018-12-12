@@ -88,37 +88,16 @@ bool j1FlyingEnemy::CleanUp()
 
 bool j1FlyingEnemy::Load(pugi::xml_node & data)
 {
-	if (data.child("position2").attribute("level").as_int() == 2 && App->scene->active == true)
-	{
-		App->scene->change_scenes1();
-	}
-	if (data.child("position2").attribute("level").as_int() == 1 && App->scene2->active == true)
-	{
-		App->scene2->change_scenes2();
-	}
-
-	position.x = data.child("position2").attribute("x").as_int();
-	position.y = data.child("position2").attribute("y").as_int();
-
 
 	return true;
 }
 
 bool j1FlyingEnemy::Save(pugi::xml_node& data)const
 {
-	pugi::xml_node fly = data.append_child("position2");
+	pugi::xml_node pos = data.append_child("position");
 
-	fly.append_attribute("x") = position.x;
-	fly.append_attribute("y") = position.y;
-
-	if (App->scene->active == true)
-	{
-		fly.append_attribute("level") = 1;
-	}
-	else if (App->scene2)
-	{
-		fly.append_attribute("level") = 2;
-	}
+	pos.append_attribute("x") = position.x;
+	pos.append_attribute("y") = position.y;
 
 	return true;
 }

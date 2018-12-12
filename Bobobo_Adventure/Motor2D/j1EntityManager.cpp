@@ -221,16 +221,18 @@ void j1EntityManager::OnCollision(Collider* col_1, Collider* col_2)
 bool j1EntityManager::Load(pugi::xml_node& data)
 {
 	
-	p2List_item <j1Entity*> *entity = entities.start;
+	DestroyEnemies();
+	player->Load(data.child(player->name.GetString()));
 
-	while (entity != NULL )
-	{
-		entity->data->Load(data);
-
-		entity = entity->next;
+	for (pugi::xml_node WalkingEnemy = data.child("WalkingEnemy").child("position"); WalkingEnemy; WalkingEnemy = WalkingEnemy.next_sibling()) {
+		iPoint WalkingPos = { WalkingEnemy.attribute("x").as_int(), WalkingEnemy.attribute("y").as_int() };
+		CreateEntity(WALKINGENEMY, WalkingPos.x, WalkingPos.y);
 	}
-
-
+	for (pugi::xml_node Fly = data.child("Fly").child("position"); Fly; Fly = Fly.next_sibling()) {
+		iPoint FlyPos = { Fly.attribute("x").as_int(), Fly.attribute("y").as_int() };
+		CreateEntity(FLYINGENEMY, FlyPos.x, FlyPos.y);
+	}
+	
 
 	return true;
 }
@@ -238,13 +240,21 @@ bool j1EntityManager::Load(pugi::xml_node& data)
 bool j1EntityManager::Save(pugi::xml_node& data) const
 {
 	
-	p2List_item <j1Entity*> *entity = entities.start;
+	player->Save(data.append_child(player->name.GetString()));
 
-	while (entity != NULL)
+	pugi::xml_node WalkingEnemies = data.append_child("WalkingEnemy");
+	pugi::xml_node FlyingEnemies = data.append_child("Fly");
+	
+	p2List_item<j1Entity*>* EntityIterator; //Iterates for all entities 
+	for (EntityIterator = entities.start; EntityIterator; EntityIterator = EntityIterator->next)
 	{
-		entity->data->Save(data);
-
-		entity = entity->next;
+		if (EntityIterator->data->type == WALKINGENEMY) {
+			EntityIterator->data->Save(WalkingEnemies);
+		}
+		if (EntityIterator->data->type == FLYINGENEMY) {
+			EntityIterator->data->Save(FlyingEnemies);
+		}
+		
 	}
 
 	return true;

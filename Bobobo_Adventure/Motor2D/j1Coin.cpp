@@ -63,18 +63,12 @@ bool j1Coin::CleanUp()
 
 bool j1Coin::Load(pugi::xml_node & data)
 {
-	if (data.child("position3").attribute("level").as_int() == 2 && App->scene->active == true)
-	{
-		App->scene->change_scenes1();
-	}
-	if (data.child("position3").attribute("level").as_int() == 1 && App->scene2->active == true)
-	{
-		App->scene2->change_scenes2();
-	}
+	pugi::xml_node pos = data.append_child("position");
 
-	position.x = data.child("position3").attribute("x").as_int();
-	position.y = data.child("position3").attribute("y").as_int();
+	pos.append_attribute("x") = position.x;
+	pos.append_attribute("y") = position.y;
 
+	return true;
 
 	return true;
 }

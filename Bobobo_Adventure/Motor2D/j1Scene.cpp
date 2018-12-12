@@ -219,6 +219,7 @@ void j1Scene::change_scenes1(){
 	App->enty->player->position.x = 30;
 	App->enty->player->position.y = 300;
 
+
 }
 
 void j1Scene::AddAllEnemies() {
