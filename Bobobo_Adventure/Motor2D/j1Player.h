@@ -82,6 +82,8 @@ public:
 	float DashSpeedres ;
 	float DashAcc;
 	float FSpeed;
+	float numberofcoins;
+
 	uint currentTime;
 	uint lastTime;
 
