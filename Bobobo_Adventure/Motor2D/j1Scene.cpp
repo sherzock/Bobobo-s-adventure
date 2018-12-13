@@ -9,6 +9,7 @@
 #include "j1Map.h"
 #include "j1Scene.h"
 #include "j1Scene2.h"
+#include "j1MainMenuScene.h"
 #include "j1Player.h"
 #include "j1Collisions.h"
 #include "j1FadeToBlack.h"
@@ -40,6 +41,9 @@ bool j1Scene::Awake()
 bool j1Scene::Start()
 {
 	
+	if (App->scene2->active == true || App->menuscene->active == true) {
+		active = false;
+	}
 	
 	if (active == true)	{
 	
@@ -57,13 +61,14 @@ bool j1Scene::Start()
 		debug_tex = App->tex->Load("maps/path2.png");
 
 		App->audio->PlayMusic("audio/music/level1.ogg");
+		
+		if (playeron == false)
+		{
+			App->enty->CreatePlayer();
+			playeron = true;
+		}
 	}
 
-	if (playeron == false)
-	{
-		App->enty->CreatePlayer();
-		playeron = true;
-	}
 	if (active == true) {
 	AddAllEnemies();
 	}

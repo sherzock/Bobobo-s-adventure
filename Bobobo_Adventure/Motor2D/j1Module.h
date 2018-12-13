@@ -13,6 +13,10 @@ struct Collider; //To know it exists
 
 class j1App;
 
+class j1UIItems;
+
+enum Event;
+
 class j1Module
 {
 public:
@@ -71,7 +75,9 @@ public:
 		return true;
 	}
 
-	virtual void OnCollision(Collider* col_1, Collider* col_2) {} //Pregunatr aixo LATER
+	virtual void OnCollision(Collider* col_1, Collider* col_2) {}
+
+	virtual bool OnEventChange(j1UIItems* item, Event event) { return true; }
 
 public:
 

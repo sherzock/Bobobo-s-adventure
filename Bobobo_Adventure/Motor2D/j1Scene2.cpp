@@ -7,6 +7,7 @@
 #include "j1Render.h"
 #include "j1Window.h"
 #include "j1Map.h"
+#include "j1MainMenuScene.h"
 #include "j1Scene.h"
 #include "j1Scene2.h"
 #include "j1Player.h"
@@ -43,7 +44,7 @@ bool j1Scene2::Start()
 {
 	
 	
-	if (App->scene->active == true) {
+	if (App->scene->active == true || App->menuscene->active == true) {
 		active = false;
 	}
 		
