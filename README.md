@@ -64,19 +64,19 @@ Not correct yet
 
 <h6>MIT License</h6>
 
-<em><h6>Copyright (c) 2018 Jacobo Galofre and Ferran Barnes
+<em><h6>Copyright (c) 2018 Jacobo Galofre and Ferran Barnes</h6></em>
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
+<em><h6>Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+furnished to do so, subject to the following conditions:</h6></em>
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+<em><h6>The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.</h6></em>
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+<em><h6>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
