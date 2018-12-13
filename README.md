@@ -9,6 +9,7 @@ This game is a basic plataformer made by Jacobo Galofre and Ferran Barnes at UPC
 <h2>Controls</h2>
 
 <h3>Movement</h3>
+<h3>Movement</h3>
 
 <ul>
   <li>A - Left</li>
