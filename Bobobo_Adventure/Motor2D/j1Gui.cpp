@@ -90,9 +90,9 @@ bool j1Gui::CleanUp()
 	App->tex->UnLoad(atlas);
 	p2List_item<j1UIItems*>* item = items.start;
 
-	if (item != NULL) {
+	if (item != nullptr) {
 
-		for (; item != NULL; item = item->next) {
+		for (; item != nullptr; item = item->next) {
 
 			item->data->CleanUp();
 

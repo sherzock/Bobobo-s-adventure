@@ -157,14 +157,49 @@ bool j1MainMenuScene::OnEventChange(j1UIItems* elem, Event evnt)
 void j1MainMenuScene::change_scenes0() {
 	App->scene->active = true;
 	App->menuscene->active = false;
-	CleanUp();
+	if (MainMenubg != nullptr) {
+		MainMenubg->CleanUp();
+	}
+	if (MainMenuTitle != nullptr) {
+		MainMenuTitle->CleanUp();
+	}
+	if (playbutt != nullptr) {
+		playbutt->CleanUp();
+	}
+	if (continuebutt != nullptr) {
+		continuebutt->CleanUp();
+	}
+	if (settingsbutt != nullptr) {
+		settingsbutt->CleanUp();
+	}
+	if (creditsbutt != nullptr) {
+		creditsbutt->CleanUp();
+	}
+	if (exitbutt != nullptr) {
+		exitbutt->CleanUp();
+	}
+	if (settingsback != nullptr) {
+		settingsback->CleanUp();
+	}
+	if (volumetitle != nullptr) {
+		volumetitle->CleanUp();
+	}
+	if (creditsback != nullptr) {
+		creditsback->CleanUp();
+	}
+	if (creditstxt != nullptr) {
+		creditstxt->CleanUp();
+	}
+	App->scene->Start();
 	App->enty->active = true;
 	App->fade->FadeToBlack(App->menuscene, App->scene, 0.8f);
-	App->scene->Start();
-	App->enty->CreatePlayer();
-	App->enty->player->XSpeed = 0;
 	App->enty->player->position.x = 30;
 	App->enty->player->position.y = 550;
+	App->enty->player->XSpeed = 0;
+	App->enty->CreatePlayer();
+	App->enty->Start();
+	
+	
 }
 
 void j1MainMenuScene::createmainmenu()

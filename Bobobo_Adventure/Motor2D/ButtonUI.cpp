@@ -25,11 +25,12 @@ bool ButtonUI::CleanUp()
 	//App->tex->UnLoad(tex);
 
 	deleting = true;
-	if (tex != nullptr)
+	
 		App->tex->UnLoad(tex);
-	App->tex->UnLoad(None);
-	App->tex->UnLoad(Over);
-	App->tex->UnLoad(Pressed);
+		App->tex->UnLoad(None);
+		App->tex->UnLoad(Over);
+		App->tex->UnLoad(Pressed);
+	
 
 
 	return true;
