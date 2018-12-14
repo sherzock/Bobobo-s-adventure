@@ -34,6 +34,8 @@ public:
 
 	void change_scenes2();
 	void AddAllEnemies2();
+
+	bool deadrestart = false;
 private:
 	bool playeron = false;
 

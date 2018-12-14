@@ -33,10 +33,12 @@ public:
 	bool CleanUp();
 
 	void change_scenes1();
+	void change_scenesmainmenu();
 	void AddAllEnemies();
 
 public:
 	bool playeron = false;
+	bool deadrestart = false;
 	
 private:
 	SDL_Texture * debug_tex;

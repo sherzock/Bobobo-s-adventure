@@ -11,6 +11,7 @@
 #include "j1Scene2.h"
 #include "j1Map.h"
 #include "j1Entity.h"
+#include "j1PlayerUI.h"
 #include "Brofiler/Brofiler.h"
 
 
@@ -55,6 +56,10 @@ bool j1Player::Start() {
 	animation = &idle;
 	
 	collider = App->colls->AddCollider({ (int)position.x, (int)position.y, playerwidth, playerheight }, PLAYER_COLLIDER, App->enty);
+
+	playerUI = new j1PlayerUI();
+	playerUI->Start();
+	playerlifes = 3;
 
 	return true;
 }
@@ -367,29 +372,43 @@ bool j1Player::Update(float dt) {
 		
 		if (position.y >= App->map->map_file.child("map").child("properties").child("property").next_sibling("property").next_sibling("property").attribute("value").as_float()) {
 
-			dead = true;
+				dead = true;
+			
 		}
 
 		if (dead == true) {
 		
+			playerlifes--;
 			animation = &deadanim;
+
 			if(App->scene->active == true ){
-				App->fade->FadeToBlack(App->scene, App->scene,0.8f);
-				position.x = 30;
-				position.y = 520;
-				dead = false;
-				App->enty->DestroyEnemies();
-				App->scene->AddAllEnemies();
-				deadanim.Reset();
+				if (playerlifes > 0) {
+					App->fade->FadeToBlack(App->scene, App->scene,0.8f);
+					position.x = 30;
+					position.y = 520;
+					dead = false;
+					App->enty->DestroyEnemies();
+					App->scene->AddAllEnemies();
+					deadanim.Reset();
+				}
+				else if (playerlifes <= 0) {
+					App->scene->deadrestart = true;
+				}
+				
 			}
 			if (App->scene2->active == true ) {
-				App->fade->FadeToBlack(App->scene2, App->scene2,0.8f);
-				position.x = 30;
-				position.y = 350;
-				dead = false;
-				App->enty->DestroyEnemies();
-				App->scene2->AddAllEnemies2();
-				deadanim.Reset();
+				if (playerlifes > 0) {
+					App->fade->FadeToBlack(App->scene2, App->scene2, 0.8f);
+					position.x = 30;
+					position.y = 350;
+					dead = false;
+					App->enty->DestroyEnemies();
+					App->scene2->AddAllEnemies2();
+					deadanim.Reset();
+				}
+				else if (playerlifes <= 0) {
+					App->scene2->deadrestart = true;
+				}
 			}
 			
 		}
@@ -414,7 +433,7 @@ bool j1Player::Update(float dt) {
 	
 	
 	
-
+	playerUI->Update(dt);
 
 	
 
@@ -540,7 +559,7 @@ bool j1Player::CleanUp() {
 	}
 	if ((col_1->type == PLAYER_COLLIDER && col_2->type == ENEMY_COLLIDER) || (col_2->type == PLAYER_COLLIDER && col_1->type == ENEMY_COLLIDER))
 	{
-		dead = true;
+			dead = true;
 	}
 		
 	XSpeed= ResXspeed;

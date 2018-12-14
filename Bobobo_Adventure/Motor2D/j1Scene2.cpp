@@ -125,6 +125,9 @@ bool j1Scene2::Update(float dt)
 
 	App->map->Draw();
 
+		if (deadrestart == true) {
+			change_scenes2();
+		}
 
 
 	return true;
@@ -156,7 +159,7 @@ bool j1Scene2::CleanUp()
 
 void j1Scene2::change_scenes2() {
 		
-	App->scene->active = true;
+	App->menuscene->active = true;
 	App->scene2->active = false;
 	CleanUp();
 	App->enty->CleanUp();

@@ -5,7 +5,7 @@
 #include "SDL\include\SDL_pixels.h"
 
 #define DEFAULT_FONT "fonts/Aller_lt.ttf"
-#define DEFAULT_FONT_SIZE 12
+#define DEFAULT_FONT_SIZE 50
 
 struct SDL_Texture;
 struct _TTF_Font;

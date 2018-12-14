@@ -38,6 +38,9 @@ void LabelUI::CreateText(p2SString txt, SDL_Color color, Fonts font)
 	if (font == ALLER_LT) {
 		path = "fonts/Aller_Lt.ttf";
 	}
+	else if (font == SLKSCR) {
+		path = "fonts/slkscr.ttf";
+	}
 	fnt = App->font->Load(path, font_size);
 	text_color = color;
 	text_font = fnt;

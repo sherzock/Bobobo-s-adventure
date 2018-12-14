@@ -11,6 +11,7 @@
 
 struct SDL_Texture;
 
+class j1PlayerUI;
 
 class j1Player : public j1Entity
 
@@ -84,12 +85,14 @@ public:
 	float FSpeed;
 	float numberofcoins;
 
+	uint playerlifes;
 	uint currentTime;
 	uint lastTime;
 
 	//logical booleans//
 	bool updatedTime = false;
 	bool dead = false;
+	bool deadrestart = false;
 	bool win1 = false;
 	bool win2 = false;
 	bool GroundCollision = false;
@@ -104,6 +107,8 @@ public:
 	bool wallhitle = false;
 	bool attack = false;
 	bool airborne = false;
+
+	j1PlayerUI* playerUI = nullptr;
 };
 
 #endif // __jPLAYER_H__

@@ -120,7 +120,7 @@ bool j1Scene::Update(float dt)
 
 		if (App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN) {
 			
-			App->LoadGame();
+			//App->LoadGame();
 		}
 		
 
@@ -177,8 +177,10 @@ bool j1Scene::Update(float dt)
 		}
 	}
 	
-
-
+	
+		if(deadrestart == true) {
+		change_scenesmainmenu();
+		}
 	
 
 	return true;
@@ -229,6 +231,17 @@ void j1Scene::change_scenes1(){
 	App->enty->player->position.y = 300;
 
 
+}
+
+void j1Scene::change_scenesmainmenu()
+{
+	App->menuscene->active = true;
+	App->scene->active = false;
+	CleanUp();
+	App->enty->CleanUp();
+	App->fade->FadeToBlack(App->scene, App->scene2, 0.8f);
+	App->menuscene->Start();
+	
 }
 
 void j1Scene::AddAllEnemies() {
