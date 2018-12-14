@@ -39,6 +39,9 @@ public:
 
 	bool OnEventChange(j1UIItems* elem, Event event);
 	void change_scenes0();
+	void createsettings();
+	void createcredits();
+	void createmainmenu();
 
 private:
 	SDL_Texture * debug_tex;
@@ -49,6 +52,12 @@ private:
 	ButtonUI* settingsbutt = nullptr;
 	ButtonUI* creditsbutt = nullptr;
 	ButtonUI* exitbutt = nullptr;
+	ButtonUI* settingsback = nullptr;
+	ImageUI*  volumetitle = nullptr;
+	ButtonUI* creditsback = nullptr;
+	LabelUI*  creditstxt = nullptr;
+
+
 
 };
 
