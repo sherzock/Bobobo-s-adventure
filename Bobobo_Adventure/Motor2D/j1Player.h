@@ -83,7 +83,7 @@ public:
 	float DashSpeedres ;
 	float DashAcc;
 	float FSpeed;
-	float numberofcoins;
+	float numberofcoins = 0;
 
 	uint playerlifes;
 	uint currentTime;

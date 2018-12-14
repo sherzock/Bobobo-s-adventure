@@ -22,7 +22,7 @@ j1Collisions::j1Collisions() : j1Module()
 	matrix[PLAYER_COLLIDER][NO_COLLIDER] = false;
 	matrix[PLAYER_COLLIDER][ATTACK_COLLIDER] = false;
 	matrix[PLAYER_COLLIDER][ENEMY_COLLIDER] = true;
-
+	matrix[PLAYER_COLLIDER][COIN_COLLIDER] = true;
 	
 
 	matrix[GROUND_COLLIDER][PLAYER_COLLIDER] = true;
@@ -30,25 +30,35 @@ j1Collisions::j1Collisions() : j1Module()
 	matrix[GROUND_COLLIDER][NO_COLLIDER] = false;
 	matrix[GROUND_COLLIDER][ATTACK_COLLIDER] = false;
 	matrix[GROUND_COLLIDER][ENEMY_COLLIDER] = true;
-	
+	matrix[GROUND_COLLIDER][COIN_COLLIDER] = false;
 
 	matrix[NO_COLLIDER][NO_COLLIDER] = false;
-	matrix[NO_COLLIDER][GROUND_COLLIDER] = true;
+	matrix[NO_COLLIDER][GROUND_COLLIDER] = false;
 	matrix[NO_COLLIDER][PLAYER_COLLIDER] = false;
 	matrix[NO_COLLIDER][ATTACK_COLLIDER] = false;
 	matrix[NO_COLLIDER][ENEMY_COLLIDER] = false;
+	matrix[NO_COLLIDER][COIN_COLLIDER] = false;
 
 	matrix[ATTACK_COLLIDER][ATTACK_COLLIDER] = false;
 	matrix[ATTACK_COLLIDER][GROUND_COLLIDER] = false;
 	matrix[ATTACK_COLLIDER][PLAYER_COLLIDER] = false;
 	matrix[ATTACK_COLLIDER][NO_COLLIDER] = false;
 	matrix[ATTACK_COLLIDER][ENEMY_COLLIDER] = true;
+	matrix[ATTACK_COLLIDER][COIN_COLLIDER] = false;
 	
 	matrix[ENEMY_COLLIDER][ENEMY_COLLIDER] = false;
 	matrix[ENEMY_COLLIDER][GROUND_COLLIDER] = true;
 	matrix[ENEMY_COLLIDER][PLAYER_COLLIDER] = true;
 	matrix[ENEMY_COLLIDER][NO_COLLIDER] = false;
 	matrix[ENEMY_COLLIDER][ATTACK_COLLIDER] = true;
+	matrix[ENEMY_COLLIDER][COIN_COLLIDER] = false;
+
+	matrix[COIN_COLLIDER][COIN_COLLIDER] = false;
+	matrix[COIN_COLLIDER][ENEMY_COLLIDER] = false;
+	matrix[COIN_COLLIDER][GROUND_COLLIDER] = true;
+	matrix[COIN_COLLIDER][PLAYER_COLLIDER] = true;
+	matrix[COIN_COLLIDER][NO_COLLIDER] = false;
+	matrix[COIN_COLLIDER][ATTACK_COLLIDER] = true;
 	
 
 }
@@ -79,7 +89,7 @@ bool j1Collisions::PreUpdate(){
 	for (uint i = 0; i < MAX_NUM_COLLIDERS; ++i) {
 		if (colliders[i] == nullptr)
 			continue;
-		if (colliders[i]->type == PLAYER_COLLIDER || colliders[i]->type == NO_COLLIDER || colliders[i]->type == ENEMY_COLLIDER){
+		if (colliders[i]->type == PLAYER_COLLIDER || colliders[i]->type == NO_COLLIDER || colliders[i]->type == ENEMY_COLLIDER || colliders[i]->type == COIN_COLLIDER){
 
 			collider1 = colliders[i];
 
@@ -148,7 +158,9 @@ bool j1Collisions::Update(float dt) {
 		case ENEMY_COLLIDER:
 			App->render->DrawQuad(colliders[i]->rect, 254, 60, 255, 75); //purpule
 			break;
-		
+		case COIN_COLLIDER:
+			App->render->DrawQuad(colliders[i]->rect, 255, 90, 71, 75); //orange
+			break;
 		}
 	}
 
@@ -176,7 +188,11 @@ bool j1Collisions::Update(float dt) {
 			case ENEMY_COLLIDER:
 				App->render->DrawQuad(colliders[i]->rect, 254, 60, 255, 75); //purpule
 				break;
+			case COIN_COLLIDER:
+				App->render->DrawQuad(colliders[i]->rect, 254, 60, 255, 75); //purpule
+				break;
 			}
+
 		}
 	}
 
