@@ -3,14 +3,32 @@
 	<input />
 	<window />
 	<textures />
-	<audio />
+	<audio>
+		<volumes music="40" sfx="40" mute="false" />
+	</audio>
 	<map />
+	<Menuscene />
 	<scene />
 	<scene2 />
 	<entity>
-		<position x="34" y="550" level="1" />
-		<position2 x="223.199768" y="476.800415" level="1" />
+		<player>
+			<position x="141.25" y="540.33313" level="1" />
+		</player>
+		<WalkingEnemy>
+			<position x="388.949524" y="539.033997" />
+			<position x="6500" y="488.033997" />
+			<position x="4600" y="440.033997" />
+		</WalkingEnemy>
+		<Fly>
+			<position x="758.799805" y="504.299957" />
+			<position x="1500" y="100" />
+			<position x="3500" y="100" />
+			<position x="7500" y="400" />
+			<position x="4500" y="400" />
+		</Fly>
 	</entity>
+	<fonts />
+	<gui />
 	<collisions />
 	<fade />
 	<renderer>
