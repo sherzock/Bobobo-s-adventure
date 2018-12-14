@@ -48,6 +48,7 @@ bool j1Player::Start() {
 	graphics = App->tex->Load("textures/character.png");
 	LoadXML();
 
+	
 	Initial_position.x = position.x;
 	Initial_position.y = position.y;
 	
@@ -373,6 +374,7 @@ bool j1Player::Update(float dt) {
 		if (dead == true) {
 		
 			animation = &deadanim;
+			numberofcoins = 0;
 			if(App->scene->active == true ){
 				App->fade->FadeToBlack(App->scene, App->scene,0.8f);
 				position.x = 30;
@@ -538,9 +540,14 @@ bool j1Player::CleanUp() {
 			}
 			
 	}
+	
 	if ((col_1->type == PLAYER_COLLIDER && col_2->type == ENEMY_COLLIDER) || (col_2->type == PLAYER_COLLIDER && col_1->type == ENEMY_COLLIDER))
 	{
 		dead = true;
+	}
+	if ((col_1->type == PLAYER_COLLIDER && col_2->type == COIN_COLLIDER) || (col_2->type == PLAYER_COLLIDER && col_1->type == COIN_COLLIDER))
+	{
+		numberofcoins += 1;
 	}
 		
 	XSpeed= ResXspeed;

@@ -11,6 +11,7 @@
 #include "j1Player.h"
 #include "j1FlyingEnemy.h"
 #include "j1WalkingEnemy.h"
+#include "j1Coin.h"
 #include "Brofiler/Brofiler.h"
 
 
@@ -120,6 +121,10 @@ j1Entity* j1EntityManager::CreateEntity(entitytypes type, int x, int y)
 		ret = new j1WalkingEnemy(x, y, type);
 		if (ret != nullptr) entities.add(ret);
 		break;
+	case COIN:
+		ret = new j1Coin(x, y, type);
+		if (ret != nullptr) entities.add(ret);
+		break;
 
 	}
 	return ret;
@@ -155,6 +160,9 @@ void j1EntityManager::CreateEnemy(const EnemyInfo& info)
 			}
 			 if (queue[i].type == WALKINGENEMY) {
 				 entity = new j1WalkingEnemy(info.position.x, info.position.y, info.type);
+			 }
+			 if (queue[i].type == COIN) {
+				 entity = new j1Coin(info.position.x, info.position.y, info.type);
 			 }
 			
 			entities.add(entity);
@@ -254,7 +262,10 @@ bool j1EntityManager::Load(pugi::xml_node& data)
 		iPoint FlyPos = { Fly.attribute("x").as_int(), Fly.attribute("y").as_int() };
 		CreateEntity(FLYINGENEMY, FlyPos.x, FlyPos.y);
 	}
-	
+	for (pugi::xml_node Coin = data.child("Coin").child("position"); Coin; Coin = Coin.next_sibling()) {
+		iPoint CoinPos = { Coin.attribute("x").as_int(), Coin.attribute("y").as_int() };
+		CreateEntity(COIN, CoinPos.x, CoinPos.y);
+	}
 
 	return true;
 }
@@ -266,6 +277,7 @@ bool j1EntityManager::Save(pugi::xml_node& data) const
 
 	pugi::xml_node WalkingEnemies = data.append_child("WalkingEnemy");
 	pugi::xml_node FlyingEnemies = data.append_child("Fly");
+	pugi::xml_node CoinEnemies = data.append_child("Coin");
 	
 	p2List_item<j1Entity*>* EntityIterator; //Iterates for all entities 
 	for (EntityIterator = entities.start; EntityIterator; EntityIterator = EntityIterator->next)
@@ -276,7 +288,9 @@ bool j1EntityManager::Save(pugi::xml_node& data) const
 		if (EntityIterator->data->type == FLYINGENEMY) {
 			EntityIterator->data->Save(FlyingEnemies);
 		}
-		
+		if (EntityIterator->data->type == COIN) {
+			EntityIterator->data->Save(CoinEnemies);
+		}
 	}
 
 	return true;

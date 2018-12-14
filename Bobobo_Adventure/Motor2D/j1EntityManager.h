@@ -21,7 +21,8 @@ enum entitytypes
 	NO_TYPE,
 	PLAYER,
 	FLYINGENEMY,
-	WALKINGENEMY
+	WALKINGENEMY,
+	COIN
 
 };
 

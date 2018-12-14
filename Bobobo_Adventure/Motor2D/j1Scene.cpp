@@ -120,7 +120,7 @@ bool j1Scene::Update(float dt)
 
 		if (App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN) {
 			
-			App->LoadGame();
+			App->LoadGame("save_game.xml");
 		}
 		
 
@@ -233,7 +233,7 @@ void j1Scene::change_scenes1(){
 
 void j1Scene::AddAllEnemies() {
 
-
+	App->enty->AddEnemy(300, 530, COIN);
 	App->enty->AddEnemy(500, 530, WALKINGENEMY);
 	App->enty->AddEnemy(800, 470, FLYINGENEMY);
 	App->enty->AddEnemy(1500, 100, FLYINGENEMY);

@@ -13,7 +13,7 @@
 #include "j1Scene2.h"
 #include "Brofiler/Brofiler.h"
 
-j1Coin::j1Coin(int x, int y, entitytypes type) : j1Entity(x, y, entitytypes::FLYINGENEMY)
+j1Coin::j1Coin(int x, int y, entitytypes type) : j1Entity(x, y, entitytypes::COIN)
 {
 	animation = NULL;
 
@@ -31,7 +31,7 @@ bool j1Coin::Start()
 	sprites = App->tex->Load("textures/Coin.png");
 	
 	animation = &Coin_anim;
-	collider = App->colls->AddCollider({ (int)position.x, (int)position.y, 38,36 }, ENEMY_COLLIDER, App->enty);
+	collider = App->colls->AddCollider({ (int)position.x, (int)position.y, 38,36 }, COIN_COLLIDER, App->enty);
 
 	return true;
 }
@@ -70,7 +70,6 @@ bool j1Coin::Load(pugi::xml_node & data)
 
 	return true;
 
-	return true;
 }
 
 bool j1Coin::Save(pugi::xml_node& data)const
@@ -95,6 +94,9 @@ bool j1Coin::Save(pugi::xml_node& data)const
 
 void j1Coin::OnCollision(Collider * col_1, Collider * col_2)
 {
-	
+	if ((col_1->type == PLAYER_COLLIDER && col_2->type == COIN_COLLIDER) || (col_2->type == PLAYER_COLLIDER && col_1->type == COIN_COLLIDER))
+	{
+		CleanUp();
+	}
 }
 
