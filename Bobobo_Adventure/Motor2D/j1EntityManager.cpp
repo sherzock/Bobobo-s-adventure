@@ -201,6 +201,27 @@ void j1EntityManager::DestroyEnemies() {
 
 }
 
+bool j1EntityManager::EnemiesCleanUp()
+{
+	p2List_item<j1Entity*>* iterator;
+	for (iterator = entities.start; iterator; iterator = iterator->next) {
+		if (iterator->data->type != entitytypes::PLAYER)
+		{
+			iterator->data->CleanUp();
+			DestroyEntity(iterator->data);
+		}
+	}
+	return true;
+}
+
+void j1EntityManager::DestroyEntity(j1Entity* entity)
+{
+	int num = entities.find(entity);
+	RELEASE(entities.At(num)->data);
+	entities.del(entities.At(num));
+}
+
+
 void j1EntityManager::CreatePlayer()
 {
 	player = (j1Player*)CreateEntity(PLAYER);
@@ -221,9 +242,10 @@ void j1EntityManager::OnCollision(Collider* col_1, Collider* col_2)
 bool j1EntityManager::Load(pugi::xml_node& data)
 {
 	
-	DestroyEnemies();
+	EnemiesCleanUp();
 	player->Load(data.child(player->name.GetString()));
 
+	
 	for (pugi::xml_node WalkingEnemy = data.child("WalkingEnemy").child("position"); WalkingEnemy; WalkingEnemy = WalkingEnemy.next_sibling()) {
 		iPoint WalkingPos = { WalkingEnemy.attribute("x").as_int(), WalkingEnemy.attribute("y").as_int() };
 		CreateEntity(WALKINGENEMY, WalkingPos.x, WalkingPos.y);

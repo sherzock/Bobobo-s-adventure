@@ -56,6 +56,8 @@ public:
 	void DestroyEntities();
 	void DestroyEnemies();
 
+	void DestroyEntity(j1Entity* entity);
+	bool EnemiesCleanUp();
 public:
 	
 	p2List<j1Entity*>	entities;

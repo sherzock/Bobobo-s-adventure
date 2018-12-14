@@ -65,6 +65,9 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(fade);
 	// render last to swap buffer
 	AddModule(render);
+
+	load_game = "save_game.xml";
+	save_game = "save_game.xml";
 }
 
 // Destructor
@@ -97,7 +100,9 @@ bool j1App::Awake()
 
 	
 	bool ret = false;
-		
+	
+	pugi::xml_parse_result result = config_file.load_file(load_game.GetString());
+	
 	config = LoadConfig(config_file);
 
 	if(config.empty() == false)

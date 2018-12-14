@@ -43,6 +43,8 @@ public:
 	void createcredits();
 	void createmainmenu();
 
+	bool WantToLoad = false;
+
 private:
 	SDL_Texture * debug_tex;
 	ImageUI* MainMenubg = nullptr;
