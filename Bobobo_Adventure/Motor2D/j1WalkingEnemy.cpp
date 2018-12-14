@@ -40,7 +40,7 @@ bool j1WalkingEnemy::Start()
 bool j1WalkingEnemy::Update(float dt)
 {
 	BROFILER_CATEGORY("FlyingEnemy Update", Profiler::Color::Tomato)
-		collider->Set_Pos(position.x, position.y);
+		
 
 	position.y += GRAVITY + GRAVITY * dt;
 
@@ -54,7 +54,7 @@ bool j1WalkingEnemy::Update(float dt)
 			else
 				destination = { App->map->WorldToMap((int)App->enty->player->position.x, (int)App->enty->player->position.y + App->enty->player->playerheight / 2) };
 
-			if (!App->enty->player->dead && App->path->IsWalkable(destination) && App->path->IsWalkable(origin))
+			if (App->enty->player->dead  == false && App->path->IsWalkable(destination) == true && App->path->IsWalkable(origin) == true)
 			{
 				path = App->path->CreatePath(origin, destination);
 				walk(*path, dt);
@@ -68,6 +68,10 @@ bool j1WalkingEnemy::Update(float dt)
 	{
 		animation = &idle;
 		position = initPos;
+	}
+	
+	if (collider != nullptr) {
+		collider->Set_Pos(position.x, position.y);
 	}
 
 	SDL_Rect rect = animation->GetCurrentFrame(dt);

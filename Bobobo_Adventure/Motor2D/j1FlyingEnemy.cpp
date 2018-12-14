@@ -39,7 +39,8 @@ bool j1FlyingEnemy::Start()
 bool j1FlyingEnemy::Update(float dt)
 {
 	BROFILER_CATEGORY("FlyingEnemy Update", Profiler::Color::Tomato)
-	collider->Set_Pos(position.x, position.y);
+		
+
 		
 	if ((App->enty->player->position.x - position.x) <= range && (App->enty->player->position.x - position.x) >= -range && App->enty->player->collider->type == PLAYER_COLLIDER)
 	{
@@ -62,7 +63,11 @@ bool j1FlyingEnemy::Update(float dt)
 
 	else if (path_created)
 		path->Clear();
-
+	
+	if (collider != nullptr) {
+		collider->Set_Pos(position.x, position.y);
+	}
+	
 	SDL_Rect rect = animation->GetCurrentFrame(dt);
 	
 	if (position.x - App->enty->player->position.x >= 0) {

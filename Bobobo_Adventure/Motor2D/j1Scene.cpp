@@ -67,6 +67,10 @@ bool j1Scene::Start()
 			App->enty->CreatePlayer();
 			playeron = true;
 		}
+
+		if(App->menuscene->WantToLoad == true){
+			App->LoadGame("save_game.xml");
+		}
 	}
 
 	if (active == true) {
@@ -116,7 +120,7 @@ bool j1Scene::Update(float dt)
 
 		if (App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN) {
 			
-			App->LoadGame("save_game.xml");
+			App->LoadGame();
 		}
 		
 

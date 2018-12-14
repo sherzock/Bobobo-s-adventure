@@ -146,8 +146,11 @@ bool j1MainMenuScene::OnEventChange(j1UIItems* elem, Event evnt)
 		}
 		else if (elem = continuebutt)
 		{
+			
+			WantToLoad = true;
 			change_scenes0();
-			App->LoadGame("save_game.xml");
+
+		
 		}
 		break;
 	}
