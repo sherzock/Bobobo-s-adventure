@@ -63,7 +63,7 @@ bool j1Scene::Start()
 
 		App->audio->PlayMusic("audio/music/level1.ogg");
 		
-		if (playeron == false)
+		if (playeron == false || App->enty->player->dead == true)
 		{
 			App->enty->CreatePlayer();
 			playeron = true;

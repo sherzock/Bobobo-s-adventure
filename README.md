@@ -37,7 +37,9 @@ Not correct yet
 
 <h2>Gameplay</h2>
 
- <iframe width="650" height="400" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="autoplay;encrypted-media" allowfullscreen></iframe>
+<details>
+ <summary>Video for the website stack</summary>
+ <iframe width="650" height="400" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="autoplay;encrypted-media" allowfullscreen></iframe></details>
 
 [Link to Bobobo's Bizarre Adventure Gameplay](https://www.youtube.com/embed/dQw4w9WgXcQ)
 
@@ -67,25 +69,25 @@ Not correct yet
 
 <h6>MIT License</h6>
 
-<em><h6>Copyright (c) 2018 Jacobo Galofre and Ferran Barnes</h6></em>
+<h6><em>Copyright (c) 2018 Jacobo Galofre and Ferran Barnes</em></h6>
 
-<em><h6>Permission is hereby granted, free of charge, to any person obtaining a copy
+<h6><em>Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:</h6></em>
+furnished to do so, subject to the following conditions:</em></h6>
 
-<em><h6>The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.</h6></em>
+<h6><em>The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.</em></h6>
 
-<em><h6>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+<h6><em>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.</h6></em>
+SOFTWARE.</em></h6>
 
 <h6>Copyright</h6>
-<em><h6>Copyright Disclaimer Under Section 107 of the Copyright Act 1976, allowance is made for "fair use" for purposes such as criticism, comment, news reporting, teaching, scholarship, and research. Fair use is a use permitted by copyright statute that might otherwise be infringing. Non-profit, educational or personal use tips the balance in favor of fair use.</h6></em>
+<h6><em>Copyright Disclaimer Under Section 107 of the Copyright Act 1976, allowance is made for "fair use" for purposes such as criticism, comment, news reporting, teaching, scholarship, and research. Fair use is a use permitted by copyright statute that might otherwise be infringing. Non-profit, educational or personal use tips the balance in favor of fair use.</em></h6>

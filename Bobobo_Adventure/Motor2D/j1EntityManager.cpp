@@ -251,6 +251,7 @@ bool j1EntityManager::Load(pugi::xml_node& data)
 {
 	
 	EnemiesCleanUp();
+	
 	player->Load(data.child(player->name.GetString()));
 
 	

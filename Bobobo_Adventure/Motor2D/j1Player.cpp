@@ -453,6 +453,9 @@ bool j1Player::PostUpdate() {
 // Load game 
 bool j1Player::Load(pugi::xml_node& data) {
 
+	position.x = data.child("position").attribute("x").as_int();
+	position.y = data.child("position").attribute("y").as_int();
+
 	if (data.child("position").attribute("level").as_int() == 2 && App->scene->active == true)
 	{
 		App->scene->change_scenes1();
@@ -462,9 +465,7 @@ bool j1Player::Load(pugi::xml_node& data) {
 		App->scene2->change_scenes2();
 	}
 
-	position.x = data.child("position").attribute("x").as_int();
-	position.y = data.child("position").attribute("y").as_int();
-
+	
 	return true;
 }
 
