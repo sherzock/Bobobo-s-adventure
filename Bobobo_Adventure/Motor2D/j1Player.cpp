@@ -53,6 +53,10 @@ bool j1Player::Start() {
 	Initial_position.x = position.x;
 	Initial_position.y = position.y;
 	
+	if(App->scene2->active == true){
+		position.x = 25;
+		position.y = 300;
+	}
 
 	animation = &idle;
 	
