@@ -24,7 +24,7 @@ bool LabelUI::Start()
 bool LabelUI::CleanUp()
 {
 	deleting = true;
-	App->tex->UnLoad(tex);
+	App->tex->UnLoad(texture);
 	return true;
 }
 
@@ -47,7 +47,7 @@ void LabelUI::CreateText(p2SString txt, SDL_Color color, Fonts font)
 	text_color = color;
 	text_font = fnt;
 	text = txt;
-	tex = App->font->Print(text.GetString(), text_color, text_font);
+	texture = App->font->Print(text.GetString(), text_color, text_font);
 }
 
 
@@ -56,7 +56,7 @@ bool LabelUI::Update(float dt)
 {
 	//BROFILER_CATEGORY("GuiLabel_Update", Profiler::Color::OrangeRed);
 	UpdatePosition();
-	App->render->Blit(tex, position.x + movement.x, position.y + movement.y);
+	App->render->Blit(texture, position.x + movement.x, position.y + movement.y);
 	return true;
 }
 
@@ -64,9 +64,9 @@ bool LabelUI::Update(float dt)
 
 void LabelUI::UpdateText(p2SString updated)
 {
-	App->tex->UnLoad(tex);
+	App->tex->UnLoad(texture);
 	text = updated;
-	tex = App->font->Print(updated.GetString(), text_color, text_font);
+	texture = App->font->Print(updated.GetString(), text_color, text_font);
 }
 
 

@@ -6,6 +6,7 @@
 #include "j1Fonts.h"
 #include "j1Input.h"
 #include "j1Gui.h"
+#include "j1UIItems.h"
 //#include "Brofiler/Brofiler.h"
 
 j1Gui::j1Gui() : j1Module()
@@ -209,7 +210,7 @@ ImageUI* j1Gui::CreateImage(Position ali, char* path, SDL_Rect texture, iPoint m
 	if (path != nullptr)
 	{
 		p2SString pat = path;
-		image->tex = image->TexLoad(pat.GetString());
+		image->texture = image->TexLoad(pat.GetString());
 	}
 	return image;
 }
@@ -229,12 +230,12 @@ ButtonUI* j1Gui::CreateButton(Position ali, p2SString text, iPoint movement, j1M
 
 LabelUI* j1Gui::CreateText(Position ali, p2SString text, iPoint movement, Fonts font, SDL_Color color, j1Module* auxmodule)
 {
-	LabelUI* tex = (LabelUI*)App->gui->CreateItem(LABEL, ali);
-	tex->CreateText(text, color, font);
-	tex->movement = movement;
-	tex->auxmodule = auxmodule;
-	tex->Start();
-	return tex;
+	LabelUI* texts = (LabelUI*)App->gui->CreateItem(LABEL, ali);
+	texts->CreateText(text, color, font);
+	texts->movement = movement;
+	texts->auxmodule = auxmodule;
+	texts->Start();
+	return texts;
 }
 
 

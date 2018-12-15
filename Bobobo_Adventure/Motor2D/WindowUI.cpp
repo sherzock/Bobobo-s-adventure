@@ -13,9 +13,9 @@ WindowUI::~WindowUI() {}
 
 bool WindowUI::Start()
 {
-	if (tex != nullptr)
+	if (texture != nullptr)
 	{
-		tex = App->gui->GetAtlas();
+		texture = App->gui->GetAtlas();
 		rect = { 30, 542, 422, 454 };
 	}
 	event = LEFT_CLICK;
@@ -26,7 +26,7 @@ bool WindowUI::Start()
 bool WindowUI::CleanUp()
 {
 	deleting = true;
-	App->tex->UnLoad(tex);
+	App->tex->UnLoad(texture);
 	if (TextWindow) { TextWindow->CleanUp(); }
 	for (p2List_item<ButtonUI*>* btt = ButtWindow.start; btt; btt = btt->next) { btt->data->CleanUp(); }
 	ButtWindow.clear();
@@ -42,7 +42,7 @@ bool WindowUI::Update(float dt)
 	//BROFILER_CATEGORY("GuiWindow_Update", Profiler::Color::OrangeRed);
 	if (kinetic) { Move(); }
 	UpdatePosition();
-	App->render->Blit(tex, position.x + movement.x, position.y + movement.y, &rect);
+	App->render->Blit(texture, position.x + movement.x, position.y + movement.y, &rect);
 	return true;
 }
 

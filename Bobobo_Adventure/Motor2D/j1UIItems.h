@@ -33,7 +33,7 @@ public:
 	virtual void MouseInput(Input state) {};
 
 	SDL_Texture* TexLoad(p2SString path);
-	SDL_Texture* tex = nullptr;
+	SDL_Texture* texture = nullptr;
 
 	Type guitype;
 	Event event = Event::MOUSE_OUTSIDE;

@@ -14,6 +14,7 @@
 #include "j1FadeToBlack.h"
 #include "j1Collisions.h"
 #include "Brofiler/Brofiler.h"
+#include "j1Gui.h"
 
 
 j1Scene2::j1Scene2() : j1Module()
@@ -169,13 +170,14 @@ void j1Scene2::change_scenes2() {
 	App->scene2->active = false;
 	CleanUp();
 	App->enty->CleanUp();
+	App->gui->CleanUp();
 	App->fade->FadeToBlack(App->scene2, App->scene, 0.8f);
 	App->enty->CreatePlayer();
 	App->enty->player->XSpeed = 0;
 	App->enty->Start();
 	App->enty->player->position.x = 30;
 	App->enty->player->position.y = 550;
-	App->scene->Start();
+	App->menuscene->Start();
 	
 	
 	

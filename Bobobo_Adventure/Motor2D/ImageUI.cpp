@@ -16,15 +16,15 @@ ImageUI::~ImageUI()
 
 bool ImageUI::Start()
 {
-	if (tex == nullptr) { tex = App->gui->GetAtlas(); }
+	if (texture == nullptr) { texture = App->gui->GetAtlas(); }
 
 	return true;
 }
 
 bool ImageUI::CleanUp()
 {
-	if (tex != nullptr)
-		App->tex->UnLoad(tex);
+	if (texture != nullptr)
+		App->tex->UnLoad(texture);
 	deleting = true;
 	return true;
 }
@@ -34,7 +34,7 @@ bool ImageUI::Update(float dt)
 	//BROFILER_CATEGORY("GuiImage_Update", Profiler::Color::OrangeRed);
 
 	UpdatePosition();
-	if (show) { App->render->Blit(tex, position.x + movement.x, position.y + movement.y, &rect); }
+	if (show) { App->render->Blit(texture, position.x + movement.x, position.y + movement.y, &rect); }
 
 	return true;
 }

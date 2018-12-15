@@ -14,7 +14,7 @@ ButtonUI::~ButtonUI() {}
 bool ButtonUI::Start()
 {
 	rect = { 0,0, 339, 63 };
-	tex = None;
+	texture = None;
 	return true;
 }
 
@@ -26,7 +26,7 @@ bool ButtonUI::CleanUp()
 
 	deleting = true;
 	
-		App->tex->UnLoad(tex);
+		App->tex->UnLoad(texture);
 		App->tex->UnLoad(None);
 		App->tex->UnLoad(Over);
 		App->tex->UnLoad(Pressed);
@@ -41,9 +41,9 @@ bool ButtonUI::CleanUp()
 bool ButtonUI::Update(float dt)
 {
 	//BROFILER_CATEGORY("ButtonUI_Update", Profiler::Color::OrangeRed);
-	if (active == false) { tex = Pressed; }
+	if (active == false) { texture = Pressed; }
 	UpdatePosition();
-	App->render->Blit(tex, position.x + movement.x, position.y + movement.y, &rect);
+	App->render->Blit(texture, position.x + movement.x, position.y + movement.y, &rect);
 	return true;
 }
 
@@ -52,20 +52,20 @@ bool ButtonUI::Update(float dt)
 void ButtonUI::MouseInput(Input status)
 {
 	if (status == IDLE) {
-		tex = None;
+		texture = None;
 		inp = status;
 	}
 	else if (status == HOVER) {
-		tex = Over;
+		texture = Over;
 		inp = status;
 	}
 	else if (status == PRESSED_L) {
 		if (Pressed != NULL)
-			tex = Pressed;
+			texture = Pressed;
 		inp = status;
 	}
 	else if (status == UP_L) {
-		tex = None;
+		texture = None;
 	}
 }
 
@@ -84,7 +84,7 @@ void ButtonUI::SettleTextureToButton(p2SString idle, p2SString hover, p2SString 
 	None = TexLoad(idle);
 	Over = TexLoad(hover);
 	Pressed = TexLoad(pressed);
-	tex = None;
+	texture = None;
 
 }
 

@@ -15,6 +15,7 @@
 #include "j1FadeToBlack.h"
 #include "j1Pathfinding.h"
 #include "j1EntityManager.h"
+#include "j1Gui.h"
 #include "Brofiler/Brofiler.h"
 
 j1Scene::j1Scene() : j1Module()
@@ -204,6 +205,7 @@ void j1Scene::change_scenes1(){
 	App->scene2->active = true;
 	App->scene->active = false;
 	CleanUp();
+	App->gui->CleanUp();
 	App->enty->CleanUp();
 	App->fade->FadeToBlack(App->scene, App->scene2, 0.8f);
 	App->enty->CreatePlayer();
@@ -222,6 +224,7 @@ void j1Scene::change_scenesmainmenu()
 	App->menuscene->active = true;
 	App->scene->active = false;
 	CleanUp();
+	App->gui->CleanUp();
 	App->enty->CleanUp();
 	App->fade->FadeToBlack(App->scene, App->scene2, 0.8f);
 	App->menuscene->Start();
