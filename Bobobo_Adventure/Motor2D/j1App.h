@@ -97,7 +97,6 @@ public:
 	j1Scene2*			scene2 = NULL;
 	j1Map*				map = NULL;
 	j1Collisions*		colls = NULL;
-	j1Player*			play = NULL;
 	j1FadeToBlack*		fade = NULL;
 	j1PathFinding*		path = NULL;
 	j1EntityManager*	enty = NULL;

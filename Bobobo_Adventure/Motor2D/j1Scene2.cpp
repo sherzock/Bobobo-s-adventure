@@ -57,6 +57,7 @@ bool j1Scene2::Start()
 	
 	if (active == true) {
 		AddAllEnemies2();
+		timer.Start();
 	}
 	
 	
@@ -75,6 +76,8 @@ bool j1Scene2::PreUpdate()
 bool j1Scene2::Update(float dt)
 {
 	BROFILER_CATEGORY("Scene2 Update", Profiler::Color::Tomato)
+
+		sc2time = timer.ReadSec();
 
 	if (App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
 		App->LoadGame("save_game.xml");
@@ -126,6 +129,8 @@ bool j1Scene2::Update(float dt)
 	App->map->Draw();
 
 		if (deadrestart == true) {
+			App->enty->player->playerlifes = 3;
+			App->enty->player->playerpoints = 0;
 			change_scenes2();
 		}
 
@@ -158,7 +163,8 @@ bool j1Scene2::CleanUp()
 }
 
 void j1Scene2::change_scenes2() {
-		
+	
+	deadrestart = false;	
 	App->menuscene->active = true;
 	App->scene2->active = false;
 	CleanUp();
@@ -170,6 +176,7 @@ void j1Scene2::change_scenes2() {
 	App->enty->player->position.x = 30;
 	App->enty->player->position.y = 550;
 	App->scene->Start();
+	
 	
 	
 }

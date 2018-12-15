@@ -43,7 +43,10 @@ bool j1Coin::Update(float dt)
 
 	SDL_Rect rect = animation->GetCurrentFrame(dt);
 
+	if (sprites != NULL) {
 		Draw(false, rect);
+	}
+		
 
 
 

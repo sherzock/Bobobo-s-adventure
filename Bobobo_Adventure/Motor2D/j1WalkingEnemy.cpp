@@ -135,6 +135,7 @@ void j1WalkingEnemy::OnCollision(Collider * col_1, Collider * col_2)
 
 	if ((col_1->type == ATTACK_COLLIDER && col_2->type == ENEMY_COLLIDER) || (col_2->type == ATTACK_COLLIDER && col_1->type == ENEMY_COLLIDER))
 	{
+		App->enty->player->playerpoints += 100;
 		CleanUp();
 	}
 }

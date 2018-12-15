@@ -46,7 +46,7 @@ public:
 	bool WantToLoad = false;
 
 private:
-	SDL_Texture * debug_tex;
+	SDL_Texture * debug_tex = nullptr;
 	ImageUI* MainMenubg = nullptr;
 	ImageUI* MainMenuTitle = nullptr;
 	ButtonUI* playbutt = nullptr;

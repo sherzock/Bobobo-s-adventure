@@ -38,8 +38,6 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	menuscene = new j1MainMenuScene();
 	scene = new j1Scene();
 	scene2 = new j1Scene2();
-//	play = new j1Player();
-	
 	map = new j1Map();
 	enty = new j1EntityManager();
 	colls = new j1Collisions();

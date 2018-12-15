@@ -2,6 +2,7 @@
 #define __j1SCENE2_H__
 
 #include "j1Module.h"
+#include "j1Timer.h"
 
 struct SDL_Texture;
 
@@ -36,6 +37,9 @@ public:
 	void AddAllEnemies2();
 
 	bool deadrestart = false;
+
+	j1Timer timer;
+	uint sc2time;
 private:
 	bool playeron = false;
 

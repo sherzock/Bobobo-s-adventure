@@ -49,12 +49,12 @@ bool j1FlyingEnemy::Update(float dt)
 			if (position.x < App->enty->player->position.x)
 				destination = { App->map->WorldToMap((int)App->enty->player->position.x + App->enty->player->playerwidth + 1, (int)App->enty->player->position.y + App->enty->player->playerheight / 2) };
 			else
-				destination = { App->map->WorldToMap((int)App->enty->player->position.x, (int)App->enty->player->position.y + App->enty->player->playerheight / 2) };
-
+ 				destination = { App->map->WorldToMap((int)App->enty->player->position.x, (int)App->enty->player->position.y + App->enty->player->playerheight / 2) };
+			
 			if (App->path->IsWalkable(destination) && App->path->IsWalkable(origin))
 			{
 				path = App->path->CreatePath(origin, destination);
-				fly(*path, dt);
+  				fly(*path, dt);
 				path_created = true;
 			}
 	}
@@ -62,7 +62,11 @@ bool j1FlyingEnemy::Update(float dt)
 		position = initPos;
 
 	else if (path_created)
+	{
 		path->Clear();
+		path_created = false;
+	}
+	
 	
 	if (collider != nullptr) {
 		collider->Set_Pos(position.x, position.y);
@@ -112,6 +116,7 @@ void j1FlyingEnemy::OnCollision(Collider * col_1, Collider * col_2)
 {
 	if ((col_1->type == ATTACK_COLLIDER && col_2->type == ENEMY_COLLIDER) || (col_2->type == ATTACK_COLLIDER && col_1->type == ENEMY_COLLIDER))
 	{
+		App->enty->player->playerpoints += 100;
 		CleanUp();	
 	}
 }

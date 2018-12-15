@@ -55,10 +55,10 @@ j1Collisions::j1Collisions() : j1Module()
 
 	matrix[COIN_COLLIDER][COIN_COLLIDER] = false;
 	matrix[COIN_COLLIDER][ENEMY_COLLIDER] = false;
-	matrix[COIN_COLLIDER][GROUND_COLLIDER] = true;
+	matrix[COIN_COLLIDER][GROUND_COLLIDER] = false;
 	matrix[COIN_COLLIDER][PLAYER_COLLIDER] = true;
 	matrix[COIN_COLLIDER][NO_COLLIDER] = false;
-	matrix[COIN_COLLIDER][ATTACK_COLLIDER] = true;
+	matrix[COIN_COLLIDER][ATTACK_COLLIDER] = false;
 	
 
 }

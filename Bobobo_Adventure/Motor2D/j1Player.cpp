@@ -61,6 +61,8 @@ bool j1Player::Start() {
 	playerUI = new j1PlayerUI();
 	playerUI->Start();
 	playerlifes = 3;
+	numberofcoins = 0;
+	playerpoints = 0;
 
 	return true;
 }
@@ -392,7 +394,7 @@ bool j1Player::Update(float dt) {
 					App->scene->AddAllEnemies();
 					deadanim.Reset();
 				}
-				else if (playerlifes <= 0) {
+				else{
 					App->scene->deadrestart = true;
 				}
 				
@@ -407,7 +409,7 @@ bool j1Player::Update(float dt) {
 					App->scene2->AddAllEnemies2();
 					deadanim.Reset();
 				}
-				else if (playerlifes <= 0) {
+				else{
 					App->scene2->deadrestart = true;
 				}
 			}
@@ -566,8 +568,9 @@ bool j1Player::CleanUp() {
 	if ((col_1->type == PLAYER_COLLIDER && col_2->type == COIN_COLLIDER) || (col_2->type == PLAYER_COLLIDER && col_1->type == COIN_COLLIDER))
 	{
 		numberofcoins += 1;
+		playerpoints += 10;
 	}
-		
+
 	XSpeed= ResXspeed;
 };
 

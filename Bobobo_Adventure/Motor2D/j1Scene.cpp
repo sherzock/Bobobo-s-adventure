@@ -71,6 +71,8 @@ bool j1Scene::Start()
 		if(App->menuscene->WantToLoad == true){
 			App->LoadGame("save_game.xml");
 		}
+		
+		timer.Start();
 	}
 
 	if (active == true) {
@@ -117,6 +119,8 @@ bool j1Scene::PreUpdate()
 bool j1Scene::Update(float dt)
 {
 	BROFILER_CATEGORY("Scene1 Update", Profiler::Color::Tomato)
+
+		sctime = timer.ReadSec();
 
 		if (App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN) {
 			
@@ -179,7 +183,9 @@ bool j1Scene::Update(float dt)
 	
 	
 		if(deadrestart == true) {
-		change_scenesmainmenu();
+			App->enty->player->playerlifes = 3;
+			App->enty->player->playerpoints = 0;
+			change_scenesmainmenu();
 		}
 	
 
@@ -217,7 +223,7 @@ bool j1Scene::CleanUp()
 
 void j1Scene::change_scenes1(){
 	
-
+	deadrestart = false;
 	App->scene2->active = true;
 	App->scene->active = false;
 	CleanUp();
@@ -229,18 +235,20 @@ void j1Scene::change_scenes1(){
 	App->scene2->Start();
 	App->enty->player->position.x = 30;
 	App->enty->player->position.y = 300;
-
+	
 
 }
 
 void j1Scene::change_scenesmainmenu()
 {
+	deadrestart = false;
 	App->menuscene->active = true;
 	App->scene->active = false;
 	CleanUp();
 	App->enty->CleanUp();
 	App->fade->FadeToBlack(App->scene, App->scene2, 0.8f);
 	App->menuscene->Start();
+	
 	
 }
 

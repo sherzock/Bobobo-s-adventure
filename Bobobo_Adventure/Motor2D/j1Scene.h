@@ -2,6 +2,7 @@
 #define __j1SCENE_H__
 
 #include "j1Module.h"
+#include "j1Timer.h"
 
 struct SDL_Texture;
 
@@ -39,6 +40,9 @@ public:
 public:
 	bool playeron = false;
 	bool deadrestart = false;
+
+	j1Timer timer;
+	uint sctime;
 	
 private:
 	SDL_Texture * debug_tex;

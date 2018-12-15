@@ -26,7 +26,6 @@ public:
 
 private:
 	j1Timer		timer;
-	j1Timer		pausetime;
 
 	ImageUI* heart = nullptr;
 	ImageUI* Coin = nullptr;
@@ -34,6 +33,7 @@ private:
 	LabelUI* TimeCounter = nullptr;
 	LabelUI* CoinCounter = nullptr;
 	LabelUI* PointCounter = nullptr;
+	WindowUI* window = nullptr;
 
 
 };

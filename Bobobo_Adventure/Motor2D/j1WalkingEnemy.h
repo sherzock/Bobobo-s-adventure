@@ -32,7 +32,7 @@ public:
 
 public:
 
-	p2DynArray<iPoint>* path;
+	p2DynArray<iPoint>* path = nullptr;
 	bool path_created = false;
 	Animations idle;
 	Animations walking;

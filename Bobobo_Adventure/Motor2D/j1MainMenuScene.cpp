@@ -40,7 +40,7 @@ bool j1MainMenuScene::Start()
 {
 
 	if (active == true) {
-
+		App->audio->PlayMusic("audio/music/Menu.ogg");
 		MainMenubg = App->gui->CreateImage(POSITION_CENTER, "textures/Ui/IntroScene.png", { 0, 0, 1024, 768 }, { 0, 0 });
 		MainMenuTitle = App->gui->CreateImage(POSITION_CENTER, "textures/ui/MainMenu/Title.png", { 0, 0, 635, 120 }, { 0, 30 });
 		createmainmenu();
