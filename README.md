@@ -9,10 +9,10 @@ This game is a basic plataformer made by Jacobo Galofre and Ferran Barnes at UPC
 
 <h2>Creators</h2>
 
-![alt Team](Webpage/Don_Patch.png)
+![alt Team](Webpage/Don_Patch.png)<br>
 <em>Ferran Barnés</em>
 
-![alt Team](Webpage/Jacobo_Galofre.png)
+![alt Team](Webpage/Jacobo_Galofre.png)<br>
 <em>Jacobo Galofre</em>
 
 <h3>Work by each member</h3>
