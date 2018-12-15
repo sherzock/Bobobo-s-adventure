@@ -58,6 +58,7 @@ private:
 	ImageUI*  volumetitle = nullptr;
 	ButtonUI* creditsback = nullptr;
 	LabelUI*  creditstxt = nullptr;
+	uint Click_fx;
 
 
 
