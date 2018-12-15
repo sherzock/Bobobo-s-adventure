@@ -566,11 +566,11 @@ bool j1Player::CleanUp() {
 	{
 			dead = true;
 	}
-	if ((col_1->type == PLAYER_COLLIDER && col_2->type == COIN_COLLIDER) || (col_2->type == PLAYER_COLLIDER && col_1->type == COIN_COLLIDER))
+	/*if ((col_1->type == PLAYER_COLLIDER && col_2->type == COIN_COLLIDER) || (col_2->type == PLAYER_COLLIDER && col_1->type == COIN_COLLIDER))
 	{
 		numberofcoins += 1;
 		playerpoints += 10;
-	}
+	}*/
 
 	XSpeed= ResXspeed;
 };

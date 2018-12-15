@@ -99,9 +99,12 @@ bool j1Coin::Save(pugi::xml_node& data)const
 
 void j1Coin::OnCollision(Collider * col_1, Collider * col_2)
 {
-	if ((col_1->type == PLAYER_COLLIDER && col_2->type == COIN_COLLIDER) || (col_2->type == PLAYER_COLLIDER && col_1->type == COIN_COLLIDER))
+	if ((col_1->type == PLAYER_COLLIDER && col_2->type == COIN_COLLIDER) || (col_2->type == PLAYER_COLLIDER && col_1->type == COIN_COLLIDER)||
+		(col_1->type == ATTACK_COLLIDER && col_2->type == COIN_COLLIDER) || (col_2->type == ATTACK_COLLIDER && col_1->type == COIN_COLLIDER))
 	{
 		App->audio->PlayFx(Dead_fx);
+		App->enty->player->numberofcoins += 1;
+		App->enty->player->playerpoints += 10;
 		collider->to_delete = true;
 		App->enty->DestroyEntity(this);
 	}
