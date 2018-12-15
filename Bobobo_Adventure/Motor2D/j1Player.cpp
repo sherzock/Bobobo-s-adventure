@@ -168,7 +168,7 @@ bool j1Player::Update(float dt) {
 		if (goingright == true) {
 
 			animation = &attackanim;
-			//attackcoll = new Collider;
+		
 			if (attackcoll == nullptr) {
 				attackcoll = App->colls->AddCollider({ (int)position.x + 50 , (int)position.y, 34, 55 }, ATTACK_COLLIDER, App->scene);
 
@@ -188,7 +188,7 @@ bool j1Player::Update(float dt) {
 		}
 		if (goingright == false) {
 			animation = &attackanim;
-			//attackcoll = new Collider;
+			
 			if (attackcoll == nullptr) {
 				attackcoll = App->colls->AddCollider({ (int)position.x - 25 , (int)position.y, 34, 55 }, ATTACK_COLLIDER, App->scene);
 
@@ -333,14 +333,14 @@ bool j1Player::Update(float dt) {
 			DashSpeed += DashAcc * dt * FSpeed;
 			CanPlayerJump = false;
 			CanPlayerDash = false;
-			
+			collider->type = ATTACK_COLLIDER;
 
 			if (DashSpeed >= 10) {
 				dash = false;
 				CanPlayerDash = false;
 				isfalling = true;
 				DashSpeed = DashSpeedres;
-
+				collider->type = PLAYER_COLLIDER;
 			}
 
 
@@ -353,14 +353,14 @@ bool j1Player::Update(float dt) {
 			DashSpeed += DashAcc * dt * FSpeed;
 			CanPlayerJump = false;
 			CanPlayerDash = false;
-			
+			collider->type = ATTACK_COLLIDER;
 			
 			if (DashSpeed >= 10) {
 				dash = false;
 				CanPlayerDash = false;
 				isfalling = true;
 				DashSpeed = DashSpeedres;
-
+				collider->type = PLAYER_COLLIDER;
 			}
 
 
