@@ -197,8 +197,6 @@ bool j1Scene::CleanUp()
 	
 }
 
-
-
 void j1Scene::change_scenes1(){
 	
 	deadrestart = false;

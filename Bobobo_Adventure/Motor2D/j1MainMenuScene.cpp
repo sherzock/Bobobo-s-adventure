@@ -232,15 +232,15 @@ void j1MainMenuScene::createmainmenu()
 void j1MainMenuScene::createcredits()
 {
 	
-	creditstxt = App->gui->CreateText(POSITION_RIGHT, "hello", { -0,0 }, ALLER_LT, { 255, 255, 255, 255 });
-	creditsback = App->gui->CreateButton(POSITION_RIGHT, nullptr, { -50,626 }, this);
+	creditstxt = App->gui->CreateImage(POSITION_RIGHT, "textures/Ui/MainMenu/Credits/CreditsInfo.png", { 0, 0, 631, 492 }, { -30, 150 });
+	creditsback = App->gui->CreateButton(POSITION_RIGHT, nullptr, { -50,676 }, this);
 	creditsback->SettleTextureToButton("textures/ui/MainMenu/Settings/Back.png", "textures/ui/MainMenu/Settings/BackHov.png", "textures/ui/MainMenu/Settings/BackClicked.png");
 	creditsback->rect = { 0,0, 50, 46 };
 }
 
 void j1MainMenuScene::createsettings()
 {
-	settingsback = App->gui->CreateButton(POSITION_RIGHT, nullptr, { -50,626 }, this);
+	settingsback = App->gui->CreateButton(POSITION_RIGHT, nullptr, { -50,676 }, this);
 	settingsback->SettleTextureToButton("textures/ui/MainMenu/Settings/Back.png", "textures/ui/MainMenu/Settings/BackHov.png", "textures/ui/MainMenu/Settings/BackClicked.png");
 	settingsback->rect = { 0,0, 50, 46 };
 	volumetitle = App->gui->CreateImage(POSITION_RIGHT, "textures/ui/MainMenu/Settings/Volume.png", { 0, 0, 336, 112 }, { -45, 250 });

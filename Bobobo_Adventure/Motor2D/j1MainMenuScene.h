@@ -57,7 +57,7 @@ private:
 	ButtonUI* settingsback = nullptr;
 	ImageUI*  volumetitle = nullptr;
 	ButtonUI* creditsback = nullptr;
-	LabelUI*  creditstxt = nullptr;
+	ImageUI*  creditstxt = nullptr;
 
 
 
