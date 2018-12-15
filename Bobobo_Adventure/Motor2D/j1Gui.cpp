@@ -51,7 +51,7 @@ bool j1Gui::PreUpdate()
 			ItemDestory(item->data);
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_F9) == KEY_DOWN)
+	if (App->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN)
 	{
 		debug = !debug;
 	}
