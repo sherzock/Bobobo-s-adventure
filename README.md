@@ -31,12 +31,12 @@ The rest was made by both members.
 
 <h2>Explanation of the main core subsystems</h2>
 
-App: This is the system that manages all the different modules.<br>
-Entity Manager: As the name suggests it manages the different entities: the player, the enemies and the collectibles.<br>
-Pathfinding: This module contains the code that the enemies use to move towards the player avoiding the map.<br>
-GUI: This moduel manages all the ui components such as buttons, text, the player's ui, etc.<br>
-Audio: This system reads and executes the differents sounds and music. <br>
-Map: This system reads an .xml archive that contains the data for the map and draws it in the differents scenes.<br>
+<b>App</b>: This is the system that manages all the different modules.<br>
+<b>Entity Manager</b>: As the name suggests it manages the different entities: the player, the enemies and the collectibles.<br>
+<b>Pathfinding</b>: This module contains the code that the enemies use to move towards the player avoiding the map.<br>
+<b>GUI</b>: This moduel manages all the ui components such as buttons, text, the player's ui, etc.<br>
+<b>Audio</b>: This system reads and executes the differents sounds and music. <br>
+<b>Map</b>: This system reads an .xml archive that contains the data for the map and draws it in the differents scenes.<br>
 
 [LAST RELEASE OF THE GAME](https://github.com/sherzock/Bobobo-s-adventure)
 
