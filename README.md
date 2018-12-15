@@ -31,13 +31,12 @@ The rest was made by both members.
 
 <h2>Explanation of the main core subsystems</h2>
 
-App:
-Entity Manager:
-Pathfinding:
-GUI:
-Audio:
-Map:
-Animations:
+App: This is the system that manages all the different modules.
+Entity Manager: As the name suggests it manages the different entities: the player, the enemies and the collectibles.
+Pathfinding: This module contains the code that the enemies use to move towards the player avoiding the map.
+GUI: This moduel manages all the ui components such as buttons, text, the player's ui, etc.
+Audio: This system reads and executes the differents sounds and music. 
+Map: This system reads an .xml archive that contains the data for the map and draws it in the differents scenes.
 
 [LAST RELEASE OF THE GAME](https://github.com/sherzock/Bobobo-s-adventure)
 
@@ -45,11 +44,9 @@ Not correct yet
 
 <h2>Gameplay</h2>
 
-<details>
- <summary>Video for the website stack</summary>
- <iframe width="650" height="400" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="autoplay;encrypted-media" allowfullscreen></iframe></details>
-
 [Link to Bobobo's Bizarre Adventure Gameplay](https://www.youtube.com/embed/dQw4w9WgXcQ)
+
+<iframe width="650" height="400" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="autoplay;encrypted-media" allowfullscreen></iframe>
 
 <h2>Controls</h2>
 
