@@ -34,7 +34,9 @@ void LabelUI::CreateText(p2SString txt, SDL_Color color, Fonts font)
 {
 	_TTF_Font* fnt = nullptr;
 	int font_size = DEFAULT_FONT_SIZE;
+	
 	const char* path = nullptr;
+	
 	if (font == ALLER_LT) {
 		path = "fonts/Aller_Lt.ttf";
 	}

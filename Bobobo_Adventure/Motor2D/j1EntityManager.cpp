@@ -256,15 +256,15 @@ bool j1EntityManager::Load(pugi::xml_node& data)
 	
 	for (pugi::xml_node WalkingEnemy = data.child("WalkingEnemy").child("position"); WalkingEnemy; WalkingEnemy = WalkingEnemy.next_sibling()) {
 		iPoint WalkingPos = { WalkingEnemy.attribute("x").as_int(), WalkingEnemy.attribute("y").as_int() };
-		CreateEntity(WALKINGENEMY, WalkingPos.x, WalkingPos.y);
+		AddEnemy(WalkingPos.x, WalkingPos.y,WALKINGENEMY);
 	}
 	for (pugi::xml_node Fly = data.child("Fly").child("position"); Fly; Fly = Fly.next_sibling()) {
 		iPoint FlyPos = { Fly.attribute("x").as_int(), Fly.attribute("y").as_int() };
-		CreateEntity(FLYINGENEMY, FlyPos.x, FlyPos.y);
+		AddEnemy( FlyPos.x, FlyPos.y, FLYINGENEMY);
 	}
 	for (pugi::xml_node Coin = data.child("Coin").child("position"); Coin; Coin = Coin.next_sibling()) {
 		iPoint CoinPos = { Coin.attribute("x").as_int(), Coin.attribute("y").as_int() };
-		CreateEntity(COIN, CoinPos.x, CoinPos.y);
+		AddEnemy(CoinPos.x, CoinPos.y,COIN);
 	}
 
 	return true;

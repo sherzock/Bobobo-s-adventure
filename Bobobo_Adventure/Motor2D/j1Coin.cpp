@@ -99,7 +99,8 @@ void j1Coin::OnCollision(Collider * col_1, Collider * col_2)
 {
 	if ((col_1->type == PLAYER_COLLIDER && col_2->type == COIN_COLLIDER) || (col_2->type == PLAYER_COLLIDER && col_1->type == COIN_COLLIDER))
 	{
-		CleanUp();
+		collider->to_delete = true;
+		App->enty->DestroyEntity(this);
 	}
 }
 
