@@ -37,7 +37,9 @@ Not correct yet
 
 <h2>Gameplay</h2>
 
- <iframe width="650" height="400" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="autoplay;encrypted-media" allowfullscreen></iframe>
+<details>
+ <summary>Video for the website stack</summary>
+ <iframe width="650" height="400" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="autoplay;encrypted-media" allowfullscreen></iframe></details>
 
 [Link to Bobobo's Bizarre Adventure Gameplay](https://www.youtube.com/embed/dQw4w9WgXcQ)
 
