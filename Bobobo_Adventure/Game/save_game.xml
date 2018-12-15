@@ -12,26 +12,29 @@
 	<scene2 />
 	<entity>
 		<player>
-			<position x="141.25" y="540.33313" level="1" />
+			<position x="30" y="550" level="1" />
 		</player>
 		<WalkingEnemy>
-			<position x="388.949524" y="539.033997" />
-			<position x="6500" y="488.033997" />
-			<position x="4600" y="440.033997" />
+			<position x="500" y="530" />
+			<position x="6500" y="500" />
+			<position x="4600" y="450" />
 		</WalkingEnemy>
 		<Fly>
-			<position x="758.799805" y="504.299957" />
+			<position x="800" y="470" />
 			<position x="1500" y="100" />
 			<position x="3500" y="100" />
 			<position x="7500" y="400" />
 			<position x="4500" y="400" />
 		</Fly>
+		<Coin>
+			<position3 x="300" y="530" level="1" />
+		</Coin>
 	</entity>
 	<fonts />
 	<gui />
 	<collisions />
 	<fade />
 	<renderer>
-		<camera x="-489" y="0" />
+		<camera x="0" y="0" />
 	</renderer>
 </game_state>
