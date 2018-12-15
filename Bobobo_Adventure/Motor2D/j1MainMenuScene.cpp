@@ -38,7 +38,7 @@ bool j1MainMenuScene::Awake()
 
 bool j1MainMenuScene::Start()
 {
-
+	Click_fx = App->audio->LoadFx("audio/fx/Click.wav");
 	if (active == true) {
 		App->audio->PlayMusic("audio/music/Menu.ogg");
 		MainMenubg = App->gui->CreateImage(POSITION_CENTER, "textures/Ui/IntroScene.png", { 0, 0, 1024, 768 }, { 0, 0 });
@@ -98,16 +98,17 @@ bool j1MainMenuScene::OnEventChange(j1UIItems* elem, Event evnt)
 	switch (evnt)
 	{
 	case Event::LEFT_CLICK:
-
+		
 		if (elem == playbutt)
 		{
+			App->audio->PlayFx(Click_fx);
 			change_scenes0();
 			//ShellExecuteA(NULL, "open", "https://www.youtube.com/watch?v=7SRAIIkYyAo", NULL, NULL, SW_SHOWNORMAL);
 			//window->CleanUp();
 		}
 		else if (elem == creditsbutt)
 		{
-
+			App->audio->PlayFx(Click_fx);
 			playbutt->CleanUp();
 			continuebutt->CleanUp();
 			settingsbutt->CleanUp();
@@ -117,6 +118,7 @@ bool j1MainMenuScene::OnEventChange(j1UIItems* elem, Event evnt)
 		}
 		else if (elem == creditsback)
 		{
+			App->audio->PlayFx(Click_fx);
 			creditstxt->CleanUp();
 			creditsback->CleanUp();
 			createmainmenu();
@@ -124,11 +126,13 @@ bool j1MainMenuScene::OnEventChange(j1UIItems* elem, Event evnt)
 		}
 		else if (elem == exitbutt)
 		{
+			App->audio->PlayFx(Click_fx);
 			ret = false;
 
 		}
 		else if (elem == settingsbutt)
 		{
+			App->audio->PlayFx(Click_fx);
 			playbutt->CleanUp();
 			continuebutt->CleanUp();
 			settingsbutt->CleanUp();
@@ -139,6 +143,7 @@ bool j1MainMenuScene::OnEventChange(j1UIItems* elem, Event evnt)
 		}
 		else if (elem == settingsback)
 		{
+			App->audio->PlayFx(Click_fx);
 			volumetitle->CleanUp();
 			settingsback->CleanUp();
 			createmainmenu();
@@ -146,7 +151,7 @@ bool j1MainMenuScene::OnEventChange(j1UIItems* elem, Event evnt)
 		}
 		else if (elem = continuebutt)
 		{
-			
+			App->audio->PlayFx(Click_fx);
 			WantToLoad = true;
 			change_scenes0();
 
