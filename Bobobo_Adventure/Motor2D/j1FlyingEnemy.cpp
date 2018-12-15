@@ -10,6 +10,7 @@
 #include "j1Player.h"
 #include "j1Map.h"
 #include "j1Scene.h"
+#include "j1Audio.h"
 #include "j1Scene2.h"
 #include "Brofiler/Brofiler.h"
 
@@ -29,6 +30,7 @@ bool j1FlyingEnemy::Start()
 {
 
 	sprites = App->tex->Load("textures/enemy2.png");
+	Dead_fx = App->audio->LoadFx("audio/fx/Hit.wav");
 	LoadXML();
 	animation = &flying;
 	collider = App->colls->AddCollider({ (int)position.x, (int)position.y, 30,30 }, ENEMY_COLLIDER, App->enty);
@@ -116,6 +118,7 @@ void j1FlyingEnemy::OnCollision(Collider * col_1, Collider * col_2)
 {
 	if ((col_1->type == ATTACK_COLLIDER && col_2->type == ENEMY_COLLIDER) || (col_2->type == ATTACK_COLLIDER && col_1->type == ENEMY_COLLIDER))
 	{
+		App->audio->PlayFx(Dead_fx);
 		App->enty->player->playerpoints += 100;
 		collider->to_delete = true;
 		App->enty->DestroyEntity(this);

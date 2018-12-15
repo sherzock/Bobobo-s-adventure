@@ -7,6 +7,7 @@
 #include "p2Animations.h"
 #include "j1Collisions.h"
 #include "j1EntityManager.h"
+#include "j1Audio.h"
 #include "p2DynArray.h"
 #include "p2Log.h"
 
@@ -56,6 +57,7 @@ public:
 	SDL_Texture* sprites = nullptr;
 	SDL_Texture* win_sprites = nullptr;
 	entitytypes type;
+	uint Dead_fx;
 
 	virtual void Draw(bool flip, SDL_Rect rect);
 	virtual void OnCollision(Collider* col_1, Collider* col_2) {};

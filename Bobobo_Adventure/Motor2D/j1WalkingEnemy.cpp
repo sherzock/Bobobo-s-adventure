@@ -9,6 +9,7 @@
 #include "j1FadeToBlack.h"
 #include "j1Player.h"
 #include "j1Map.h"
+#include "j1Audio.h"
 #include "j1Scene.h"
 #include "Brofiler/Brofiler.h"
 
@@ -30,6 +31,7 @@ bool j1WalkingEnemy::Start()
 
 	sprites = App->tex->Load("textures/enemy1_3.png");
 	LoadXML();
+	Dead_fx = App->audio->LoadFx("audio/fx/Hit.wav");
 	animation = &idle;
 	collider = App->colls->AddCollider({ (int)position.x, (int)position.y, 55,50 }, ENEMY_COLLIDER, App->enty);
 
@@ -81,6 +83,10 @@ bool j1WalkingEnemy::Update(float dt)
 	}
 	else {
 		Draw(false, rect);
+	}
+	if(position.y > 768){
+		collider->to_delete = true;
+		App->enty->DestroyEntity(this);
 	}
 
 	return true;
@@ -135,6 +141,7 @@ void j1WalkingEnemy::OnCollision(Collider * col_1, Collider * col_2)
 
 	if ((col_1->type == ATTACK_COLLIDER && col_2->type == ENEMY_COLLIDER) || (col_2->type == ATTACK_COLLIDER && col_1->type == ENEMY_COLLIDER))
 	{
+		App->audio->PlayFx(Dead_fx);
 		App->enty->player->playerpoints += 100;
 		collider->to_delete = true;
 		App->enty->DestroyEntity(this);
