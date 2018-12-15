@@ -88,29 +88,6 @@ bool j1Scene::PreUpdate()
 {
 	BROFILER_CATEGORY("Scene1 PreUpdate", Profiler::Color::MediumVioletRed)
 
-		static iPoint origin;
-	static bool origin_selected = false;
-
-	if (App->colls->ShowColliders) {
-		int x, y;
-		App->input->GetMousePosition(x, y);
-		iPoint p = App->render->ScreenToWorld(x, y);
-		p = App->map->WorldToMap(p.x, p.y);
-
-		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN)
-		{
-			if (origin_selected == true)
-			{
-				App->path->CreatePath(origin, p);
-				origin_selected = false;
-			}
-			else
-			{
-				origin = p;
-				origin_selected = true;
-			}
-		}
-	}
 
 	return true;
 }

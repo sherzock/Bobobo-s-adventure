@@ -71,3 +71,27 @@ bool j1PlayerUI::Save(pugi::xml_node& data) const
 	
 	return true;
 }
+
+bool j1PlayerUI::OnEventChange(j1UIItems* item, Event evnt)
+{
+	window->ChangeEvent(item, evnt);
+	switch (evnt)
+	{
+		case Event::LEFT_CLICK:
+			
+			if (item == window)
+			{
+				window->kinetic = true;
+			}
+
+
+		break;
+		case Event::LEFT_CLICK_UP:
+			if (item == window)
+			{
+				window->kinetic = false;
+			}
+		break;
+	}
+	return true;
+}

@@ -59,6 +59,8 @@ public:
 
 	void DestroyEntity(j1Entity* entity);
 	bool EnemiesCleanUp();
+
+	bool OnEventChange(j1UIItems* item, Event evnt);
 public:
 	
 	p2List<j1Entity*>	entities;

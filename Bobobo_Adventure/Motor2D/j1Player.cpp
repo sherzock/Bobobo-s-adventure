@@ -605,4 +605,10 @@ bool j1Player::CleanUp() {
  
  };
 
- 
+ bool j1Player::OnEventChange(j1UIItems* item, Event evnt) {
+	 bool ret = true;
+	 if (playerUI) {
+		 ret = playerUI->OnEventChange(item, evnt);
+	 }
+	 return ret;
+ }
