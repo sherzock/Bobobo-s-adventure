@@ -26,9 +26,7 @@
 			<position x="7500" y="400" />
 			<position x="4500" y="400" />
 		</Fly>
-		<Coin>
-			<position3 x="300" y="530" level="1" />
-		</Coin>
+		<Coin />
 	</entity>
 	<fonts />
 	<gui />
