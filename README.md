@@ -20,16 +20,24 @@ Ferran Barnes:
 Player
 Maps
 Entity Manager
+Ui dessign
 
 Jacobo Galofre:
 Pathfinding
 Both Enemies
+Ui code
 
 The rest was made by both members.
 
-<h2>Explanation of the main core subsystems, including any innovation done out of the core requirements.</h2>
+<h2>Explanation of the main core subsystems</h2>
 
-TODO
+App:
+Entity Manager:
+Pathfinding:
+GUI:
+Audio:
+Map:
+Animations:
 
 [LAST RELEASE OF THE GAME](https://github.com/sherzock/Bobobo-s-adventure)
 
@@ -62,9 +70,10 @@ Not correct yet
   <li>F2 - Restart level</li>
   <li>F5 - Quicksave</li>
   <li>F6 - Load</li>
+  <li>F8 - Debbug Ui</li>
   <li>F9 - Show Colliders</li>
   <li>F10 - Godmode</li>
-   <li>F11 - Cap Fps</li>
+  <li>F11 - Cap Fps</li>
 </ul> 
 
 <h6>MIT License</h6>
