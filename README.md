@@ -12,7 +12,7 @@ This game is a basic plataformer made by Jacobo Galofre and Ferran Barnes at UPC
 ![alt Team](Webpage/Don_Patch.png)
 <em>Ferran Barnés</em>
 
-![alt Team](Webpage/Jelly_Jiggler.png)
+![alt Team](Webpage/Jacobo_Galofre.png)
 <em>Jacobo Galofre</em>
 
 <h3>Work by each member</h3>
