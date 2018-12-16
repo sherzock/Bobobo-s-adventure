@@ -131,6 +131,8 @@ private:
 	uint32				msForCap;
 	float				dt;
 	bool				capfps = true;
+	uint				slider1pos;
+	uint				slider2pos;
 
 };
 

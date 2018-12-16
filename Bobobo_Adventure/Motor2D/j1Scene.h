@@ -51,7 +51,7 @@ public:
 	bool playeron = false;
 	bool deadrestart = false;
 	bool WantToLoad = false;
-
+	bool notonthewindow = false;
 	bool iswindowon = false;
 
 	j1Timer timer;
@@ -59,6 +59,8 @@ public:
 	WindowUI* escwindow;
 	ButtonUI* escresume;
 	ButtonUI* escmainmenu;
+	SliderUI* volslider = nullptr;
+	ImageUI*  volrail = nullptr;
 
 
 private:

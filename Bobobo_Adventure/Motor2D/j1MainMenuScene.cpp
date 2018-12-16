@@ -65,22 +65,28 @@ bool j1MainMenuScene::Update(float dt)
 			if(volslider->lastpos < volslider->pos.x)
 			{
 				if (App->audio->volume_music < App->audio->max_volume)
-					App->audio->volume_music++;
+					App->audio->volume_music = App->audio->volume_music + 3;
 				App->audio->setup_volume_fx = true;
 				Mix_VolumeMusic(App->audio->volume_music);
 				LOG("Volume = %d", Mix_VolumeMusic(App->audio->volume_music));
 			}
 			else if (volslider->lastpos > volslider->pos.x)
 			{
-				if (App->audio->volume_music > 0)
-					App->audio->volume_music--;
+				if (App->audio->volume_music > 2)
+					App->audio->volume_music = App->audio->volume_music - 3;
+				else if (App->audio->volume_music > 1)
+					App->audio->volume_music = App->audio->volume_music - 2;
+				else if (App->audio->volume_music > 0)
+					App->audio->volume_music = App->audio->volume_music - 1;
 				Mix_VolumeMusic(App->audio->volume_music);
 				App->audio->setdown_volume_fx = true;
 				LOG("Volume = %d", Mix_VolumeMusic(App->audio->volume_music));
 			}
 	}
 	
-
+if (volslider != nullptr) {
+		volslider->lastpos = volslider->pos.x;
+	}
 	return true;
 }
 
@@ -88,9 +94,7 @@ bool j1MainMenuScene::Update(float dt)
 bool j1MainMenuScene::PostUpdate()
 {
 	bool ret = true;
-	if (volslider != nullptr) {
-		volslider->lastpos = volslider->pos.x;
-	}
+	
 	
 	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 		ret = false;

@@ -50,12 +50,15 @@ public:
 	bool deadrestart = false;
 	bool WantToLoad = false;
 	bool iswindowon = false;
+	bool notonthewindow = false;
 
 	j1Timer timer;
 	uint sc2time;
 	WindowUI* escwindow;
 	ButtonUI* escresume;
 	ButtonUI* escmainmenu;
+	SliderUI* volslider = nullptr;
+	ImageUI*  volrail = nullptr;
 
 private:
 	bool playeron = false;

@@ -139,6 +139,34 @@ bool j1Scene2::Update(float dt)
 		}
 
 
+		if (volslider != nullptr) {
+			if (volslider->lastpos < volslider->pos.x)
+			{
+				if (App->audio->volume_music < App->audio->max_volume)
+					App->audio->volume_music = App->audio->volume_music + 3;
+				App->audio->setup_volume_fx = true;
+				Mix_VolumeMusic(App->audio->volume_music);
+				LOG("Volume = %d", Mix_VolumeMusic(App->audio->volume_music));
+			}
+			else if (volslider->lastpos > volslider->pos.x)
+			{
+				if (App->audio->volume_music > 2)
+					App->audio->volume_music = App->audio->volume_music - 3;
+				else if (App->audio->volume_music > 1)
+					App->audio->volume_music = App->audio->volume_music - 2;
+				else if (App->audio->volume_music > 0)
+					App->audio->volume_music = App->audio->volume_music - 1;
+				Mix_VolumeMusic(App->audio->volume_music);
+				App->audio->setdown_volume_fx = true;
+				LOG("Volume = %d", Mix_VolumeMusic(App->audio->volume_music));
+			}
+		}
+
+		if (volslider != nullptr) {
+			volslider->lastpos = volslider->pos.x;
+			volslider->limit = { volrail->position.x + volrail->movement.x,volrail->position.x + volrail->rect.w + volrail->movement.x };
+		}
+
 	return true;
 }
 
@@ -165,7 +193,7 @@ bool j1Scene2::PostUpdate()
 bool j1Scene2::CleanUp()
 {
 	LOG("Freeing scene");
-	destroyescwindow();
+	//destroyescwindow();
 	App->map->CleanUp();
 	App->colls->CleanUp();
 	App->tex->CleanUp();
@@ -178,11 +206,20 @@ bool j1Scene2::OnEventChange(j1UIItems* item, Event evnt)
 	escwindow->ChangeEvent(item, evnt);
 	escmainmenu->ChangeEvent(item, evnt);
 	escresume->ChangeEvent(item, evnt);
+	volslider->ChangeEvent(item, evnt);
 	switch (evnt)
 	{
 	case Event::LEFT_CLICK:
-		if (item == escwindow) {
-			escwindow->kinetic = true;
+		if (item == volslider)
+		{
+			notonthewindow = true;
+			escwindow->kinetic = false;
+			volslider->movable = true;
+		}
+		else if (item == escwindow) {
+			if (!notonthewindow) {
+				escwindow->kinetic = true;
+			}
 		}
 		else if (item == escmainmenu) {
 			change_scenesmainmenu();
@@ -194,6 +231,13 @@ bool j1Scene2::OnEventChange(j1UIItems* item, Event evnt)
 	case Event::LEFT_CLICK_UP:
 		if (item == escwindow) {
 			escwindow->kinetic = false;
+		}
+		break;
+	case Event::MOUSE_OUTSIDE:
+		if (item == volslider)
+		{
+			volslider->movable = false;
+			notonthewindow = false;
 		}
 		break;
 	}
@@ -264,6 +308,16 @@ void j1Scene2::createescwindow() {
 	escmainmenu->SettleTextureToButton("textures/ui/MainMenu.png", "textures/ui/MainMenuHov.png", "textures/ui/MainMenuClicked.png");
 	escmainmenu->rect = { 0,0, 337, 113 };
 	escwindow->AddItemToWindow(escmainmenu);
+
+	volrail = App->gui->CreateImage(POSITION_CENTER, "textures/ui/MainMenu/Settings/VolumeBar.png", { 0, 0, 308, 9 }, { 0, 500 });
+	escwindow->AddItemToWindow(volrail);
+
+	volslider = App->gui->CreateSlider(POSITION_CENTER, nullptr, { 0, 475 }, this);
+	volslider->SettleTextureToSlider("textures/ui/MainMenu/Settings/VolumeBarMovingPart.png", "textures/ui/MainMenu/Settings/VolumeBarMovingPart.png", "textures/ui/MainMenu/Settings/VolumeBarMovingPart.png");
+	volslider->rect = { 0,0, 42, 50 };
+	volslider->movable = false;
+	volslider->limit = { volrail->position.x + volrail->movement.x,volrail->position.x + volrail->rect.w + volrail->movement.x };
+	escwindow->AddItemToWindow(volslider);
 
 }
 
