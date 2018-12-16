@@ -43,9 +43,9 @@ The rest was made by both members.
 
 <h2>Gameplay</h2>
 
-[Link to Bobobo's Bizarre Adventure Gameplay](https://www.youtube.com/watch?v=n0YBz79lIgU&feature=youtu.be)
+[Link to Bobobo's Bizarre Adventure Gameplay](https://www.youtube.com/watch?v=n0YBz79lIgU&t=5s)
 
-<iframe width="650" height="400" src="https://www.youtube.com/watch?v=n0YBz79lIgU&feature=youtu.be" frameborder="0" allow="autoplay;encrypted-media" allowfullscreen></iframe>
+<iframe width="650" height="400" src="https://www.youtube.com/watch?v=n0YBz79lIgU&t=5s" frameborder="0" allow="autoplay;encrypted-media" allowfullscreen></iframe>
 
 <h2>Controls</h2>
 
