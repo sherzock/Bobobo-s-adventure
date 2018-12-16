@@ -296,11 +296,3 @@ bool j1EntityManager::Save(pugi::xml_node& data) const
 
 	return true;
 }
-
-bool j1EntityManager::OnEventChange(j1UIItems* item, Event event) {
-	bool ret = true;
-	if (player) {
-		ret = player->OnEventChange(item, event);
-	}
-	return ret;
-}

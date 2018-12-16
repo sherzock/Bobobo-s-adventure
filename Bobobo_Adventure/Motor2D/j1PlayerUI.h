@@ -19,10 +19,6 @@ public:
 	bool Start();
 	bool Update(float dt);
 	bool CleanUp();
-	bool OnEventChange(j1UIItems* item, Event evnt);
-
-	bool Load(pugi::xml_node&);
-	bool Save(pugi::xml_node&) const;
 	
 
 private:

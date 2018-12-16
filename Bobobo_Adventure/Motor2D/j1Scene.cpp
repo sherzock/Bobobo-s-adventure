@@ -227,7 +227,9 @@ bool j1Scene::PostUpdate()
 bool j1Scene::CleanUp()
 {
 	LOG("Freeing scene");
-	//destroyescwindow();
+	if (iswindowon) {
+		destroyescwindow();
+	}
 	App->map->CleanUp();
 	App->colls->CleanUp();
 	App->tex->CleanUp();
@@ -382,8 +384,7 @@ void j1Scene::createescwindow() {
 }
 
 void j1Scene::destroyescwindow() {
-	App->GamePause = false,
-	iswindowon = false;
+	App->GamePause = false;
 	if (escwindow != nullptr) {
 		escwindow->CleanUp();
 	}
@@ -399,4 +400,5 @@ void j1Scene::destroyescwindow() {
 	if (volslider != nullptr) {
 		volslider->CleanUp();
 	}
+	iswindowon = false;
 }

@@ -342,8 +342,7 @@ void j1Scene2::createescwindow() {
 }
 
 void j1Scene2::destroyescwindow() {
-	App->GamePause = false,
-		iswindowon = false;
+	App->GamePause = false;
 	if (escwindow != nullptr) {
 		escwindow->CleanUp();
 	}
@@ -353,5 +352,11 @@ void j1Scene2::destroyescwindow() {
 	if (escmainmenu != nullptr) {
 		escmainmenu->CleanUp();
 	}
-
+	if (volrail != nullptr) {
+		volrail->CleanUp();
+	}
+	if (volslider != nullptr) {
+		volslider->CleanUp();
+	}
+	iswindowon = false;
 }
