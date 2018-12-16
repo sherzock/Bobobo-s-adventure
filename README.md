@@ -9,23 +9,23 @@ This game is a basic plataformer made by Jacobo Galofre and Ferran Barnes at UPC
 
 <h2>Creators</h2>
 
-![alt Team](Webpage/Don_Patch.png)<br>
+![alt Team](Webpage/Ferran_Barnes.jpg)<br>
 <em>Ferran Barnés</em>
 
 ![alt Team](Webpage/Jacobo_Galofre.png)<br>
 <em>Jacobo Galofre</em>
 
 <h3>Work by each member</h3>
-Ferran Barnes:
-Player
-Maps
-Entity Manager
-Ui dessign
+Ferran Barnes:<br>
+Player<br>
+Maps<br>
+Entity Manager<br>
+Ui dessign<br>
 
-Jacobo Galofre:
-Pathfinding
-Both Enemies
-Ui code
+Jacobo Galofre:<br>
+Pathfinding<br>
+Enemies<br>
+Ui code<br>
 
 The rest was made by both members.
 

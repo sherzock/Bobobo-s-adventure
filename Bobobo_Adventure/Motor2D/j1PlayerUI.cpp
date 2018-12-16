@@ -35,7 +35,7 @@ bool j1PlayerUI::Start()
 
 bool j1PlayerUI::Update(float dt)
 {
-	if (App->scene->active)
+	if (App->scene->active == true && App->scene2->active == false)
 	{
 		 if (App->enty->player->timestart > App->scene->sctime) {
 
@@ -45,13 +45,22 @@ bool j1PlayerUI::Update(float dt)
 		else {
 			timescene = { "%i", App->scene->sctime};
 			TimeCounter->UpdateText(timescene);
+			
 		}
 			
 	}
-	else if (App->scene2->active)
+	else if (App->scene2->active == true && App->scene->active== false)
 	{
-		timescene = { "%i", App->scene2->sc2time + App->enty->player->timestart };
-		TimeCounter->UpdateText(timescene);
+		if (App->enty->player->timestart > App->scene2->sc2time) {
+
+			timescene = { "%i", App->scene2->sc2time + App->enty->player->timestart };
+			TimeCounter->UpdateText(timescene);
+		}
+		else {
+			timescene = { "%i", App->scene2->sc2time };
+			TimeCounter->UpdateText(timescene);
+		}
+
 	}
 	
 	player_coins = { "%i", App->enty->player->numberofcoins };

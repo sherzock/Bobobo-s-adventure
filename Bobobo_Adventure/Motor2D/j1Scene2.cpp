@@ -259,8 +259,8 @@ void j1Scene2::change_scenes2() {
 	App->enty->player->position.y = 550;
 	App->scene->playeron = false;
 	App->menuscene->Start();
-	
-	
+	sc2time = 0;
+	App->scene->sctime = 0;
 	
 }
 
@@ -274,7 +274,8 @@ void j1Scene2::change_scenesmainmenu()
 	App->fade->FadeToBlack(App->scene2, App->menuscene, 0.8f);
 	App->enty->player->CleanUp();
 	App->menuscene->Start();
-
+	sc2time = 0;
+	App->scene->sctime = 0;
 
 
 }
@@ -282,7 +283,26 @@ void j1Scene2::change_scenesmainmenu()
 void j1Scene2::AddAllEnemies2() {
 
 
-	App->enty->AddEnemy(400, 200, FLYINGENEMY);
+	App->enty->AddEnemy(300, 440, COIN);
+	App->enty->AddEnemy(600, 130, COIN);
+	App->enty->AddEnemy(790, 210, COIN);
+	App->enty->AddEnemy(1415, 420, COIN);
+
+	App->enty->AddEnemy(1920, 340, COIN);
+
+	App->enty->AddEnemy(2100, 340, COIN);
+	App->enty->AddEnemy(2600, 200, COIN);
+	App->enty->AddEnemy(3270, 380, COIN);
+
+	App->enty->AddEnemy(3730, 275, COIN);
+
+	App->enty->AddEnemy(4300, 450, COIN);
+	App->enty->AddEnemy(4700, 300, COIN);
+
+	App->enty->AddEnemy(5220, 400, COIN);
+	App->enty->AddEnemy(5400, 370, COIN);
+
+	App->enty->AddEnemy(700, 50, FLYINGENEMY);
 	App->enty->AddEnemy(1000, 600, FLYINGENEMY);
 	App->enty->AddEnemy(2300, 50, FLYINGENEMY);
 	App->enty->AddEnemy(4000, 200, FLYINGENEMY);
