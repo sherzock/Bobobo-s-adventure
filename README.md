@@ -47,7 +47,7 @@ The rest was made by both members.
 
 [Link to Bobobo's Bizarre Adventure Gameplay](https://www.youtube.com/watch?v=n0YBz79lIgU&t=)
 
-<iframe width="650" height="400" src="https://www.youtube.com/watch?v=n0YBz79lIgU&t=" frameborder="0" allow="autoplay;encrypted-media" allowfullscreen></iframe>
+<iframe width="650" height="400" src="https://www.youtube.com/embed/n0YBz79lIgU" frameborder="0" allow="autoplay;encrypted-media" allowfullscreen></iframe>
 
 <h3>Movement</h3>
 
