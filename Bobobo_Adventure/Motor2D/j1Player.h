@@ -89,6 +89,7 @@ public:
 	uint playerlifes;
 	uint currentTime;
 	uint lastTime;
+	uint timestart;
 
 	//logical booleans//
 	bool updatedTime = false;

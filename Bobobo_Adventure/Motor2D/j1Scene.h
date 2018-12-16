@@ -41,7 +41,7 @@ public:
 	bool playeron = false;
 	bool deadrestart = false;
 	bool WantToLoad = false;
-
+	
 	j1Timer timer;
 	uint sctime;
 	
