@@ -101,7 +101,7 @@ bool j1Scene::Update(float dt)
 	BROFILER_CATEGORY("Scene1 Update", Profiler::Color::Tomato)
 
 		sctime = timer.ReadSec();
-
+	
 		if (App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN) {
 			
 			App->LoadGame("save_game.xml");
@@ -250,8 +250,8 @@ void j1Scene::change_scenes1(){
 	App->enty->CreatePlayer();
 	App->scene2->Start();
 	App->enty->Start();
-	
-	
+	sctime = 0;
+	App->scene2->sc2time = 0;
 	
 
 }
@@ -266,7 +266,8 @@ void j1Scene::change_scenesmainmenu()
 	App->fade->FadeToBlack(App->scene, App->menuscene, 0.8f);
 	App->enty->player->CleanUp();
 	App->menuscene->Start();
-	
+	sctime = 0;
+	App->scene2->sc2time = 0;
 	
 	
 }

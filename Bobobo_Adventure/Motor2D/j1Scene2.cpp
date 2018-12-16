@@ -215,8 +215,8 @@ void j1Scene2::change_scenes2() {
 	App->enty->player->position.y = 550;
 	App->scene->playeron = false;
 	App->menuscene->Start();
-	
-	
+	sc2time = 0;
+	App->scene->sctime = 0;
 	
 }
 
@@ -230,7 +230,8 @@ void j1Scene2::change_scenesmainmenu()
 	App->fade->FadeToBlack(App->scene2, App->menuscene, 0.8f);
 	App->enty->player->CleanUp();
 	App->menuscene->Start();
-
+	sc2time = 0;
+	App->scene->sctime = 0;
 
 
 }
