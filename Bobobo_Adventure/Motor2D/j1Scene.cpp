@@ -274,13 +274,35 @@ void j1Scene::change_scenesmainmenu()
 void j1Scene::AddAllEnemies() {
 
 	App->enty->AddEnemy(300, 530, COIN);
+	App->enty->AddEnemy(600, 530, COIN);
+	App->enty->AddEnemy(800, 470, COIN);
+	App->enty->AddEnemy(1450, 200, COIN);
+
+	App->enty->AddEnemy(1820, 440, COIN);
+
+	App->enty->AddEnemy(2110, 600, COIN);
+	App->enty->AddEnemy(2650, 490, COIN);
+	App->enty->AddEnemy(3210, 360, COIN);
+
+	App->enty->AddEnemy(3730, 275, COIN);
+	
+	App->enty->AddEnemy(4300, 450, COIN);
+	App->enty->AddEnemy(4700, 450, COIN);
+
+	App->enty->AddEnemy(5200, 400, COIN);
+	App->enty->AddEnemy(5400, 420, COIN);
+
 	App->enty->AddEnemy(500, 530, WALKINGENEMY);
-	App->enty->AddEnemy(800, 470, FLYINGENEMY);
-	App->enty->AddEnemy(1500, 100, FLYINGENEMY);
+	App->enty->AddEnemy(650, 450, FLYINGENEMY);
+
+	App->enty->AddEnemy(1500, 50, FLYINGENEMY);
 	App->enty->AddEnemy(3500, 100, FLYINGENEMY);
+
 	App->enty->AddEnemy(6500, 500, WALKINGENEMY);
-	App->enty->AddEnemy(7500, 400, FLYINGENEMY);
-	App->enty->AddEnemy(4500, 400, FLYINGENEMY);
+
+	//App->enty->AddEnemy(8000, 200, FLYINGENEMY);
+	App->enty->AddEnemy(4500, 300, FLYINGENEMY);
+
 	App->enty->AddEnemy(4600, 450, WALKINGENEMY);
 }
 
