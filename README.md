@@ -6,7 +6,9 @@
 
 This game is a basic plataformer made by Jacobo Galofre and Ferran Barnes at UPC in 2018 
 
-The game main goal is to reach the end of the levels without dying and collecting as much Don Patch Coins as possible. The main menu is fully operative with credits that contain a link to our repository, and settings with music and FX volume handler. There are two different types of enemy: some annoying alien flies and some Sambaman minions.If your lives reach 0 you will die so be carefull. Killing enemies and picking up Don Patch coins gives you points and when you collect 10 Don Patch coins you will get an extra life!.
+The game main goal is to reach the end of the levels without dying and collecting as much Don Patch Coins as possible. The main menu is fully operative with credits that contain a link to our repository, and settings with music and FX volume handler. There are two different types of enemy: some annoying alien flies and some Sambaman minions.If your lives reach 0 you will die so be carefull. Killing enemies and picking up Don Patch coins gives you points and when you collect 10 Don Patch coins you will get an extra life!.<br>
+
+[LAST RELEASE OF THE GAME](https://github.com/sherzock/Bobobo-s-adventure)
 
 <h2>Creators</h2>
 
@@ -39,15 +41,13 @@ The rest was made by both members.
 <b>Audio</b>: This system reads and executes the differents sounds and music. <br>
 <b>Map</b>: This system reads an .xml archive that contains the data for the map and draws it in the differents scenes.<br>
 
-[LAST RELEASE OF THE GAME](https://github.com/sherzock/Bobobo-s-adventure)
+
 
 <h2>Gameplay</h2>
 
 [Link to Bobobo's Bizarre Adventure Gameplay](https://www.youtube.com/watch?v=n0YBz79lIgU&t=)
 
-<iframe width="650" height="400" src="https://www.youtube.com/watch?v=n0YBz79lIgU&t=" frameborder="0" allow="autoplay;encrypted-media" allowfullscreen></iframe>
-
-<h2>Controls</h2>
+<iframe width="650" height="400" src="https://www.youtube.com/n0YBz79lIgU&t=" frameborder="0" allow="autoplay;encrypted-media" allowfullscreen></iframe>
 
 <h3>Movement</h3>
 
