@@ -508,7 +508,6 @@ bool j1Player::Save(pugi::xml_node& data) const {
 	{
 		player.append_attribute("level") = 1;
 		player.append_attribute("time") = App->scene->sctime;
-		player.append_attribute("timeless") = App->scene->sctime;
 	}
 	else if (App->scene2->active == true)
 	{
