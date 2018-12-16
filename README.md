@@ -9,7 +9,7 @@ This game is a basic plataformer made by Jacobo Galofre and Ferran Barnes at UPC
 
 <h2>Creators</h2>
 
-![alt Team](Webpage/Ferran_Barnes.png)<br>
+![alt Team](Webpage/Ferran_Barnes.jpg)<br>
 <em>Ferran Barnés</em>
 
 ![alt Team](Webpage/Jacobo_Galofre.png)<br>
