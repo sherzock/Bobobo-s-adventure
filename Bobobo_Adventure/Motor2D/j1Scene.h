@@ -6,6 +6,12 @@
 
 struct SDL_Texture;
 
+class WindowUI;
+class ButtonUI;
+class LabelUI;
+class ImageUI;
+class SliderUI;
+
 class j1Scene : public j1Module
 {
 public:
@@ -33,18 +39,28 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
+	bool OnEventChange(j1UIItems* item, Event event);
+
 	void change_scenes1();
 	void change_scenesmainmenu();
 	void AddAllEnemies();
+	void createescwindow();
+	void destroyescwindow();
 
 public:
 	bool playeron = false;
 	bool deadrestart = false;
 	bool WantToLoad = false;
-	
+
+	bool iswindowon = false;
+
 	j1Timer timer;
 	uint sctime;
-	
+	WindowUI* escwindow;
+	ButtonUI* escresume;
+	ButtonUI* escmainmenu;
+
+
 private:
 	SDL_Texture * debug_tex;
 };

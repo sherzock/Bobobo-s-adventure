@@ -522,7 +522,7 @@ bool j1Player::Save(pugi::xml_node& data) const {
 
 bool j1Player::CleanUp() {
 
-	
+	playerUI->CleanUp();
 	App->tex->UnLoad(graphics);
 
 	return true;

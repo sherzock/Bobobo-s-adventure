@@ -266,6 +266,7 @@ void j1MainMenuScene::change_scenes0() {
 	App->enty->active = true;
 	
 	App->fade->FadeToBlack(App->menuscene, App->scene, 0.8f);
+	App->enty->CreatePlayer();
 	App->enty->player->position.x = 30;
 	App->enty->player->position.y = 550;
 	App->enty->player->XSpeed = 0;
