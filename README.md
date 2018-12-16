@@ -41,13 +41,13 @@ The rest was made by both members.
 <b>Audio</b>: This system reads and executes the differents sounds and music. <br>
 <b>Map</b>: This system reads an .xml archive that contains the data for the map and draws it in the differents scenes.<br>
 
-https://www.youtube.com/watch?v=n0YBz79lIgU&t=
+
 
 <h2>Gameplay</h2>
 
 [Link to Bobobo's Bizarre Adventure Gameplay](https://www.youtube.com/watch?v=n0YBz79lIgU&t=)
 
-<iframe width="400" height="300" src="https://www.youtube.com/watch?v=5Ba9_jaN7EA" frameborder="0" allow="autoplay;encrypted-media" allowfullscreen></iframe>
+<iframe width="650" height="400" src="https://www.youtube.com/watch?v=n0YBz79lIgU&t=" frameborder="0" allow="autoplay;encrypted-media" allowfullscreen></iframe>
 
 <h3>Movement</h3>
 
