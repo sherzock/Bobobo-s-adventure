@@ -47,7 +47,7 @@ bool j1WalkingEnemy::Update(float dt)
 	position.y += GRAVITY + GRAVITY * dt;
 
 
-		if ((App->enty->player->position.x - position.x) <= range && (App->enty->player->position.x - position.x) >= -range && App->enty->player->collider->type == PLAYER_COLLIDER || App->enty->player->collider->type == ATTACK_COLLIDER)
+		if ((App->enty->player->position.x - position.x) <= range && (App->enty->player->position.x - position.x) >= -range && App->enty->player->collider->type == PLAYER_COLLIDER /*|| App->enty->player->collider->type == ATTACK_COLLIDER*/)
 		{
 			iPoint origin = { App->map->WorldToMap((int)position.x + 55 / 2, (int)position.y + 60 / 2) };
 			iPoint destination;
