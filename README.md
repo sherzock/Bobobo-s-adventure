@@ -16,16 +16,16 @@ This game is a basic plataformer made by Jacobo Galofre and Ferran Barnes at UPC
 <em>Jacobo Galofre</em>
 
 <h3>Work by each member</h3>
-Ferran Barnes:
-Player
-Maps
-Entity Manager
-Ui dessign
+Ferran Barnes:<br>
+Player<br>
+Maps<br>
+Entity Manager<br>
+Ui dessign<br>
 
-Jacobo Galofre:
-Pathfinding
-Both Enemies
-Ui code
+Jacobo Galofre:<br>
+Pathfinding<br>
+Enemies<br>
+Ui code<br>
 
 The rest was made by both members.
 
