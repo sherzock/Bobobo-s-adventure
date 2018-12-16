@@ -35,8 +35,10 @@ private:
 	LabelUI* CoinCounter = nullptr;
 	LabelUI* PointCounter = nullptr;
 	WindowUI* window = nullptr;
-
-
+	p2SString player_coins ;
+	p2SString player_lifes ;
+	p2SString player_points ;
+	p2SString timescene;
 };
 
 #endif //__j1PLAYERUI_H__

@@ -13,6 +13,7 @@
 #include "j1Entity.h"
 #include "j1PlayerUI.h"
 #include "Brofiler/Brofiler.h"
+#include "j1Timer.h"
 
 
 j1Player::j1Player(int x, int y, entitytypes type) : j1Entity(x, y, entitytypes::PLAYER)
@@ -459,14 +460,32 @@ bool j1Player::Load(pugi::xml_node& data) {
 
 	position.x = data.child("position").attribute("x").as_int();
 	position.y = data.child("position").attribute("y").as_int();
+	
+	numberofcoins = data.child("position").attribute("coins").as_int();
+	playerlifes = data.child("position").attribute("lifes").as_int();
+	playerpoints = data.child("position").attribute("points").as_int();
 
-	if (data.child("position").attribute("level").as_int() == 2 && App->scene->active == true)
+
+
+	if (data.child("position").attribute("level").as_int() == 2 )
 	{
-		App->scene->change_scenes1();
+		
+		timestart = data.child("position").attribute("time").as_int();
+
+
+		if(App->scene->active == true){
+			App->scene->change_scenes1();
+		}
+		
 	}
-	if (data.child("position").attribute("level").as_int() == 1 && App->scene2->active == true)
+	if (data.child("position").attribute("level").as_int() == 1  )
 	{
-		App->scene2->change_scenes2();
+		timestart = data.child("position").attribute("time").as_uint();
+		
+		if (App->scene2->active == true) {
+			App->scene2->change_scenes2();
+		}
+		
 	}
 
 	
@@ -480,13 +499,20 @@ bool j1Player::Save(pugi::xml_node& data) const {
 
 	player.append_attribute("x") = position.x;
 	player.append_attribute("y") = position.y;
+	player.append_attribute("coins") = numberofcoins;
+	player.append_attribute("lifes") = playerlifes;
+	player.append_attribute("points") = playerpoints;
+	
+
 	if (App->scene->active == true)
 	{
 		player.append_attribute("level") = 1;
+		player.append_attribute("time") = App->scene->sctime;
 	}
 	else if (App->scene2->active == true)
 	{
 		player.append_attribute("level") = 2;
+		player.append_attribute("time") = App->scene2->sc2time;
 	}
 	
 
@@ -570,12 +596,7 @@ bool j1Player::CleanUp() {
 	{
 			dead = true;
 	}
-	/*if ((col_1->type == PLAYER_COLLIDER && col_2->type == COIN_COLLIDER) || (col_2->type == PLAYER_COLLIDER && col_1->type == COIN_COLLIDER))
-	{
-		numberofcoins += 1;
-		playerpoints += 10;
-	}*/
-
+	
 	XSpeed= ResXspeed;
 };
 

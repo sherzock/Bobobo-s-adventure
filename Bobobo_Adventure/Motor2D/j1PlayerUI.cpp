@@ -27,6 +27,9 @@ bool j1PlayerUI::Start()
 	window->rect = { 0,0, 416, 588 };
 	window->kinetic = false;
 	window->movable = true;*/
+
+
+
 	return true;
 }
 
@@ -34,22 +37,32 @@ bool j1PlayerUI::Update(float dt)
 {
 	if (App->scene->active)
 	{
-		p2SString timescene = {"%i", App->scene->sctime};
+		 if (App->enty->player->timestart > App->scene->sctime) {
+
+			timescene = {"%i", App->scene->sctime + App->enty->player->timestart };
 		TimeCounter->UpdateText(timescene);
+		}
+		else {
+			timescene = { "%i", App->scene->sctime};
+			TimeCounter->UpdateText(timescene);
+		}
+			
 	}
 	else if (App->scene2->active)
 	{
-		p2SString timescene = { "%i", App->scene2->sc2time };
+		timescene = { "%i", App->scene2->sc2time + App->enty->player->timestart };
 		TimeCounter->UpdateText(timescene);
 	}
+	
+	player_coins = { "%i", App->enty->player->numberofcoins };
+	player_lifes = { "x %i", App->enty->player->playerlifes };
+	player_points = { "Score %i", App->enty->player->playerpoints };
 
-	p2SString player_coins = { "%i", App->enty->player->numberofcoins };
-	p2SString player_lifes = { "x %i", App->enty->player->playerlifes };
-	p2SString player_points = { "Score %i", App->enty->player->playerpoints };
 	LifeCounter->UpdateText(player_lifes);
 	CoinCounter->UpdateText(player_coins);
 	PointCounter->UpdateText(player_points);
 
+	
 	return true;
 }
 

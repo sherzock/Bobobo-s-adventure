@@ -51,6 +51,7 @@ public:
 	bool playeron = false;
 	bool deadrestart = false;
 	bool WantToLoad = false;
+
 	bool iswindowon = false;
 
 	j1Timer timer;
