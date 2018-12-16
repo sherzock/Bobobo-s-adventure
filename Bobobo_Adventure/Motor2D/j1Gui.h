@@ -8,6 +8,7 @@
 #include "ImageUI.h"
 #include "ButtonUI.h"
 #include "WindowUI.h"
+#include "SliderUI.h"
 
 
 class j1Gui : public j1Module
@@ -31,6 +32,7 @@ public:
 	ButtonUI* CreateButton(Position ali, p2SString text, iPoint movement = { 0,0 }, j1Module* auxmodule = nullptr);
 	LabelUI* CreateText(Position ali, p2SString text, iPoint movement = { 0,0 }, Fonts = ALLER_LT, SDL_Color color = { 255,255,255,255 }, j1Module* auxmodule = nullptr);
 	WindowUI* WindowCreate(Position ali, uint num_buttons, p2SString title, iPoint movement = { 0,0 }, j1Module* auxmodule = nullptr);
+	SliderUI* CreateSlider(Position ali, p2SString text, iPoint movement = { 0,0 }, j1Module* auxmodule = nullptr);
 
 private:
 

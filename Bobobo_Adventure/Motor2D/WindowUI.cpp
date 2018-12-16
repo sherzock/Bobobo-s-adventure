@@ -8,7 +8,7 @@
 #include "j1Textures.h"
 //#include "Brofiler\Brofiler.h"
 
-WindowUI::WindowUI(Position alig) : j1UIItems(Type::INPUTBOX, Position::NO_POSITIONING) { ali = alig; }
+WindowUI::WindowUI(Position alig) : j1UIItems(Type::WINDOW, Position::NO_POSITIONING) { ali = alig; }
 WindowUI::~WindowUI() {}
 
 bool WindowUI::Start()

@@ -43,6 +43,7 @@ bool j1MainMenuScene::Start()
 		App->audio->PlayMusic("audio/music/Menu.ogg");
 		MainMenubg = App->gui->CreateImage(POSITION_CENTER, "textures/Ui/IntroScene.png", { 0, 0, 1024, 768 }, { 0, 0 });
 		MainMenuTitle = App->gui->CreateImage(POSITION_CENTER, "textures/ui/MainMenu/Title.png", { 0, 0, 635, 120 }, { 0, 30 });
+		CanLoadGame();
 		createmainmenu();
 	}
 	return true;
@@ -51,7 +52,7 @@ bool j1MainMenuScene::Start()
 
 bool j1MainMenuScene::PreUpdate()
 {
-
+	
 
 
 	return true;
@@ -60,9 +61,25 @@ bool j1MainMenuScene::PreUpdate()
 
 bool j1MainMenuScene::Update(float dt)
 {
-
-
-
+	if (volslider != nullptr) {
+			if(volslider->lastpos < volslider->pos.x)
+			{
+				if (App->audio->volume_music < App->audio->max_volume)
+					App->audio->volume_music++;
+				App->audio->setup_volume_fx = true;
+				Mix_VolumeMusic(App->audio->volume_music);
+				LOG("Volume = %d", Mix_VolumeMusic(App->audio->volume_music));
+			}
+			else if (volslider->lastpos > volslider->pos.x)
+			{
+				if (App->audio->volume_music > 0)
+					App->audio->volume_music--;
+				Mix_VolumeMusic(App->audio->volume_music);
+				App->audio->setdown_volume_fx = true;
+				LOG("Volume = %d", Mix_VolumeMusic(App->audio->volume_music));
+			}
+	}
+	
 
 	return true;
 }
@@ -71,7 +88,10 @@ bool j1MainMenuScene::Update(float dt)
 bool j1MainMenuScene::PostUpdate()
 {
 	bool ret = true;
-
+	if (volslider != nullptr) {
+		volslider->lastpos = volslider->pos.x;
+	}
+	
 	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 		ret = false;
 
@@ -95,6 +115,7 @@ bool j1MainMenuScene::OnEventChange(j1UIItems* elem, Event evnt)
 	creditsbutt->ChangeEvent(elem, evnt);
 	exitbutt->ChangeEvent(elem, evnt);
 	creditsback->ChangeEvent(elem, evnt);
+	volslider->ChangeEvent(elem, evnt);
 	switch (evnt)
 	{
 	case Event::LEFT_CLICK:
@@ -103,14 +124,17 @@ bool j1MainMenuScene::OnEventChange(j1UIItems* elem, Event evnt)
 		{
 			App->audio->PlayFx(Click_fx);
 			change_scenes0();
-			//ShellExecuteA(NULL, "open", "https://www.youtube.com/watch?v=7SRAIIkYyAo", NULL, NULL, SW_SHOWNORMAL);
-			//window->CleanUp();
 		}
 		else if (elem == creditsbutt)
 		{
 			App->audio->PlayFx(Click_fx);
 			playbutt->CleanUp();
-			continuebutt->CleanUp();
+			if (coninuebuttoff != nullptr) {
+				coninuebuttoff->CleanUp();
+			}
+			if (continuebutt != nullptr) {
+				continuebutt->CleanUp();
+			}
 			settingsbutt->CleanUp();
 			creditsbutt->CleanUp();
 			exitbutt->CleanUp();
@@ -121,6 +145,7 @@ bool j1MainMenuScene::OnEventChange(j1UIItems* elem, Event evnt)
 			App->audio->PlayFx(Click_fx);
 			creditstxt->CleanUp();
 			creditsback->CleanUp();
+			github->CleanUp();
 			createmainmenu();
 		
 		}
@@ -134,7 +159,12 @@ bool j1MainMenuScene::OnEventChange(j1UIItems* elem, Event evnt)
 		{
 			App->audio->PlayFx(Click_fx);
 			playbutt->CleanUp();
-			continuebutt->CleanUp();
+			if (coninuebuttoff != nullptr) {
+				coninuebuttoff->CleanUp();
+			}
+			if (continuebutt != nullptr) {
+				continuebutt->CleanUp();
+			}
 			settingsbutt->CleanUp();
 			creditsbutt->CleanUp();
 			exitbutt->CleanUp();
@@ -146,16 +176,38 @@ bool j1MainMenuScene::OnEventChange(j1UIItems* elem, Event evnt)
 			App->audio->PlayFx(Click_fx);
 			volumetitle->CleanUp();
 			settingsback->CleanUp();
+			volslider->CleanUp();
+			volrail->CleanUp();
 			createmainmenu();
 
 		}
-		else if (elem = continuebutt)
+		else if (elem == continuebutt)
 		{
 			App->audio->PlayFx(Click_fx);
-			WantToLoad = true;
+			App->scene->WantToLoad = true;
 			change_scenes0();
 
 		
+		}
+		else if (elem == volslider)
+		{
+			volslider->movable = true;
+		}
+		else if (elem == github)
+		{
+			ShellExecuteA(NULL, "open", "https://github.com/sherzock/Bobobo-s-bizarre-adventure", NULL, NULL, SW_SHOWNORMAL);
+		}
+		break;
+	case Event::LEFT_CLICK_UP:
+		if (elem == volslider)
+		{
+			volslider->movable = false;
+		}
+		break;
+	case Event::MOUSE_OUTSIDE:
+		if (elem == volslider)
+		{
+			volslider->movable = false;
 		}
 		break;
 	}
@@ -198,6 +250,18 @@ void j1MainMenuScene::change_scenes0() {
 	if (creditstxt != nullptr) {
 		creditstxt->CleanUp();
 	}
+	if (volrail != nullptr) {
+		volrail->CleanUp();
+	}
+	if (volslider != nullptr) {
+		volslider->CleanUp();
+	}
+	if (coninuebuttoff != nullptr) {
+		coninuebuttoff->CleanUp();
+	}
+	if (github != nullptr) {
+		github->CleanUp();
+	}
 	App->scene->Start();
 	App->enty->active = true;
 	
@@ -205,7 +269,6 @@ void j1MainMenuScene::change_scenes0() {
 	App->enty->player->position.x = 30;
 	App->enty->player->position.y = 550;
 	App->enty->player->XSpeed = 0;
-	//App->enty->CreatePlayer();
 	App->enty->Start();
 	
 }
@@ -216,9 +279,15 @@ void j1MainMenuScene::createmainmenu()
 	playbutt->SettleTextureToButton("textures/ui/MainMenu/Play.png", "textures/ui/MainMenu/PlayHov.png", "textures/ui/MainMenu/PlayClicked.png");
 	playbutt->rect = { 0,0, 340, 120 };
 
-	continuebutt = App->gui->CreateButton(POSITION_RIGHT, nullptr, { -50,325 }, this);
-	continuebutt->SettleTextureToButton("textures/ui/MainMenu/Continue.png", "textures/ui/MainMenu/ContinueHov.png", "textures/ui/MainMenu/ContinueClicked.png");
-	continuebutt->rect = { 0,0, 255, 90 };
+	if (candocontinue == true) {
+		continuebutt = App->gui->CreateButton(POSITION_RIGHT, nullptr, { -50,325 }, this);
+		continuebutt->SettleTextureToButton("textures/ui/MainMenu/Continue.png", "textures/ui/MainMenu/ContinueHov.png", "textures/ui/MainMenu/ContinueClicked.png");
+		continuebutt->rect = { 0,0, 255, 90 };
+	}
+	else {
+		coninuebuttoff = App->gui->CreateImage(POSITION_RIGHT, "textures/ui/MainMenu/ContinueDisable.png", { 0,0, 255, 90 }, { -50,325 });
+		
+	}
 
 	settingsbutt = App->gui->CreateButton(POSITION_RIGHT, nullptr, { -50,440 }, this);
 	settingsbutt->SettleTextureToButton("textures/ui/MainMenu/Settings.png", "textures/ui/MainMenu/SettingsHov.png", "textures/ui/MainMenu/SettingsClicked.png");
@@ -241,6 +310,9 @@ void j1MainMenuScene::createcredits()
 	creditsback = App->gui->CreateButton(POSITION_RIGHT, nullptr, { -50,676 }, this);
 	creditsback->SettleTextureToButton("textures/ui/MainMenu/Settings/Back.png", "textures/ui/MainMenu/Settings/BackHov.png", "textures/ui/MainMenu/Settings/BackClicked.png");
 	creditsback->rect = { 0,0, 50, 46 };
+	github = App->gui->CreateButton(POSITION_RIGHT, nullptr, { -20,20 }, this);
+	github->SettleTextureToButton("textures/Ui/MainMenu/Credits/Github.png", "textures/Ui/MainMenu/Credits/Github.png", "textures/Ui/MainMenu/Credits/Github.png");
+	github->rect = { 0,0, 102, 102 };
 }
 
 void j1MainMenuScene::createsettings()
@@ -249,4 +321,25 @@ void j1MainMenuScene::createsettings()
 	settingsback->SettleTextureToButton("textures/ui/MainMenu/Settings/Back.png", "textures/ui/MainMenu/Settings/BackHov.png", "textures/ui/MainMenu/Settings/BackClicked.png");
 	settingsback->rect = { 0,0, 50, 46 };
 	volumetitle = App->gui->CreateImage(POSITION_RIGHT, "textures/ui/MainMenu/Settings/Volume.png", { 0, 0, 336, 112 }, { -45, 250 });
+	volrail = App->gui->CreateImage(POSITION_RIGHT, "textures/ui/MainMenu/Settings/VolumeBar.png", { 0, 0, 308, 9 }, { -50, 500 });
+	volslider = App->gui->CreateSlider(POSITION_RIGHT, nullptr, { -220, 475 }, this);
+	volslider->SettleTextureToSlider("textures/ui/MainMenu/Settings/VolumeBarMovingPart.png", "textures/ui/MainMenu/Settings/VolumeBarMovingPart.png", "textures/ui/MainMenu/Settings/VolumeBarMovingPart.png");
+	volslider->rect = { 0,0, 42, 50 };
+	volslider->movable = false;
+	volslider->limit = {657,950};
+}
+
+void j1MainMenuScene::CanLoadGame() {
+
+	p2SString			load_game;
+	load_game.create("save_game.xml");
+	pugi::xml_document data;
+	pugi::xml_parse_result result = data.load_file(load_game.GetString());
+	if (result == NULL) {
+		candocontinue = false;
+	}
+	else {
+		candocontinue = true;
+	}
+
 }

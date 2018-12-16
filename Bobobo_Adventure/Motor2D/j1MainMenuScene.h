@@ -2,6 +2,7 @@
 #define __j1MAINMENUSCENE_H__
 
 #include "j1Module.h"
+#include "PugiXml\src\pugixml.hpp"
 
 struct SDL_Texture;
 
@@ -9,6 +10,7 @@ class WindowUI;
 class ButtonUI;
 class LabelUI;
 class ImageUI;
+class SliderUI;
 
 class j1MainMenuScene : public j1Module
 {
@@ -38,19 +40,19 @@ public:
 	bool CleanUp();
 
 	bool OnEventChange(j1UIItems* elem, Event event);
+	void CanLoadGame();
 	void change_scenes0();
 	void createsettings();
 	void createcredits();
 	void createmainmenu();
-
-	bool WantToLoad = false;
-
+	bool candocontinue = false;
 private:
 	SDL_Texture * debug_tex = nullptr;
 	ImageUI* MainMenubg = nullptr;
 	ImageUI* MainMenuTitle = nullptr;
 	ButtonUI* playbutt = nullptr;
 	ButtonUI* continuebutt = nullptr;
+	ImageUI*  coninuebuttoff = nullptr;
 	ButtonUI* settingsbutt = nullptr;
 	ButtonUI* creditsbutt = nullptr;
 	ButtonUI* exitbutt = nullptr;
@@ -58,6 +60,9 @@ private:
 	ImageUI*  volumetitle = nullptr;
 	ButtonUI* creditsback = nullptr;
 	ImageUI*  creditstxt = nullptr;
+	SliderUI* volslider = nullptr;
+	ImageUI*  volrail = nullptr;
+	ButtonUI* github = nullptr;
 	uint Click_fx;
 
 

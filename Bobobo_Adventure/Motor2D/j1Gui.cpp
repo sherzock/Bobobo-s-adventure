@@ -195,6 +195,12 @@ j1UIItems* j1Gui::CreateItem(Type guitype, Position ali)
 		items.add(ret);
 
 	}
+	else if (guitype == SLIDER) {
+
+		ret = new SliderUI(ali);
+		items.add(ret);
+
+	}
 	return ret;
 }
 
@@ -249,4 +255,13 @@ WindowUI* j1Gui::WindowCreate(Position ali, uint ButtonCount_, p2SString title, 
 	window->auxmodule = auxmodule;
 	window->Start();
 	return window;
+}
+
+SliderUI* j1Gui::CreateSlider(Position ali, p2SString text, iPoint movement, j1Module* auxmodule)
+{
+	SliderUI* Slider = (SliderUI*)App->gui->CreateItem(SLIDER, ali);
+	Slider->movement = movement;
+	Slider->auxmodule = auxmodule;
+	Slider->Start();
+	return Slider;
 }

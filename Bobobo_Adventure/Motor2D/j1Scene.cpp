@@ -69,9 +69,7 @@ bool j1Scene::Start()
 			playeron = true;
 		}
 
-		if(App->menuscene->WantToLoad == true){
-			App->LoadGame("save_game.xml");
-		}
+
 		
 		timer.Start();
 	}
@@ -88,7 +86,11 @@ bool j1Scene::Start()
 bool j1Scene::PreUpdate()
 {
 	BROFILER_CATEGORY("Scene1 PreUpdate", Profiler::Color::MediumVioletRed)
-
+	
+		if (WantToLoad == true) {
+			App->LoadGame("save_game.xml");
+			WantToLoad = false;
+		}
 
 	return true;
 }
