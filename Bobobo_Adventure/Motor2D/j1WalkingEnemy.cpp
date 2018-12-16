@@ -47,14 +47,16 @@ bool j1WalkingEnemy::Update(float dt)
 	position.y += GRAVITY + GRAVITY * dt;
 
 
-		if ((App->enty->player->position.x - position.x) <= range && (App->enty->player->position.x - position.x) >= -range && App->enty->player->collider->type == PLAYER_COLLIDER)
+		if ((App->enty->player->position.x - position.x) <= range && (App->enty->player->position.x - position.x) >= -range && App->enty->player->collider->type == PLAYER_COLLIDER || App->enty->player->collider->type == ATTACK_COLLIDER)
 		{
 			iPoint origin = { App->map->WorldToMap((int)position.x + 55 / 2, (int)position.y + 60 / 2) };
 			iPoint destination;
-			if (position.x < App->enty->player->position.x)
+			if (position.x < App->enty->player->position.x) {
 				destination = { App->map->WorldToMap((int)App->enty->player->position.x + App->enty->player->playerwidth + 1, (int)App->enty->player->position.y + App->enty->player->playerheight / 2) };
-			else
+			}
+				else {
 				destination = { App->map->WorldToMap((int)App->enty->player->position.x, (int)App->enty->player->position.y + App->enty->player->playerheight / 2) };
+			}
 
 			if (App->enty->player->dead  == false && App->path->IsWalkable(destination) == true && App->path->IsWalkable(origin) == true)
 			{
@@ -62,9 +64,13 @@ bool j1WalkingEnemy::Update(float dt)
 				walk(*path, dt);
 				path_created = true;
 			}
+	
 		}
-		else if (path_created)
+		else if (path_created == true) {
 			path->Clear();
+			path_created = false;
+		}
+			
 	
 	if (App->enty->player->position == App->enty->player->Initial_position)
 	{
@@ -127,16 +133,16 @@ void j1WalkingEnemy::OnCollision(Collider * col_1, Collider * col_2)
 		direction = col_1->CheckDirection(col_2->rect);
 
 		if (direction == UP_COLLISION)
-			position.y = col_2->rect.y - 50 + 1;
+			position.y = col_2->rect.y - 50 - 4;
 
 		else if (direction == DOWN_COLLISION)
 			position.y = col_2->rect.y + col_2->rect.h;
 
 		else if (direction == RIGHT_COLLISION)
-			position.x = col_2->rect.x + 55;
+			position.x = col_2->rect.x + 55 - 100;
 
 		else if (direction == LEFT_COLLISION)
-			position.x = col_2->rect.x - 55 ;
+			position.x = col_2->rect.x - 55 + 100 ;
 	}
 
 	if ((col_1->type == ATTACK_COLLIDER && col_2->type == ENEMY_COLLIDER) || (col_2->type == ATTACK_COLLIDER && col_1->type == ENEMY_COLLIDER))
@@ -157,7 +163,7 @@ void j1WalkingEnemy::walk(p2DynArray<iPoint>& path, float dt)
 {
 	direction = App->path->CheckDirectionGround(path);
 
-	speed = 50.0f;
+	speed = 100.0f;
 	if (direction == Movement::DOWN)
 	{
 		animation = &walking;
