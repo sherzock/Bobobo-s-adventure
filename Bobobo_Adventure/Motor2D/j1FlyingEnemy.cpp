@@ -60,14 +60,17 @@ bool j1FlyingEnemy::Update(float dt)
 				path_created = true;
 			}
 	}
-	if (App->enty->player->position == App->enty->player->Initial_position)
-		position = initPos;
-
-	else if (path_created)
+	else if (path_created == true)
 	{
 		path->Clear();
 		path_created = false;
 	}
+	
+	if (App->enty->player->position == App->enty->player->Initial_position) {
+		position = initPos;
+
+	}
+	
 	
 	
 	if (collider != nullptr) {
