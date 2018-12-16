@@ -57,10 +57,12 @@ bool j1Scene2::Start()
 	}
 	
 	if (active == true) {
+		
+
+
 		AddAllEnemies2();
 		timer.Start();
 	}
-	
 	
 	return true;
 }
@@ -176,6 +178,7 @@ void j1Scene2::change_scenes2() {
 	App->enty->Start();
 	App->enty->player->position.x = 30;
 	App->enty->player->position.y = 550;
+	App->scene->playeron = false;
 	App->menuscene->Start();
 	
 	
