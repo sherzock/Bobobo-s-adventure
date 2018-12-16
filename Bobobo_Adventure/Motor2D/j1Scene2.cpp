@@ -101,6 +101,7 @@ bool j1Scene2::Update(float dt)
 	}
 
 
+
 	
 
 	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN || App->input->GetKey(SDL_SCANCODE_F4) == KEY_DOWN || App->enty->player->position.x >= App->map->map_file.child("map").child("properties").child("property").next_sibling("property").next_sibling("property").next_sibling("property").attribute("value").as_float() - 100) {
@@ -149,8 +150,14 @@ bool j1Scene2::PostUpdate()
 	bool ret = true;
 
 	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
-		ret = false;
-
+	{
+		if (!iswindowon) {
+			createescwindow();
+		}
+		else if (iswindowon) {
+			destroyescwindow();
+		}
+	}
 	return ret;
 }
 
@@ -158,10 +165,38 @@ bool j1Scene2::PostUpdate()
 bool j1Scene2::CleanUp()
 {
 	LOG("Freeing scene");
+	destroyescwindow();
 	App->map->CleanUp();
 	App->colls->CleanUp();
 	App->tex->CleanUp();
 	App->enty->CleanUp();
+	return true;
+}
+
+bool j1Scene2::OnEventChange(j1UIItems* item, Event evnt)
+{
+	escwindow->ChangeEvent(item, evnt);
+	escmainmenu->ChangeEvent(item, evnt);
+	escresume->ChangeEvent(item, evnt);
+	switch (evnt)
+	{
+	case Event::LEFT_CLICK:
+		if (item == escwindow) {
+			escwindow->kinetic = true;
+		}
+		else if (item == escmainmenu) {
+			change_scenesmainmenu();
+		}
+		else if (item == escresume) {
+			destroyescwindow();
+		}
+		break;
+	case Event::LEFT_CLICK_UP:
+		if (item == escwindow) {
+			escwindow->kinetic = false;
+		}
+		break;
+	}
 	return true;
 }
 
@@ -173,7 +208,7 @@ void j1Scene2::change_scenes2() {
 	CleanUp();
 	App->enty->CleanUp();
 	App->gui->CleanUp();
-	App->fade->FadeToBlack(App->scene2, App->scene, 0.8f);
+	App->fade->FadeToBlack(App->scene2, App->menuscene, 0.8f);
 	App->enty->player->XSpeed = 0;
 	App->enty->Start();
 	App->enty->player->position.x = 30;
@@ -185,6 +220,21 @@ void j1Scene2::change_scenes2() {
 	
 }
 
+void j1Scene2::change_scenesmainmenu()
+{
+	App->GamePause = false;
+	deadrestart = false;
+	App->menuscene->active = true;
+	App->scene2->active = false;
+	CleanUp();
+	App->fade->FadeToBlack(App->scene2, App->menuscene, 0.8f);
+	App->enty->player->CleanUp();
+	App->menuscene->Start();
+
+
+
+}
+
 void j1Scene2::AddAllEnemies2() {
 
 
@@ -193,5 +243,41 @@ void j1Scene2::AddAllEnemies2() {
 	App->enty->AddEnemy(2300, 50, FLYINGENEMY);
 	App->enty->AddEnemy(4000, 200, FLYINGENEMY);
 	App->enty->AddEnemy(5000, 400, FLYINGENEMY);
+
+}
+
+void j1Scene2::createescwindow() {
+	App->GamePause = true;
+	iswindowon = true;
+	escwindow = App->gui->WindowCreate(POSITION_CENTER, 0, nullptr, { 0,50 }, this);
+	escwindow->texture = escwindow->TexLoad("textures/Ui/PauseSet.png");
+	escwindow->rect = { 0,0, 416, 588 };
+	escwindow->kinetic = false;
+	escmainmenu;
+
+	escresume = App->gui->CreateButton(POSITION_CENTER, nullptr, { 0,200 }, this);
+	escresume->SettleTextureToButton("textures/ui/Resume.png", "textures/ui/ResumeHov.png", "textures/ui/ResumeClicked.png");
+	escresume->rect = { 0,0, 337, 113 };
+	escwindow->AddItemToWindow(escresume);
+
+	escmainmenu = App->gui->CreateButton(POSITION_CENTER, nullptr, { 0,330 }, this);
+	escmainmenu->SettleTextureToButton("textures/ui/MainMenu.png", "textures/ui/MainMenuHov.png", "textures/ui/MainMenuClicked.png");
+	escmainmenu->rect = { 0,0, 337, 113 };
+	escwindow->AddItemToWindow(escmainmenu);
+
+}
+
+void j1Scene2::destroyescwindow() {
+	App->GamePause = false,
+		iswindowon = false;
+	if (escwindow != nullptr) {
+		escwindow->CleanUp();
+	}
+	if (escresume != nullptr) {
+		escresume->CleanUp();
+	}
+	if (escmainmenu != nullptr) {
+		escmainmenu->CleanUp();
+	}
 
 }

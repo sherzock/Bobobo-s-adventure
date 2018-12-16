@@ -103,6 +103,8 @@ public:
 	j1Fonts*			font = NULL;
 	j1Gui*				gui = NULL;
 
+	bool GamePause = false;
+
 private:
 
 	p2List<j1Module*>	modules;

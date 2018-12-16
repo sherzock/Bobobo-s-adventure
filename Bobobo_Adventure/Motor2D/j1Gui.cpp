@@ -147,7 +147,8 @@ bool j1Gui::ItemEventManager()
 		if ((item->data->event != item->data->event_before) && item->data->auxmodule != nullptr) {
 
 			ret = item->data->auxmodule->OnEventChange(item->data, item->data->event);
-			item->data->event_before = item->data->event;
+				item->data->event_before = item->data->event;
+			
 		}
 	}
 	return ret;

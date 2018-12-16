@@ -12,15 +12,15 @@
 	<scene2 />
 	<entity>
 		<player>
-			<position x="210.75" y="550" level="1" />
+			<position x="164.75" y="550" level="1" />
 		</player>
 		<WalkingEnemy>
-			<position x="358.999451" y="562.822754" />
-			<position x="6500" y="488.035004" />
-			<position x="4600" y="440.035004" />
+			<position x="429.049683" y="539.033997" />
+			<position x="6500" y="488.033997" />
+			<position x="4600" y="440.033997" />
 		</WalkingEnemy>
 		<Fly>
-			<position x="741.399841" y="497.599976" />
+			<position x="742.699768" y="496.799927" />
 			<position x="1500" y="100" />
 			<position x="3500" y="100" />
 			<position x="7500" y="400" />

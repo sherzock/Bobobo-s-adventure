@@ -26,7 +26,7 @@ public:
 	void AddItemToWindow(j1UIItems* item);
 	void MouseInput(Input state);
 
-	bool movable = false;
+	bool movable = true;
 
 private:
 	p2List<j1UIItems*> ItemWindow;

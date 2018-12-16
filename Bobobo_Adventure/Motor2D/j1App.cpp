@@ -292,6 +292,7 @@ bool j1App::DoUpdate()
 			continue;
 		}
 
+		if (GamePause) { dt = 0.00; }
 		ret = item->data->Update(dt);
 	}
 

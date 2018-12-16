@@ -55,8 +55,27 @@ bool j1PlayerUI::Update(float dt)
 
 bool j1PlayerUI::CleanUp()
 {
-	
-
+	if (heart != nullptr){
+		heart->CleanUp();
+	}
+	if (Coin != nullptr){
+		Coin->CleanUp();
+	}
+	if (LifeCounter != nullptr){
+		LifeCounter->CleanUp();
+	}
+	if (TimeCounter != nullptr){
+		TimeCounter->CleanUp();
+	}
+	if (CoinCounter != nullptr){
+		CoinCounter->CleanUp();
+	}
+	if (PointCounter != nullptr){
+		PointCounter->CleanUp();
+	}
+	if (window != nullptr){
+		window->CleanUp();
+	}
 	return true;
 }
 
