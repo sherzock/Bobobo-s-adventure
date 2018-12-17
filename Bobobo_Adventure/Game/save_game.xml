@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<game_state>
+	<input />
+	<window />
+	<textures />
+	<audio>
+		<volumes music="46" sfx="46" mute="false" />
+	</audio>
+	<map />
+	<Menuscene />
+	<scene />
+	<scene2 />
+	<entity>
+		<player>
+			<position x="4434" y="580.99707" coins="9" lifes="2" points="600" level="2" time="152" />
+		</player>
+		<WalkingEnemy />
+		<Fly>
+			<position x="5000" y="400" />
+		</Fly>
+		<Coin />
+	</entity>
+	<fonts />
+	<gui />
+	<collisions />
+	<fade />
+	<renderer>
+		<camera x="-4034" y="0" />
+	</renderer>
+</game_state>

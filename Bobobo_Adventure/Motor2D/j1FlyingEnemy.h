@@ -11,7 +11,6 @@
 class j1FlyingEnemy : public j1Entity
 {
 public:
-	void Pathing(p2DynArray<iPoint>& path, float dt);
 
 	j1FlyingEnemy(int x, int y, entitytypes type);
 
@@ -23,7 +22,6 @@ public:
 
 	void fly(p2DynArray<iPoint>& path, float dt);
 	void OnCollision(Collider* col_1, Collider* col_2);
-	void LoadXML();
 
 	bool Load(pugi::xml_node&);
 	bool Save(pugi::xml_node&) const;

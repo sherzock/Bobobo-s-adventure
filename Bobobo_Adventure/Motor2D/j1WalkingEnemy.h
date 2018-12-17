@@ -11,7 +11,6 @@
 class j1WalkingEnemy : public j1Entity
 {
 public:
-	void Pathing(p2DynArray<iPoint>& path, float dt);
 
 	j1WalkingEnemy(int x, int y, entitytypes type);
 

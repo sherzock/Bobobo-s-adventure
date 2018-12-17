@@ -31,7 +31,6 @@ bool j1FlyingEnemy::Start()
 
 	sprites = App->tex->Load("textures/enemy2.png");
 	Dead_fx = App->audio->LoadFx("audio/fx/Hit.wav");
-	LoadXML();
 	animation = &flying;
 	collider = App->colls->AddCollider({ (int)position.x, (int)position.y, 30,30 }, ENEMY_COLLIDER, App->enty);
 
@@ -127,9 +126,7 @@ void j1FlyingEnemy::OnCollision(Collider * col_1, Collider * col_2)
 		App->enty->DestroyEntity(this);
 	}
 }
-void j1FlyingEnemy::LoadXML()
-{
-}
+
 
 void j1FlyingEnemy::fly(p2DynArray<iPoint>& path, float dt)
 {
