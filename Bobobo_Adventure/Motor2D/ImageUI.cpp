@@ -4,7 +4,7 @@
 #include "j1App.h"
 #include "j1Render.h"
 #include "j1Textures.h"
-//#include "Brofiler\Brofiler.h"
+#include "Brofiler\Brofiler.h"
 
 ImageUI::ImageUI(Position alig) : j1UIItems(Type::IMAGE, Position::NO_POSITIONING)
 {
@@ -31,7 +31,7 @@ bool ImageUI::CleanUp()
 
 bool ImageUI::Update(float dt)
 {
-	//BROFILER_CATEGORY("GuiImage_Update", Profiler::Color::OrangeRed);
+	BROFILER_CATEGORY("GuiImage Update", Profiler::Color::MediumVioletRed);
 
 	UpdatePosition();
 	if (show) { App->render->Blit(texture, position.x + movement.x, position.y + movement.y, &rect); }

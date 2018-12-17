@@ -6,7 +6,7 @@
 #include "j1Input.h"
 #include "p2Log.h"
 #include "j1Textures.h"
-//#include "Brofiler\Brofiler.h"
+#include "Brofiler\Brofiler.h"
 
 WindowUI::WindowUI(Position alig) : j1UIItems(Type::WINDOW, Position::NO_POSITIONING) { ali = alig; }
 WindowUI::~WindowUI() {}
@@ -39,7 +39,7 @@ bool WindowUI::CleanUp()
 
 bool WindowUI::Update(float dt)
 {
-	//BROFILER_CATEGORY("GuiWindow_Update", Profiler::Color::OrangeRed);
+	BROFILER_CATEGORY("GuiWindow Update", Profiler::Color::Tomato);
 	if (kinetic) { Move(); }
 	UpdatePosition();
 	App->render->Blit(texture, position.x + movement.x, position.y + movement.y, &rect);

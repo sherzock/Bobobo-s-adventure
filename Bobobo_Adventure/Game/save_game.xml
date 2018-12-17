@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<game_state>
+	<input />
+	<window />
+	<textures />
+	<audio>
+		<volumes music="40" sfx="147" mute="false" />
+	</audio>
+	<map />
+	<Menuscene />
+	<scene />
+	<scene2 />
+	<entity>
+		<player>
+			<position x="146.75" y="365.238342" coins="0" lifes="3" points="0" level="2" time="1" />
+		</player>
+		<WalkingEnemy />
+		<Fly>
+			<position x="425.300354" y="324.700378" />
+			<position x="1038.00098" y="415.699829" />
+			<position x="2300" y="50" />
+			<position x="4000" y="200" />
+			<position x="5000" y="400" />
+		</Fly>
+		<Coin>
+			<position3 x="300" y="440" level="2" />
+			<position3 x="600" y="130" level="2" />
+			<position3 x="790" y="210" level="2" />
+			<position3 x="1415" y="420" level="2" />
+			<position3 x="1920" y="340" level="2" />
+			<position3 x="2100" y="340" level="2" />
+			<position3 x="2600" y="200" level="2" />
+			<position3 x="3270" y="380" level="2" />
+			<position3 x="3730" y="275" level="2" />
+			<position3 x="4300" y="450" level="2" />
+			<position3 x="4700" y="300" level="2" />
+			<position3 x="5220" y="400" level="2" />
+			<position3 x="5400" y="370" level="2" />
+		</Coin>
+	</entity>
+	<fonts />
+	<gui />
+	<collisions />
+	<fade />
+	<renderer>
+		<camera x="0" y="0" />
+	</renderer>
+</game_state>

@@ -7,6 +7,7 @@
 #include "j1Fonts.h"
 #include "j1Input.h"
 #include "j1Textures.h"
+#include "Brofiler\Brofiler.h"
 
 SliderUI::SliderUI(Position alig) : j1UIItems(Type::SLIDER, Position::NO_POSITIONING) { ali = alig; }
 SliderUI::~SliderUI() {}
@@ -35,6 +36,7 @@ bool SliderUI::CleanUp()
 
 bool SliderUI::Update(float dt)
 {
+	BROFILER_CATEGORY("Slider Update", Profiler::Color::Tomato);
 	if (kinetic) { Drag(); }
 	if (active == false) { texture = Pressed; }
 	UpdatePosition();
@@ -45,6 +47,7 @@ bool SliderUI::Update(float dt)
 
 bool SliderUI::PostUpdate()
 {
+	BROFILER_CATEGORY("Slider PostUpdate", Profiler::Color::MediumVioletRed);
 	return true;
 }
 
@@ -59,7 +62,6 @@ void SliderUI::MouseInput(Input status)
 		inp = status;
 	}
 	else if (status == PRESSED_L) {
-		/*if (movable)*/
 			StartDrag();
 		
 		if (Pressed != NULL)
@@ -68,14 +70,14 @@ void SliderUI::MouseInput(Input status)
 		inp = status;
 	}
 	else if (status == UP_L) {
-		/*if (movable)*/
+		
 			Enddrag();
 		
 		texture = None;
 	}
 }
 
-void SliderUI::Drag(/*iPoint point*/)
+void SliderUI::Drag()
 {
 	if (movable) {
 		iPoint mouse_position;
@@ -92,7 +94,6 @@ void SliderUI::Drag(/*iPoint point*/)
 void SliderUI::StartDrag()
 {
 	iPoint mouse_position;
-	//movement = { 0,0 };
 	App->input->GetMousePosition(mouse_position.x, mouse_position.y);
 	OnClick = mouse_position;
 

@@ -6,7 +6,7 @@
 #include "j1Fonts.h"
 #include "j1Input.h"
 #include "j1Textures.h"
-//#include "Brofiler\Brofiler.h"
+#include "Brofiler\Brofiler.h"
 
 ButtonUI::ButtonUI(Position alig) : j1UIItems(Type::BUTTON, Position::NO_POSITIONING) { ali = alig; }
 ButtonUI::~ButtonUI() {}
@@ -22,7 +22,6 @@ bool ButtonUI::Start()
 
 bool ButtonUI::CleanUp()
 {
-	//App->tex->UnLoad(tex);
 
 	deleting = true;
 	
@@ -40,7 +39,7 @@ bool ButtonUI::CleanUp()
 
 bool ButtonUI::Update(float dt)
 {
-	//BROFILER_CATEGORY("ButtonUI_Update", Profiler::Color::OrangeRed);
+	BROFILER_CATEGORY("ButtonUI Update", Profiler::Color::Tomato);
 	if (active == false) { texture = Pressed; }
 	UpdatePosition();
 	App->render->Blit(texture, position.x + movement.x, position.y + movement.y, &rect);

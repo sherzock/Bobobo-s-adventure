@@ -5,7 +5,7 @@
 #include "j1Fonts.h"
 #include "j1Render.h"
 #include "j1Textures.h"
-//#include "Brofiler\Brofiler.h"
+#include "Brofiler\Brofiler.h"
 
 LabelUI::LabelUI(Position alig) : j1UIItems(Type::LABEL, Position::NO_POSITIONING) { ali = alig; }
 LabelUI::~LabelUI() {}
@@ -54,7 +54,7 @@ void LabelUI::CreateText(p2SString txt, SDL_Color color, Fonts font)
 
 bool LabelUI::Update(float dt)
 {
-	//BROFILER_CATEGORY("GuiLabel_Update", Profiler::Color::OrangeRed);
+	BROFILER_CATEGORY("GuiLabel Update", Profiler::Color::Tomato);
 	UpdatePosition();
 	App->render->Blit(texture, position.x + movement.x, position.y + movement.y);
 	return true;
