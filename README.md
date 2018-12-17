@@ -6,7 +6,7 @@
 
 This game is a basic plataformer made by Jacobo Galofre and Ferran Barnes at UPC in 2018 
 
-The game main goal is to reach the end of the levels without dying and collecting as much Don Patch Coins as possible. The main menu is fully operative with credits that contain a link to our repository, and settings with music and FX volume handler. There are two different types of enemy: some annoying alien flies and some Sambaman minions.If your lives reach 0 you will die so be carefull. Killing enemies and picking up Don Patch coins gives you points and when you collect 10 Don Patch coins you will get an extra life!.<br>
+The game main goal is to reach the end of the levels without dying. The main menu is fully operative with credits that contain a link to our repository, and settings with music and FX volume handler. There are two different types of enemy: some annoying alien flies and some Sambaman minions.If your lives reach 0 you will die so be carefull. Killing enemies and picking up Don Patch coins gives you points and when you collect 10 Don Patch coins you will get an extra life!.<br>
 
 [LAST RELEASE OF THE GAME](https://github.com/sherzock/Bobobo-s-bizarre-adventure/releases/tag/1.0)
 
